@@ -1,0 +1,7 @@
+name: Ambient.Impact - Base theme
+description: A reusable base theme.
+type: theme
+base theme: classy
+package: Ambient.Impact
+core: 8.x
+hidden: true
