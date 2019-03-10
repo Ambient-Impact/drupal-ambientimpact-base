@@ -1,0 +1,128 @@
+// -----------------------------------------------------------------------------
+// 	Base typography partial
+// -----------------------------------------------------------------------------
+
+// This is the font size used both when responsive type is enabled and disabled.
+// In the latter case, this modifies the overall responsive type size, e.g.
+// setting this to 90% will make whatever the calculated font size be 90% of its
+// value.
+$font-size:				100%	!default;
+
+// Whether to use responsive type. Set to false to disable.
+$use-responsive-type:	true	!default;
+
+// The minimum and maximum font scales.
+$font-scale-min:		1.067	!default;
+$font-scale-max:		1.2		!default;
+
+// The minimum and maximum width media queries to use to clamp the font sizes
+// to. The minimum is where the font is at the minimum scale and will not get
+// any smaller, while the maximum is where the font will be at maximum scale and
+// not get any bigger.
+$font-scale-width-min:	35em	!default;
+$font-scale-width-max:	80em	!default;
+
+// The font weight value for normal (not strong) text. This defaults to a
+// thinner value than browser default, which is 400.
+$font-weight-normal:	300		!default;
+// The font weight value for strong text. This defaults to 400, which is thicker
+// than our normal weight, but thinner than the default of 700.
+$font-weight-strong:	400		!default;
+
+// Modern system font stack:
+// https://medium.com/@mwichary/system-shock-6b1dc6d6596f
+$font-stack: Roboto, 'San Francisco', 'Segoe UI', 'Helvetica Neue',
+             'Lucida Grande', sans-serif			!default;
+
+// Heading font sizes when not using responsive type. These are h1-h6 in order.
+$heading-font-sizes:		2em, 1.6em, 1.4em, 1.2em, 1em, 1em	!default;
+// Heading font scales when using responsive type. These are used as the
+// exponent, with the font scale as the base number. These are h1-h6 in order.
+$heading-font-exponents:	3.5, 2.75, 2, 1, 1, 1			!default;
+// The unit to use for headings when using responsive type.
+$heading-font-scale-unit:	'em'							!default;
+
+$heading-font-stack:	$font-stack							!default;
+$heading-font-weight:	$font-weight-strong					!default;
+
+// $text-selection-background-colour:
+// 	lighten($material-primary-colour, 10%);
+
+// $text-inactive-selection-background-colour:
+// 	desaturate($text-selection-background-colour, 60%);
+
+
+@mixin heading-font-size($level) {
+	// Use the static heading sizes by default, if the browser doesn't
+	// understand calc() or responsive type is disabled.
+	font-size:		nth($heading-font-sizes, $level);
+
+	@if $use-responsive-type == true {
+		@include responsive-type(
+			font-size,
+			$font-scale-width-min,
+			$font-scale-width-max,
+			exponent(
+				$font-scale-min,
+				nth($heading-font-exponents, $level)
+			) * to-number('1' + $heading-font-scale-unit),
+			exponent(
+				$font-scale-max,
+				nth($heading-font-exponents, $level)
+			) * to-number('1' + $heading-font-scale-unit)
+		);
+	}
+}
+
+
+html {
+	// Use responsive type if set to do so. Note that the responsive-type mixin
+	// has a @supports check so we don't need one here.
+	@if $use-responsive-type == true {
+		@include responsive-type(
+			font-size,
+			$font-scale-width-min,
+			$font-scale-width-max,
+			$font-scale-min * 1em,
+			$font-scale-max * 1em
+		);
+	}
+}
+
+body {
+	font-size:	$font-size;
+}
+
+body, .ui-widget, input, textarea {
+	font-family:	$font-stack;
+	font-weight:	$font-weight-normal;
+}
+
+strong,
+#breadcrumb ol,
+.form-item label,
+.field .field-label,
+.item-list .pager li {
+	font-weight: $font-weight-strong;
+}
+
+// Try and catch any inline bold styles.
+[style*='font-weight: bold'],
+[style*='font-weight:bold'] {
+	font-weight: $font-weight-strong !important;
+}
+
+// Headings.
+@for $i from 1 through 6 {
+	h#{$i} {
+		// Apply our font sizes.
+		@include heading-font-size($i);
+	}
+}
+#{$heading-selector} {
+	font-family: $heading-font-stack;
+	font-weight: $heading-font-weight;
+}
+
+// Set default selection colours.
+// @include selection;
