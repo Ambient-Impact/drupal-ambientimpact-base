@@ -2,21 +2,21 @@
 //	Base layout partial
 // -----------------------------------------------------------------------------
 
-$gutter:					$general-spacing		!default;
+$layout-gutter:			$general-spacing		!default;
 
-$viewport-top-spacing:		$general-spacing * 1.5	!default;
-$viewport-bottom-spacing:	$general-spacing * 8	!default;
+$layout-top-spacing:	$general-spacing * 1.5	!default;
+$layout-bottom-spacing:	$general-spacing * 8	!default;
 
-$layout-max-width:			60em					!default;
+$layout-max-width:		60em					!default;
 
 
 body {
-	@if type-of($viewport-bottom-spacing) == 'number' {
-		padding-bottom:	$viewport-bottom-spacing;
+	@if type-of($layout-bottom-spacing) == 'number' {
+		padding-bottom:	$layout-bottom-spacing;
 	}
 
-	padding-left:	$gutter;
-	padding-right:	$gutter;
+	padding-left:	$layout-gutter;
+	padding-right:	$layout-gutter;
 
 	box-sizing:		border-box;
 }
@@ -26,9 +26,9 @@ body {
 	margin-left:	auto;
 	margin-right:	auto;
 
-	@if type-of($viewport-top-spacing) == 'number' {
-		// This is not applied to the <body>, as the Navbar uses that to offset the
-		// viewport.
-		margin-top:		$viewport-top-spacing;
+	@if type-of($layout-top-spacing) == 'number' {
+		// This is not applied to the <body>, as the Toolbar uses that to offset
+		// the viewport.
+		margin-top:		$layout-top-spacing;
 	}
 }
