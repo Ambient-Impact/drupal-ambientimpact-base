@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------------
+//	Base layout partial
+// -----------------------------------------------------------------------------
+
+$gutter:					$general-spacing		!default;
+
+$viewport-top-spacing:		$general-spacing * 1.5	!default;
+$viewport-bottom-spacing:	$general-spacing * 8	!default;
+
+
+@if type-of($viewport-top-spacing) == 'number' {
+	// This is not applied to the <body>, as the Navbar uses that to offset the
+	// viewport.
+	.layout-container {
+		margin-top:		$viewport-top-spacing;
+	}
+}
+@if type-of($viewport-bottom-spacing) == 'number' {
+	body {
+		padding-bottom:	$viewport-bottom-spacing;
+
+		box-sizing:		border-box;
+	}
+}
