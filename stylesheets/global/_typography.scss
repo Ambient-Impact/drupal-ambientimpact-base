@@ -45,11 +45,11 @@ $heading-font-scale-unit:	'em'							!default;
 $heading-font-stack:	$font-stack							!default;
 $heading-font-weight:	$font-weight-strong					!default;
 
-// $text-selection-background-colour:
-// 	lighten($material-primary-colour, 10%);
+$text-selection-background-colour:
+	lighten($material-primary-colour, 10%);
 
-// $text-inactive-selection-background-colour:
-// 	desaturate($text-selection-background-colour, 60%);
+$text-inactive-selection-background-colour:
+	desaturate($text-selection-background-colour, 60%);
 
 
 @mixin heading-font-size($level) {
@@ -125,4 +125,4 @@ strong,
 }
 
 // Set default selection colours.
-// @include selection;
+@include selection;
