@@ -19,54 +19,47 @@ $use-image-link-styles:			true	!default;
 	}
 }
 
-// Link styles. We need to apply to links in menus and jQuery UI widgets to be
-// able to override those. By using :link/:visited we can target only valid
-// links, i.e. those that have a valid href. See:
+// Link styles. These are limited to the layout container so that we don't
+// affect the administrative toolbar and other elements outside of what would be
+// considered the site content itself. By using :link/:visited we can target
+// only valid links, i.e. those that have a valid href. See:
 // https://css-tricks.com/how-to-disable-links/
-:link, :visited {
-	&,
-	li &.active,
-	.ui-widget-content & {
-		// Basic link styles.
-		@if $use-link-styles == true {
-			@include link;
-		}
+.layout-container {
+	:link, :visited {
+		// Any links.
+		&,
+		// Currently active menu item links.
+		&.is-active,
+		// jQuery UI widget content.
+		.ui-widget-content & {
+			// Basic link styles.
+			@if $use-link-styles == true {
+				@include link;
+			}
 
-		// Apply fancy link underlines to all links, even if text-decoration-skip:
-		// ink; is supported, as the 'link.underline' component gives us more
-		// control over the underlines with things such as thickness.
-		@if $use-fancy-link-underlines == true {
-			@include fancy-link-underlines;
-		}
+			// Apply fancy link underlines to all links, even if
+			// text-decoration-skip: ink; is supported, as the 'link.underline'
+			// component gives us more control over the underlines with things
+			// such as thickness.
+			@if $use-fancy-link-underlines == true {
+				@include fancy-link-underlines;
+			}
 
-		// Apply the image link mixin to all links.
-		@if $use-image-link-styles == true {
-			@include image-link;
+			// Apply the image link mixin to all links.
+			@if $use-image-link-styles == true {
+				@include image-link;
+			}
 		}
 	}
 }
 
-
 // Remove fancy link underlines from these links.
-#skip-link,
 #logo,
 .contextual-region .contextual .contextual-links/*,
 .#{$photoswipe-root-class}*/ {
 	:link, :visited {
 		@if $use-fancy-link-underlines == true {
 			@include remove-fancy-link-underlines;
-		}
-	}
-}
-// The administrative toolbar requires resetting the background-size so that the
-// background gradient the toolbar uses to indicate the currently open tab
-// doesn't get squished vertically to the underline thickness.
-.toolbar {
-	:link, :visited {
-		@if $use-fancy-link-underlines == true {
-			@include remove-fancy-link-underlines {
-				background-size: auto;
-			}
 		}
 	}
 }
