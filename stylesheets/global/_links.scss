@@ -49,11 +49,24 @@ $use-image-link-styles:			true	!default;
 
 // Remove fancy link underlines from these links.
 #skip-link,
-#logo/*,
+#logo,
+.contextual-region .contextual .contextual-links/*,
 .#{$photoswipe-root-class}*/ {
 	:link, :visited {
 		@if $use-fancy-link-underlines == true {
 			@include remove-fancy-link-underlines;
+		}
+	}
+}
+// The administrative toolbar requires resetting the background-size so that the
+// background gradient the toolbar uses to indicate the currently open tab
+// doesn't get squished vertically to the underline thickness.
+.toolbar {
+	:link, :visited {
+		@if $use-fancy-link-underlines == true {
+			@include remove-fancy-link-underlines {
+				background-size: auto;
+			}
 		}
 	}
 }
