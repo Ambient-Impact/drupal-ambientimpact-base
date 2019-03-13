@@ -11,14 +11,6 @@ $use-fancy-link-underlines:		true	!default;
 $use-image-link-styles:			true	!default;
 
 
-// Override the default AdaptiveTheme styles, which unfortunately don't use
-// :link/:visited.
-@if $use-link-styles == true {
-	a:hover, a:active {
-		text-decoration: none;
-	}
-}
-
 // Link styles. These are limited to the layout container so that we don't
 // affect the administrative toolbar and other elements outside of what would be
 // considered the site content itself. By using :link/:visited we can target
