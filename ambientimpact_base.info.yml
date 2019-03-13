@@ -5,3 +5,7 @@ base theme: classy
 package: Ambient.Impact
 core: 8.x
 hidden: true
+
+libraries:
+  - ambientimpact_core/component.link.underline
+  - ambientimpact_core/component.pointer_focus_hide
