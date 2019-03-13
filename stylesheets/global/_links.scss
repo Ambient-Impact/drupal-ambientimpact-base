@@ -43,13 +43,17 @@ $use-image-link-styles:			true	!default;
 			}
 		}
 	}
-}
 
-// Remove fancy link underlines from these links.
-#logo,
-.contextual-region .contextual .contextual-links/*,
-.#{$photoswipe-root-class}*/ {
-	:link, :visited {
+	// Remove fancy link underlines from these links.
+	.contextual-region .contextual .contextual-links/*,
+	.#{$photoswipe-root-class}*/ {
+		:link, :visited {
+			@if $use-fancy-link-underlines == true {
+				@include remove-fancy-link-underlines;
+			}
+		}
+	}
+	.site-logo {
 		@if $use-fancy-link-underlines == true {
 			@include remove-fancy-link-underlines;
 		}
