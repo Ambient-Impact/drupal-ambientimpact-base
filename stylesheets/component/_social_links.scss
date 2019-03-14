@@ -1,0 +1,25 @@
+// -----------------------------------------------------------------------------
+//	Base social links component partial
+// -----------------------------------------------------------------------------
+
+
+.ambientimpact-social-links {
+	// Even though the module already has a basic unlist set of rules, this
+	// allows us to override the specificity of AdaptiveTheme's base styles.
+	@include unlisted-list;
+
+	&--orientation-horizontal {
+		.ambientimpact-social-links__network:not(:last-child) {
+			// Even though we set this in module CSS, set it again here in case
+			// the theme has a different value for $general-spacing.
+			margin-right: $general-spacing;
+		}
+	}
+
+	&--display-icon-only {
+		// Icons are larger when no text is visible.
+		.ambientimpact-icon {
+			@include set-icon-size($icon-size * 1.5);
+		}
+	}
+}
