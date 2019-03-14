@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------------
+//	Base focused element partial
+// -----------------------------------------------------------------------------
+
+
+a {
+	@include focus-outline($is-link: true);
+}
+
+button,
+// This catches things like the <summary> element in a <details>.
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="radio"],
+input[type="checkbox"],
+[tabindex]:not([tabindex="-1"]) {
+	@include focus-outline;
+}
