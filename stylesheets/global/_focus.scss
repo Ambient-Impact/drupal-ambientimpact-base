@@ -18,3 +18,24 @@ input[type="checkbox"],
 [tabindex]:not([tabindex="-1"]) {
 	@include focus-outline;
 }
+
+// This allows invisible elements that can receive focus (e.g. from keyboard,
+// etc.) to transition, as opposed to the default behaviour that instantly pops
+// them in and out of view.
+.visually-hidden.focusable {
+	@supports (pointer-events: none) {
+		position:		static;
+		clip:			auto;
+		width:			auto;
+		height:			auto;
+		overflow:		visible;
+
+		pointer-events:	none;
+		opacity:		0;
+
+		&:focus {
+			pointer-events:	auto;
+			opacity:		1;
+		}
+	}
+}
