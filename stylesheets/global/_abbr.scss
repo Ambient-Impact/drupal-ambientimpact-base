@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------------
+//	Base abbreviation partial
+// -----------------------------------------------------------------------------
+
+// abbr dotted underline, applied both with native title attribute and when
+// using Tippy.js. The underline thickness is shared with other underlines for
+// consistency.
+@include abbr {
+	border-bottom: $text-underline-thickness dotted;
+
+	@include text-underline(
+		$underline-style: dotted
+	) {
+		border-bottom-width:	0;
+	}
+}

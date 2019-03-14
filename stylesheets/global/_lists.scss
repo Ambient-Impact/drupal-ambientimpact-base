@@ -1,0 +1,31 @@
+// -----------------------------------------------------------------------------
+//	Base lists partial
+// -----------------------------------------------------------------------------
+
+///
+/// Remove list styles, e.g. padding and bullets.
+///
+@mixin unlisted-list {
+	padding-left: 0 !important;
+
+	li {
+		list-style: none;
+	}
+}
+.unlisted-list {
+	@include unlisted-list;
+}
+
+// Default list styles.
+@include content-area {
+	ol,
+	ul {
+		&:not(.contextual-links) {
+			padding-left: 1.2em;
+
+			li {
+				margin: 0.5em 0;
+			}
+		}
+	}
+}
