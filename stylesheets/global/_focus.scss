@@ -39,3 +39,11 @@ input[type="checkbox"],
 		}
 	}
 }
+
+// This ensures that focusables that have had their .visually-hidden class
+// removed correctly use the active transition rather than a slow fade in. An
+// example of this are contextual triggers. Note that this could potentially
+// have issues with focusables that don't use .visually-hidden.
+.focusable:not(.visually-hidden) {
+	@include transition-fade-active;
+}
