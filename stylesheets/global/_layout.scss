@@ -52,3 +52,15 @@ body {
 		margin-top:		$layout-top-spacing;
 	}
 }
+
+// Give all elements a max-width so that they (hopefully) don't break out of the
+// layout.
+* {
+	max-width:	100%;
+}
+// Remove the max-width from these elements, as it breaks them.
+.contextual .trigger,
+.contextual-links,
+.pswp__preloader__donut {
+	max-width:	none;
+}
