@@ -7,7 +7,14 @@ $layout-gutter:			$general-spacing		!default;
 $layout-top-spacing:	$general-spacing * 1.5	!default;
 $layout-bottom-spacing:	$general-spacing * 8	!default;
 
-$layout-max-width:		60em					!default;
+///
+/// The maximum width of the site layout container.
+///
+/// Note that $layout-gutter is added to this on either side. This default value
+/// is optimal for a single column layout, but may need to be increased if
+/// sidebars or other columns are needed.
+///
+$layout-max-width:		45em					!default;
 
 html {
 	// This ensures that a scrollbar is always visible in browsers that have
