@@ -2,9 +2,19 @@
 //	Base layout partial
 // -----------------------------------------------------------------------------
 
+///
+/// This is the spacing added on the left and right of the viewport.
+///
 $layout-gutter:			$general-spacing		!default;
 
+///
+/// The space between the top of the viewport and the layout container.
+///
 $layout-top-spacing:	$general-spacing * 1.5	!default;
+
+///
+/// The space between the bottom of the viewport and the layout container.
+///
 $layout-bottom-spacing:	$general-spacing * 8	!default;
 
 ///
@@ -31,12 +41,12 @@ html {
 }
 
 body {
+	padding-left:	$layout-gutter;
+	padding-right:	$layout-gutter;
+
 	@if type-of($layout-bottom-spacing) == 'number' {
 		padding-bottom:	$layout-bottom-spacing;
 	}
-
-	padding-left:	$layout-gutter;
-	padding-right:	$layout-gutter;
 
 	box-sizing:		border-box;
 }
