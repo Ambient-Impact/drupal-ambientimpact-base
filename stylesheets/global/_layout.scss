@@ -9,6 +9,13 @@ $layout-bottom-spacing:	$general-spacing * 8	!default;
 
 $layout-max-width:		60em					!default;
 
+html {
+	// This ensures that a scrollbar is always visible in browsers that have
+	// scrollbars that take up viewport space (as opposed to floating scrollbars,
+	// that don't affect layout), so that the layout doesn't shift if/when the
+	// scrollbars appear, e.g. on resize.
+	overflow-y:	scroll;
+}
 
 body {
 	@if type-of($layout-bottom-spacing) == 'number' {
