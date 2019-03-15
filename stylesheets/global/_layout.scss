@@ -17,6 +17,12 @@ $layout-bottom-spacing:	$general-spacing * 8	!default;
 $layout-max-width:		45em					!default;
 
 html {
+	// This prevents any horizontal scrollbars and scrolling on the viewport
+	// which can sneak in via any number of components. Note that care must be
+	// taken to ensure content can be accessed when it would overflow the
+	// viewport, such as in <pre> elements, images and other media, and so on.
+	overflow-x:	hidden;
+
 	// This ensures that a scrollbar is always visible in browsers that have
 	// scrollbars that take up viewport space (as opposed to floating scrollbars,
 	// that don't affect layout), so that the layout doesn't shift if/when the
