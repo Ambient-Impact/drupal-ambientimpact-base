@@ -3,7 +3,9 @@
  * @file
  * Theme override for a feed icon.
  *
- * This is ported from the 'stable' base theme to add in our icon.
+ * This is modified from the 'stable' base theme with the following changes:
+ * - Added ambientimpact_icon.
+ * - Added 'title' attribute to link.
  *
  * Available variables:
  * - title: The human-readable title of this feed.
@@ -13,10 +15,12 @@
  *   - class: HTML classes to be applied to the feed link.
  */
 #}
+{%- set text = 'Subscribe to @title'|t({'@title': title}) -%}
+{%- set attributes = attributes.setAttribute('title', text) -%}
 <a href="{{ url }}"{{ attributes.addClass('feed-icon') }}>
   {{ ambientimpact_icon(
     'rss', 'core',
-    'Subscribe to @title'|t({'@title': title}),
+    text,
     {'textDisplay': 'visuallyHidden'}
   ) }}
 </a>
