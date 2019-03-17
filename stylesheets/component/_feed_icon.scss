@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------------
+//   Base feed icon link partial
+// -----------------------------------------------------------------------------
+
+// This overrides core/themes/classy/css/components/icons.css to make the icon
+// visible and remove the background image.
+.feed-icon {
+  display:      inline-block;
+
+  width:        auto;
+  height:       auto;
+
+  overflow:     visible;
+
+  background:   none;
+
+  text-indent:  0;
+}
