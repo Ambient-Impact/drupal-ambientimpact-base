@@ -6,18 +6,21 @@
  * This is modified from the 'stable' base theme with the following changes:
  * - Added ambientimpact_icon.
  * - Added 'title' attribute to link.
+ * - Moved 'href' to attributes object.
  *
  * Available variables:
  * - title: The human-readable title of this feed.
  * - url: An internal system path or a fully qualified external URL of the feed.
  * - attributes: Remaining HTML attributes for the feed link.
+ *   - href: The URL for the feed; automatically set from the url variable.
  *   - title: A descriptive title of the feed link.
  *   - class: HTML classes to be applied to the feed link.
  */
 #}
 {%- set text = 'Subscribe to @title'|t({'@title': title}) -%}
 {%- set attributes = attributes.setAttribute('title', text) -%}
-<a href="{{ url }}"{{ attributes.addClass('feed-icon') }}>
+{%- set attributes = attributes.setAttribute('href', url) -%}
+<a{{ attributes.addClass('feed-icon') }}>
   {{ ambientimpact_icon(
     'rss', 'core',
     text,
