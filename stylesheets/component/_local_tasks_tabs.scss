@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------------
+//   Base local tasks tabs partial
+// -----------------------------------------------------------------------------
+
+.tabs.primary {
+  @include material-tabs-container;
+
+  li {
+    margin: 0;
+
+    a {
+      @include material-tabs-item;
+
+      font-weight: $font-weight-strong;
+
+      // Remove fancy link underlines.
+      @include remove-fancy-link-underlines;
+
+      // Active links should not have a background colour, both when no
+      // iteraction is occuring or when it is.
+      &.is-active {
+        background-color: transparent;
+
+        @include link-hover {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}
