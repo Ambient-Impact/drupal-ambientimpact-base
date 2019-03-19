@@ -8,6 +8,9 @@
 @include abbr {
 	border-bottom: $text-underline-thickness dotted;
 
+	// Remove the default text decoration as it clashes with our underlines.
+	text-decoration: none;
+
 	@include text-underline(
 		$underline-style: dotted
 	) {
