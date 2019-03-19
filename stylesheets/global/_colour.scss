@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// 	Base colour partial
+//   Base colour partial
 // -----------------------------------------------------------------------------
 
 // Apply to both elements as the body may have margins which would cause the
@@ -7,5 +7,5 @@
 // space is reserved before it becomes fully fixed and a vertical drawer appears
 // on the side.
 html, body {
-	@include set-colours;
+  @include set-colours;
 }

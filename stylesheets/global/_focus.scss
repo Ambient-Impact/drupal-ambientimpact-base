@@ -1,10 +1,10 @@
 // -----------------------------------------------------------------------------
-//	Base focused element partial
+//   Base focused element partial
 // -----------------------------------------------------------------------------
 
 
 a {
-	@include focus-outline($is-link: true);
+  @include focus-outline($is-link: true);
 }
 
 button,
@@ -16,28 +16,28 @@ input[type="reset"],
 input[type="radio"],
 input[type="checkbox"],
 [tabindex]:not([tabindex="-1"]) {
-	@include focus-outline;
+  @include focus-outline;
 }
 
 // This allows invisible elements that can receive focus (e.g. from keyboard,
 // etc.) to transition, as opposed to the default behaviour that instantly pops
 // them in and out of view.
 .visually-hidden.focusable {
-	@supports (pointer-events: none) {
-		position:		static;
-		clip:			auto;
-		width:			auto;
-		height:			auto;
-		overflow:		visible;
+  @supports (pointer-events: none) {
+    position:   static;
+    clip:     auto;
+    width:      auto;
+    height:     auto;
+    overflow:   visible;
 
-		pointer-events:	none;
-		opacity:		0;
+    pointer-events: none;
+    opacity:    0;
 
-		&:focus {
-			pointer-events:	auto;
-			opacity:		1;
-		}
-	}
+    &:focus {
+      pointer-events: auto;
+      opacity:    1;
+    }
+  }
 }
 
 // This ensures that focusables that have had their .visually-hidden class
@@ -45,5 +45,5 @@ input[type="checkbox"],
 // example of this are contextual triggers. Note that this could potentially
 // have issues with focusables that don't use .visually-hidden.
 .focusable:not(.visually-hidden) {
-	@include transition-fade-active;
+  @include transition-fade-active;
 }

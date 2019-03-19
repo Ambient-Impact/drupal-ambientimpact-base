@@ -1,21 +1,21 @@
 // -----------------------------------------------------------------------------
-//	Base layout partial
+//   Base layout partial
 // -----------------------------------------------------------------------------
 
 ///
 /// This is the spacing added on the left and right of the viewport.
 ///
-$layout-gutter:			$general-spacing		!default;
+$layout-gutter: $general-spacing !default;
 
 ///
 /// The space between the top of the viewport and the layout container.
 ///
-$layout-top-spacing:	$general-spacing * 1.5	!default;
+$layout-top-spacing: $general-spacing * 1.5 !default;
 
 ///
 /// The space between the bottom of the viewport and the layout container.
 ///
-$layout-bottom-spacing:	$general-spacing * 8	!default;
+$layout-bottom-spacing: $general-spacing * 8 !default;
 
 ///
 /// The maximum width of the site layout container.
@@ -24,53 +24,53 @@ $layout-bottom-spacing:	$general-spacing * 8	!default;
 /// is optimal for a single column layout, but may need to be increased if
 /// sidebars or other columns are needed.
 ///
-$layout-max-width:		45em					!default;
+$layout-max-width: 45em !default;
 
 html {
-	// This prevents any horizontal scrollbars and scrolling on the viewport
-	// which can sneak in via any number of components. Note that care must be
-	// taken to ensure content can be accessed when it would overflow the
-	// viewport, such as in <pre> elements, images and other media, and so on.
-	overflow-x:	hidden;
+  // This prevents any horizontal scrollbars and scrolling on the viewport which
+  // can sneak in via any number of components. Note that care must be taken to
+  // ensure content can be accessed when it would overflow the viewport, such as
+  // in <pre> elements, images and other media, and so on.
+  overflow-x: hidden;
 
-	// This ensures that a scrollbar is always visible in browsers that have
-	// scrollbars that take up viewport space (as opposed to floating scrollbars,
-	// that don't affect layout), so that the layout doesn't shift if/when the
-	// scrollbars appear, e.g. on resize.
-	overflow-y:	scroll;
+  // This ensures that a scrollbar is always visible in browsers that have
+  // scrollbars that take up viewport space (as opposed to floating scrollbars,
+  // that don't affect layout), so that the layout doesn't shift if/when the
+  // scrollbars appear, e.g. on resize.
+  overflow-y: scroll;
 }
 
 body {
-	padding-left:	$layout-gutter;
-	padding-right:	$layout-gutter;
+  padding-left:   $layout-gutter;
+  padding-right:  $layout-gutter;
 
-	@if type-of($layout-bottom-spacing) == 'number' {
-		padding-bottom:	$layout-bottom-spacing;
-	}
+  @if type-of($layout-bottom-spacing) == 'number' {
+    padding-bottom: $layout-bottom-spacing;
+  }
 
-	box-sizing:		border-box;
+  box-sizing:   border-box;
 }
 
 .layout-container {
-	max-width:		$layout-max-width;
-	margin-left:	auto;
-	margin-right:	auto;
+  max-width:    $layout-max-width;
+  margin-left:  auto;
+  margin-right: auto;
 
-	@if type-of($layout-top-spacing) == 'number' {
-		// This is not applied to the <body>, as the Toolbar uses that to offset
-		// the viewport.
-		margin-top:		$layout-top-spacing;
-	}
+  @if type-of($layout-top-spacing) == 'number' {
+    // This is not applied to the <body>, as the Toolbar uses that to offset the
+    // viewport.
+    margin-top:   $layout-top-spacing;
+  }
 }
 
 // Give all elements a max-width so that they (hopefully) don't break out of the
 // layout.
 * {
-	max-width:	100%;
+  max-width:  100%;
 }
 // Remove the max-width from these elements, as it breaks them.
 .contextual .trigger,
 .contextual-links,
 .pswp__preloader__donut {
-	max-width:	none;
+  max-width:  none;
 }

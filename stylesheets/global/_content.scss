@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-//	Base content partial
+//   Base content partial
 // -----------------------------------------------------------------------------
 
 
@@ -11,8 +11,8 @@
 /// @content
 ///
 @mixin content-area {
-	.node-content,
-	.views-field:not(.views-field-contextual-links) {
-		@content;
-	}
+  .node-content,
+  .views-field:not(.views-field-contextual-links) {
+    @content;
+  }
 }

@@ -1,14 +1,14 @@
 // -----------------------------------------------------------------------------
-//	Base links partial
+//   Base links partial
 // -----------------------------------------------------------------------------
 
 
 // Include the basic link styles?
-$use-link-styles:				true	!default;
+$use-link-styles:           true  !default;
 // Include fancy link underlines?
-$use-fancy-link-underlines:		true	!default;
+$use-fancy-link-underlines: true  !default;
 // Include the image links styles?
-$use-image-link-styles:			true	!default;
+$use-image-link-styles:     true  !default;
 
 
 // Link styles. These are limited to the layout container so that we don't
@@ -17,62 +17,61 @@ $use-image-link-styles:			true	!default;
 // only valid links, i.e. those that have a valid href. See:
 // https://css-tricks.com/how-to-disable-links/
 .layout-container {
-	:link, :visited {
-		// Any links.
-		&,
-		// Currently active menu item links.
-		&.is-active,
-		// jQuery UI widget content.
-		.ui-widget-content & {
-			// Basic link styles.
-			@if $use-link-styles == true {
-				@include link;
-			}
+  :link, :visited {
+    // Any links.
+    &,
+    // Currently active menu item links.
+    &.is-active,
+    // jQuery UI widget content.
+    .ui-widget-content & {
+      // Basic link styles.
+      @if $use-link-styles == true {
+        @include link;
+      }
 
-			// Apply fancy link underlines to all links, even if
-			// text-decoration-skip: ink; is supported, as the 'link.underline'
-			// component gives us more control over the underlines with things
-			// such as thickness.
-			@if $use-fancy-link-underlines == true {
-				@include fancy-link-underlines;
-			}
+      // Apply fancy link underlines to all links, even if text-decoration-skip:
+      // ink; is supported, as the 'link.underline' component gives us more
+      // control over the underlines with things such as thickness.
+      @if $use-fancy-link-underlines == true {
+        @include fancy-link-underlines;
+      }
 
-			// Apply the image link mixin to all links.
-			@if $use-image-link-styles == true {
-				@include image-link;
-			}
-		}
-	}
+      // Apply the image link mixin to all links.
+      @if $use-image-link-styles == true {
+        @include image-link;
+      }
+    }
+  }
 
-	// Remove fancy link underlines from these links.
-	.contextual-region .contextual .contextual-links/*,
-	.#{$photoswipe-root-class}*/ {
-		:link, :visited {
-			@if $use-fancy-link-underlines == true {
-				@include remove-fancy-link-underlines;
-			}
-		}
-	}
-	.site-logo {
-		@if $use-fancy-link-underlines == true {
-			@include remove-fancy-link-underlines;
-		}
-	}
+  // Remove fancy link underlines from these links.
+  .contextual-region .contextual .contextual-links/*,
+  .#{$photoswipe-root-class}*/ {
+    :link, :visited {
+      @if $use-fancy-link-underlines == true {
+        @include remove-fancy-link-underlines;
+      }
+    }
+  }
+  .site-logo {
+    @if $use-fancy-link-underlines == true {
+      @include remove-fancy-link-underlines;
+    }
+  }
 }
 
 // Restore the native underlines to these elements.
 // .#{$photoswipe-root-class}__caption__center {
-// 	:link, :visited {
-// 		@if $use-fancy-link-underlines == true {
-// 			text-decoration:	underline	!important;
-// 		}
-// 	}
+//  :link, :visited {
+//    @if $use-fancy-link-underlines == true {
+//      text-decoration:  underline !important;
+//    }
+//  }
 // }
 
 // PhotoSwipe has a dark background by default, so set link colours for that
 // type of background.
 // .#{$photoswipe-root-class} {
-// 	:link, :visited {
-// 		@include link-colours($photoswipe-background-colour-theme-dark);
-// 	}
+//  :link, :visited {
+//    @include link-colours($photoswipe-background-colour-theme-dark);
+//  }
 // }

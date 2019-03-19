@@ -1,18 +1,18 @@
 // -----------------------------------------------------------------------------
-//	Base horizontal rule partial
+//   Base horizontal rule partial
 // -----------------------------------------------------------------------------
 
 // <hr> defaults usually stink, so let's do something here. Based on:
 // http://osvaldas.info/keeping-css-short-with-currentcolor
 hr {
-	width: 60%;
-	height: 0.1em;
+  width: 60%;
+  height: 0.1em;
 
-	margin: ($general-spacing * 4) auto;
+  margin: ($general-spacing * 4) auto;
 
-	border: none;
+  border: none;
 
-	background-color: currentColor;
+  background-color: currentColor;
 
-	opacity: 0.4;
+  opacity: 0.4;
 }

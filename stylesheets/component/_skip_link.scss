@@ -1,43 +1,43 @@
 // -----------------------------------------------------------------------------
-//	Base skip to content link partial
+//   Base skip to content link partial
 // -----------------------------------------------------------------------------
 
 // This styles the "Skip to main content" link to give a semi-transparent
 // background, a Material shadow, some border radius, and positions it
 // absolutely in the top centre of the page.
 
-$skip-link-background-colour:	greyscale(25%, 0.6)	!default;
-$skip-link-outline-colour:		black				!default;
+$skip-link-background-colour: greyscale(25%, 0.6) !default;
+$skip-link-outline-colour:    black       !default;
 
 .skip-link-container {
-	@supports (pointer-events: none) and (display: flex) {
-		position:			absolute;
+  @supports (pointer-events: none) and (display: flex) {
+    position:     absolute;
 
-		display:			flex;
-		justify-content:	center;
+    display:      flex;
+    justify-content:  center;
 
-		left:				0;
-		right:				0;
+    left:       0;
+    right:        0;
 
-		// Since this is meant to be focused by means other than a pointer, such
-		// as by keyboard, we can make it click-through so that it's not
-		// accidentally clicked when invisible.
-		pointer-events:		none;
-	}
+    // Since this is meant to be focused by means other than a pointer, such as
+    // by keyboard, we can make it click-through so that it's not accidentally
+    // clicked when invisible.
+    pointer-events:   none;
+  }
 
-	:link {
-		padding:	0.5em 1em;
+  :link {
+    padding:  0.5em 1em;
 
-		border-bottom-left-radius:	$material-border-radius;
-		border-bottom-right-radius:	$material-border-radius;
+    border-bottom-left-radius:  $material-border-radius;
+    border-bottom-right-radius: $material-border-radius;
 
-		@include set-colours($background: $skip-link-background-colour);
+    @include set-colours($background: $skip-link-background-colour);
 
-		@include material-shadow(2);
+    @include material-shadow(2);
 
-		@include focus-outline(
-			$is-link:	true,
-			$colour:	$skip-link-outline-colour
-		);
-	}
+    @include focus-outline(
+      $is-link: true,
+      $colour:  $skip-link-outline-colour
+    );
+  }
 }
