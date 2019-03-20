@@ -1,0 +1,25 @@
+// -----------------------------------------------------------------------------
+//   Base menus partial
+// -----------------------------------------------------------------------------
+
+///
+/// Target menu items when they're the active menu path.
+///
+/// @param {String} $active-trail [true]
+///   Whether to also apply to items in the active trail, i.e. ancestors.
+///
+/// @content
+///   The content to wrap in selectors.
+///
+@mixin menu-item-is-active-path($active-trail: true) {
+  &.is-active {
+    @content
+  }
+
+  @if $active-trail == true {
+    &.active-trail {
+      @content
+    }
+  }
+}
+
