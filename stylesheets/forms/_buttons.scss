@@ -1,0 +1,95 @@
+// -----------------------------------------------------------------------------
+//   Base buttons partial
+// -----------------------------------------------------------------------------
+
+///
+/// Whether to use Material Design-style buttons.
+///
+$material-buttons: true !default;
+
+///
+/// The background colour for primary Material buttons in a form.
+///
+$material-button-background-colour-primary:
+  $material-primary-colour !default;
+
+///
+/// The background colour for primary Material buttons when hovered/focused.
+///
+$material-button-background-colour-primary-interact:
+  lighten($material-primary-colour, 8%) !default;
+
+///
+/// Material button font weight.
+///
+$material-button-font-weight: $font-weight-strong !default;
+
+///
+/// Material button font family.
+///
+$material-button-font-family: $font-stack !default;
+
+// All buttons.
+.material-button, .form-submit {
+  &:not(.plain-button) {
+    @if $material-buttons {
+      @include material-button;
+
+      font-family:  $material-button-font-family;
+      font-weight:  $material-button-font-weight;
+    } @else {
+      padding: 0.3em 0.6em;
+    }
+  }
+
+  // Override normalize.css from Drupal core.
+  // @todo Is cursor: pointer in normalize.css more intuitive for people, or
+  // does it just blur the lines between buttons and links?
+  cursor: default !important;
+}
+
+// Primary buttons. There may be multiple #edit-submit--<number> buttons, so use
+// an attribute selector.
+[id^='edit-submit'] {
+  &:not(.plain-button) {
+    @if $material-buttons {
+      @include material-button(
+        $background-colour:
+          $material-button-background-colour-primary,
+        $background-colour-interact:
+          $material-button-background-colour-primary-interact
+      );
+      font-weight: $material-button-font-weight;
+
+      // This button has a light current colour, which means the focus
+      // outline will be almost or totally invisible against the
+      // background, which we currently assume to be light.
+      &:focus {
+        outline-color: $material-button-background-colour-primary;
+      }
+    }
+  }
+}
+
+// Plain buttons have no background, shadows, or increased padding, but still
+// use the Material button typography. These are intended for places where space
+// is at a premium and minimalism is preferred, e.g. on toasts or other
+// components.
+.plain-button {
+  padding:          0;
+  border-width:     0;
+  background-color: transparent;
+
+  @if $material-buttons {
+    color:      $material-button-background-colour-primary;
+
+    @include    transition-fade-normal();
+
+    &:hover,
+    &:focus {
+      color:    $material-button-background-colour-primary-interact;
+
+      @include  transition-fade-hover();
+    }
+  }
+}
