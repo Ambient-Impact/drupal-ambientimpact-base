@@ -4,10 +4,36 @@
  * Implements hook_element_info_alter().
  *
  * This attaches the textarea component to textareas.
+ *
+ * This attaches the Material input component to text input types.
  */
 function ambientimpact_base_element_info_alter(array &$info) {
- if (isset($info['textarea'])) {
-   $info['textarea']['#attached']['library'][] =
-     'ambientimpact_core/component.textarea';
- }
+  if (isset($info['textarea'])) {
+    $info['textarea']['#attached']['library'][] =
+      'ambientimpact_core/component.textarea';
+  }
+
+  foreach ([
+    // Standard single-line text field.
+   'textfield',
+
+    // Standard multi-line textarea.
+    'textarea',
+
+    // Password fields.
+    'password',
+    'password_confirm',
+
+    // HTML5 fields.
+    'email',
+    'search',
+    'tel',
+    'url',
+    'number',
+  ] as $elementName) {
+    if (isset($info[$elementName])) {
+      $info[$elementName]['#attached']['library'][] =
+        'ambientimpact_core/component.material.input';
+    }
+  }
 }
