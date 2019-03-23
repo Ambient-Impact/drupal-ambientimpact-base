@@ -10,6 +10,7 @@
 
     grid-gap:           $general-spacing;
     grid-auto-flow:     column;
+    // @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns
     grid-auto-columns:  max-content;
 
     // This right-aligns the buttons in LTR text direction as most people are
