@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------
+//   Base scroll to top component partial
+// -----------------------------------------------------------------------------
+
+.to-top {
+  // Set the horizontal distance from the viewport edges to the gutter so that
+  // it fits in with the rest of the layout.
+  @include root-conditions(('[dir=ltr]'), 'html') {
+    right:  $layout-gutter;
+  }
+  @include root-conditions(('[dir=rtl]'), 'html') {
+    left:   $layout-gutter;
+  }
+}
