@@ -17,6 +17,10 @@ $use-image-link-styles:     true  !default;
 // only valid links, i.e. those that have a valid href. See:
 // https://css-tricks.com/how-to-disable-links/
 .layout-container {
+  // Include link colours as custom properties in case they're useful for
+  // JavaScript, etc.
+  @include link-colour-custom-properties;
+
   :link, :visited {
     // Any links.
     &,
@@ -41,6 +45,11 @@ $use-image-link-styles:     true  !default;
         @include image-link;
       }
     }
+  }
+
+  // Include the fancy link underline custom properties on the root container.
+  @if $use-fancy-link-underlines == true {
+    @include fancy-link-underlines-root-custom-properties;
   }
 
   // Remove fancy link underlines from these links.
