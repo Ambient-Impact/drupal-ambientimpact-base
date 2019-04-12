@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------------
+//   Base image element partial
+// -----------------------------------------------------------------------------
+
+img {
+  // Basic responsive image behaviour: width is constrained by its container
+  // while the browser automatically ensures the height is adjusted while
+  // maintaining the same aspect ratio.
+  max-width:  100%;
+  height:     auto;
+}
