@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * Theme override of an image.
+ *
+ * This overrides the Classy template to add an intrinsic ratio wrapper when the
+ * ratio is available via a new 'ratio' variable.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the img tag.
+ * - style_name: (optional) The name of the image style applied.
+ * - ratio: the height to width ratio of the image, as a float between 0 and 1;
+ *   defaults to null if no width and height are available.
+ *
+ * @see template_preprocess_image()
+ *
+ * @see ambientimpact_base_theme_registry_alter()
+ *   Defines 'ratio'.
+ *
+ * @see ambientimpact_base_preprocess_image()
+ *   Calculates the 'ratio' variable value.
+ */
+#}
+{%
+set classes = [
+  style_name ? 'image-style-' ~ style_name|clean_class
+]
+%}
+{# Only wrap the image in an intrinsic ratio wrapper if ratio is not null. #}
+{% if not ratio is null %}
+  {%
+    set baseClass = 'intrinsic-ratio'
+  %}
+  {%
+  set classes = classes|merge([
+    baseClass ~ '__content',
+    baseClass ~ '__content--image'
+  ])
+  %}
+
+  {# Attach the library which contains the CSS to make the ratio work. #}
+  {{ attach_library('ambientimpact_core/component.intrinsic_ratio') }}
+
+  {# This is the container. The max-width is set inline to the natural image
+     width to avoid stretching images that are narrower than their container. #}
+  <div{{ create_attribute({
+    'class':  [baseClass],
+    'style':  'max-width: ' ~ attributes.width ~ 'px'
+  }) }}>
+    {# This is the actual ratio element, which uses padding-top as a percentage
+       to reserve the image space. This works because of the way that top/bottom
+       padding is defined in the CSS spec in that a percentage is calculated
+       from the element's width.
+
+       The display: inline; is applied by default if no external CSS is loaded
+       for whatever reason. This ensures that the padding-top is ignored by the
+       browser in that case. The component library takes care of overriding this
+       in the attached CSS. #}
+    <div{{ create_attribute({
+      'class':  [baseClass ~ '__ratio'],
+      'style':  'padding-top: ' ~ (ratio * 100) ~ '%; display: inline;'
+    }) }}>
+      <img{{ attributes.addClass(classes) }} />
+    </div>
+  </div>
+{# Fall back to just outputting the image if ratio is null. #}
+{% else %}
+  <img{{ attributes.addClass(classes) }} />
+{% endif %}
