@@ -1,0 +1,55 @@
+// -----------------------------------------------------------------------------
+//   Base tags list component partial
+// -----------------------------------------------------------------------------
+
+///
+/// The minimum width of tag list columns.
+///
+$tags-list-column-min-width: 10em !default;
+
+///
+/// The maximum number of tag list columns to display if space allows.
+///
+$tags-list-column-max-count: 4 !default;
+
+///
+/// The horizontal and vertical gap between tag list items.
+///
+$tags-list-gap: $general-spacing * 0.75 !default;
+
+%tags-list {
+  $columns: $tags-list-column-max-count $tags-list-column-min-width;
+
+  // Arrange the tags as columns in browsers that support them, otherwise they
+  // just appear as a vertical list.
+  // @see http://css-tricks.com/guide-responsive-friendly-css-columns/
+  @supports (columns: $columns) {
+    columns:    $columns;
+    column-gap: $tags-list-gap;
+
+    &__item {
+      // Add some vertical space between items. Don't use margin-top,
+      // as that screws up the column flow a bit.
+      padding-top: $tags-list-gap;
+
+      // Don't break inside these elements.
+      // http://stackoverflow.com/a/7785711
+      -webkit-column-break-inside: avoid; // Chrome, Safari.
+      page-break-inside: avoid;           // Theoretically Firefox 20+.
+      break-inside: avoid-column;         // IE 11.
+    }
+  }
+
+  // Grid layout, if supported.
+  // @todo Do we actually need this? CSS columns seem pretty solid.
+  // @include use-grid {
+  //   display:   grid;
+  //   grid-gap:  $tags-list-gap;
+  //   grid-template-columns:
+  //     repeat(auto-fill, minmax($tags-list-column-min-width, 1fr));
+
+  //   &__item {
+  //     padding-top: 0;
+  //   }
+  // }
+}
