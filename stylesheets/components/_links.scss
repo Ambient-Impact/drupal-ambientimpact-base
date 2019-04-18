@@ -2,8 +2,27 @@
 //   Base Drupal links list partial
 // -----------------------------------------------------------------------------
 
+///
+/// The gap between two inline links items.
+///
+$links-inline-gap: $general-spacing !default;
+
 ul.links {
   &.inline {
     display: block;
+
+    // This aligns the edge of the text with the bounding box of the list's
+    // parent container.
+    @include root-conditions(('[dir=ltr]'), 'html') {
+      margin-left:    -($links-inline-gap / 2);
+    }
+    @include root-conditions(('[dir=rtl]'), 'html') {
+      margin-right:   -($links-inline-gap / 2);
+    }
+
+    li {
+      padding-left:   $links-inline-gap / 2;
+      padding-right:  $links-inline-gap / 2;
+    }
   }
 }
