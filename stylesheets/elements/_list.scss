@@ -20,7 +20,7 @@
 @include content-area {
   ol,
   ul {
-    &:not(.contextual-links) {
+    &:not(.contextual-links):not(.links) {
       padding-left: 1.2em;
 
       li {
