@@ -2,18 +2,13 @@
 //   Base node partial
 // -----------------------------------------------------------------------------
 
-///
-/// The space between nodes, usually vertically.
-///
-$node-spacing: $general-spacing * 4 !default;
-
 .node {
   // Spacing between a node and any preceding element, and the first node in a
   // view if the view content is not the first child; i.e. there's a view header
   // and/or exposed form.
   * + &,
   .view *:not(.contextual-links) + .view-content &:first-child {
-    margin-top: $node-spacing;
+    @include vertical-spacing;
   }
 
   // Spacing between node sections.
