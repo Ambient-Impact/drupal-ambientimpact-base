@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * This adds a .node__title class to the title element for styling.
+ *
+ * @see template_preprocess_node()
+ *
+ * @see ambientimpact_base_theme_suggestions_node_alter()
+ */
+#}
+{% extends "node.html.twig" %}
+
+{% set title_attributes = title_attributes.addClass('node__title') %}
