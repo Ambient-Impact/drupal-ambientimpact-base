@@ -1,0 +1,29 @@
+// -----------------------------------------------------------------------------
+//   Base views partial
+// -----------------------------------------------------------------------------
+
+///
+/// Vertical spacing between views elements when on larger screens.
+///
+/// @see $vertical-spacing-breakpoint
+///   The breakpoint that determines when this is used.
+///
+$views-spacing-large: $general-spacing * 2 !default;
+
+///
+/// Vertical spacing between views elements when on smaller screens.
+///
+/// @see $vertical-spacing-breakpoint
+///   The breakpoint that determines when this is used.
+///
+$views-spacing-small: $general-spacing * 1 !default;
+
+.view-content,
+.view-footer {
+  *:not(.contextual-links) + & {
+    @include vertical-spacing(
+      $spacing-small: $views-spacing-small,
+      $spacing-large: $views-spacing-large
+    );
+  }
+}
