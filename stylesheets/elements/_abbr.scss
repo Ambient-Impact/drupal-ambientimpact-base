@@ -7,15 +7,18 @@
 // consistency.
 .layout-container {
   @include abbr {
-    border-bottom: $text-underline-thickness dotted;
+    // Don't apply to elements in Symfony VarDumper output.
+    &:not(.sf-dump-note) {
+      border-bottom: $text-underline-thickness dotted;
 
-    // Remove the default text decoration as it clashes with our underlines.
-    text-decoration: none;
+      // Remove the default text decoration as it clashes with our underlines.
+      text-decoration: none;
 
-    @include text-underline(
-      $underline-style: dotted
-    ) {
-      border-bottom-width:  0;
+      @include text-underline(
+        $underline-style: dotted
+      ) {
+        border-bottom-width:  0;
+      }
     }
   }
 }

@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------------
+//   Base Drupal messages partial
+// -----------------------------------------------------------------------------
+
+.messages {
+  // Ensure children can't break out and set their z-index as above things that
+  // they shouldn't, like the toolbar. I'm looking at you, Symfony VarDumper,
+  // with your absurdly high z-index.
+  position: relative;
+  z-index:  0;
+}
