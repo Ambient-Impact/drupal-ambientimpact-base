@@ -59,7 +59,8 @@ $use-image-link-styles:     true  !default;
   }
 
   // Remove fancy link underlines from these links.
-  .contextual-region .contextual .contextual-links/*,
+  .contextual-region .contextual .contextual-links,
+  .tabs.primary li/*,
   .#{$photoswipe-root-class}*/ {
     :link, :visited {
       @if $use-fancy-link-underlines == true {

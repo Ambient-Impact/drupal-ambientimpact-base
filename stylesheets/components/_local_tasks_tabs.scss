@@ -13,9 +13,6 @@
 
       font-weight: $font-weight-strong;
 
-      // Remove fancy link underlines.
-      @include remove-fancy-link-underlines;
-
       // Active links should not have a background colour, both when no
       // iteraction is occuring or when it is.
       &.is-active {
