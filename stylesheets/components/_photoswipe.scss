@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------------
+//   Base PhotoSwipe component partial
+// -----------------------------------------------------------------------------
+
+// If $photoswipe-theme has been defined, set the theme to that. See
+// $photoswipe-themes in the photoswipe component partial in ambientimpact_core.
+@if variable-exists(photoswipe-theme) {
+  @include set-photoswipe-theme($photoswipe-theme);
+}
+
+.pswp {
+  &__caption__center {
+    max-width:  $layout-max-width;
+
+    padding:    $general-spacing / 2;
+  }
+}
