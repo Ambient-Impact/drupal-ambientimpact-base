@@ -1,0 +1,9 @@
+// -----------------------------------------------------------------------------
+//   Base Drupal administrative toolbar component partial
+// -----------------------------------------------------------------------------
+
+.toolbar {
+  &.toolbar-oriented {
+    @include z-index('toolbar');
+  }
+}
