@@ -4,6 +4,10 @@
 
 .toolbar {
   &.toolbar-oriented {
-    @include z-index('toolbar');
+    // This is the element that's either absolute or fixed depending on the
+    // screen width.
+    .toolbar-bar {
+      @include z-index('toolbar');
+    }
   }
 }
