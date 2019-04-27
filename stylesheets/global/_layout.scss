@@ -134,6 +134,7 @@ html {
   max-width:  100%;
 }
 // Remove the max-width from these elements, as it breaks them.
+// @todo Does this make more sense as a series of :not() on the above?
 .contextual .trigger,
 .contextual-links,
 .pswp__preloader__donut {
