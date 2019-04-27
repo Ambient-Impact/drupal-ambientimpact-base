@@ -3,6 +3,27 @@
 // -----------------------------------------------------------------------------
 
 .toolbar {
+  .toolbar-loading.toolbar-horizontal & {
+    .toolbar-bar {
+      .toolbar-tab {
+        // Completely remove any trays from view to fix the following issues
+        // when JavaScript hasn't enhanced the toolbar yet:
+        //
+        // - The last tray, despite being visiually hidden, still causes our
+        //   layout max-width: 100% to smoosh it into a really tall column that
+        //   causes the toolbar to extend much farther downwards even if we
+        //   set max-width: none.
+        //
+        // - The first tray is shown by default by Drupal on wider screens, but
+        //   it's position: fixed so it ends up staying in place while the
+        //   .toolbar-bar scrolls up with the page; this just looks wrong.
+        .toolbar-tray.toolbar-tray {
+          display: none;
+        }
+      }
+    }
+  }
+
   &.toolbar-oriented {
     // This is the element that's either absolute or fixed depending on the
     // screen width.
