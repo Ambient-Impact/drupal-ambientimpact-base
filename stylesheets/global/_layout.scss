@@ -5,7 +5,7 @@
 ///
 /// This is the spacing added on the left and right of the viewport.
 ///
-$layout-gutter: $general-spacing !default;
+$layout-gutter: $general-spacing / 2 !default;
 
 ///
 /// The space between the top of the viewport and the layout container.
