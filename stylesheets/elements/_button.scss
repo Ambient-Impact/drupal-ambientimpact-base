@@ -35,6 +35,8 @@ $material-button-font-family: $font-stack !default;
     @if $material-buttons {
       @include material-button;
 
+      @include material-ripple;
+
       font-family:  $material-button-font-family;
       font-weight:  $material-button-font-weight;
     } @else {
