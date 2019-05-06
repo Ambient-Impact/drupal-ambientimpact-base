@@ -11,22 +11,24 @@ $skip-link-outline-colour:    black       !default;
 
 .skip-link-container {
   @supports (pointer-events: none) and (display: flex) {
-    position:     absolute;
+    position: absolute;
 
-    display:      flex;
-    justify-content:  center;
+    display: flex;
+    justify-content: center;
 
-    left:       0;
-    right:        0;
+    left:   0;
+    right:  0;
+
+    @include z-index('floating');
 
     // Since this is meant to be focused by means other than a pointer, such as
     // by keyboard, we can make it click-through so that it's not accidentally
     // clicked when invisible.
-    pointer-events:   none;
+    pointer-events: none;
   }
 
   :link {
-    padding:  0.5em 1em;
+    padding: 0.5em 1em;
 
     border-bottom-left-radius:  $material-border-radius;
     border-bottom-right-radius: $material-border-radius;
