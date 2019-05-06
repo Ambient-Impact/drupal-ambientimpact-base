@@ -12,10 +12,12 @@
     left:   $layout-gutter;
   }
 
-  // This is a floating action button so it should use the same font weight as
-  // other Material buttons, but it's set in its own component CSS so we have to
-  // override that here.
-  a {
+  &__link {
+    // This is a floating action button so it should use the same font weight as
+    // other Material buttons, but it's set in its own component CSS so we have
+    // to override that here.
     font-weight: $font-weight-strong;
+
+    @include material-ripple;
   }
 }
