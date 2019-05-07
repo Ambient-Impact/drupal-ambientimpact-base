@@ -14,4 +14,10 @@
 
     padding:    $general-spacing / 2;
   }
+
+  // @todo Make this work for mouse events; works fine if touch or :active is
+  // forced on via DevTools.
+  &__button#{&}__button {
+    @include material-ripple;
+  }
 }
