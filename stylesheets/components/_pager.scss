@@ -87,6 +87,61 @@ $pager-navigation-item-hitbox-padding:
     // characters or icons.
     white-space: nowrap;
 
+    // On active (current page) items, move the padding to the link itself and
+    // remove the now-redundant hitbox. We do this because we're adding a
+    // background colour that will span the width and height of the link.
+    &.is-active {
+      padding: 0;
+
+      :link {
+        padding: $pager-numerical-item-hitbox-padding;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      // This sets the link background to that of the normal link colour, and
+      // automatically sets the foreground based on which foreground colour
+      // contrasts best with the new background. Note that we have to target
+      // :visited as well, otherwise these foreground colours would only be
+      // applied to links not yet visited by the user. Also note that we don't
+      // wrap this in .layout-container, since the specificity is high enough
+      // to override the fancy link underlines selectors.
+      :link, :visited {
+        $item-background: get-contrasting-colour(
+          $background:          $background-colour,
+          $foreground-on-light: $link-normal-colour-on-light,
+          $foreground-on-dark:  $link-normal-colour-on-dark
+        );
+        $item-foreground: get-contrasting-colour(
+          $background:          $item-background
+        );
+
+        @include set-colours(
+          $background:          $item-background
+        );
+
+        @include link-colours(
+          $background:      $item-background,
+
+          $normal-on-light: $item-foreground,
+          $hover-on-light:  $item-foreground,
+          $active-on-light: $item-foreground,
+
+          $normal-on-dark:  $item-foreground,
+          $hover-on-dark:   $item-foreground,
+          $active-on-dark:  $item-foreground
+        );
+
+        @if $use-fancy-link-underlines == true {
+          @include remove-fancy-link-underlines;
+        }
+
+        text-decoration: none;
+      }
+    }
+
     // This sets anything that isn't a link (because that would mess up the
     // fancy underlines) to properly align vertically, otherwise bizarro inline
     // centring is used.
