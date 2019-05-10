@@ -102,7 +102,7 @@ strong,
 #breadcrumb ol,
 .form-item label,
 .field .field__label,
-.item-list .pager li {
+.pager__item.is-active {
   font-weight: $font-weight-strong;
 }
 

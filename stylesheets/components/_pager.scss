@@ -1,0 +1,139 @@
+// -----------------------------------------------------------------------------
+//   Base Drupal pager partial
+// -----------------------------------------------------------------------------
+
+///
+/// The pager font-size.
+///
+/// This is increased compared to the base font-size to make numerical pager
+/// items more visible and easier to hit.
+///
+$pager-font-size: 120% !default;
+
+///
+/// Pager numerical item padding.
+///
+/// This is applied to all numerical pager item links - i.e. those that aren't
+/// the 'First', 'Previous', 'Next', or 'Last' items.
+///
+$pager-numerical-item-padding: 0.4em 0.8em !default;
+
+///
+/// Pager numerical item hitbox padding.
+///
+/// This is applied to all numerical pager item links - i.e. those that aren't
+/// the 'First', 'Previous', 'Next', or 'Last' items - to give them a larger
+/// click/tap area.
+///
+$pager-numerical-item-hitbox-padding:
+  0.2em nth($pager-numerical-item-padding, 2) !default;
+
+///
+/// Pager navigation item padding.
+///
+/// This is applied to all non-numerical pager item links - i.e. the 'First',
+/// 'Previous', 'Next', and 'Last' items.
+///
+$pager-navigation-item-padding:
+  nth($pager-numerical-item-padding, 1) 0.5em !default;
+
+///
+/// Pager navigation item hitbox padding.
+///
+/// This is applied to all non-numerical pager item links - i.e. the 'First',
+/// 'Previous', 'Next', and 'Last' items - to give them a larger click/tap area.
+///
+$pager-navigation-item-hitbox-padding:
+  nth($pager-numerical-item-hitbox-padding, 1)
+  nth($pager-navigation-item-padding, 2)
+  !default;
+
+.pager {
+  * + & {
+    @include vertical-spacing;
+  }
+
+  &__items {
+    // If the browser supports flex-wrap, display as a flexbox so that we can
+    // easily centre the items vertically.
+    @supports (flex-wrap: wrap) {
+      display:          flex;
+      flex-wrap:        wrap;
+      justify-content:  center;
+      align-items:      center;
+    }
+
+    // Remove browser default margins and padding.
+    margin:   0;
+    padding:  0;
+
+    font-size:    $pager-font-size;
+    // Reset the line-height to remove as much vertical spacing as possible. The
+    // item links themselves have vertical padding and they're not allowed to
+    // wrap within themselves, so any increased line-height just gets in the
+    // way.
+    line-height:  1;
+  }
+
+  &__item {
+    position: relative;
+
+    display: inline-block;
+
+    padding: $pager-numerical-item-padding;
+
+    // Don't wrap white-space within an item before icons load or they fail to.
+    // Item text is at most two words, and when icons are loaded, they're single
+    // characters or icons.
+    white-space: nowrap;
+
+    // This sets anything that isn't a link (because that would mess up the
+    // fancy underlines) to properly align vertically, otherwise bizarro inline
+    // centring is used.
+    :not(:link) {
+      display: block;
+    }
+
+    :link {
+      position: relative;
+
+      // Since links normally contain just a number or icon, this gives them a
+      // bigger hitbox while not interfering with the underlines in any way;
+      // this comes in handy on touch screens and/or for people who don't have
+      // fine motor control.
+      &::before {
+        content:  '';
+
+        position: absolute;
+
+        top:    -#{nth($pager-numerical-item-hitbox-padding, 1)};
+        bottom: -#{nth($pager-numerical-item-hitbox-padding, 1)};
+        left:   -#{nth($pager-numerical-item-hitbox-padding, 2)};
+        right:  -#{nth($pager-numerical-item-hitbox-padding, 2)};
+      }
+    }
+
+    &--first,
+    &--previous,
+    &--next,
+    &--last {
+      padding:  $pager-navigation-item-padding;
+
+      // Fallback if flexbox is not supported, so that these don't look
+      // completely misaligned with the numbers.
+      vertical-align: middle;
+
+      :link {
+        display:  block;
+
+        // Hitbox.
+        &::before {
+          top:    -#{nth($pager-navigation-item-hitbox-padding, 1)};
+          bottom: -#{nth($pager-navigation-item-hitbox-padding, 1)};
+          left:   -#{nth($pager-navigation-item-hitbox-padding, 2)};
+          right:  -#{nth($pager-navigation-item-hitbox-padding, 2)};
+        }
+      }
+    }
+  }
+}
