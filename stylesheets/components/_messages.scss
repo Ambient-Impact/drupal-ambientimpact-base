@@ -3,6 +3,16 @@
 // -----------------------------------------------------------------------------
 
 .messages {
+  // Classy uses a box-shadow offset by 8px on the left (LTR) or right (RTL)
+  // as a fake border, but does not ensure that that edge lines up with boxes
+  // above or below; this does that.
+  @include root-conditions(('[dir=ltr]'), 'html') {
+    margin-left:  8px;
+  }
+  @include root-conditions(('[dir=rtl]'), 'html') {
+    margin-right: 8px;
+  }
+
   // Ensure children can't break out and set their z-index as above things that
   // they shouldn't, like the toolbar. I'm looking at you, Symfony VarDumper,
   // with your absurdly high z-index.
