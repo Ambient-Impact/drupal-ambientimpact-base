@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------------
+//   Base inline forms partial
+// -----------------------------------------------------------------------------
+
+.form--inline {
+  // Use wrapping flexbox if available.
+  @supports (flex-wrap: wrap) {
+    display:    flex;
+    flex-wrap:  wrap;
+  }
+}

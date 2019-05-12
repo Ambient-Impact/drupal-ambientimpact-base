@@ -24,6 +24,11 @@
       justify-content:    end;
     }
 
+    // If the parent of this actions container is flex or grid, override the
+    // default align-items: stretch, as that'll cause buttons to potentially
+    // enlarge vertically.
+    align-items: center;
+
     .button {
       margin: 0;
     }
