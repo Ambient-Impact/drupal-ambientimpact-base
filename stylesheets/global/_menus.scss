@@ -5,20 +5,33 @@
 ///
 /// Target menu items when they're the active menu path.
 ///
+/// Note that this must be used on the menu list item itself (<li>), rather than
+/// the link, as we need to target the list item for the active trail as Classy
+/// and Drupal core are inconsistent about where they add the active (<a>) and
+/// active trail (<li>) classes.
+///
 /// @param {String} $active-trail [true]
-///   Whether to also apply to items in the active trail, i.e. ancestors.
+///   Whether to also apply to items in the active trail, i.e. ancestors of the
+///   currently active item.
 ///
 /// @content
-///   The content to wrap in selectors.
+///   The content to wrap in selectors; the selectors will point to links, not
+///   the list items.
 ///
 @mixin menu-item-is-active-path($active-trail: true) {
-  &.is-active {
-    @content
+  :link,
+  :visited {
+    &.is-active {
+      @content
+    }
   }
 
   @if $active-trail == true {
-    &.active-trail {
-      @content
+    &.menu-item--active-trail {
+      :link,
+      :visited {
+        @content
+      }
     }
   }
 }
