@@ -1,0 +1,55 @@
+// -----------------------------------------------------------------------------
+//   Base code element partial
+// -----------------------------------------------------------------------------
+
+// Inline <code> colours.
+$code-inline-background-colour: lighten(black, 10%) !default;
+
+// Inline <code> padding.
+$code-inline-padding: 0.1em 0.2em !default;
+
+// Inline <code> border radius.
+$code-inline-border-radius: $material-border-radius !default;
+
+// The following element colours are taken from the Material Theme for Sublime
+// Text: https://github.com/equinusocio/material-theme
+
+// String colour.
+$code-highlighted-colour-string:      #91e86b   !default;
+
+// Number colour.
+$code-highlighted-colour-number:      #f78c60   !default;
+
+// Keyword colour.
+$code-highlighted-colour-keyword:     #c792ea   !default;
+
+// Reserved word colour.
+$code-highlighted-colour-reserved-word:   #89ddff   !default;
+
+code {
+  padding:      $code-inline-padding;
+
+  @include set-colours(
+    $background:  $code-inline-background-colour
+  );
+
+  border-radius:    $code-inline-border-radius;
+
+  // http://callmenick.com/post/multi-line-padded-text-css-box-decoration-break
+  box-decoration-break: clone;
+
+  // Make sure this if it's long, which can be a problem with the inline
+  // nature of this element.
+  white-space:      pre-wrap;
+
+  // <code> elements inside of links end up with their parent's text crop
+  // colour because the text crop is defined on the link while the <code>'s
+  // background colour does not affect it, as the background colour is in a
+  // child and doesn't cascade upwards.
+  // TO DO: give <code> in links actual underlines and stuff?
+  a & {
+    @include text-underline-crop(
+      custom-property('background-colour')
+    );
+  }
+}

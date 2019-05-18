@@ -1,0 +1,82 @@
+// -----------------------------------------------------------------------------
+//   Base code block partial
+// -----------------------------------------------------------------------------
+
+// General code block colours.
+$code-highlighted-background-colour:  black !default;
+
+// Header colours.
+$code-highlighted-header-background-colour: lighten($code-highlighted-background-colour, 10%) !default;
+
+// Code block padding.
+$code-highlighted-block-title-padding:    ($general-spacing * 0.7) $general-spacing !default;
+$code-highlighted-block-body-padding:   $general-spacing              !default;
+
+// Code block border-radius.
+$code-highlighted-border-radius:  $material-border-radius !default;
+
+// Highlighted code block.
+.code-highlighted {
+  & + * {
+    @include vertical-spacing;
+  }
+
+  // Header, displaying the human name of the code language.
+  &__heading {
+    margin:       0;
+    padding:      $code-highlighted-block-title-padding;
+
+    @include set-colours(
+      $background:      $code-highlighted-header-background-colour
+    );
+
+    border-top-left-radius:   $code-highlighted-border-radius;
+    border-top-right-radius:  $code-highlighted-border-radius;
+
+    // Reset line height to get a bit less vertical spacing.
+    line-height:    1;
+  }
+
+  // The <pre> element containing all of the source code.
+  &__code {
+    // Reset any browser default margins.
+    margin:   0;
+    padding:  $code-highlighted-block-body-padding;
+
+    @include set-colours(
+      $background:  $code-highlighted-background-colour
+    );
+
+    border-bottom-left-radius:  $material-border-radius;
+    border-bottom-right-radius: $material-border-radius;
+
+    overflow-x:     auto;
+
+    white-space:    pre;
+  }
+
+  // Comment.
+  &__comment {
+    opacity: 0.6;
+  }
+
+  // String.
+  &__string {
+    color: $code-highlighted-colour-string;
+  }
+
+  // Number.
+  &__number {
+    color: $code-highlighted-colour-number;
+  }
+
+  // Keyword.
+  &__keyword {
+    color: $code-highlighted-colour-keyword;
+  }
+
+  // Reserved word.
+  &__reserved-word {
+    color: $code-highlighted-colour-reserved-word;
+  }
+}
