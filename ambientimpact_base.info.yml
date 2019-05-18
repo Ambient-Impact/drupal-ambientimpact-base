@@ -9,3 +9,8 @@ hidden: true
 libraries:
   - ambientimpact_core/component.link.underline
   - ambientimpact_core/component.pointer_focus_hide
+
+libraries-override:
+  # Remove the GeshiFilter static CSS as we provide our own with our own
+  # classes.
+  geshifilter.geshifilter: false
