@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------------
+//   Base Drupal field partial
+// -----------------------------------------------------------------------------
+
+.field {
+  & + * {
+    @include vertical-spacing(
+      $spacing-small: $general-spacing,
+      $spacing-large: $general-spacing * 1.5
+    );
+  }
+}
