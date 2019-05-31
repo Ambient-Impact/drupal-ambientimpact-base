@@ -62,6 +62,19 @@ function ambientimpact_base_theme_suggestions_node_alter(
 }
 
 /**
+ * Prepares variables for block templates.
+ *
+ * This attaches the 'ambientimpact_block/social_links.tooltips' to
+ * 'ambientimpact_block_social_links' blocks.
+ */
+function ambientimpact_base_preprocess_block(&$variables) {
+  if ($variables['plugin_id'] === 'ambientimpact_block_social_links') {
+    $variables['#attached']['library'][] =
+      'ambientimpact_block/social_links.tooltips';
+  }
+}
+
+/**
  * Prepares variables for image templates.
  *
  * Default template: image.html.twig.
