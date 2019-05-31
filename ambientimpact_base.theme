@@ -70,7 +70,7 @@ function ambientimpact_base_theme_suggestions_node_alter(
 function ambientimpact_base_preprocess_block(&$variables) {
   if ($variables['plugin_id'] === 'ambientimpact_block_social_links') {
     $variables['#attached']['library'][] =
-      'ambientimpact_block/social_links.tooltips';
+      'ambientimpact_block/component.social_links.tooltips';
   }
 }
 
