@@ -81,7 +81,7 @@ function ambientimpact_base_preprocess_block(&$variables) {
  *
  * This adds the calculated 'ratio' variable, if width and height are available.
  *
- * @todo Does this make more sense in ambientimpact_core?
+ * @todo Does this make more sense in ambientimpact_media?
  */
 function ambientimpact_base_preprocess_image(&$variables) {
   // Only set the ratio if we have both width and height.
