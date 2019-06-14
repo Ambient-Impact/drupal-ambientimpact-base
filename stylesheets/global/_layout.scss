@@ -79,8 +79,12 @@ $vertical-spacing-breakpoint: '>=30em' !default;
 ) {
   #{$property}: $spacing-small;
 
-  @include media($breakpoint) {
-    #{$property}: $spacing-large;
+  // If the small and large spacing are the same, don't bother with the
+  // breakpoint.
+  @if $spacing-small != $spacing-large {
+    @include media($breakpoint) {
+      #{$property}: $spacing-large;
+    }
   }
 }
 
