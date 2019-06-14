@@ -100,16 +100,14 @@ function ambientimpact_base_preprocess_image(&$variables) {
  *   This adds a max-width on each field item.
  */
 function ambientimpact_base_preprocess_field(&$variables, $hook) {
-  if ($variables['field_type'] !== 'image') {
-    return;
+  if ($variables['field_type'] === 'image') {
+    $componentManager = \Drupal::service(
+      'plugin.manager.ambientimpact_component'
+    );
+    $imageComponent = $componentManager->getComponentInstance('image');
+
+    $imageComponent->preprocessFieldSetImageFieldMaxWidth($variables['items']);
   }
-
-  $componentManager = \Drupal::service(
-    'plugin.manager.ambientimpact_component'
-  );
-  $imageComponent = $componentManager->getComponentInstance('image');
-
-  $imageComponent->preprocessFieldSetImageFieldMaxWidth($variables['items']);
 }
 
 /**
