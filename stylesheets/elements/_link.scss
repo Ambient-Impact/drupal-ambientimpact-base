@@ -62,8 +62,8 @@ $use-image-link-styles:     true  !default;
   .contextual-region .contextual .contextual-links,
   .tabs.primary li,
   .field--type-video-embed-field .field__item,
-  .sf-dump/*,
-  .#{$photoswipe-root-class}*/ {
+  .sf-dump,
+  .#{$photoswipe-root-class} {
     :link, :visited {
       @if $use-fancy-link-underlines == true {
         @include remove-fancy-link-underlines;
@@ -78,18 +78,18 @@ $use-image-link-styles:     true  !default;
 }
 
 // Restore the native underlines to these elements.
-// .#{$photoswipe-root-class}__caption__center {
-//  :link, :visited {
-//    @if $use-fancy-link-underlines == true {
-//      text-decoration:  underline !important;
-//    }
-//  }
-// }
+.#{$photoswipe-root-class}__caption__center {
+ :link, :visited {
+   @if $use-fancy-link-underlines == true {
+     text-decoration:  underline !important;
+   }
+ }
+}
 
 // PhotoSwipe has a dark background by default, so set link colours for that
 // type of background.
-// .#{$photoswipe-root-class} {
-//  :link, :visited {
-//    @include link-colours($photoswipe-background-colour-theme-dark);
-//  }
-// }
+.#{$photoswipe-root-class} {
+ :link, :visited {
+   @include link-colours($photoswipe-background-colour-theme-dark);
+ }
+}
