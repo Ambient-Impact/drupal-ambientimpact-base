@@ -27,8 +27,11 @@
   {%- set text = 'Subscribe'|t -%}
 {% endif %}
 
-{%- set attributes = attributes.setAttribute('title', text) -%}
-{%- set attributes = attributes.setAttribute('href', url) -%}
+{# Add the title and href attributes to the attributes object for output. #}
+{%- set attributes = attributes
+  .setAttribute('title', text)
+  .setAttribute('href', url)
+-%}
 
 <a{{ attributes.addClass('feed-icon') }}>
   {{ ambientimpact_icon(
