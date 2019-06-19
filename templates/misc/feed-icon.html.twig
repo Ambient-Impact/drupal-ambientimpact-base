@@ -17,9 +17,19 @@
  *   - class: HTML classes to be applied to the feed link.
  */
 #}
-{%- set text = 'Subscribe to @title'|t({'@title': title}) -%}
+
+{# If the title is not empty, include it in the text. Note that the default
+   front page (/node) does not set a title, so this ensures the text still makes
+   sense. #}
+{% if title is not empty %}
+  {%- set text = 'Subscribe to @title'|t({'@title': title}) -%}
+{% else %}
+  {%- set text = 'Subscribe'|t -%}
+{% endif %}
+
 {%- set attributes = attributes.setAttribute('title', text) -%}
 {%- set attributes = attributes.setAttribute('href', url) -%}
+
 <a{{ attributes.addClass('feed-icon') }}>
   {{ ambientimpact_icon(
     'rss', 'core',
