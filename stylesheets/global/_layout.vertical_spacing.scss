@@ -1,0 +1,65 @@
+// -----------------------------------------------------------------------------
+//   Base layout (vertical spacing) partial
+// -----------------------------------------------------------------------------
+
+///
+/// Generic vertical spacing between elements when on larger screens.
+///
+/// @see $vertical-spacing-breakpoint
+///   The breakpoint that determines when this is used.
+///
+$vertical-spacing-large: $general-spacing * 5 !default;
+
+///
+/// Generic vertical spacing between elements when on smaller screens.
+///
+/// @see $vertical-spacing-breakpoint
+///   The breakpoint that determines when this is used.
+///
+$vertical-spacing-small: $general-spacing * 2.5 !default;
+
+///
+/// Generic element vertical spacing breakpoint.
+///
+/// This is the size at which we go from small spacing to large. Note that this
+/// is the viewport width rather than height to avoid unnecessarily shifting
+/// layout in browsers that have panels that slide in and out of view, changing
+/// the viewport height - this is most common in mobile browsers.
+///
+$vertical-spacing-breakpoint: '>=30em' !default;
+
+///
+/// Apply generic vertical spacing with a breakpoint.
+///
+/// @param {String} $property [margin-top]
+///   The property to set the spacing to.
+///
+/// @param {Number} $spacing-small [$vertical-spacing-small]
+///   The small screen spacing value to use.
+///
+/// @param {Number} $spacing-large [$vertical-spacing-large]
+///   The large screen spacing value to use.
+///
+/// @param {String} $breakpoint [$vertical-spacing-breakpoint]
+///   The breakpoint at which to switch between the small and large spacing.
+///
+/// @require $vertical-spacing-large
+/// @require $vertical-spacing-small
+/// @require $vertical-spacing-breakpoint
+///
+@mixin vertical-spacing(
+  $property:      margin-top,
+  $spacing-small: $vertical-spacing-small,
+  $spacing-large: $vertical-spacing-large,
+  $breakpoint:    $vertical-spacing-breakpoint
+) {
+  #{$property}: $spacing-small;
+
+  // If the small and large spacing are the same, don't bother with the
+  // breakpoint.
+  @if $spacing-small != $spacing-large {
+    @include media($breakpoint) {
+      #{$property}: $spacing-large;
+    }
+  }
+}
