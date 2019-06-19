@@ -1,0 +1,44 @@
+// -----------------------------------------------------------------------------
+//	 Base blockquote partial
+// -----------------------------------------------------------------------------
+
+blockquote {
+	$border-width: 2px;
+
+	position:	relative;
+
+	margin:		0;
+	padding:	0 0 0 ($general-spacing * 1.5);
+
+	&::before,
+	&::after {
+		position:		absolute;
+		font-size:	400%;
+		opacity:		0.5;
+	}
+
+	// This is a decorative quotation mark. We're using the Unicode character code
+	// to avoid any odd issues that may cause this to be displayed as other
+	// characters.
+	&::before {
+		content:	"\201C";
+
+		left:			-0.05em;
+		top:			-0.05em;
+
+		line-height: 1;
+	}
+
+	// Vertical line.
+	&::after {
+		content:	'';
+
+		left:			0.07em;
+		top:			0.4em;
+		bottom:		0;
+
+		width:		2px;
+
+		background-color: currentColor;
+	}
+}
