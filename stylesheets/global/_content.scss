@@ -3,6 +3,22 @@
 // -----------------------------------------------------------------------------
 
 ///
+/// Generic content item vertical spacing on smaller screens.
+///
+/// @see {Mixin} vertical-spacing-against-previous
+///   Primarily intended to be used with this mixin but can be used anywhere.
+///
+$content-item-vertical-spacing-small: $general-spacing * 0.9 !default;
+
+///
+/// Generic content item vertical spacing on larger screens.
+///
+/// @see {Mixin} vertical-spacing-against-previous
+///   Primarily intended to be used with this mixin but can be used anywhere.
+///
+$content-item-vertical-spacing-large: $general-spacing * 1.2 !default;
+
+///
 /// Apply styles to site content.
 ///
 /// This targets both node content and Views fields.
