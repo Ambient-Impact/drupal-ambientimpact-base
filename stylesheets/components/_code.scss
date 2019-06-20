@@ -16,11 +16,10 @@ $code-highlighted-block-body-padding:   $general-spacing              !default;
 $code-highlighted-border-radius:  $material-border-radius !default;
 
 // Highlighted code block.
+@at-root {
+  @include vertical-spacing-against-previous('.code-highlighted');
+}
 .code-highlighted {
-  & + * {
-    @include vertical-spacing;
-  }
-
   // Header, displaying the human name of the code language.
   &__heading {
     margin:       0;

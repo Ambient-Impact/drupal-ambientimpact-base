@@ -3,14 +3,6 @@
 // -----------------------------------------------------------------------------
 
 .node {
-  // Spacing between a node and any preceding element that isn't the local tasks
-  // or page title blocks, and the first node in a view if the view content is
-  // not the first child; i.e. there's a view header and/or exposed form.
-  *:not(.block-local-tasks-block):not(.block-page-title-block) + &,
-  .view *:not(.contextual-links) + .view-content &:first-child {
-    @include vertical-spacing;
-  }
-
   // Spacing between node sections.
   * + &__content,
   * + &__links {
@@ -22,4 +14,21 @@
     font-weight:    $font-weight-strong;
     text-transform: uppercase;
   }
+}
+
+// Spacing between a node and any preceding element that isn't the local tasks
+// or page title blocks.
+@at-root {
+  @include vertical-spacing-against-previous(
+    '.node',
+    $previous-qualifier:
+      ':not(.block-local-tasks-block):not(.block-page-title-block)'
+  );
+}
+// Spacing between the first node in a view if the view content is not the first
+// child; i.e. there's a view header and/or exposed form.
+.view {
+  @include vertical-spacing-against-previous(
+    '.view-content .node:first-child'
+  );
 }

@@ -48,11 +48,11 @@ $pager-navigation-item-hitbox-padding:
   nth($pager-navigation-item-padding, 2)
   !default;
 
-.pager {
-  * + & {
-    @include vertical-spacing;
-  }
+@at-root {
+  @include vertical-spacing-against-previous('.pager');
+}
 
+.pager {
   &__items {
     // If the browser supports flex-wrap, display as a flexbox so that we can
     // easily centre the items vertically.

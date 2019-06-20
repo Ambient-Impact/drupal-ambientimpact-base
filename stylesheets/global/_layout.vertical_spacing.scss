@@ -29,6 +29,17 @@ $vertical-spacing-small: $general-spacing * 2.5 !default;
 $vertical-spacing-breakpoint: '>=30em' !default;
 
 ///
+/// Elements ignored when applying generic vertical spacing.
+///
+/// Elements in this list are assumed to not take up visual space.
+///
+/// @see {Mixin} vertical-spacing-against-previous
+///   Used in this mixin.
+///
+$vertical-spacing-ignore-elements:
+  '.hidden', '.visually-hidden', '[data-contextual-id]' !default;
+
+///
 /// Apply generic vertical spacing with a breakpoint.
 ///
 /// @param {String} $property [margin-top]
@@ -60,6 +71,99 @@ $vertical-spacing-breakpoint: '>=30em' !default;
   @if $spacing-small != $spacing-large {
     @include media($breakpoint) {
       #{$property}: $spacing-large;
+    }
+  }
+}
+
+///
+/// Apply generic vertical spacing to elements with preceding (valid) siblings.
+///
+/// Because of the way this mixin builds selectors, you need to apply this to
+/// the element's parent, or if there is none, wrap this call in an @at-root {}.
+///
+/// @example scss - Basic usage with a parent selector
+///   .descendent .parent {
+///     @include vertical-spacing-against-previous('.target');
+///   }
+///
+/// @example scss - Basic usage without a parent selector
+///   @at-root {
+///     @include vertical-spacing-against-previous('.target');
+///   }
+///
+/// @param {String} $target-selector
+///   The selector to apply spacing to. This is required.
+///
+/// @param {String} $previous-qualifier ['']
+///   The an optional selector to include in the previous element selectors.
+///
+/// @param {List} $ignore-elements [$vertical-spacing-ignore-elements]
+///   A list of element selectors to ignore when looking for previous siblings;
+///   these are treated as if they don't exist.
+///
+/// @param {String} $property [margin-top]
+///   The property to set the spacing to.
+///
+/// @param {Number} $spacing-small [$vertical-spacing-small]
+///   The small screen spacing value to use.
+///
+/// @param {Number} $spacing-large [$vertical-spacing-large]
+///   The large screen spacing value to use.
+///
+/// @param {String} $breakpoint [$vertical-spacing-breakpoint]
+///   The breakpoint at which to switch between the small and large spacing.
+///
+/// @require $vertical-spacing-large
+/// @require $vertical-spacing-small
+/// @require $vertical-spacing-breakpoint
+/// @require $vertical-spacing-ignore-elements
+/// @require {Mixin} vertical-spacing
+///
+@mixin vertical-spacing-against-previous(
+  $target-selector,
+  $previous-qualifier:  '',
+  $ignore-elements:     $vertical-spacing-ignore-elements,
+  $property:            margin-top,
+  $spacing-small:       $vertical-spacing-small,
+  $spacing-large:       $vertical-spacing-large,
+  $breakpoint:          $vertical-spacing-breakpoint
+) {
+  $not: '';
+
+  // Build the selector used to ignore preceding elements based on
+  // $ignore-elements.
+  @each $selector in $ignore-elements {
+    $not: '#{$not}:not(#{$selector})';
+  }
+
+  // This starts as a list containing just the placeholder, which we build on.
+  $ignore: ('.vertical-spacing-placeholder',);
+
+  // Build the selector structure that skips over ignored elements from
+  // $ignore-elements. Note that the .vertical-spacing-placeholder class is a
+  // placeholder.
+  @each $selector in $ignore-elements {
+    $ignore: '#{$ignore}, .vertical-spacing-placeholder + #{$selector}';
+  }
+
+  // This uses the built-in Sass selector-replace() to dynamically replace the
+  // placeholder with the ignored element selector, which expands the selector
+  // much like @extend works.
+  // @see https://sass-lang.com/documentation/functions/selector#selector-replace
+  $previous-selector: selector-replace(
+    $ignore, '.vertical-spacing-placeholder', $not + $previous-qualifier
+  );
+
+  // Use Sass' selector nesting to join together the previous element selector
+  // and the target selector.
+  #{$previous-selector} {
+    & + #{$target-selector} {
+      @include vertical-spacing(
+        $property:      $property,
+        $spacing-small: $spacing-small,
+        $spacing-large: $spacing-large,
+        $breakpoint:    $breakpoint
+      );
     }
   }
 }
