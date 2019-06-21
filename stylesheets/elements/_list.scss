@@ -35,7 +35,14 @@
 
       // This gives the list just enough space on the side to display and
       // correctly line up list markers.
-      padding-left: 1.2em;
+      @include root-conditions(('[dir=ltr]'), 'html') {
+        padding-left:   1.2em;
+        padding-right:  0;
+      }
+      @include root-conditions(('[dir=rtl]'), 'html') {
+        padding-left:   0;
+        padding-right:  1.2em;
+      }
 
       li {
         // Remove any default margins.
