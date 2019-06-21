@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-//	 Base blockquote partial
+//	 Base <blockquote> element partial
 // -----------------------------------------------------------------------------
 
 blockquote {
@@ -8,7 +8,14 @@ blockquote {
 	position:	relative;
 
 	margin:		0;
-	padding:	0 0 0 ($general-spacing * 1.5);
+	padding:	0;
+
+  @include root-conditions(('[dir=ltr]'), 'html') {
+    padding-left:   $general-spacing * 1.5;
+  }
+  @include root-conditions(('[dir=rtl]'), 'html') {
+    padding-right:  $general-spacing * 1.5;
+  }
 
 	&::before,
 	&::after {
@@ -17,14 +24,23 @@ blockquote {
 		opacity:		0.5;
 	}
 
-	// This is a decorative quotation mark. We're using the Unicode character code
-	// to avoid any odd issues that may cause this to be displayed as other
-	// characters.
+	// This is a decorative quotation mark. We're using the Unicode character
+	// codes to avoid any odd issues that may cause this to be displayed as other
+	// characters. Note that we use the left open quote on LTR and the right close
+	// quote on RTL.
 	&::before {
-		content:	"\201C";
+	  @include root-conditions(('[dir=ltr]'), 'html') {
+			content:	'\201C';
 
-		left:			-0.05em;
-		top:			-0.05em;
+			left:			-0.05em;
+	  }
+	  @include root-conditions(('[dir=rtl]'), 'html') {
+			content:	'\201D';
+
+			right:		-0.05em;
+	  }
+
+		top:				-0.05em;
 
 		line-height: 1;
 	}
@@ -33,7 +49,13 @@ blockquote {
 	&::after {
 		content:	'';
 
-		left:			0.07em;
+	  @include root-conditions(('[dir=ltr]'), 'html') {
+			left:		0.07em;
+	  }
+	  @include root-conditions(('[dir=rtl]'), 'html') {
+			right:	0.07em;
+	  }
+
 		top:			0.4em;
 		bottom:		0;
 
