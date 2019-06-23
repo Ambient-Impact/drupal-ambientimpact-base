@@ -10,7 +10,7 @@
 function ambientimpact_base_element_info_alter(array &$info) {
   if (isset($info['textarea'])) {
     $info['textarea']['#attached']['library'][] =
-      'ambientimpact_core/component.textarea';
+      'ambientimpact_ux/component.textarea';
   }
 
   foreach ([
