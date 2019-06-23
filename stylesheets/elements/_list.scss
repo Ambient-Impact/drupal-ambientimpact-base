@@ -19,7 +19,7 @@
 // Default list styles.
 @include content-area {
   @include vertical-spacing-against-previous(
-    'ol, ul',
+    'ol, ul:not(.contextual-links)',
     $spacing-small: $content-item-vertical-spacing-small,
     $spacing-large: $content-item-vertical-spacing-large
   );
