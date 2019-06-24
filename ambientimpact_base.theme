@@ -33,7 +33,7 @@ function ambientimpact_base_element_info_alter(array &$info) {
   ] as $elementName) {
     if (isset($info[$elementName])) {
       $info[$elementName]['#attached']['library'][] =
-        'ambientimpact_core/component.material.input';
+        'ambientimpact_ux/component.material.input';
     }
   }
 }
