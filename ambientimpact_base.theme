@@ -96,7 +96,7 @@ function ambientimpact_base_preprocess_image(&$variables) {
  * This sets a max-width on image field items so that no phantom link space can
  * occur.
  *
- * @see Drupal\ambientimpact_core\Plugin\AmbientImpact\Component\Image::preprocessFieldSetImageFieldMaxWidth()
+ * @see \Drupal\ambientimpact_media\Plugin\AmbientImpact\Component\Image::preprocessFieldSetImageFieldMaxWidth()
  *   This adds a max-width on each field item.
  */
 function ambientimpact_base_preprocess_field(&$variables, $hook) {
