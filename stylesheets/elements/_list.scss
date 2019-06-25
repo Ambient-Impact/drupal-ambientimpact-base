@@ -9,10 +9,21 @@
   padding-left: 0 !important;
 
   li {
+    // Remove horizontal margins on items in .item-list lists.
+    @include root-conditions(('[dir=ltr]'), 'html') {
+      margin-left:   0;
+    }
+    @include root-conditions(('[dir=rtl]'), 'html') {
+      margin-right:  0;
+    }
+
     list-style: none;
   }
 }
-.unlisted-list {
+.unlisted-list,
+// If you use an 'item_list', you can pass it
+// '#context' => ['list_style' => 'unlisted']
+.item-list--unlisted .item-list__unlisted {
   @include unlisted-list;
 }
 
