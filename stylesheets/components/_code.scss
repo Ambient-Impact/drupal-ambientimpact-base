@@ -60,8 +60,8 @@ $code-highlighted-border-radius: $material-border-radius !default;
       $background:  $code-highlighted-background-colour
     );
 
-    border-bottom-left-radius:  $material-border-radius;
-    border-bottom-right-radius: $material-border-radius;
+    border-bottom-left-radius:  $code-highlighted-border-radius;
+    border-bottom-right-radius: $code-highlighted-border-radius;
 
     overflow-x:     auto;
 
