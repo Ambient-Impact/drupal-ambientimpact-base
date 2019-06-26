@@ -29,7 +29,52 @@ $code-highlighted-block-body-padding: $general-spacing !default;
 ///
 $code-highlighted-border-radius: $material-border-radius !default;
 
-// Highlighted code block.
+///
+/// Highlighted code string colour.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+///
+$code-highlighted-colour-string: #e7b248 !default;
+
+///
+/// Highlighted code symbol colour.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+///
+$code-highlighted-colour-symbol: #f92468 !default;
+
+///
+/// Highlighted code number colour.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+///
+$code-highlighted-colour-number: #ac80ff !default;
+
+///
+/// Highlighted code keyword colour.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+///
+$code-highlighted-colour-keyword: #67d8ef !default;
+
+///
+/// Highlighted code reserved word colour.
+///
+/// @link https://github.com/equinusocio/material-theme
+///   Inspired by the Material Theme for Sublime Text.
+$code-highlighted-colour-reserved-word: #89ddff !default;
+
+///
+/// Highlighted code method colour.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+$code-highlighted-colour-method: #a6ce28 !default;
+
 @at-root {
   @include vertical-spacing-against-previous('.code-highlighted');
 }
@@ -68,28 +113,33 @@ $code-highlighted-border-radius: $material-border-radius !default;
     white-space:    pre;
   }
 
-  // Comment.
   &__comment {
     opacity: 0.6;
   }
 
-  // String.
+  &__symbol {
+    color: $code-highlighted-colour-symbol;
+  }
+
   &__string {
     color: $code-highlighted-colour-string;
   }
 
-  // Number.
   &__number {
     color: $code-highlighted-colour-number;
   }
 
-  // Keyword.
   &__keyword {
     color: $code-highlighted-colour-keyword;
+
+    font-style: italic;
   }
 
-  // Reserved word.
   &__reserved-word {
     color: $code-highlighted-colour-reserved-word;
+  }
+
+  &__method {
+    color: $code-highlighted-colour-method;
   }
 }

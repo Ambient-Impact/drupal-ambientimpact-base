@@ -11,21 +11,6 @@ $code-inline-padding: 0.1em 0.2em !default;
 // Inline <code> border radius.
 $code-inline-border-radius: $material-border-radius !default;
 
-// The following element colours are taken from the Material Theme for Sublime
-// Text: https://github.com/equinusocio/material-theme
-
-// String colour.
-$code-highlighted-colour-string:      #91e86b   !default;
-
-// Number colour.
-$code-highlighted-colour-number:      #f78c60   !default;
-
-// Keyword colour.
-$code-highlighted-colour-keyword:     #c792ea   !default;
-
-// Reserved word colour.
-$code-highlighted-colour-reserved-word:   #89ddff   !default;
-
 code {
   padding:      $code-inline-padding;
 
