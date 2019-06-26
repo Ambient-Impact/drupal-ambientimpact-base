@@ -2,18 +2,32 @@
 //   Base code block partial
 // -----------------------------------------------------------------------------
 
-// General code block colours.
+///
+/// Highlighted code background colour.
+///
 $code-highlighted-background-colour:  black !default;
 
-// Header colours.
-$code-highlighted-header-background-colour: lighten($code-highlighted-background-colour, 10%) !default;
+///
+/// Highlighted code header background colour.
+///
+$code-highlighted-header-background-colour:
+  lighten($code-highlighted-background-colour, 10%) !default;
 
-// Code block padding.
-$code-highlighted-block-title-padding:    ($general-spacing * 0.7) $general-spacing !default;
-$code-highlighted-block-body-padding:   $general-spacing              !default;
+///
+/// Highlighted code title padding.
+///
+$code-highlighted-block-title-padding:
+  ($general-spacing * 0.7) $general-spacing !default;
 
-// Code block border-radius.
-$code-highlighted-border-radius:  $material-border-radius !default;
+///
+/// Highlighted code body padding.
+///
+$code-highlighted-block-body-padding: $general-spacing !default;
+
+///
+/// Highlighted code border-radius.
+///
+$code-highlighted-border-radius: $material-border-radius !default;
 
 // Highlighted code block.
 @at-root {
