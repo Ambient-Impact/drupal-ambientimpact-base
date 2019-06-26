@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------------
+//   Base Symfony VarDumper code block partial
+// -----------------------------------------------------------------------------
+
+// @see https://github.com/symfony/var-dumper
+
+@at-root {
+  @include vertical-spacing-against-previous('.sf-dump.sf-dump');
+}
+
+.sf-dump.sf-dump {
+  // Remove the default vertical margins, as we provide our own.
+  margin-top:     0;
+  margin-bottom:  0;
+
+  padding: $code-highlighted-block-body-padding;
+
+  border-radius: $code-highlighted-border-radius;
+
+  // By default, this is set to a fixed, small size, so set it to a percentage
+  // to inherit responsive font scaling. 100% feels a bit too big here, so we're
+  // going with 90%.
+  font-size: 90%;
+}
