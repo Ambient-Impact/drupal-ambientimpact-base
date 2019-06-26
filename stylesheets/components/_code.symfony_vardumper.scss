@@ -21,4 +21,38 @@
   // to inherit responsive font scaling. 100% feels a bit too big here, so we're
   // going with 90%.
   font-size: 90%;
+
+  @include set-colours(
+    $background:          $code-highlighted-background-colour,
+    // Symbols are not wrapped in anything, so by setting the default colour to
+    // the symbol and overriding that on specific elements has almost the same
+    // effect.
+    $foreground-on-dark:  $code-highlighted-colour-symbol,
+    $foreground-on-light: $code-highlighted-colour-symbol
+  );
+
+  .sf-dump-str,
+  .sf-dump-key {
+    color: $code-highlighted-colour-string;
+  }
+
+  .sf-dump-note {
+    color: $code-highlighted-colour-keyword;
+
+    font-style: italic;
+  }
+
+  .sf-dump-index {
+    color: $code-highlighted-colour-number;
+  }
+
+  .sf-dump-public,
+  .sf-dump-protected,
+  .sf-dump-private {
+    color: $code-highlighted-colour-method;
+  }
+
+  .sf-dump-const {
+    color: $code-highlighted-colour-reserved-word;
+  }
 }
