@@ -1,0 +1,28 @@
+// -----------------------------------------------------------------------------
+//   Base Drupal <details> component/element partial
+// -----------------------------------------------------------------------------
+
+@include vertical-spacing-against-previous(
+  'details',
+  $spacing-small: $content-item-vertical-spacing-small,
+  $spacing-large: $content-item-vertical-spacing-large
+);
+details {
+  margin-top:     0;
+  margin-bottom:  0;
+
+  summary {
+    // This gives the end of the <summary> line a padding equal to that of the
+    // .details-wrapper so that text doesn't flow past that boundary.
+    @include root-conditions(('[dir=ltr]'), 'html') {
+      padding-right:  $general-spacing;
+    }
+    @include root-conditions(('[dir=rtl]'), 'html') {
+      padding-left:   $general-spacing;
+    }
+  }
+
+  > .details-wrapper {
+    padding: $general-spacing;
+  }
+}
