@@ -103,7 +103,8 @@ strong,
 .form-item label,
 .field .field__label,
 .pager__item,
-.pager__item.is-active {
+.pager__item.is-active,
+.ambientimpact-component-list__demo-link :link {
   font-weight: $font-weight-strong;
 }
 
