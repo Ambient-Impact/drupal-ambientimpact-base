@@ -178,6 +178,11 @@ $pager-navigation-item-hitbox-padding:
       // completely misaligned with the numbers.
       vertical-align: middle;
 
+      // The icons need to be a bit smaller to match the size of the numbers.
+      .ambientimpact-icon {
+        @include set-icon-size($icon-size * 0.8);
+      }
+
       :link {
         display:  block;
 
