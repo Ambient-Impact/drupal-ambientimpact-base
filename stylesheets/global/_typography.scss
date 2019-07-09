@@ -29,10 +29,25 @@ $font-weight-normal:  300   !default;
 // than our normal weight, but thinner than the default of 700.
 $font-weight-strong:  400   !default;
 
-// Modern system font stack:
-// https://medium.com/@mwichary/system-shock-6b1dc6d6596f
-$font-stack: Roboto, 'San Francisco', 'Segoe UI', 'Helvetica Neue',
-             'Lucida Grande', sans-serif !default;
+///
+/// Modern system UI font stack.
+///
+/// This attempts to use the operating system's UI font where possible.
+///
+/// @link https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/#details-of-approach-b
+///   Description of this stack and reasoning as implemented on Medium.
+///
+/// @link https://medium.com/@mwichary/system-shock-6b1dc6d6596f
+///   Slightly older and more general version of the previous link.
+///
+$system-ui-font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+  'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif !default;
+
+///
+/// Default font stack, used for most body text.
+///
+$font-stack: $system-ui-font-stack !default;
 
 // Heading font sizes when not using responsive type. These are h1-h6 in order.
 $heading-font-sizes:    2em, 1.6em, 1.4em, 1.2em, 1em, 1em !default;
