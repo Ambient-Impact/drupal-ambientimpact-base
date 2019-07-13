@@ -8,7 +8,7 @@ hidden: true
 
 libraries:
   - ambientimpact_ux/component.abbr
-  - ambientimpact_core/component.link.underline
+  - ambientimpact_ux/component.link.underline
   - ambientimpact_core/component.pointer_focus_hide
 
 libraries-override:
