@@ -26,6 +26,12 @@ $blockquote-quotation-mark-spacing: $icon-text-spacing !default;
 $blockquote-decoration-colour:
   scale-color($foreground-colour, $alpha: -50%) !default;
 
+@include vertical-spacing-against-previous(
+  'blockquote',
+  $spacing-small: $content-item-vertical-spacing-small,
+  $spacing-large: $content-item-vertical-spacing-large
+);
+
 blockquote {
   position: relative;
 
