@@ -19,8 +19,8 @@
 ///   the list items.
 ///
 @mixin menu-item-is-active-path($active-trail: true) {
-  :link,
-  :visited {
+  > :link,
+  > :visited {
     &.is-active {
       @content
     }
@@ -28,8 +28,8 @@
 
   @if $active-trail == true {
     &.menu-item--active-trail {
-      :link,
-      :visited {
+      > :link,
+      > :visited {
         @content
       }
     }
