@@ -162,8 +162,8 @@ function ambientimpact_base_preprocess_menu_local_action(&$variables) {
   if (gettype($variables['link']['#title']) === 'string') {
     $variables['link']['#title'] = [
       '#type'     => 'ambientimpact_icon',
-      '#icon'     => 'add',
-      '#bundle'   => 'material',
+      '#icon'     => 'plus',
+      '#bundle'   => 'libricons',
       '#text'     => $variables['link']['#title'],
       '#containerAttributes'  => [
         'class'     => [$baseClass . '__icon'],
