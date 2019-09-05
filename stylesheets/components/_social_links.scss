@@ -19,7 +19,7 @@
   &--display-icon-only {
     // Icons are larger when no text is visible.
     .ambientimpact-icon {
-      @include set-icon-size($icon-size * 1.5);
+      @include set-icon-size($icon-size * 2);
     }
   }
 }
