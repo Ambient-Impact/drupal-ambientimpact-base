@@ -28,3 +28,13 @@ $feed-link-colour: $rss-colour !default;
 
   @include set-icon-colour($feed-link-colour);
 }
+
+@include vertical-spacing-against-previous(
+  '.feed-icons'
+);
+
+.feed-icons {
+  // Centre the feed icons to visually distinguish them from any preceding
+  // content which is left or right aligned.
+  text-align: center;
+}
