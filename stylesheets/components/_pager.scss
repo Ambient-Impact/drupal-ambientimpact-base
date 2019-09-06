@@ -68,11 +68,6 @@ $pager-navigation-item-hitbox-padding:
     padding:  0;
 
     font-size:    $pager-font-size;
-    // Reset the line-height to remove as much vertical spacing as possible. The
-    // item links themselves have vertical padding and they're not allowed to
-    // wrap within themselves, so any increased line-height just gets in the
-    // way.
-    line-height:  1;
   }
 
   &__item {
@@ -178,14 +173,7 @@ $pager-navigation-item-hitbox-padding:
       // completely misaligned with the numbers.
       vertical-align: middle;
 
-      // The icons need to be a bit smaller to match the size of the numbers.
-      .ambientimpact-icon {
-        @include set-icon-size($icon-size * 0.8);
-      }
-
       :link {
-        display:  block;
-
         // Hitbox.
         &::before {
           top:    -#{nth($pager-navigation-item-hitbox-padding, 1)};
