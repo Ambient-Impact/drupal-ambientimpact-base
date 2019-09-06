@@ -15,6 +15,9 @@
  *   - href: The URL for the feed; automatically set from the url variable.
  *   - title: A descriptive title of the feed link.
  *   - class: HTML classes to be applied to the feed link.
+ *
+ * @todo Implement a variable so that icon settings can be passed to this
+ * template; e.g. textDisplay, etc.
  */
 #}
 
@@ -37,6 +40,6 @@
   {{ ambientimpact_icon(
     'rss', 'core',
     text,
-    {'textDisplay': 'visuallyHidden'}
+    {'textDisplay': 'visible'}
   ) }}
 </a>
