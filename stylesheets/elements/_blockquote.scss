@@ -35,6 +35,10 @@ $blockquote-decoration-colour:
 blockquote {
   position: relative;
 
+  // Minimum height so that we don't end up with an awkwardly short vertical
+  // line below the quotation mark.
+  min-height: 2em;
+
   margin:   0;
   padding:  0;
 
