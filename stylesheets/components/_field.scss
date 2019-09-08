@@ -2,8 +2,8 @@
 //   Base Drupal field partial
 // -----------------------------------------------------------------------------
 
-// @todo Should the spacing values for .field and .field__item be even  more
-// different?
+// @todo Should the difference between the spacing values for .field and
+// .field__item be even greater?
 
 @at-root {
   @include vertical-spacing-against-previous(
