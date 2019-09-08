@@ -96,6 +96,10 @@ function ambientimpact_base_preprocess_image(&$variables) {
  * This sets a max-width on image field items so that no phantom link space can
  * occur.
  *
+ * This sets classes on link fields to indicate whether they have a link title
+ * or are outputting the URL as their title. This is useful to force browsers to
+ * wrap URLs so they don't break out of the layout.
+ *
  * @see \Drupal\ambientimpact_media\Plugin\AmbientImpact\Component\Image::preprocessFieldSetImageFieldMaxWidth()
  *   This adds a max-width on each field item.
  */
@@ -107,6 +111,18 @@ function ambientimpact_base_preprocess_field(&$variables, $hook) {
     $imageComponent = $componentManager->getComponentInstance('image');
 
     $imageComponent->preprocessFieldSetImageFieldMaxWidth($variables['items']);
+  }
+
+  if ($variables['field_type'] === 'link') {
+    foreach ($variables['element']['#items'] as $i => $item) {
+      if (!empty($item->title)) {
+        $linkClass = 'field__item--link-has-title';
+      } else {
+        $linkClass = 'field__item--link-no-title';
+      }
+
+      $variables['items'][$i]['attributes']->addClass($linkClass);
+    }
   }
 }
 
