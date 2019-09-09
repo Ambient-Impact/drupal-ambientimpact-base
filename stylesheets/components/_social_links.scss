@@ -2,17 +2,36 @@
 //   Base social links component partial
 // -----------------------------------------------------------------------------
 
+///
+/// The spacing between two network items in the social links block list.
+///
+$social-links-network-item-spacing: $general-spacing !default;
 
 .ambientimpact-social-links {
-  // Even though the module already has a basic unlist set of rules, this allows
-  // us to override the specificity of AdaptiveTheme's base styles.
+  $self: &;
+
   @include unlisted-list;
 
   &--orientation-horizontal {
-    .ambientimpact-social-links__network:not(:last-child) {
-      // Even though we set this in module CSS, set it again here in case the
-      // theme has a different value for $general-spacing.
-      margin-right: $general-spacing;
+    ///
+    /// The padding value used to space network items.
+    ///
+    /// Note that we halve it so that it can be applied equally in all
+    /// directions and then negated at the list level on the bounding box of the
+    /// list, so that the spacing can be applied equally horizontally and
+    /// vertically, regardless of how many rows and columns there are, e.g. when
+    /// the network items wrap due to small screen width.
+    ///
+    $network-padding: $social-links-network-item-spacing  / 2;
+
+    margin: -$network-padding;
+
+    // Override ../global/_layout.scss so that our horizontal negative margins
+    // correctly alter the width past 100%.
+    max-width: none;
+
+    & #{$self}__network {
+      padding: $network-padding;
     }
   }
 
