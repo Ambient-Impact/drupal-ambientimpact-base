@@ -179,7 +179,7 @@ function ambientimpact_base_preprocess_menu_local_action(&$variables) {
     $variables['link']['#title'] = [
       '#type'     => 'ambientimpact_icon',
       '#icon'     => 'plus',
-      '#bundle'   => 'libricons',
+      '#bundle'   => 'core',
       '#text'     => $variables['link']['#title'],
       '#containerAttributes'  => [
         'class'     => [$baseClass . '__icon'],
