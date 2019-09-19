@@ -9,7 +9,7 @@ hidden: true
 libraries:
   - ambientimpact_ux/component.abbr
   - ambientimpact_ux/component.link.underline
-  - ambientimpact_core/component.pointer_focus_hide
+  - ambientimpact_ux/component.pointer_focus_hide
 
 libraries-override:
   # Remove the GeshiFilter static CSS as we provide our own with our own
