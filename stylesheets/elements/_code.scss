@@ -2,25 +2,48 @@
 //   Base code element partial
 // -----------------------------------------------------------------------------
 
-// Inline <code> colours.
-$code-inline-background-colour: lighten(black, 10%) !default;
+///
+/// Inline <code> element background colour on light backgrounds.
+///
+$code-inline-background-colour-on-light: $background-colour-dark !default;
 
-// Inline <code> padding.
+///
+/// Inline <code> element background colour on dark backgrounds.
+///
+$code-inline-background-colour-on-dark:
+  mix($foreground-colour-on-dark, $background-colour-dark, 10%) !default;
+
+///
+/// Inline <code> element padding.
+///
 $code-inline-padding: 0.1em 0.2em !default;
 
 // Inline <code> border radius.
+///
+/// Inline <code> element border radius.
+///
 $code-inline-border-radius: $material-border-radius !default;
 
 code {
-  padding:      $code-inline-padding;
+  padding: $code-inline-padding;
 
   @include set-colours(
-    $background:  $code-inline-background-colour
+    $background: $code-inline-background-colour-on-light
   );
+
+  @include on-dark-colour-scheme {
+    @include set-colours(
+      $background:  $code-inline-background-colour-on-dark
+    );
+  }
 
   border-radius:    $code-inline-border-radius;
 
-  // http://callmenick.com/post/multi-line-padded-text-css-box-decoration-break
+  // If this wraps to a second or more lines, causes the padding and
+  // border-radius to apply to subsequent lines as well, so it's not cut off
+  // sharply.
+  //
+  // @see http://callmenick.com/post/multi-line-padded-text-css-box-decoration-break
   box-decoration-break: clone;
 
   // Make sure this if it's long, which can be a problem with the inline

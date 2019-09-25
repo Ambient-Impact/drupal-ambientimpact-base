@@ -37,6 +37,10 @@ $use-image-link-styles:     true  !default;
       // Basic link styles.
       @if $use-link-styles == true {
         @include link;
+
+        @include on-dark-colour-scheme {
+          @include link-colours($background-colour-dark);
+        }
       }
 
       // Apply fancy link underlines to all links, even if text-decoration-skip:

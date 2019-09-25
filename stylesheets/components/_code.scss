@@ -3,15 +3,27 @@
 // -----------------------------------------------------------------------------
 
 ///
-/// Highlighted code background colour.
+/// Highlighted code background colour on light backgrounds.
 ///
-$code-highlighted-background-colour:  black !default;
+$code-highlighted-background-colour-on-light: $background-colour-dark !default;
 
 ///
-/// Highlighted code header background colour.
+/// Highlighted code background colour on dark backgrounds.
 ///
-$code-highlighted-header-background-colour:
-  lighten($code-highlighted-background-colour, 10%) !default;
+$code-highlighted-background-colour-on-dark:
+  mix($foreground-colour-on-dark, $background-colour-dark, 10%) !default;
+
+///
+/// Highlighted code header background colour on light backgrounds.
+///
+$code-highlighted-header-background-colour-on-light:
+  mix($foreground-colour-on-dark, $background-colour-dark, 30%) !default;
+
+///
+/// Highlighted code header background colour on dark backgrounds.
+///
+$code-highlighted-header-background-colour-on-dark:
+  mix($foreground-colour-on-dark, $background-colour-dark, 20%) !default;
 
 ///
 /// Highlighted code title padding.
@@ -85,8 +97,14 @@ $code-highlighted-colour-method: #a6ce28 !default;
     padding:      $code-highlighted-block-title-padding;
 
     @include set-colours(
-      $background:      $code-highlighted-header-background-colour
+      $background: $code-highlighted-header-background-colour-on-light
     );
+
+    @include on-dark-colour-scheme {
+      @include set-colours(
+        $background: $code-highlighted-header-background-colour-on-dark
+      );
+    }
 
     border-top-left-radius:   $code-highlighted-border-radius;
     border-top-right-radius:  $code-highlighted-border-radius;
@@ -102,8 +120,14 @@ $code-highlighted-colour-method: #a6ce28 !default;
     padding:  $code-highlighted-block-body-padding;
 
     @include set-colours(
-      $background:  $code-highlighted-background-colour
+      $background:  $code-highlighted-background-colour-on-light
     );
+
+    @include on-dark-colour-scheme {
+      @include set-colours(
+        $background:  $code-highlighted-background-colour-on-dark
+      );
+    }
 
     border-bottom-left-radius:  $code-highlighted-border-radius;
     border-bottom-right-radius: $code-highlighted-border-radius;

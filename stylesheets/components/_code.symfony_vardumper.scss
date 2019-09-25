@@ -22,14 +22,22 @@
   // going with 90%.
   font-size: 90%;
 
+  // Symbols are not wrapped in anything, so by setting the default colour to
+  // the symbol and overriding that on specific elements has almost the same
+  // effect.
   @include set-colours(
-    $background:          $code-highlighted-background-colour,
-    // Symbols are not wrapped in anything, so by setting the default colour to
-    // the symbol and overriding that on specific elements has almost the same
-    // effect.
+    $background:  $code-highlighted-background-colour-on-light,
     $foreground-on-dark:  $code-highlighted-colour-symbol,
     $foreground-on-light: $code-highlighted-colour-symbol
   );
+
+  @include on-dark-colour-scheme {
+    @include set-colours(
+      $background:  $code-highlighted-background-colour-on-dark,
+      $foreground-on-dark:  $code-highlighted-colour-symbol,
+      $foreground-on-light: $code-highlighted-colour-symbol
+    );
+  }
 
   .sf-dump-str,
   .sf-dump-key {

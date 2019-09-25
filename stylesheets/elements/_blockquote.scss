@@ -23,8 +23,11 @@ $blockquote-quotation-mark-spacing: $icon-text-spacing !default;
 ///
 /// Colour of the decorative quotation mark and line on a <blockquote>
 ///
-$blockquote-decoration-colour:
-  scale-color($foreground-colour, $alpha: -50%) !default;
+$blockquote-decoration-colour-on-light:
+  mix($foreground-colour-on-light, $background-colour-light, 50%) !default;
+
+$blockquote-decoration-colour-on-dark:
+  mix($foreground-colour-on-dark, $background-colour-dark, 50%) !default;
 
 @include vertical-spacing-against-previous(
   'blockquote',
@@ -73,9 +76,13 @@ blockquote {
     width:  $blockquote-quotation-mark-size;
     height: $blockquote-quotation-mark-size;
 
-    background-image:   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M10.026 20.021L2 12V3.979h8.026v16.042zm11.974 0L13.979 12V3.979H22v16.042z" fill="rgba(' + red($blockquote-decoration-colour) + ',' + green($blockquote-decoration-colour) + ',' + blue($blockquote-decoration-colour) + ',' + alpha($blockquote-decoration-colour) + ')"/></svg>');
+    background-image:   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M10.026 20.021L2 12V3.979h8.026v16.042zm11.974 0L13.979 12V3.979H22v16.042z" fill="rgba(' + red($blockquote-decoration-colour-on-light) + ',' + green($blockquote-decoration-colour-on-light) + ',' + blue($blockquote-decoration-colour-on-light) + ',' + alpha($blockquote-decoration-colour-on-light) + ')"/></svg>');
     background-repeat:  no-repeat;
     background-size:    $blockquote-quotation-mark-size;
+
+    @include on-dark-colour-scheme {
+      background-image:   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M10.026 20.021L2 12V3.979h8.026v16.042zm11.974 0L13.979 12V3.979H22v16.042z" fill="rgba(' + red($blockquote-decoration-colour-on-dark) + ',' + green($blockquote-decoration-colour-on-dark) + ',' + blue($blockquote-decoration-colour-on-dark) + ',' + alpha($blockquote-decoration-colour-on-dark) + ')"/></svg>');
+    }
 
     top: 0;
 
@@ -107,6 +114,10 @@ blockquote {
 
     width:    $blockquote-line-width;
 
-    background-color: $blockquote-decoration-colour;
+    background-color: $blockquote-decoration-colour-on-light;
+
+    @include on-dark-colour-scheme {
+      background-color: $blockquote-decoration-colour-on-dark;
+    }
   }
 }

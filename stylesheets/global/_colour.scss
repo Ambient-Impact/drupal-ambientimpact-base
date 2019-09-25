@@ -2,10 +2,13 @@
 //   Base colour partial
 // -----------------------------------------------------------------------------
 
-// Apply to both elements as the body may have margins which would cause the
-// default white background of <html> to show through, e.g. when the Navbar
-// space is reserved before it becomes fully fixed and a vertical drawer appears
-// on the side.
+// Apply colours to both <html> and <body> as <body> may have margins which
+// would cause the default white background of <html> to show through.
 html, body {
-  @include set-colours;
+  @include set-colours($background: $background-colour-light);
+
+  @include on-dark-colour-scheme {
+    @include set-colours($background: $background-colour-dark);
+  }
 }
+
