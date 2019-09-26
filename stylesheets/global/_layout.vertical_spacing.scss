@@ -119,6 +119,10 @@ $vertical-spacing-ignore-elements: '.hidden', '.visually-hidden',
 /// @require $vertical-spacing-ignore-elements
 /// @require {Mixin} vertical-spacing
 ///
+/// @todo Switch over to the
+/// [:is() pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:is)
+/// when all major browsers/layout engines support it to simplify the selectors.
+///
 @mixin vertical-spacing-against-previous(
   $target-selector,
   $previous-qualifier:  '',
