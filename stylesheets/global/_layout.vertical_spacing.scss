@@ -92,7 +92,9 @@ $vertical-spacing-ignore-elements: '.hidden', '.visually-hidden',
 ///   }
 ///
 /// @param {String} $target-selector
-///   The selector to apply spacing to. This is required.
+///   The selector to apply spacing to. This is required. Currently only
+///   supports a single selector - passing a comma-separated list will result in
+///   unexpected results.
 ///
 /// @param {String} $previous-qualifier ['']
 ///   The an optional selector to include in the previous element selectors.
