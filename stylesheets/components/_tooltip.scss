@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------------
+//   Base tooltip component partial
+// -----------------------------------------------------------------------------
+
+// This adjusts the default tooltip Material theme colours to contrast against
+// otherwise similar background lightness/darkness.
+@each $theme-name, $background-colour in (
+  // The light theme is darkened slightly.
+  material-light: mix(
+    $material-panel-background-colour-light, $foreground-colour-on-light, 90%
+  ),
+  // The dark theme is lightened slightly.
+  material-dark:  mix(
+    $material-panel-background-colour-dark, $foreground-colour-on-dark, 90%
+  ),
+) {
+  @include tooltip-material-theme(
+    $theme-name, $background-colour
+  );
+}
