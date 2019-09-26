@@ -2,18 +2,16 @@
 //   Base <p> element partial
 // -----------------------------------------------------------------------------
 
-@include content-area {
-  @include vertical-spacing-against-previous(
-    'p',
-    $spacing-small: $content-item-vertical-spacing-small,
-    $spacing-large: $content-item-vertical-spacing-large
-  );
+@include vertical-spacing-against-previous(
+  'p',
+  $spacing-small: $content-item-vertical-spacing-small,
+  $spacing-large: $content-item-vertical-spacing-large
+);
 
-  p {
-    // This removes the default top margin but is overridden by the above when a
-    // valid previous element is present.
-    margin-top:     0;
-    // We don't need a bottom margin.
-    margin-bottom:  0;
-  }
+p {
+  // This removes the default top margin but is overridden by the above when a
+  // valid previous element is present.
+  margin-top:     0;
+  // We don't need a bottom margin.
+  margin-bottom:  0;
 }
