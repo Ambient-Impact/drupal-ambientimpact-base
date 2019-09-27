@@ -1,0 +1,9 @@
+// -----------------------------------------------------------------------------
+//   Base component list partial
+// -----------------------------------------------------------------------------
+
+@include vertical-spacing-against-previous(
+  '.ambientimpact-component-list__items',
+  $spacing-small: $content-item-vertical-spacing-small,
+  $spacing-large: $content-item-vertical-spacing-large
+);
