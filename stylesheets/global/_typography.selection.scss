@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------------
+//   Base typography selection partial
+// -----------------------------------------------------------------------------
+
+///
+/// Selected text background colour.
+///
+$text-selection-background-colour: lighten($material-primary-colour, 10%);
+
+///
+/// Selected text background colour when the viewport is inactive/blurred.
+///
+$text-inactive-selection-background-colour:
+  desaturate($text-selection-background-colour, 60%);
+
+// Set default selection colours.
+@include selection;
