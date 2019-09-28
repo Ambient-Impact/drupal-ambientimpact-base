@@ -2,15 +2,187 @@
 //   Base Drupal messages partial
 // -----------------------------------------------------------------------------
 
+// This defines and sets the Classy status, warning, and error message colours
+// using our colour system, which also includes dark variants.
+
+///
+/// Messages border radius.
+///
+$messages-border-radius: $material-border-radius !default;
+
+///
+/// Messages card thickness.
+///
+/// The card is the thick vertical border on the left (LTR) or right (RTL) of
+/// the message.
+///
+$messages-card-thickness: 8px !default;
+
+///
+/// Status message base colour.
+///
+/// This is a shade of green to indicate success or an okay state.
+///
+/// If you want to recolour the status messages, changing just this value will
+/// also change the derived colours, such as the card, border, background, and
+/// foreground colours.
+///
+$messages-status-base-colour: #77b259 !default;
+
+///
+/// Status message card colour on light backgrounds.
+///
+$messages-status-card-colour-on-light: $messages-status-base-colour !default;
+
+///
+/// Status message border colour on light backgrounds.
+///
+$messages-status-border-colour-on-light:
+  mix($messages-status-base-colour, $background-colour-light, 40%) !default;
+
+///
+/// Status message border colour on dark backgrounds.
+///
+$messages-status-border-colour-on-dark:
+  mix($messages-status-base-colour, $background-colour-dark, 40%) !default;
+
+///
+/// Status message foreground colour on light backgrounds.
+///
+$messages-status-foreground-colour-on-light:
+  mix($messages-status-base-colour, $foreground-colour-on-light, 40%) !default;
+
+///
+/// Status message foreground colour on dark backgrounds.
+///
+$messages-status-foreground-colour-on-dark:
+  mix($messages-status-base-colour, $foreground-colour-on-dark, 40%) !default;
+
+///
+/// Status message background colour on light backgrounds.
+///
+$messages-status-background-colour-on-light:
+  mix($messages-status-base-colour, $background-colour-light, 8%) !default;
+
+///
+/// Status message background colour on dark backgrounds.
+///
+$messages-status-background-colour-on-dark:
+  mix($messages-status-base-colour, $background-colour-dark, 8%) !default;
+
+///
+/// Warning message base colour.
+///
+/// This is a shade of yellow/orange to indicate a warning state.
+///
+/// If you want to recolour the warning messages, changing just this value will
+/// also change the derived colours, such as the card, border, background, and
+/// foreground colours.
+///
+$messages-warning-base-colour: #e09600 !default;
+
+///
+/// Warning message card colour on light backgrounds.
+///
+$messages-warning-card-colour-on-light: $messages-warning-base-colour !default;
+
+///
+/// Warning message border colour on light backgrounds.
+///
+$messages-warning-border-colour-on-light:
+  mix($messages-warning-base-colour, $background-colour-light, 35%) !default;
+
+///
+/// Warning message border colour on dark backgrounds.
+///
+$messages-warning-border-colour-on-dark:
+  mix($messages-warning-base-colour, $background-colour-dark, 35%) !default;
+
+///
+/// Warning message foreground colour on light backgrounds.
+///
+$messages-warning-foreground-colour-on-light:
+  mix($messages-warning-base-colour, $foreground-colour-on-light, 40%) !default;
+
+///
+/// Warning message foreground colour on dark backgrounds.
+///
+$messages-warning-foreground-colour-on-dark:
+  mix($messages-warning-base-colour, $foreground-colour-on-dark, 40%) !default;
+
+///
+/// Warning message background colour on light backgrounds.
+///
+$messages-warning-background-colour-on-light:
+  mix($messages-warning-base-colour, $background-colour-light, 6%) !default;
+
+///
+/// Warning message background colour on dark backgrounds.
+///
+$messages-warning-background-colour-on-dark:
+  mix($messages-warning-base-colour, $background-colour-dark, 6%) !default;
+
+///
+/// Error message base colour.
+///
+/// This is a shade of red to indicate an error state.
+///
+/// If you want to recolour the error messages, changing just this value will
+/// also change the derived colours, such as the card, border, background, and
+/// foreground colours.
+///
+$messages-error-base-colour: #e62600 !default;
+
+///
+/// Error message card colour on light backgrounds.
+///
+$messages-error-card-colour-on-light: $messages-error-base-colour !default;
+
+///
+/// Error message border colour on light backgrounds.
+///
+$messages-error-border-colour-on-light:
+  mix($messages-error-base-colour, $background-colour-light, 25%) !default;
+
+///
+/// Error message border colour on dark backgrounds.
+///
+$messages-error-border-colour-on-dark:
+  mix($messages-error-base-colour, $background-colour-dark, 25%) !default;
+
+///
+/// Error message foreground colour on light backgrounds.
+///
+$messages-error-foreground-colour-on-light:
+  mix($messages-error-base-colour, $foreground-colour-on-light, 40%) !default;
+
+///
+/// Error message foreground colour on dark backgrounds.
+///
+$messages-error-foreground-colour-on-dark:
+  mix($messages-error-base-colour, $foreground-colour-on-dark, 40%) !default;
+
+///
+/// Error message background colour on light backgrounds.
+///
+$messages-error-background-colour-on-light:
+  mix($messages-error-base-colour, $background-colour-light, 6%) !default;
+
+///
+/// Error message background colour on dark backgrounds.
+///
+$messages-error-background-colour-on-dark:
+  mix($messages-error-base-colour, $background-colour-dark, 6%) !default;
+
 .messages {
-  // Classy uses a box-shadow offset by 8px on the left (LTR) or right (RTL)
-  // as a fake border, but does not ensure that that edge lines up with boxes
-  // above or below; this does that.
+  // Classy uses a box-shadow on the left (LTR) or right (RTL) as a fake border,
+  // but does not ensure that that edge lines up with boxes above or below; this
+  // does that.
   @include root-conditions(('[dir=ltr]'), 'html') {
-    margin-left:  8px;
+    margin-left:  $messages-card-thickness;
   }
   @include root-conditions(('[dir=rtl]'), 'html') {
-    margin-right: 8px;
+    margin-right: $messages-card-thickness;
   }
 
   // Ensure children can't break out and set their z-index as above things that
@@ -18,4 +190,163 @@
   // with your absurdly high z-index.
   position: relative;
   z-index:  0;
+
+  // This repositions the default icons to account for our increased
+  // line-height.
+  background-position: 10px calc(17px + 0.3em);
+
+  border-radius: $messages-border-radius;
+
+  &--status {
+    @include set-colours(
+      $background:          $messages-status-background-colour-on-light,
+      $foreground-on-light: $messages-status-foreground-colour-on-light
+    );
+
+    @include on-dark-colour-scheme {
+      @include set-colours(
+        $background:          $messages-status-background-colour-on-dark,
+        $foreground-on-dark:  $messages-status-foreground-colour-on-dark
+      );
+    }
+
+    @include root-conditions(('[dir=ltr]'), 'html') {
+      border-color:
+        $messages-status-border-colour-on-light
+        $messages-status-border-colour-on-light
+        $messages-status-border-colour-on-light
+        transparent;
+
+      box-shadow:
+        -$messages-card-thickness 0 0 $messages-status-card-colour-on-light;
+
+      @include on-dark-colour-scheme {
+        border-color:
+          $messages-status-border-colour-on-dark
+          $messages-status-border-colour-on-dark
+          $messages-status-border-colour-on-dark
+          transparent;
+      }
+    }
+    @include root-conditions(('[dir=rtl]'), 'html') {
+      border-color:
+        $messages-status-border-colour-on-light
+        transparent
+        $messages-status-border-colour-on-light
+        $messages-status-border-colour-on-light;
+
+      box-shadow:
+        $messages-card-thickness 0 0 $messages-status-card-colour-on-light;
+
+      @include on-dark-colour-scheme {
+        border-color:
+          $messages-status-border-colour-on-dark
+          transparent
+          $messages-status-border-colour-on-dark
+          $messages-status-border-colour-on-dark;
+      }
+    }
+  }
+
+  &--warning {
+    @include set-colours(
+      $background:          $messages-warning-background-colour-on-light,
+      $foreground-on-light: $messages-warning-foreground-colour-on-light
+    );
+
+    @include on-dark-colour-scheme {
+      @include set-colours(
+        $background:          $messages-warning-background-colour-on-dark,
+        $foreground-on-dark:  $messages-warning-foreground-colour-on-dark
+      );
+    }
+
+    @include root-conditions(('[dir=ltr]'), 'html') {
+      border-color:
+        $messages-warning-border-colour-on-light
+        $messages-warning-border-colour-on-light
+        $messages-warning-border-colour-on-light
+        transparent;
+
+      box-shadow:
+        -$messages-card-thickness 0 0 $messages-warning-card-colour-on-light;
+
+      @include on-dark-colour-scheme {
+        border-color:
+          $messages-warning-border-colour-on-dark
+          $messages-warning-border-colour-on-dark
+          $messages-warning-border-colour-on-dark
+          transparent;
+      }
+    }
+    @include root-conditions(('[dir=rtl]'), 'html') {
+      border-color:
+        $messages-warning-border-colour-on-light
+        transparent
+        $messages-warning-border-colour-on-light
+        $messages-warning-border-colour-on-light;
+
+      box-shadow:
+        $messages-card-thickness 0 0 $messages-warning-card-colour-on-light;
+
+      @include on-dark-colour-scheme {
+        border-color:
+          $messages-warning-border-colour-on-dark
+          transparent
+          $messages-warning-border-colour-on-dark
+          $messages-warning-border-colour-on-dark;
+      }
+    }
+  }
+
+  &--error {
+    @include set-colours(
+      $background:          $messages-error-background-colour-on-light,
+      $foreground-on-light: $messages-error-foreground-colour-on-light
+    );
+
+    @include on-dark-colour-scheme {
+      @include set-colours(
+        $background:          $messages-error-background-colour-on-dark,
+        $foreground-on-dark:  $messages-error-foreground-colour-on-dark
+      );
+    }
+
+    @include root-conditions(('[dir=ltr]'), 'html') {
+      border-color:
+        $messages-error-border-colour-on-light
+        $messages-error-border-colour-on-light
+        $messages-error-border-colour-on-light
+        transparent;
+
+      box-shadow:
+        -$messages-card-thickness 0 0 $messages-error-card-colour-on-light;
+
+      @include on-dark-colour-scheme {
+        border-color:
+          $messages-error-border-colour-on-dark
+          $messages-error-border-colour-on-dark
+          $messages-error-border-colour-on-dark
+          transparent;
+      }
+    }
+    @include root-conditions(('[dir=rtl]'), 'html') {
+      border-color:
+        $messages-error-border-colour-on-light
+        transparent
+        $messages-error-border-colour-on-light
+        $messages-error-border-colour-on-light;
+
+      box-shadow:
+        $messages-card-thickness 0 0 $messages-error-card-colour-on-light;
+
+      @include on-dark-colour-scheme {
+        border-color:
+          $messages-error-border-colour-on-dark
+          transparent
+          $messages-error-border-colour-on-dark
+          $messages-error-border-colour-on-dark;
+      }
+    }
+  }
 }
