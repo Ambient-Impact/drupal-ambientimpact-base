@@ -24,6 +24,13 @@
       }
 
       @include material-ripple;
+
+      // This overrides Classy's :focus background-color that comes through if
+      // you click and drag a tab link, so that it doesn't show the bright
+      // white, which is a bit jarring on the dark colour scheme.
+      &.disable-default-active-state.pointer-focus-hide:focus {
+        background-color: transparent;
+      }
     }
   }
 }
