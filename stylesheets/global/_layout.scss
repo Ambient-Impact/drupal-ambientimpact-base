@@ -26,6 +26,24 @@ $layout-bottom-spacing: $general-spacing * 8 !default;
 ///
 $layout-max-width: 45em !default;
 
+///
+/// Base layout container horizontal styles.
+///
+/// This primarily sets the horizontal gutter, max-width of content, and centres
+/// content inside the layout container.
+///
+@mixin layout-container-base-horizontal {
+  padding-left:   $layout-gutter;
+  padding-right:  $layout-gutter;
+
+  // All direct children are width-constrained and centred horizontally.
+  > * {
+    max-width:    $layout-max-width;
+    margin-left:  auto;
+    margin-right: auto;
+  }
+}
+
 html {
   // This prevents any horizontal scrollbars and scrolling on the viewport which
   // can sneak in via any number of components. Note that care must be taken to
@@ -45,8 +63,7 @@ html {
 // area that is considered the site, e.g. the Drupal toolbar when it hasn't been
 // enhanced by JavaScript.
 .layout-container {
-  padding-left:   $layout-gutter;
-  padding-right:  $layout-gutter;
+  @include layout-container-base-horizontal;
 
   @if type-of($layout-bottom-spacing) == 'number' {
     padding-bottom: $layout-bottom-spacing;
@@ -58,15 +75,6 @@ html {
     // This is not applied to the <body>, as the Toolbar uses that to offset the
     // viewport.
     margin-top:   $layout-top-spacing;
-  }
-
-  // All direct children are width-constrained and centred horizontally.
-  // @todo Should we apply a BEM-style class to these elements so that we don't
-  // have to use this selector, e.g. .layout-container__item?
-  > * {
-    max-width:    $layout-max-width;
-    margin-left:  auto;
-    margin-right: auto;
   }
 }
 
