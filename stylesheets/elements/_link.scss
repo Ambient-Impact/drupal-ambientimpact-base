@@ -17,12 +17,14 @@ $use-fancy-link-underlines: true  !default;
 ///
 $use-image-link-styles:     true  !default;
 
-// Link styles. These are limited to the layout container so that we don't
-// affect the administrative toolbar and other elements outside of what would be
-// considered the site content itself. By using :link/:visited we can target
-// only valid links, i.e. those that have a valid href. See:
-// https://css-tricks.com/how-to-disable-links/
-.layout-container {
+// Link styles. These are limited to layout containers and other content
+// containers so that we don't affect the administrative toolbar and other
+// elements outside of what would be considered the site content itself. By
+// using :link/:visited we can target only valid links, i.e. those that have a
+// valid href.
+// @see https://css-tricks.com/how-to-disable-links/
+.layout-container,
+.node-preview-container {
   // Include link colours as custom properties in case they're useful for
   // JavaScript, etc.
   @include link-colour-custom-properties;

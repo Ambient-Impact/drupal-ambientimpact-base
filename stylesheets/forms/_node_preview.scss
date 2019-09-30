@@ -1,0 +1,32 @@
+// -----------------------------------------------------------------------------
+//   Base node preview form partial
+// -----------------------------------------------------------------------------
+
+// This styles the node preview controls as a Material panel that matches the
+// base horizontal layout and adds a dark colour scheme. Note that the Stable
+// theme provides the basic fixed positioning.
+//
+// @todo This needs to register itself as having vertical displacement so the
+// page can adjust accordingly and not end up with the area under the panel as
+// inaccessible.
+
+.node-preview-container {
+  padding-top:    $general-spacing;
+  padding-bottom: $general-spacing;
+
+  @include layout-container-base-horizontal;
+
+  @include set-colours($background: $material-panel-background-colour-light);
+
+  @include material-shadow(2);
+
+  @include on-dark-colour-scheme {
+    @include set-colours($background: mix(
+      $material-panel-background-colour-dark, $foreground-colour-on-dark, 90%
+    ));
+
+    select {
+      background-color: inherit;
+    }
+  }
+}
