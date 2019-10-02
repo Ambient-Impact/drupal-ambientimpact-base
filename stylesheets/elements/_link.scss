@@ -24,7 +24,8 @@ $use-image-link-styles:     true  !default;
 // valid href.
 // @see https://css-tricks.com/how-to-disable-links/
 .layout-container,
-.node-preview-container {
+.node-preview-container,
+.offcanvas-panel {
   // Include link colours as custom properties in case they're useful for
   // JavaScript, etc.
   @include link-colour-custom-properties;
