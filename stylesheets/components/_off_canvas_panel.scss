@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------------
+//   Base off-canvas panel component partial
+// -----------------------------------------------------------------------------
+
+// This applies the theme layout to off-canvas panels so that they match the
+// rest of the page.
+
+.offcanvas-panel--is-ready {
+  padding:
+    $layout-gutter
+    $layout-gutter
+    0
+    $layout-gutter;
+
+  &::after {
+    height: $layout-gutter;
+  }
+}
