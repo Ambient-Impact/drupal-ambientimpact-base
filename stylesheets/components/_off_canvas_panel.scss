@@ -15,4 +15,14 @@
   &::after {
     height: $layout-gutter;
   }
+
+  &.offcanvas-panel--top,
+  &.offcanvas-panel--bottom {
+    .offcanvas-panel__content {
+      // This matches the page layout max-width and centre alignment.
+      max-width:    $layout-max-width;
+      margin-left:  auto;
+      margin-right: auto;
+    }
+  }
 }
