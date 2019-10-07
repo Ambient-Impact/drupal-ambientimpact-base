@@ -1,0 +1,30 @@
+// -----------------------------------------------------------------------------
+//   Base overlay component partial
+// -----------------------------------------------------------------------------
+
+///
+/// Overlay colour in a light colour scheme.
+///
+$overlay-colour-light: $background-colour-light !default;
+
+///
+/// Overlay colour in a dark colour scheme.
+///
+$overlay-colour-dark: $background-colour-dark !default;
+
+///
+/// Overlay opacity when visible.
+///
+$overlay-opacity: 0.6 !default;
+
+.overlay {
+  @include set-colours($background: $overlay-colour-light);
+
+  @include on-dark-colour-scheme {
+    @include set-colours($background: $overlay-colour-dark);
+  }
+
+  &--is-active {
+    opacity: $overlay-opacity;
+  }
+}
