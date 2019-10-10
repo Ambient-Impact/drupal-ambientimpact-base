@@ -21,9 +21,9 @@
   @include material-shadow(2);
 
   @include on-dark-colour-scheme {
-    @include set-colours($background: mix(
-      $material-panel-background-colour-dark, $foreground-colour-on-dark, 90%
-    ));
+    @include set-colours(
+      $background: $material-panel-background-colour-dark-on-dark
+    );
 
     select {
       background-color: inherit;
