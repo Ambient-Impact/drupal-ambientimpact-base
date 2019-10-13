@@ -87,6 +87,7 @@ html {
 // @todo Does this make more sense as a series of :not() on the above?
 .contextual .trigger,
 .contextual-links,
-.pswp__preloader__donut {
+.pswp__preloader__donut,
+#toolbar-administration {
   max-width:  none;
 }
