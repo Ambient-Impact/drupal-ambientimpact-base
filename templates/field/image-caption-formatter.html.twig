@@ -4,7 +4,9 @@
  * Theme implementation to display a formatted image field with a caption.
  *
  * This modifies the original by wrapping everything in a <figure> and replacing
- * the <blockquote> for a <figcaption>.
+ * the <blockquote> for a <figcaption>. Additionally, this is altered to use the
+ * link() function so that a '#type' => 'link' is rendered, allowing hooks to
+ * alter it.
  *
  * Available variables:
  * - image: A collection of image data.
@@ -19,7 +21,7 @@
 #}
 <figure>
   {% if url %}
-    <a href="{{ url }}">{{ image }}</a>
+    {{ link(image, url) }}
   {% else %}
     {{ image }}
   {% endif %}

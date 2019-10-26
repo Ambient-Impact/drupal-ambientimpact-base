@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Image formatter link to image style theme implementation to display a
+ * formatted image field.
+ *
+ * This is altered from the one that ships with the module to use the link()
+ * function so that a '#type' => 'link' is rendered, allowing hooks to alter it.
+ *
+ * Available variables:
+ * - image: A collection of image data.
+ * - image_style: An optional image style.
+ * - url: An URL the image can be linked to.
+ * - url_rel: An optional URL rel attribute.
+ * - url_class: An optional URL class attribute.
+ *
+ * @see template_preprocess_image_formatter_link_to_image_style_formatter()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{{ link(
+  image,
+  url,
+  {
+    'rel':    url_rel,
+    'class':  url_class
+  }
+) }}
