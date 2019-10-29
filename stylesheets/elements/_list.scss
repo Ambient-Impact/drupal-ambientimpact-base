@@ -3,6 +3,39 @@
 // -----------------------------------------------------------------------------
 
 ///
+/// List marker indent.
+///
+/// This gives the list just enough space on the side to display and correctly
+/// line up list markers.
+///
+$list-marker-indent: 1.2em !default;
+
+///
+/// List item spacing.
+///
+/// This is usually the vertical spacing between two list items.
+///
+$list-item-spacing: $general-spacing * 0.5 !default;
+
+///
+/// Multicolumn list max column count.
+///
+$list-multicolumn-count: 6 !default;
+
+///
+/// Multicolumn list column width.
+///
+$list-multicolumn-width: 10em !default;
+
+///
+/// Multicolumn list column gap.
+///
+/// This includes the list marker indent so that columns other than the first
+/// have the correct indent to match the indent on the list itself.
+///
+$list-multicolumn-gap: $list-marker-indent + $general-spacing !default;
+
+///
 /// Remove list styles, e.g. padding and bullets.
 ///
 @mixin unlisted-list {
@@ -27,6 +60,14 @@
   @include unlisted-list;
 }
 
+.multicolumn-list {
+  @supports (column-gap: $list-multicolumn-gap) {
+    column-count: $list-multicolumn-count;
+    column-width: $list-multicolumn-width;
+    column-gap:   $list-multicolumn-gap;
+  }
+}
+
 // Default list styles.
 @include content-area {
   @include vertical-spacing-against-previous(
@@ -47,12 +88,12 @@
       // This gives the list just enough space on the side to display and
       // correctly line up list markers.
       @include root-conditions(('[dir=ltr]'), 'html') {
-        padding-left:   1.2em;
+        padding-left:   $list-marker-indent;
         padding-right:  0;
       }
       @include root-conditions(('[dir=rtl]'), 'html') {
         padding-left:   0;
-        padding-right:  1.2em;
+        padding-right:  $list-marker-indent;
       }
 
       li {
@@ -63,7 +104,7 @@
       // The vertical-spacing-against-previous mixin is probably overkill here,
       // so just use a simple + combinator.
       li + li {
-        margin-top: $general-spacing * 0.5;
+        margin-top: $list-item-spacing;
       }
     }
   }
