@@ -2,18 +2,8 @@
 //   Base feed icon link partial
 // -----------------------------------------------------------------------------
 
-///
-/// Generic RSS icon orange.
-///
-$rss-colour: #FF6600;
-
-///
-/// The feed link colour. Defaults to $rss-colour.
-///
-$feed-link-colour: $rss-colour !default;
-
 // This overrides core/themes/classy/css/components/icons.css to make the icon
-// visible, remove the background image, and set our icon colour.
+// visible and remove the background image.
 .feed-icon {
   display:      inline-block;
 
@@ -25,8 +15,6 @@ $feed-link-colour: $rss-colour !default;
   background:   none;
 
   text-indent:  0;
-
-  @include set-icon-colour($feed-link-colour);
 }
 
 @include vertical-spacing-against-previous(
