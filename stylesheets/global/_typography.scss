@@ -50,6 +50,14 @@ $font-stack: $system-ui-font-stack !default;
 body {
   font-size:    $font-size;
   line-height:  1.5;
+
+  // This prevents overly-long words from breaking out of the layout in
+  // supporting browsers. Note that overflow-wrap will only break a word if it
+  // exceeds the available space, compared to the legacy word-break property,
+  // which always breaks words when they exceed the available space.
+  //
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap
+  overflow-wrap: break-word;
 }
 
 body, .ui-widget, input, textarea {
