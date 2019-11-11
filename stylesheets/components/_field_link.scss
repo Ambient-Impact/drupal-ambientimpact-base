@@ -5,6 +5,11 @@
 .field--type-link {
   // Link fields have a habit of leaking to the right of the layout if a URL
   // is displayed (without any text that would normally have spaces).
+  //
+  // Note that even though the base _typography.scss partial sets
+  // overflow-wrap: break-word, this is still required for whatever reason in
+  // Chrome/Blink.
+  //
   // @see https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
   // @see https://developer.mozilla.org/en/docs/Web/CSS/overflow-wrap
   .field__item--link-no-title {
