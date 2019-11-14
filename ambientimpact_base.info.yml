@@ -6,6 +6,18 @@ package: Ambient.Impact
 core: 8.x
 hidden: true
 
+regions:
+  header: 'Header'
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  breadcrumb: 'Breadcrumb'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  sidebar_first: 'First sidebar'
+  sidebar_second: 'Second sidebar'
+  footer: 'Footer'
+
 libraries:
   - ambientimpact_ux/component.abbr
   - ambientimpact_ux/component.link.underline
