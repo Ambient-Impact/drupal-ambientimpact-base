@@ -4,7 +4,22 @@
  * Theme override for the basic structure of a single Drupal page.
  *
  * This is copied from the Classy core theme with the following changes:
+ *
  * - Added a wrapper around the skip link for styling.
+ *
+ * - Added the following classes to the <body> element to indicate which
+ *   sidebars (if any) are present:
+ *
+ *   - .has-sidebar-first: the first sidebar is present. Note that this will be
+ *     present when .has-both-sidebars is, as they are not mutually exclusive.
+ *
+ *   - .has-sidebar-second: the first sidebar is present. Note that this will be
+ *     present when .has-both-sidebars is, as they are not mutually exclusive.
+ *
+ *   - .has-both-sidebars: both sidebars are present. Note that
+ *     .has-sidebar-first and .has-sidebar-second will also be present.
+ *
+ *   - .has-no-sidebars: no sidebars are present.
  *
  * Variables:
  * - logged_in: A flag indicating if user is logged in.
@@ -34,6 +49,23 @@
     db_offline ? 'db-offline',
   ]
 %}
+
+{% if page.sidebar_first %}
+  {% set attributes = attributes.addClass('has-sidebar-first') %}
+{% endif %}
+
+{% if page.sidebar_second %}
+  {% set attributes = attributes.addClass('has-sidebar-second') %}
+{% endif %}
+
+{% if page.sidebar_first and page.sidebar_second %}
+  {% set attributes = attributes.addClass('has-both-sidebars') %}
+{% endif %}
+
+{% if not page.sidebar_first and not page.sidebar_second %}
+  {% set attributes = attributes.addClass('has-no-sidebars') %}
+{% endif %}
+
 <!DOCTYPE html>
 <html{{ html_attributes }}>
   <head>
