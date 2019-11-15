@@ -10,7 +10,7 @@
 
 .pswp {
   &__caption__center {
-    max-width:  $layout-max-width;
+    @include layout-max-width;
 
     padding:    $general-spacing / 2;
   }

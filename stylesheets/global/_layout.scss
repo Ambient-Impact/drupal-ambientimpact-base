@@ -2,8 +2,19 @@
 //   Base layout partial
 // -----------------------------------------------------------------------------
 
+// This handles the basic layout of the page, including horizontal and vertical
+// gutters for the layout container, and lays out any sidebars next to the
+// content column if one or both sidebars are present, if the viewport width
+// allows space for it.
+//
+// @see https://caniuse.com/#feat=css-grid
+//   We use CSS Grid for layout, which is fairly well supported at the time of
+//   writing (November 2019), but note that older browsers don't support it and
+//   will fall back to vertically stacking the content and sidebars, in that
+//   order.
+
 ///
-/// This is the spacing added on the left and right of the viewport.
+/// This is the spacing added on the left and right of the layout container.
 ///
 $layout-gutter: $general-spacing / 2 !default;
 
@@ -18,13 +29,97 @@ $layout-top-spacing: $general-spacing * 1.5 !default;
 $layout-bottom-spacing: $general-spacing * 8 !default;
 
 ///
-/// The maximum width of the site layout container.
+/// The maximum width of the site layout when no sidebars are present.
 ///
 /// Note that $layout-gutter is added to this on either side. This default value
 /// is optimal for a single column layout, but may need to be increased if
 /// sidebars or other columns are needed.
 ///
-$layout-max-width: 45em !default;
+$layout-no-sidebars-max-width: 45em !default;
+
+///
+/// The minimum width of the layout to display both sidebars beside content.
+///
+/// Note that this should not include the $layout-gutter as that's added on top
+/// of this value.
+///
+$layout-with-both-sidebars-min-width: 42em !default;
+
+///
+/// The maximum width of the site layout when both sidebars are present.
+///
+$layout-with-both-sidebars-max-width: 70em !default;
+
+///
+/// The minimum width of the layout to display one sidebar beside content.
+///
+/// Note that this should not include the $layout-gutter as that's added on top
+/// of this value.
+///
+$layout-with-one-sidebar-min-width: 38em !default;
+
+///
+/// The maximum width of the site layout when one sidebar is present.
+///
+/// This is calculated as the midway point between $layout-no-sidebars-max-width
+/// and $layout-with-both-sidebars-max-width.
+///
+$layout-with-one-sidebar-max-width: $layout-no-sidebars-max-width +
+  ($layout-with-both-sidebars-max-width - $layout-no-sidebars-max-width) / 2
+  !default;
+
+///
+/// The relative width of the content column.
+///
+/// This is output as an 'fr' unit but is provided here as an integer.
+///
+$layout-content-fraction: 3 !default;
+
+///
+/// The relative width of each sidebar column.
+///
+/// This is output as an 'fr' unit but is provided here as an integer.
+///
+$layout-sidebar-fraction: 1 !default;
+
+///
+/// The gap between layout columns.
+///
+$layout-gap: $general-spacing !default;
+
+@include add-breakpoints((
+  // The minimum width to display sidebar beside the content column when one
+  // sidebar is present.
+  'layout-with-one-sidebar':  $layout-gutter * 2 +
+    $layout-with-one-sidebar-min-width,
+
+  // The minimum width to display sidebars beside the content column when both
+  // sidebars are present.
+  'layout-with-both-sidebars': $layout-gutter * 2 +
+    $layout-with-both-sidebars-min-width,
+));
+
+///
+/// The maximum width for a container based on whether sidebars are present.
+///
+/// @require {mixin} root-conditions
+/// @require {mixin} use-grid
+///
+@mixin layout-max-width {
+  max-width: $layout-no-sidebars-max-width;
+
+  @include use-grid {
+    @include root-conditions((
+      '.has-sidebar-first:not(.has-sidebar-second)',
+      '.has-sidebar-second:not(.has-sidebar-first)',
+    ), 'body') {
+      max-width: $layout-with-one-sidebar-max-width;
+    }
+    @include root-conditions('.has-both-sidebars', 'body') {
+      max-width: $layout-with-both-sidebars-max-width;
+    }
+  }
+}
 
 ///
 /// Base layout container horizontal styles.
@@ -32,13 +127,17 @@ $layout-max-width: 45em !default;
 /// This primarily sets the horizontal gutter, max-width of content, and centres
 /// content inside the layout container.
 ///
+/// @require {mixin} layout-max-width
+/// @require {variable} $layout-gutter
+///
 @mixin layout-container-base-horizontal {
   padding-left:   $layout-gutter;
   padding-right:  $layout-gutter;
 
   // All direct children are width-constrained and centred horizontally.
   > * {
-    max-width:    $layout-max-width;
+    @include layout-max-width;
+
     margin-left:  auto;
     margin-right: auto;
   }
@@ -76,6 +175,72 @@ html {
     // viewport.
     margin-top:   $layout-top-spacing;
   }
+}
+
+main[role='main'] {
+  @include use-grid {
+    @include media('>=layout-with-one-sidebar') {
+      // One sidebar is present.
+      @include root-conditions((
+        '.has-sidebar-first:not(.has-sidebar-second)',
+        '.has-sidebar-second:not(.has-sidebar-first)',
+      ), 'body') {
+        display: grid;
+
+        grid-gap: $layout-gap;
+      }
+
+      // The first sidebar is present but the second sidebar is not.
+      @include root-conditions(
+        '.has-sidebar-first:not(.has-sidebar-second)', 'body'
+      ) {
+        grid-template-areas: 'sidebar-first main-content';
+
+        grid-template-columns:
+          $layout-sidebar-fraction * 1fr
+          $layout-content-fraction * 1fr;
+      }
+
+      // The second sidebar is present but the first sidebar is not.
+      @include root-conditions(
+        '.has-sidebar-second:not(.has-sidebar-first)', 'body'
+      ) {
+        grid-template-areas: 'main-content sidebar-second';
+
+        grid-template-columns:
+          $layout-content-fraction * 1fr
+          $layout-sidebar-fraction * 1fr;
+      }
+    }
+
+    @include media('>=layout-with-both-sidebars') {
+      // Both sidebars are present.
+      @include root-conditions('.has-both-sidebars', 'body') {
+        display: grid;
+
+        grid-gap: $layout-gap;
+
+        grid-template-areas: 'sidebar-first main-content sidebar-second';
+
+        grid-template-columns:
+          $layout-sidebar-fraction * 1fr
+          $layout-content-fraction * 1fr
+          $layout-sidebar-fraction * 1fr;
+      }
+    }
+
+    .layout-content {
+      grid-area: main-content;
+    }
+
+    .layout-sidebar-first {
+      grid-area: sidebar-first;
+    }
+
+    .layout-sidebar-second {
+      grid-area: sidebar-second;
+    }
+  } // end @include use-grid
 }
 
 // Give all elements a max-width so that they (hopefully) don't break out of the

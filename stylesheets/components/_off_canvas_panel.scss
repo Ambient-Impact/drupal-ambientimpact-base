@@ -58,7 +58,7 @@
   &.offcanvas-panel--bottom {
     .offcanvas-panel__content,
     .offcanvas-panel__ui {
-      max-width:    $layout-max-width;
+      @include layout-max-width;
     }
   }
 }
