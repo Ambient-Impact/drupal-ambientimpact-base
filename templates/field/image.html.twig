@@ -11,6 +11,9 @@
  * - style_name: (optional) The name of the image style applied.
  * - ratio: the height to width ratio of the image, as a float between 0 and 1;
  *   defaults to null if no width and height are available.
+ * - constrainWidth: if true, will set a max-width to the natural width of the
+ *   image to prevent low resolution images being expanded to full container
+ *   width due to the intrinsic ratio CSS. Defalts to true.
  *
  * @see template_preprocess_image()
  *
@@ -28,25 +31,29 @@ set classes = [
 %}
 {# Only wrap the image in an intrinsic ratio wrapper if ratio is not null. #}
 {% if not ratio is null %}
+  {% set baseClass = 'intrinsic-ratio' %}
   {%
-    set baseClass = 'intrinsic-ratio'
+    set attributes = attributes.addClass([
+      baseClass ~ '__content',
+      baseClass ~ '__content--image'
+    ])
   %}
-  {%
-  set classes = classes|merge([
-    baseClass ~ '__content',
-    baseClass ~ '__content--image'
-  ])
-  %}
+  {% set wrapperAttributes = create_attribute({
+    'class': [baseClass]
+  }) %}
+  {% if constrainWidth == true %}
+    {% set wrapperAttributes = wrapperAttributes.setAttribute(
+      'style',
+      'max-width: ' ~ attributes.width ~ 'px'
+    ) %}
+  {% endif %}
 
   {# Attach the library which contains the CSS to make the ratio work. #}
   {{ attach_library('ambientimpact_media/component.intrinsic_ratio') }}
 
   {# This is the container. The max-width is set inline to the natural image
      width to avoid stretching images that are narrower than their container. #}
-  <div{{ create_attribute({
-    'class':  [baseClass],
-    'style':  'max-width: ' ~ attributes.width ~ 'px'
-  }) }}>
+  <div{{ wrapperAttributes }}>
     {# This is the actual ratio element, which uses padding-top as a percentage
        to reserve the image space. This works because of the way that top/bottom
        padding is defined in the CSS spec in that a percentage is calculated
@@ -60,10 +67,10 @@ set classes = [
       'class':  [baseClass ~ '__ratio'],
       'style':  'padding-top: ' ~ (ratio * 100) ~ '%; display: inline;'
     }) }}>
-      <img{{ attributes.addClass(classes) }} />
+      <img{{ attributes }} />
     </div>
   </div>
 {# Fall back to just outputting the image if ratio is null. #}
 {% else %}
-  <img{{ attributes.addClass(classes) }} />
+  <img{{ attributes }} />
 {% endif %}
