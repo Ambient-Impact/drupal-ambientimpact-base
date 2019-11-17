@@ -94,7 +94,7 @@ function ambientimpact_base_preprocess_image(&$variables) {
  * Prepares variables for field templates.
  *
  * This sets a max-width on image field items so that no phantom link space can
- * occur.
+ * occur. Also applies to Video Embed Fields that are using a static thumbnail.
  *
  * This sets classes on link fields to indicate whether they have a link title
  * or are outputting the URL as their title. This is useful to force browsers to
@@ -104,7 +104,10 @@ function ambientimpact_base_preprocess_image(&$variables) {
  *   This adds a max-width on each field item.
  */
 function ambientimpact_base_preprocess_field(&$variables, $hook) {
-  if ($variables['field_type'] === 'image') {
+  if (
+    $variables['field_type'] === 'image' ||
+    $variables['field_type'] === 'video_embed_field'
+  ) {
     $componentManager = \Drupal::service(
       'plugin.manager.ambientimpact_component'
     );
