@@ -39,17 +39,6 @@ function ambientimpact_base_element_info_alter(array &$info) {
 }
 
 /**
- * Implements hook_theme_registry_alter().
- *
- * This defines the 'ratio' variable for 'image'.
- *
- * @todo Does this make more sense in ambientimpact_core?
- */
-function ambientimpact_base_theme_registry_alter(&$themeRegistry) {
-  $themeRegistry['image']['variables']['ratio'] = null;
-}
-
-/**
  * Implements hook_theme_suggestions_HOOK_alter().
  *
  * This adds our 'node__extended' as a template suggestion so that we can
@@ -71,22 +60,6 @@ function ambientimpact_base_preprocess_block(&$variables) {
   if ($variables['plugin_id'] === 'ambientimpact_block_social_links') {
     $variables['#attached']['library'][] =
       'ambientimpact_block/component.social_links.tooltips';
-  }
-}
-
-/**
- * Prepares variables for image templates.
- *
- * Default template: image.html.twig.
- *
- * This adds the calculated 'ratio' variable, if width and height are available.
- *
- * @todo Does this make more sense in ambientimpact_media?
- */
-function ambientimpact_base_preprocess_image(&$variables) {
-  // Only set the ratio if we have both width and height.
-  if (!empty($variables['width']) && !empty($variables['height'])) {
-    $variables['ratio'] = $variables['height'] / $variables['width'];
   }
 }
 
