@@ -66,8 +66,13 @@ function ambientimpact_base_preprocess_block(&$variables) {
 /**
  * Prepares variables for field templates.
  *
+ * This sets the 'constrainWidth' value to false on 'video_embed_field' fields
+ * so that small, low resolution thumbnails take up the same space as high
+ * resolution thumbnails, in line with how they're shown in actual YouTube/Vimeo
+ * embedded videos.
+ *
  * This sets a max-width on image field items so that no phantom link space can
- * occur. Also applies to Video Embed Fields that are using a static thumbnail.
+ * occur.
  *
  * This sets classes on link fields to indicate whether they have a link title
  * or are outputting the URL as their title. This is useful to force browsers to
@@ -77,10 +82,40 @@ function ambientimpact_base_preprocess_block(&$variables) {
  *   This adds a max-width on each field item.
  */
 function ambientimpact_base_preprocess_field(&$variables, $hook) {
-  if (
-    $variables['field_type'] === 'image' ||
-    $variables['field_type'] === 'video_embed_field'
-  ) {
+  if ($variables['field_type'] === 'video_embed_field') {
+    foreach ($variables['items'] as $delta => &$item) {
+      // Is this is a field that uses a 'media_play_overlay' with a '#preview'
+      // property containing an 'image' or 'image_style'?
+      if (
+        isset($item['content']['#title']['#type']) &&
+        $item['content']['#title']['#type'] === 'media_play_overlay' &&
+        isset($item['content']['#title']['#preview']['#theme']) && (
+          $item['content']['#title']['#preview']['#theme'] === 'image' ||
+          $item['content']['#title']['#preview']['#theme'] === 'image_style'
+        )
+      ) {
+        $item['content']['#title']['#preview']['#constrainWidth'] = false;
+
+
+      // Is this a linked field that has an 'image' or 'image_style' under the
+      // '#title' property, such as Video Embed Fields outputting a thumbnail?
+      } else if (
+        isset($item['content']['#title']['#theme']) && (
+          $item['content']['#title']['#theme'] === 'image' ||
+          $item['content']['#title']['#theme'] === 'image_style'
+        )
+      ) {
+        $item['content']['#title']['#constrainWidth'] = false;
+
+      // If we couldn't identify a field item format that we're expecting, skip
+      // this item.
+      } else {
+        continue;
+      }
+    }
+  }
+
+  if ($variables['field_type'] === 'image') {
     $componentManager = \Drupal::service(
       'plugin.manager.ambientimpact_component'
     );
