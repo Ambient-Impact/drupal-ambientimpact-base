@@ -9,6 +9,9 @@
  * Available variables:
  * - attributes: HTML attributes for the img tag.
  * - style_name: (optional) The name of the image style applied.
+ * - useRatio: if true, will instruct templates to wrap the image in an
+ *   intrinsic ratio wrapper to act as a placeholder before the image loads,
+ *   which prevents layout shifting during loading.
  * - ratio: the height to width ratio of the image, as a float between 0 and 1;
  *   defaults to null if no width and height are available.
  * - constrainWidth: if true, will set a max-width to the natural width of the
@@ -30,7 +33,7 @@ set classes = [
 ]
 %}
 {# Only wrap the image in an intrinsic ratio wrapper if ratio is not null. #}
-{% if not ratio is null %}
+{% if useRatio == true and not ratio is null %}
   {% set baseClass = 'intrinsic-ratio' %}
   {%
     set attributes = attributes.addClass([
