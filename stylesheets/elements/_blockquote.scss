@@ -84,7 +84,11 @@ blockquote {
       background-image:   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M10.026 20.021L2 12V3.979h8.026v16.042zm11.974 0L13.979 12V3.979H22v16.042z" fill="rgba(' + red($blockquote-decoration-colour-on-dark) + ',' + green($blockquote-decoration-colour-on-dark) + ',' + blue($blockquote-decoration-colour-on-dark) + ',' + alpha($blockquote-decoration-colour-on-dark) + ')"/></svg>');
     }
 
-    top: 0;
+    // This attempts to align the top of the quotation mark with the top of an
+    // ajacent <p> element's first line character, expected to be in upper case.
+    // Note that if the base line-height in _typography.scss is changed, this
+    // will need to be adjusted.
+    top: 0.25em;
 
     @include root-conditions(('[dir=ltr]'), 'html') {
       left: 0;
