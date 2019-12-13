@@ -121,7 +121,7 @@ function ambientimpact_base_preprocess_field(&$variables, $hook) {
     );
     $imageComponent = $componentManager->getComponentInstance('image');
 
-    $imageComponent->preprocessFieldSetImageFieldMaxWidth($variables['items']);
+    $imageComponent->preprocessFieldSetImageFieldMaxWidth($variables);
   }
 
   if ($variables['field_type'] === 'link') {
