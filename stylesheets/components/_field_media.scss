@@ -34,8 +34,11 @@ $media-field-spacing: $layout-gutter !default;
     $spacing-large: $media-field-spacing
   );
 
-  // These are centred using horizontal margins.
-  .field__item, .intrinsic-ratio, :link {
+  // These are centred using horizontal margins. Note that we have to include
+  // the field container itself as it can also be width constrained if the
+  // container is also the only field item, when no visually hidden heading is
+  // present.
+  &, .field__item, .intrinsic-ratio, :link {
     margin-left:  auto;
     margin-right: auto;
   }
