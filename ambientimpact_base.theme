@@ -126,6 +126,16 @@ function ambientimpact_base_preprocess_field(&$variables, $hook) {
   }
 
   if ($variables['field_type'] === 'image') {
+    // Set a default for constrainWidth in all image field items so that we
+    // don't get an PHP undefined notice when the Image component attempts to
+    // read it where it isn't already explicitly set. An example of this is on
+    // user profile image fields.
+    foreach ($variables['items'] as $delta => &$item) {
+      if (!isset($item['content']['#constrainWidth'])) {
+        $item['content']['#constrainWidth'] = true;
+      }
+    }
+
     $componentManager = \Drupal::service(
       'plugin.manager.ambientimpact_component'
     );
