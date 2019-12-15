@@ -66,10 +66,10 @@ function ambientimpact_base_preprocess_block(&$variables) {
 /**
  * Prepares variables for field templates.
  *
- * This sets the 'constrainWidth' value to false on 'video_embed_field' fields
- * so that small, low resolution thumbnails take up the same space as high
- * resolution thumbnails, in line with how they're shown in actual YouTube/Vimeo
- * embedded videos.
+ * This sets the 'constrainWidth' value to false on 'video_embed_field' and
+ * media entity 'thumbnail' fields so that small, low resolution thumbnails take
+ * up the same space as high resolution thumbnails, in line with how they're
+ * shown in actual YouTube/Vimeo embedded videos.
  *
  * This sets a max-width on image field items so that no phantom link space can
  * occur.
@@ -112,6 +112,16 @@ function ambientimpact_base_preprocess_field(&$variables, $hook) {
       } else {
         continue;
       }
+    }
+  }
+
+  // Media thumbnail field.
+  if (
+    $variables['field_type'] === 'image' &&
+    $variables['field_name'] === 'thumbnail'
+  ) {
+    foreach ($variables['items'] as $delta => &$item) {
+      $item['content']['#constrainWidth'] = false;
     }
   }
 
