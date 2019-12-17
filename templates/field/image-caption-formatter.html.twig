@@ -6,22 +6,25 @@
  * This modifies the original by wrapping everything in a <figure> and replacing
  * the <blockquote> for a <figcaption>. Additionally, this is altered to use the
  * link() function so that a '#type' => 'link' is rendered, allowing hooks to
- * alter it.
+ * alter it. Also adds the 'linkAttributes' variable.
  *
  * Available variables:
  * - image: A collection of image data.
  * - image_style: An optional image style.
  * - url: An optional URL the image can be linked to.
+ * - linkAttributes: An array of attributes to add to the link if 'url' is set.
  * - caption : An optional image caption.
  *
  * @see template_preprocess_image_caption_formatter()
+ *
+ * @see ambientimpact_media_theme_registry_alter()
  *
  * @ingroup themeable
  */
 #}
 <figure>
   {% if url %}
-    {{ link(image, url) }}
+    {{ link(image, url, linkAttributes) }}
   {% else %}
     {{ image }}
   {% endif %}
