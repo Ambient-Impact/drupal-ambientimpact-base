@@ -59,15 +59,6 @@ $media-field-spacing: $layout-gutter !default;
   figcaption {
     margin-top: $media-field-spacing;
 
-    // This is in case we're in a multiple item field, to distinguish this
-    // caption from any <figure> that may follow it. Note that in this case,
-    // we're using $general-spacing and not $media-field-spacing as the latter
-    // is specifically meant to match the layout gutter. Also note that it's
-    // impractical to use the vertical-spacing-against-previous mixin here as
-    // no major browser yet supports the :has() pseudo-class as of 2019-06-20.
-    // @see https://developer.mozilla.org/en-US/docs/Web/CSS/:has
-    margin-bottom: $general-spacing * 2.5;
-
     text-align: center;
 
     :first-child {
@@ -83,16 +74,23 @@ $media-field-spacing: $layout-gutter !default;
       display: inline;
     }
   }
+}
 
-  // Remove the bottom margin on the last item's caption. Note the direct child
-  // selectors so that we only consider the containing entity reference field's
-  // items; without the selector, this would apply to every media entity,
-  // because they all technically have a last .field__item as they contain their
-  // own fields.
-  > .field__item,
-  > .field__items > .field__item {
-    &:last-child figcaption {
-      margin-bottom: 0;
-    }
+// Media entities in an entity reference field, both without a label in the
+// markup and with, respectively.
+.field--type-entity-reference > .field__item:not(:last-child),
+.field--type-entity-reference > .field__items > .field__item:not(:last-child),
+// Media entities being displayed outside of an entity reference field.
+*:not(.field__item) > .media .field__item:not(:last-child) {
+  .field--type-image figcaption {
+    // If a <figcaption> is in a multiple item field, distinguish it from any
+    // <figure> that may follow it with a margin-bottom. Note that in this case,
+    // we're using $general-spacing and not $media-field-spacing as the latter
+    // is specifically meant to match the layout gutter. Also note that it's
+    // impractical to use the vertical-spacing-against-previous mixin here as no
+    // major browser yet supports the :has() pseudo-class as of 2019-06-20.
+    //
+    // @see https://developer.mozilla.org/en-US/docs/Web/CSS/:has
+    margin-bottom: $general-spacing * 2.5;
   }
 }
