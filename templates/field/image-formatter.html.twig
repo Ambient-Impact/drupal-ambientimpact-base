@@ -3,7 +3,7 @@
  * @file
  * Theme override to display a formatted image field.
  *
- * This overrides the Classy template to add the 'linkAttributes' variable.
+ * This overrides the Classy template to add the 'link_attributes' variable.
  *
  * Available variables:
  *
@@ -15,13 +15,13 @@
  *
  * - url: An optional URL the image can be linked to.
  *
- * - linkAttributes: An array of attributes to add to the link if 'url' is set.
+ * - link_attributes: An array of attributes to add to the link if 'url' is set.
  *
  * @see template_preprocess_image_formatter()
  */
 #}
 {% if url %}
-  {{ link(image, url, linkAttributes) }}
+  {{ link(image, url, link_attributes) }}
 {% else %}
   {{ image }}
 {% endif %}

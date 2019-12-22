@@ -12,21 +12,21 @@
  *
  * - style_name: (optional) The name of the image style applied.
  *
- * - useRatio: if true, will instruct templates to wrap the image in an
+ * - use_ratio: if true, will instruct templates to wrap the image in an
  *   intrinsic ratio wrapper to act as a placeholder before the image loads,
  *   which prevents layout shifting during loading.
  *
  * - ratio: the height to width ratio of the image, as a float between 0 and 1;
  *   defaults to null if no width and height are available.
  *
- * - constrainWidth: if true, will set a max-width to the natural width of the
+ * - constrain_width: if true, will set a max-width to the natural width of the
  *   image to prevent low resolution images being expanded to full container
  *   width due to the intrinsic ratio CSS. Defalts to true.
  *
  * @see template_preprocess_image()
  *
  * @see ambientimpact_media_theme_registry_alter()
- *   Defines the 'ratio' and 'constrainWidth' variables.
+ *   Defines the 'ratio' and 'constrain_width' variables.
  *
  * @see \Drupal\ambientimpact_media\EventSubscriber\Preprocess\PreprocessImageIntrinsicRatioEventSubscriber::preprocessField()
  *   Calculates the 'ratio' variable value.
@@ -38,7 +38,7 @@ set classes = [
 ]
 %}
 {# Only wrap the image in an intrinsic ratio wrapper if ratio is not null. #}
-{% if useRatio == true and not ratio is null %}
+{% if use_ratio == true and not ratio is null %}
   {% set baseClass = 'intrinsic-ratio' %}
   {%
     set attributes = attributes.addClass([
@@ -49,7 +49,7 @@ set classes = [
   {% set wrapperAttributes = create_attribute({
     'class': [baseClass]
   }) %}
-  {% if constrainWidth == true %}
+  {% if constrain_width == true %}
     {% set wrapperAttributes = wrapperAttributes.setAttribute(
       'style',
       'max-width: ' ~ attributes.width ~ 'px'

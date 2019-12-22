@@ -66,7 +66,7 @@ function ambientimpact_base_preprocess_block(&$variables) {
 /**
  * Prepares variables for field templates.
  *
- * This sets the 'constrainWidth' value to false on media entity 'thumbnail'
+ * This sets the 'constrain_width' value to false on media entity 'thumbnail'
  * fields so that small, low resolution thumbnails take up the same space as
  * high resolution thumbnails, in line with how they're shown in actual
  * YouTube/Vimeo embedded videos.
@@ -88,18 +88,18 @@ function ambientimpact_base_preprocess_field(&$variables, $hook) {
     $variables['field_name'] === 'thumbnail'
   ) {
     foreach ($variables['items'] as $delta => &$item) {
-      $item['content']['#constrainWidth'] = false;
+      $item['content']['#constrain_width'] = false;
     }
   }
 
   if ($variables['field_type'] === 'image') {
-    // Set a default for constrainWidth in all image field items so that we
+    // Set a default for constrain_width in all image field items so that we
     // don't get an PHP undefined notice when the Image component attempts to
     // read it where it isn't already explicitly set. An example of this is on
     // user profile image fields.
     foreach ($variables['items'] as $delta => &$item) {
-      if (!isset($item['content']['#constrainWidth'])) {
-        $item['content']['#constrainWidth'] = true;
+      if (!isset($item['content']['#constrain_width'])) {
+        $item['content']['#constrain_width'] = true;
       }
     }
 

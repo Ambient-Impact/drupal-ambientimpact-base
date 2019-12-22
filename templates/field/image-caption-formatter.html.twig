@@ -6,13 +6,13 @@
  * This modifies the original by wrapping everything in a <figure> and replacing
  * the <blockquote> for a <figcaption>. Additionally, this is altered to use the
  * link() function so that a '#type' => 'link' is rendered, allowing hooks to
- * alter it. Also adds the 'linkAttributes' variable.
+ * alter it. Also adds the 'link_attributes' variable.
  *
  * Available variables:
  * - image: A collection of image data.
  * - image_style: An optional image style.
  * - url: An optional URL the image can be linked to.
- * - linkAttributes: An array of attributes to add to the link if 'url' is set.
+ * - link_attributes: An array of attributes to add to the link if 'url' is set.
  * - caption : An optional image caption.
  *
  * @see template_preprocess_image_caption_formatter()
@@ -24,7 +24,7 @@
 #}
 <figure>
   {% if url %}
-    {{ link(image, url, linkAttributes) }}
+    {{ link(image, url, link_attributes) }}
   {% else %}
     {{ image }}
   {% endif %}
