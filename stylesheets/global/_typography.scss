@@ -60,6 +60,15 @@ body {
   overflow-wrap: break-word;
 }
 
+// Reset overflow-wrap to normal on these elements to fix a strange issue in
+// Chrome 79 on Android that would sometimes cause word and line breaks even if
+// there was more than enough room for each word.
+.field__label,
+.field__item--link-no-title,
+.ambientimpact-icon {
+  overflow-wrap: normal;
+}
+
 body, .ui-widget, input, textarea {
   font-family:  $font-stack;
   font-weight:  $font-weight-normal;
