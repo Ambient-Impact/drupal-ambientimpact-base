@@ -5,17 +5,17 @@
 ///
 /// Wether to include the basic link styles.
 ///
-$use-link-styles:           true  !default;
+$use-link-styles: true !default;
 
 ///
 /// Whether to include fancy link underlines.
 ///
-$use-fancy-link-underlines: true  !default;
+$use-fancy-link-underlines: true !default;
 
 ///
 /// Whether to include the image links styles.
 ///
-$use-image-link-styles:     true  !default;
+$use-image-link-styles: true !default;
 
 // Link styles. These are limited to layout containers and other content
 // containers so that we don't affect the administrative toolbar and other
@@ -96,7 +96,7 @@ $use-image-link-styles:     true  !default;
 // PhotoSwipe has a dark background by default, so set link colours for that
 // type of background.
 .#{$photoswipe-root-class} {
- :link, :visited {
-   @include link-colours($photoswipe-background-colour-theme-dark);
- }
+  :link, :visited {
+    @include link-colours($photoswipe-background-colour-theme-dark);
+  }
 }
