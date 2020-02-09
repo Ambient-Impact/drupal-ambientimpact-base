@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override to display a formatted responsive image field.
+ *
+ * This overrides the default template to add the 'link_attributes' variable and
+ * replaces the inline <a href="{{ url }}"> with the link() function so that a
+ * '#type' => 'link' is rendered, allowing hooks to alter it.
+ *
+ * Available variables:
+ *
+ * - responsive_image: A collection of responsive image data.
+ *
+ * - url: An optional URL the image can be linked to.
+ *
+ * - link_attributes: An array of attributes to add to the link if 'url' is set.
+ *
+ * @see template_preprocess_responsive_image_formatter()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if url %}
+  {{ link(responsive_image, url, link_attributes) }}
+{% else %}
+  {{ responsive_image }}
+{% endif %}
