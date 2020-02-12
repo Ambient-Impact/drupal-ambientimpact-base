@@ -4,6 +4,7 @@ type: theme
 base theme: classy
 package: Ambient.Impact
 core: 8.x
+core_version_requirement: ^8 || ^9
 hidden: true
 
 regions:
