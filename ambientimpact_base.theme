@@ -51,16 +51,16 @@ function ambientimpact_base_theme_suggestions_node_alter(
 }
 
 /**
- * Prepares variables for block templates.
+ * Prepares variables for the 'ambientimpact_block_social_links' block template.
  *
- * This attaches the 'ambientimpact_block/social_links.tooltips' to
- * 'ambientimpact_block_social_links' blocks.
+ * This attaches the 'ambientimpact_block/social_links.tooltips' library to the
+ * block.
  */
-function ambientimpact_base_preprocess_block(&$variables) {
-  if ($variables['plugin_id'] === 'ambientimpact_block_social_links') {
-    $variables['#attached']['library'][] =
-      'ambientimpact_block/component.social_links.tooltips';
-  }
+function ambientimpact_base_preprocess_block__ambientimpact_block_social_links(
+  array &$variables
+) {
+  $variables['#attached']['library'][] =
+    'ambientimpact_block/component.social_links.tooltips';
 }
 
 /**
