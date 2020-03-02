@@ -1,5 +1,8 @@
 <?php
 
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
+
 /**
  * Implements hook_element_info_alter().
  *
@@ -61,6 +64,159 @@ function ambientimpact_base_preprocess_block__ambientimpact_block_social_links(
 ) {
   $variables['#attached']['library'][] =
     'ambientimpact_block/component.social_links.tooltips';
+}
+
+/**
+ * Prepares variables for the 'system_branding_block' block template.
+ *
+ * This adds and alters the necessary variables to allow greater customization
+ * of the branding block compared to what Drupal core offers. A primary
+ * motivation for this is that core doesn't provide a way to define dimensions
+ * or alt text for the logo in a reusable way, other than hard coding those in
+ * the block template, so this adds support for 'logo_alt', 'logo_width', and
+ * 'logo_height' keys in a theme's .info.yml file. Additionally, a number of
+ * other variables are exposed, as detailed below.
+ *
+ * Fetches the 'logo_alt', 'logo_width', and 'logo_height' keys from a theme's
+ * .info.yml, if they exist, and adds the corresponding properties to
+ * $variables['content']['site_logo'].
+ *
+ * Adds a 'front_page_url' variable, containing a Url object pointing to the
+ * front page.
+ *
+ * Adds the 'site_logo_link_attributes' and 'site_name_link_attributes'
+ * variables, both of which contain an Attributes object for their corresponding
+ * links. If 'logo_width' is found in the active theme's .info.yml and is a
+ * non-empty value, 'site_logo_link_attributes' will contain a 'style' attribute
+ * with a 'max-width' equal to that value in px, if a 'max-width' is not already
+ * set - this is to prevent phantom space when using the intrinsic ratio
+ * wrapper.
+ *
+ * @see system_preprocess_block()
+ *   Creates the 'site_logo', 'site_name', and 'site_slogan' variables.
+ *
+ * @see templates/block/block--system-branding-block.html.twig
+ *   Altered from the Classy template to accomodate the above changes.
+ *
+ * @see https://www.drupal.org/project/drupal/issues/2780293
+ *   Ongoing Drupal core issue to add configurable logo alt attribute.
+ */
+function ambientimpact_base_preprocess_block__system_branding_block(
+  array &$variables
+) {
+  // Generate the 'front_page_url' variable if it hasn't been provided. This
+  // allows customization of the front page URL if it varies based on some
+  // criteria, e.g. cache contexts.
+  //
+  // @see https://www.drupal.org/docs/8/api/cache-api/cache-contexts
+  //
+  // @see hook_block_build_BASE_BLOCK_ID_alter()
+  //   Cacheability metadata can be altered in this hook if need be.
+  if (!isset($variables['front_page_url'])) {
+    $variables['front_page_url'] = Url::fromRoute('<front>');
+  }
+
+  // Create the 'site_logo_link_attributes' and 'site_name_link_attributes'
+  // variables if they don't exist yet.
+  foreach (['site_logo', 'site_name'] as $key) {
+    if (
+      $variables['content'][$key]['#access'] &&
+      !isset($variables[$key . '_link_attributes'])
+    ) {
+      $variables[$key . '_link_attributes'] = new Attribute();
+    }
+  }
+
+  /** @var \Drupal\Core\Theme\ThemeManagerInterface */
+  $themeManager = \Drupal::service('theme.manager');
+  /** @var \Drupal\Core\Extension\ThemeHandlerInterface */
+  $themeHandler = \Drupal::service('theme_handler');
+
+  // This contains all of the key/value pairs in the theme's .info.yml file.
+  /** @var array */
+  $activeThemeInfo = $themeHandler->listInfo()[
+    $themeManager->getActiveTheme()->getName()
+  ]->info;
+
+  if ($variables['content']['site_logo']['#access']) {
+    // Update the logo URI just in case it's been changed in some other
+    // preprocess function or hook.
+    $variables['content']['site_logo']['#uri'] = $variables['site_logo'];
+
+    foreach ([
+      'logo_alt'    => 'alt',
+      'logo_width'  => 'width',
+      'logo_height' => 'height',
+    ] as $key => $propertyName) {
+      if (!empty($activeThemeInfo[$key])) {
+        $variables['content']['site_logo']['#' . $propertyName] =
+          $activeThemeInfo[$key];
+      }
+    }
+
+    if (!empty($activeThemeInfo['logo_width'])) {
+      // If a 'style' attribute already exists, try to explode it so that we can
+      // determine if there's an existing max-width.
+      if ($variables['site_logo_link_attributes']->offsetExists('style')) {
+        $parsedStyleArray = explode(
+          ';', $variables['site_logo_link_attributes']->offsetGet('style')
+        );
+      } else {
+        $parsedStyleArray = [];
+      }
+
+      $keyedStyleArray = [];
+
+      // Parse styles into key/value pairs.
+      foreach ($parsedStyleArray as $delta => $value) {
+        // Skip empty values.
+        if (empty($value)) {
+          continue;
+        }
+
+        $explodedValue = explode(':', $value);
+
+        // Skip any values that can't be split into a property: value pair.
+        if (count($explodedValue) !== 2) {
+          continue;
+        }
+
+        $keyedStyleArray[trim($explodedValue[0])] = trim($explodedValue[1]);
+      }
+
+      // If no 'max-width' key exists, set it to the logo width and implode the
+      // whole style array back into a string.
+      if (!isset($keyedStyleArray['max-width'])) {
+        $keyedStyleArray['max-width'] =
+          $activeThemeInfo['logo_width'] . 'px';
+
+        $newStyle = '';
+
+        foreach ($keyedStyleArray as $propertyName => $propertyValue) {
+          $newStyle .= $propertyName . ':' . $propertyValue . ';';
+        }
+
+        $variables['site_logo_link_attributes']->setAttribute(
+          'style',
+          $newStyle
+        );
+      }
+    }
+  }
+
+  // Update the site name just in case it's been changed in some other
+  // preprocess function or hook.
+  if ($variables['content']['site_name']['#access']) {
+    $variables['content']['site_name']['#markup'] = $variables['site_name'];
+  }
+
+  // Update the site slogan just in case it's been changed in some other
+  // preprocess function or hook. Note the different structure than
+  // $variables['site_name'], ugh.
+  if ($variables['content']['site_slogan']['#access']) {
+    $variables['content']['site_slogan']['#markup'] =
+      $variables['site_slogan']['#markup'];
+  }
 }
 
 /**

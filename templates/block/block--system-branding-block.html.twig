@@ -1,0 +1,74 @@
+{% extends "block.html.twig" %}
+{#
+/**
+ * @file
+ * Theme override for a branding block.
+ *
+ * This overrides the Classy template with the following changes:
+ *
+ * - now uses the link() function so that a '#type' => 'link' is rendered,
+ *   allowing hooks to alter the link
+ *
+ * - adds the 'site_logo_link_attributes', 'site_name_link_attributes', and
+ *   'front_page_url' variables
+ *
+ * - renders 'content.site_logo' instead of defining an <img> element here,
+ *   allowing alteration via hooks/preprocess functions; 'content.site_logo' is
+ *   used to not break existing implementations that expect 'site_logo' to be a
+ *   string
+ *
+ * - renders 'content.site_name' instead of 'site_name'; 'site_name' is left as
+ *   unmodified to not break existing implementations that expect it to be a
+ *   string
+ *
+ * - renders 'content.site_slogan' instead of 'site_slogan'; 'site_slogal' is
+ *   left unmodified to not break existing implementations that expect it to be
+ *   a string
+ *
+ * Available variables:
+ *
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ *
+ * - site_logo_link_attributes: An Attributes object containing attributes for
+ *   the site logo link.
+ *
+ * - site_name: Name for site as defined in Site information settings.
+ *
+ * - site_name_link_attributes: An Attributes object containing attributes for
+ *   the site name link.
+ *
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ *
+ * - front_page_url: A Url object pointing to the front page
+ *
+ * @see ambientimpact_base_preprocess_block__system_branding_block()
+ *   Adds the various additional variables listed above and makes appropriate
+ *   changes to existing variables.
+ */
+#}
+{% block content %}
+  {% if site_logo %}
+    {{ link(
+      content.site_logo,
+      front_page_url,
+      site_logo_link_attributes
+        .addClass('site-logo')
+        .setAttribute('rel', 'home')
+        .setAttribute('title', 'Home'|t)
+    ) }}
+  {% endif %}
+  {% if site_name %}
+    <div class="site-name">
+      {{ link(
+        content.site_name,
+        front_page_url,
+        site_name_link_attributes
+          .setAttribute('rel', 'home')
+          .setAttribute('title', 'Home'|t)
+      ) }}
+    </div>
+  {% endif %}
+  {% if site_slogan %}
+    <div class="site-slogan">{{ content.site_slogan }}</div>
+  {% endif %}
+{% endblock %}
