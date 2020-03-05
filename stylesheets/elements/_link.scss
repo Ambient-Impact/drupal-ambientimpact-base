@@ -17,6 +17,70 @@ $use-fancy-link-underlines: true !default;
 ///
 $use-image-link-styles: true !default;
 
+///
+/// Elements that are considered "image" elements, inside of a link.
+///
+/// This excludes <svg> elements as applying a filter seems to make them varying
+/// levels of blurry.
+///
+/// This excludes <canvas> elements because they often have their hover states
+/// defined elsewhere, on a per-element basis.
+///
+$image-link-elements: img, picture !default;
+
+///
+/// Image element filters in a link when link is not highlighted/actived.
+///
+$image-link-normal-filters: contrast(100%) brightness(100%) !default;
+
+///
+/// Image element filters in a link when link is highlighted.
+///
+$image-link-hover-filters: contrast(75%) brightness(150%) !default;
+
+///
+/// Image element filters in a link when link is activated.
+///
+$image-link-active-filters: contrast(100%) brightness(100%) !default;
+
+///
+/// Images in links.
+///
+/// This applies image link filters to images based on link states.
+///
+/// @require {mixin} transition-fade-base
+/// @require {mixin} transition-fade-active
+/// @require {mixin} link-hover
+/// @require {mixin} link-active
+/// @require {variable} $image-link-elements
+/// @require {variable} $image-link-normal-filters
+/// @require {variable} $image-link-hover-filters
+/// @require {variable} $image-link-active-filters
+///
+@mixin image-link {
+  #{$image-link-elements} {
+    filter: $image-link-normal-filters;
+
+    @include transition-fade-base(
+      $props: filter
+    );
+  }
+
+  @include link-hover {
+    #{$image-link-elements} {
+      filter: $image-link-hover-filters;
+
+      @include transition-fade-active();
+    }
+  }
+
+  @include link-active {
+    #{$image-link-elements} {
+      filter: $image-link-active-filters;
+    }
+  }
+}
+
 // Link styles. These are limited to layout containers and other content
 // containers so that we don't affect the administrative toolbar and other
 // elements outside of what would be considered the site content itself. By
