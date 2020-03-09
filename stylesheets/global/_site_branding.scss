@@ -2,9 +2,10 @@
 //   Base site branding partial
 // -----------------------------------------------------------------------------
 
-.site-logo,
-.site-name a {
+.site-logo__link,
+.site-name__link {
   // This is necessary for the max-width defined in
-  // ambientimpact_base_preprocess_block() to take effect.
+  // ambientimpact_base_preprocess_block__system_branding_block() to take
+  // effect.
   display: block;
 }
