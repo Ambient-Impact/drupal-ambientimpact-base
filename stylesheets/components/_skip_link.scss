@@ -6,8 +6,15 @@
 // background, a Material shadow, some border radius, and positions it
 // absolutely in the top centre of the page.
 
+///
+/// Skip to content link background colour.
+///
 $skip-link-background-colour: greyscale(25%, 0.6) !default;
-$skip-link-outline-colour:    black       !default;
+
+///
+/// Skip to content link focus outline colour.
+///
+$skip-link-outline-colour: black !default;
 
 .skip-link-container {
   @supports (pointer-events: none) and (display: flex) {
@@ -42,4 +49,10 @@ $skip-link-outline-colour:    black       !default;
       $colour:  $skip-link-outline-colour
     );
   }
+}
+
+// This is the anchor that the skip link targets. It's absolutely positioned to
+// avoid affecting layout, e.g. if CSS Grid is used.
+#main-content {
+  position: absolute;
 }
