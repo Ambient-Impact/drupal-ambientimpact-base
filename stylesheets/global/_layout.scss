@@ -69,18 +69,20 @@ $layout-with-one-sidebar-max-width: $layout-no-sidebars-max-width +
   !default;
 
 ///
-/// The relative width of the content column.
+/// The content column width, as a grid-template-columns value.
 ///
-/// This is output as an 'fr' unit but is provided here as an integer.
+/// @link https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
+///   Lists valid values.
 ///
-$layout-content-fraction: 3 !default;
+$layout-content-column-width: 1fr !default;
 
 ///
-/// The relative width of each sidebar column.
+/// The sidebar column widths, as a grid-template-columns value.
 ///
-/// This is output as an 'fr' unit but is provided here as an integer.
+/// @link https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
+///   Lists valid values.
 ///
-$layout-sidebar-fraction: 1 !default;
+$layout-sidebar-column-width: minmax(8em, 12em) !default;
 
 ///
 /// The gap between layout columns.
@@ -197,8 +199,8 @@ main[role='main'] {
         grid-template-areas: 'sidebar-first main-content';
 
         grid-template-columns:
-          $layout-sidebar-fraction * 1fr
-          $layout-content-fraction * 1fr;
+          $layout-sidebar-column-width
+          $layout-content-column-width;
       }
 
       // The second sidebar is present but the first sidebar is not.
@@ -208,8 +210,8 @@ main[role='main'] {
         grid-template-areas: 'main-content sidebar-second';
 
         grid-template-columns:
-          $layout-content-fraction * 1fr
-          $layout-sidebar-fraction * 1fr;
+          $layout-content-column-width
+          $layout-sidebar-column-width;
       }
     }
 
@@ -223,9 +225,9 @@ main[role='main'] {
         grid-template-areas: 'sidebar-first main-content sidebar-second';
 
         grid-template-columns:
-          $layout-sidebar-fraction * 1fr
-          $layout-content-fraction * 1fr
-          $layout-sidebar-fraction * 1fr;
+          $layout-sidebar-column-width
+          $layout-content-column-width
+          $layout-sidebar-column-width;
       }
     }
 
