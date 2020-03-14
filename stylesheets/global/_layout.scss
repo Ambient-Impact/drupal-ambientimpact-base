@@ -231,20 +231,17 @@ $layout-gap: $general-spacing !default;
 ///
 /// The maximum width for a container based on whether sidebars are present.
 ///
-/// @require {mixin} root-conditions
+/// @require {mixin} on-sidebar
 /// @require {mixin} use-grid
 ///
 @mixin layout-max-width {
   max-width: $layout-no-sidebars-max-width;
 
   @include use-grid {
-    @include root-conditions((
-      '.has-sidebar-first:not(.has-sidebar-second)',
-      '.has-sidebar-second:not(.has-sidebar-first)',
-    ), 'body') {
+    @include on-sidebar(one) {
       max-width: $layout-with-one-sidebar-max-width;
     }
-    @include root-conditions('.has-both-sidebars', 'body') {
+    @include on-sidebar(both) {
       max-width: $layout-with-both-sidebars-max-width;
     }
   }
