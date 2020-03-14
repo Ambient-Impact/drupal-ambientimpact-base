@@ -102,6 +102,133 @@ $layout-gap: $general-spacing !default;
 ));
 
 ///
+/// Apply styles when one or more sidebars are present in the markup.
+///
+/// @param {String} $sidebar
+///   The sidebar condition to match. Must be one of:
+///
+///   - first: Only the first sidebar is present
+///
+///   - second: Only the second sidebar is present
+///
+///   - one: Only one sidebar is present, either the first or second
+///
+///   - both: Both sidebars are present
+///
+///   - any: At least one sidebar is present
+///
+/// @content
+///   The content to apply based on the $sidebar parameter.
+///
+/// @require {mixin} root-conditions
+///
+@mixin on-sidebar($sidebar) {
+  // Only the first sidebar.
+  @if ($sidebar == first) {
+    @include root-conditions(
+      '.has-sidebar-first:not(.has-sidebar-second)', 'body'
+    ) {
+      @content;
+    }
+
+  // Only the second sidebar.
+  } @else if ($sidebar == second) {
+    @include root-conditions(
+      '.has-sidebar-second:not(.has-sidebar-first)', 'body'
+    ) {
+      @content;
+    }
+
+  // Only if one sidebar is present, regardless of which it is.
+  } @else if ($sidebar == one) {
+    @include root-conditions((
+      '.has-sidebar-first:not(.has-sidebar-second)',
+      '.has-sidebar-second:not(.has-sidebar-first)',
+    ), 'body') {
+      @content;
+    }
+
+  // Only if both sidebars.
+  } @else if ($sidebar == both) {
+    @include root-conditions('.has-both-sidebars', 'body') {
+      @content;
+    }
+
+  // Any other value is treated as 'any', which will match one or both sidebars
+  // being present.
+  } @else {
+    @include root-conditions((
+      '.has-sidebar-first:not(.has-sidebar-second)',
+      '.has-sidebar-second:not(.has-sidebar-first)',
+      '.has-both-sidebars',
+    ), 'body') {
+      @content;
+    }
+  }
+}
+
+///
+/// Apply styles when one or more sidebars are placed beside the content column.
+///
+/// @param {String} $sidebar
+///   The sidebar condition to match. Must be one of:
+///
+///   - first: Only the first sidebar is present
+///
+///   - second: Only the second sidebar is present
+///
+///   - one: Only one sidebar is present, either the first or second
+///
+///   - both: Both sidebars are present
+///
+///   - any: At least one sidebar is present
+///
+/// @content
+///   The content to apply based on the $sidebar parameter.
+///
+/// @require {mixin} on-sidebar
+/// @require {mixin} root-conditions
+/// @require {mixin} media
+///
+@mixin on-sidebar-beside-content($sidebar) {
+  @if ($sidebar == both) {
+    @include media('>=layout-with-both-sidebars') {
+      @include on-sidebar($sidebar) {
+        @content;
+      };
+    }
+
+  // 'any' is requires special handling because we need to apply the provided
+  // styles with the appropriate media query, but we can't simply just wrap it
+  // all in the '>=layout-with-one-sidebar' query because that would erroneously
+  // match when both sidebars are present in the markup but before the viewport
+  // is wide enough to actually display them next to the content. In this case,
+  // we duplicate the styles, one for a single sidebar and one both sidebars at
+  // their respective media queries.
+  } @else if ($sidebar == any) {
+    @include media('>=layout-with-one-sidebar') {
+      @include on-sidebar(one) {
+        @content;
+      };
+    }
+    @include media('>=layout-with-both-sidebars') {
+      @include on-sidebar(both) {
+        @content;
+      };
+    }
+
+  // Any other value is assumed to be one of 'first', 'second', or 'one', all of
+  // which fall under the one sidebar media query.
+  } @else {
+    @include media('>=layout-with-one-sidebar') {
+      @include on-sidebar($sidebar) {
+        @content;
+      };
+    }
+  }
+}
+
+///
 /// The maximum width for a container based on whether sidebars are present.
 ///
 /// @require {mixin} root-conditions
@@ -181,54 +308,39 @@ html {
 
 main[role='main'] {
   @include use-grid {
-    @include media('>=layout-with-one-sidebar') {
-      // One sidebar is present.
-      @include root-conditions((
-        '.has-sidebar-first:not(.has-sidebar-second)',
-        '.has-sidebar-second:not(.has-sidebar-first)',
-      ), 'body') {
-        display: grid;
+    // One or both sidebars is/are present.
+    @include on-sidebar-beside-content(any) {
+      display: grid;
 
-        grid-gap: $layout-gap;
-      }
-
-      // The first sidebar is present but the second sidebar is not.
-      @include root-conditions(
-        '.has-sidebar-first:not(.has-sidebar-second)', 'body'
-      ) {
-        grid-template-areas: 'sidebar-first main-content';
-
-        grid-template-columns:
-          $layout-sidebar-column-width
-          $layout-content-column-width;
-      }
-
-      // The second sidebar is present but the first sidebar is not.
-      @include root-conditions(
-        '.has-sidebar-second:not(.has-sidebar-first)', 'body'
-      ) {
-        grid-template-areas: 'main-content sidebar-second';
-
-        grid-template-columns:
-          $layout-content-column-width
-          $layout-sidebar-column-width;
-      }
+      grid-gap: $layout-gap;
     }
 
-    @include media('>=layout-with-both-sidebars') {
-      // Both sidebars are present.
-      @include root-conditions('.has-both-sidebars', 'body') {
-        display: grid;
+    // The first sidebar is present but the second sidebar is not.
+    @include on-sidebar-beside-content(first) {
+      grid-template-areas: 'sidebar-first main-content';
 
-        grid-gap: $layout-gap;
+      grid-template-columns:
+        $layout-sidebar-column-width
+        $layout-content-column-width;
+    }
 
-        grid-template-areas: 'sidebar-first main-content sidebar-second';
+    // The second sidebar is present but the first sidebar is not.
+    @include on-sidebar-beside-content(second) {
+      grid-template-areas: 'main-content sidebar-second';
 
-        grid-template-columns:
-          $layout-sidebar-column-width
-          $layout-content-column-width
-          $layout-sidebar-column-width;
-      }
+      grid-template-columns:
+        $layout-content-column-width
+        $layout-sidebar-column-width;
+    }
+
+    // Both sidebars are present.
+    @include on-sidebar-beside-content(both) {
+      grid-template-areas: 'sidebar-first main-content sidebar-second';
+
+      grid-template-columns:
+        $layout-sidebar-column-width
+        $layout-content-column-width
+        $layout-sidebar-column-width;
     }
 
     .layout-content {
