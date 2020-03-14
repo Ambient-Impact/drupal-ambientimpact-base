@@ -269,41 +269,22 @@ $layout-gap: $general-spacing !default;
   }
 }
 
-html {
-  // This prevents any horizontal scrollbars and scrolling on the viewport which
-  // can sneak in via any number of components. Note that care must be taken to
-  // ensure content can be accessed when it would overflow the viewport, such as
-  // in <pre> elements, images and other media, and so on.
-  overflow-x: hidden;
-
-  // This ensures that a scrollbar is always visible in browsers that have
-  // scrollbars that take up viewport space (as opposed to floating scrollbars,
-  // that don't affect layout), so that the layout doesn't shift if/when the
-  // scrollbars appear, e.g. on resize.
-  overflow-y: scroll;
-}
-
-// Layout container styles. Note that we apply the padding and margins to this
-// rather than <body> so that we don't affect elements that are 'outside' the
-// area that is considered the site, e.g. the Drupal toolbar when it hasn't been
-// enhanced by JavaScript.
-.layout-container {
-  @include layout-container-base-horizontal;
-
-  @if type-of($layout-bottom-spacing) == 'number' {
-    padding-bottom: $layout-bottom-spacing;
-  }
-
-  box-sizing:   border-box;
-
-  @if type-of($layout-top-spacing) == 'number' {
-    // This is not applied to the <body>, as the Toolbar uses that to offset the
-    // viewport.
-    margin-top:   $layout-top-spacing;
-  }
-}
-
-main[role='main'] {
+///
+/// Layout grid.
+///
+/// This sets the various grid properties depending on which sidebars are
+/// present and at the appropriate viewport widths.
+///
+/// @content
+///   Any additional styles to add at the end of the use-grid block.
+///
+/// @require {mixin} use-grid
+/// @require {mixin} on-sidebar-beside-content
+/// @require {variable} $layout-gap
+/// @require {variable} $layout-sidebar-column-width
+/// @require {variable} $layout-content-column-width
+///
+@mixin layout-grid {
   @include use-grid {
     // One or both sidebars is/are present.
     @include on-sidebar-beside-content(any) {
@@ -340,18 +321,79 @@ main[role='main'] {
         $layout-sidebar-column-width;
     }
 
-    .layout-content {
-      grid-area: main-content;
-    }
-
-    .layout-sidebar-first {
-      grid-area: sidebar-first;
-    }
-
-    .layout-sidebar-second {
-      grid-area: sidebar-second;
-    }
+    @content;
   } // end @include use-grid
+}
+
+///
+/// Set the layout grid area to the content column.
+///
+@mixin layout-grid-area-content {
+  grid-area: main-content;
+}
+
+@mixin layout-grid-area-sidebar-first {
+///
+/// Set the layout grid area to the first sidebar column.
+///
+  grid-area: sidebar-first;
+}
+
+///
+/// Set the layout grid area to the second sidebar column.
+///
+@mixin layout-grid-area-sidebar-second {
+  grid-area: sidebar-second;
+}
+
+html {
+  // This prevents any horizontal scrollbars and scrolling on the viewport which
+  // can sneak in via any number of components. Note that care must be taken to
+  // ensure content can be accessed when it would overflow the viewport, such as
+  // in <pre> elements, images and other media, and so on.
+  overflow-x: hidden;
+
+  // This ensures that a scrollbar is always visible in browsers that have
+  // scrollbars that take up viewport space (as opposed to floating scrollbars,
+  // that don't affect layout), so that the layout doesn't shift if/when the
+  // scrollbars appear, e.g. on resize.
+  overflow-y: scroll;
+}
+
+// Layout container styles. Note that we apply the padding and margins to this
+// rather than <body> so that we don't affect elements that are 'outside' the
+// area that is considered the site, e.g. the Drupal toolbar when it hasn't been
+// enhanced by JavaScript.
+.layout-container {
+  @include layout-container-base-horizontal;
+
+  @if type-of($layout-bottom-spacing) == 'number' {
+    padding-bottom: $layout-bottom-spacing;
+  }
+
+  box-sizing:   border-box;
+
+  @if type-of($layout-top-spacing) == 'number' {
+    // This is not applied to the <body>, as the Toolbar uses that to offset the
+    // viewport.
+    margin-top:   $layout-top-spacing;
+  }
+}
+
+main[role='main'] {
+  @include layout-grid;
+
+  .layout-content {
+    @include layout-grid-area-content;
+  }
+
+  .layout-sidebar-first {
+    @include layout-grid-area-sidebar-first;
+  }
+
+  .layout-sidebar-second {
+    @include layout-grid-area-sidebar-second;
+  }
 }
 
 // Give all elements a max-width so that they (hopefully) don't break out of the
