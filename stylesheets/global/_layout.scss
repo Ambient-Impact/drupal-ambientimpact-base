@@ -325,27 +325,6 @@ $layout-gap: $general-spacing !default;
   } // end @include use-grid
 }
 
-///
-/// Set the layout grid area to the content column.
-///
-@mixin layout-grid-area-content {
-  grid-area: main-content;
-}
-
-@mixin layout-grid-area-sidebar-first {
-///
-/// Set the layout grid area to the first sidebar column.
-///
-  grid-area: sidebar-first;
-}
-
-///
-/// Set the layout grid area to the second sidebar column.
-///
-@mixin layout-grid-area-sidebar-second {
-  grid-area: sidebar-second;
-}
-
 html {
   // This prevents any horizontal scrollbars and scrolling on the viewport which
   // can sneak in via any number of components. Note that care must be taken to
@@ -440,15 +419,15 @@ main[role='main'] {
   }
 
   .layout-content {
-    @include layout-grid-area-content;
+    grid-area: main-content;
   }
 
   .layout-sidebar-first {
-    @include layout-grid-area-sidebar-first;
+    grid-area: sidebar-first;
   }
 
   .layout-sidebar-second {
-    @include layout-grid-area-sidebar-second;
+    grid-area: sidebar-second;
   }
 }
 
