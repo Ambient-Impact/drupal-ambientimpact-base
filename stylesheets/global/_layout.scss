@@ -378,10 +378,66 @@ html {
     // viewport.
     margin-top:   $layout-top-spacing;
   }
+
+  // If subgrid is supported, set the grid on this rather than on
+  // main[role='main'] so that it can inherit the columns.
+  //
+  // Note that subgrid is only supported in Firefox as of March 2020, so this is
+  // an enhancement. The hope is that by using it, Chrome and other browsers
+  // will notice in their analytics and take it as a signal that developers want
+  // this supported.
+  //
+  // @link https://caniuse.com/#feat=css-subgrid
+  // @link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Subgrid
+  @supports (grid-template-columns: subgrid) {
+    @include layout-grid;
+    @include layout-max-width;
+
+    // Centre the layout container instead of children.
+    margin-left:  auto;
+    margin-right: auto;
+
+    > * {
+      // Remove centring on children.
+      margin-left:  0;
+      margin-right: 0;
+
+      // The first sidebar is present but the second sidebar is not.
+      @include on-sidebar-beside-content(first) {
+        grid-column-start:  sidebar-first;
+        grid-column-end:    main-content;
+      }
+
+      // The second sidebar is present but the first sidebar is not.
+      @include on-sidebar-beside-content(second) {
+        grid-column-start:  main-content;
+        grid-column-end:    sidebar-second;
+      }
+
+      // Both sidebars are present.
+      @include on-sidebar-beside-content(both) {
+        grid-column-start:  sidebar-first;
+        grid-column-end:    sidebar-second;
+      }
+    }
+  }
 }
 
 main[role='main'] {
-  @include layout-grid;
+  // Use subgrid if supported.
+  @supports (grid-template-columns: subgrid) {
+    // One or both sidebars is/are present.
+    @include on-sidebar-beside-content(any) {
+      display: grid;
+
+      grid-template-columns: subgrid;
+    }
+  }
+
+  @supports not (grid-template-columns: subgrid) {
+    // If subgrid is not supported, create the grid on this.
+    @include layout-grid;
+  }
 
   .layout-content {
     @include layout-grid-area-content;
