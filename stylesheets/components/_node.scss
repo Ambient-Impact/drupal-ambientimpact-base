@@ -2,6 +2,20 @@
 //   Base node partial
 // -----------------------------------------------------------------------------
 
+///
+/// Unpublished node background colour on light colour scheme.
+///
+$node-unpublished-background-colour-on-light: adjust-color(
+  $foreground-colour-on-light, $alpha: -0.93
+) !default;
+
+///
+/// Unpublished node background colour on dark colour scheme.
+///
+$node-unpublished-background-colour-on-dark: adjust-color(
+  $foreground-colour-on-dark, $alpha: -0.93
+) !default;
+
 .node {
   // Spacing between node sections.
   * + &__content,
@@ -13,6 +27,59 @@
   &__links {
     font-weight:    $font-weight-strong;
     text-transform: uppercase;
+  }
+
+  // Unpublished nodes.
+  &--unpublished {
+    position: relative;
+
+    // This places a large, faded 'UNPUBLISHED' behind the node.
+    &::before {
+      content: 'Unpublished';
+
+      display: block;
+
+      position: absolute;
+      top:      0;
+      bottom:   0;
+      left:     0;
+      right:    0;
+      // Layer this below content.
+      z-index: -1;
+
+      overflow: hidden;
+
+      font-size:      400%;
+      text-transform: uppercase;
+      text-align:     center;
+      // Should not break when the text can't fit, i.e. on narrow viewports.
+      // It's preferable to just have it get clipped off where it overflows the
+      // node width.
+      white-space:    nowrap;
+
+      opacity: 0.2;
+
+      @include on-dark-colour-scheme {
+        opacity: 0.3;
+      }
+
+      // Just in case the z-index doesn't work as intended.
+      pointer-events: none;
+    }
+
+    // This overrides the Classy node CSS with our own colour.
+    @include set-colours(
+      $background:            $node-unpublished-background-colour-on-light,
+      $background-reference:  $background-colour-light
+    );
+
+    // Dark mode variant.
+    @include on-dark-colour-scheme {
+      @include set-colours(
+        $background:            $node-unpublished-background-colour-on-dark,
+        $background-reference:  $background-colour-dark
+      );
+    }
   }
 }
 
