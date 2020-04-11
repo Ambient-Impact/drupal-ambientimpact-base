@@ -39,7 +39,12 @@ $list-multicolumn-gap: $list-marker-indent + $general-spacing !default;
 /// Remove list styles, e.g. padding and bullets.
 ///
 @mixin unlisted-list {
-  padding-left: 0 !important;
+  @include root-conditions(('[dir=ltr]'), 'html') {
+    padding-left:   0 !important;
+  }
+  @include root-conditions(('[dir=rtl]'), 'html') {
+    padding-right:  0 !important;
+  }
 
   li {
     // Remove horizontal margins on items in .item-list lists.
