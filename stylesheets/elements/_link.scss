@@ -84,8 +84,9 @@ $image-link-active-filters: contrast(100%) brightness(100%) !default;
 // Link styles. These are limited to layout containers and other content
 // containers so that we don't affect the administrative toolbar and other
 // elements outside of what would be considered the site content itself. By
-// using :link/:visited we can target only valid links, i.e. those that have a
-// valid href.
+// using :any-link we can target only valid links, i.e. those that have a valid
+// href.
+//
 // @see https://css-tricks.com/how-to-disable-links/
 .layout-container,
 .node-preview-container,
@@ -94,7 +95,7 @@ $image-link-active-filters: contrast(100%) brightness(100%) !default;
   // JavaScript, etc.
   @include link-colour-custom-properties;
 
-  :link, :visited {
+  :any-link {
     // Any links.
     &,
     // Currently active menu item links.
@@ -135,7 +136,7 @@ $image-link-active-filters: contrast(100%) brightness(100%) !default;
   .field--type-video-embed-field .field__item,
   .sf-dump,
   .#{$photoswipe-root-class} {
-    :link, :visited {
+    :any-link {
       @if $use-fancy-link-underlines == true {
         @include remove-fancy-link-underlines;
       }
@@ -150,7 +151,7 @@ $image-link-active-filters: contrast(100%) brightness(100%) !default;
 
 // Restore the native underlines to these elements.
 .#{$photoswipe-root-class}__caption__center {
- :link, :visited {
+ :any-link {
    @if $use-fancy-link-underlines == true {
      text-decoration:  underline !important;
    }
@@ -159,10 +160,8 @@ $image-link-active-filters: contrast(100%) brightness(100%) !default;
 
 // PhotoSwipe has a dark background by default, so set link colours for that
 // type of background.
-.#{$photoswipe-root-class} {
-  :link, :visited {
-    @if $use-link-styles == true {
-      @include link($photoswipe-background-colour-theme-dark);
-    }
+.#{$photoswipe-root-class} :any-link {
+  @if $use-link-styles == true {
+    @include link($photoswipe-background-colour-theme-dark);
   }
 }

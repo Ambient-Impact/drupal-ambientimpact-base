@@ -98,12 +98,10 @@ $pager-navigation-item-hitbox-padding:
 
       // This sets the link background to that of the normal link colour, and
       // automatically sets the foreground based on which foreground colour
-      // contrasts best with the new background. Note that we have to target
-      // :visited as well, otherwise these foreground colours would only be
-      // applied to links not yet visited by the user. Also note that we don't
-      // wrap this in .layout-container, since the specificity is high enough
-      // to override the fancy link underlines selectors.
-      :link, :visited {
+      // contrasts best with the new background. Note that we don't wrap this in
+      // .layout-container, since the specificity is high enough to override the
+      // fancy link underlines selectors.
+      :any-link {
         $item-background: get-contrasting-colour(
           $background:          $background-colour,
           $foreground-on-light: $link-normal-colour-on-light,
