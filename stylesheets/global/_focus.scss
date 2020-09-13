@@ -2,7 +2,6 @@
 //   Base focused element partial
 // -----------------------------------------------------------------------------
 
-
 a {
   @include focus-outline($is-link: true);
 }
