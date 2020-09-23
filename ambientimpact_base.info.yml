@@ -27,4 +27,4 @@ libraries:
 libraries-override:
   # Remove the GeshiFilter static CSS as we provide our own with our own
   # classes.
-  geshifilter.geshifilter: false
+  geshifilter/geshifilter: false
