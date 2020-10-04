@@ -139,15 +139,21 @@ function ambientimpact_base_preprocess_block__system_branding_block(
     $variables['front_page_url'] = Url::fromRoute('<front>');
   }
 
-  // Create the 'site_logo_link_attributes' and 'site_name_link_attributes'
-  // variables if they don't exist yet.
   foreach (['site_logo', 'site_name'] as $key) {
+    // Create the 'site_logo_link_attributes' and 'site_name_link_attributes'
+    // variables if they don't exist yet.
     if (
       $variables['content'][$key]['#access'] &&
       !isset($variables[$key . '_link_attributes'])
     ) {
       $variables[$key . '_link_attributes'] = new Attribute();
     }
+
+    // Set the default rel and title attributes. These are defined here rather
+    // than in the Twig template so that they can be altered by sub-themes.
+    $variables[$key . '_link_attributes']
+      ->setAttribute('rel', 'home')
+      ->setAttribute('title', \t('Home'));
   }
 
   /** @var \Drupal\Core\Theme\ThemeManagerInterface */
