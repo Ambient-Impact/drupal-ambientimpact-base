@@ -140,12 +140,13 @@ function ambientimpact_base_preprocess_block__system_branding_block(
   }
 
   foreach (['site_logo', 'site_name'] as $key) {
+    if (!$variables['content'][$key]['#access']) {
+      continue;
+    }
+
     // Create the 'site_logo_link_attributes' and 'site_name_link_attributes'
     // variables if they don't exist yet.
-    if (
-      $variables['content'][$key]['#access'] &&
-      !isset($variables[$key . '_link_attributes'])
-    ) {
+    if (!isset($variables[$key . '_link_attributes'])) {
       $variables[$key . '_link_attributes'] = new Attribute();
     }
 
