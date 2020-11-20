@@ -18,7 +18,6 @@ $code-inline-background-colour-on-dark:
 ///
 $code-inline-padding: 0.1em 0.2em !default;
 
-// Inline <code> border radius.
 ///
 /// Inline <code> element border radius.
 ///
@@ -33,28 +32,30 @@ code {
 
   @include on-dark-colour-scheme {
     @include set-colours(
-      $background:  $code-inline-background-colour-on-dark
+      $background: $code-inline-background-colour-on-dark
     );
   }
 
-  border-radius:    $code-inline-border-radius;
+  border-radius: $code-inline-border-radius;
 
-  // If this wraps to a second or more lines, causes the padding and
-  // border-radius to apply to subsequent lines as well, so it's not cut off
-  // sharply.
+  // If this wraps to a new line, this property makes the horizontal padding and
+  // border radius apply to each line where they break:
   //
   // @see http://callmenick.com/post/multi-line-padded-text-css-box-decoration-break
   box-decoration-break: clone;
 
-  // Make sure this if it's long, which can be a problem with the inline
-  // nature of this element.
-  white-space:      pre-wrap;
+  // This ensures that the element wraps to a new line if it exceeds the
+  // available width. By default, this would not break to a new line, which
+  // could cause it to get clipped off, break out of the layout, or otherwise
+  // just look awkward.
+  white-space: pre-wrap;
 
   // <code> elements inside of links end up with their parent's text crop
   // colour because the text crop is defined on the link while the <code>'s
   // background colour does not affect it, as the background colour is in a
   // child and doesn't cascade upwards.
-  // TO DO: give <code> in links actual underlines and stuff?
+  //
+  // @todo give <code> in links actual underlines and stuff?
   a & {
     @include text-underline-crop(
       custom-property('background-colour')
