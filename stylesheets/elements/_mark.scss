@@ -1,0 +1,25 @@
+// -----------------------------------------------------------------------------
+//   Base <mark> element partial
+// -----------------------------------------------------------------------------
+
+///
+/// <mark> element padding.
+///
+$mark-padding: 0 0.2em 0.15em !default;
+
+///
+/// <mark> element border radius.
+///
+$mark-border-radius: $material-border-radius !default;
+
+mark {
+  padding: $mark-padding;
+
+  border-radius: $mark-border-radius;
+
+  // If this wraps to a new line, this property makes the horizontal padding and
+  // border radius apply to each line where they break:
+  //
+  // @see http://callmenick.com/post/multi-line-padded-text-css-box-decoration-break
+  box-decoration-break: clone;
+}
