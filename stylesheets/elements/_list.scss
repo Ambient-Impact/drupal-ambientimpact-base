@@ -94,6 +94,15 @@ $list-multicolumn-gap: $list-marker-indent + $general-spacing !default;
     $spacing-large: $content-item-vertical-spacing-large
   );
 
+  li {
+    // Nested lists use the list item spacing as anything else looks off.
+    @include vertical-spacing-against-previous(
+      'ol, ul:not(.contextual-links)',
+      $spacing-small: $list-item-spacing,
+      $spacing-large: $list-item-spacing
+    );
+  }
+
   ol,
   ul {
     &:not(.contextual-links):not(.links) {
