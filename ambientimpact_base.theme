@@ -45,6 +45,30 @@ function ambientimpact_base_element_info_alter(array &$info) {
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  *
+ * This adds our 'input__button_element' as a template suggestion if an input
+ * element has both core's '#is_button' variable and a custom
+ * '#use_button_element' variable and both are set to true.
+ *
+ * @see input--button-element.html.twig
+ *   Our custom template that outputs a <button> element rather than an <input>.
+ *   Also documents rationale and links.
+ */
+function ambientimpact_base_theme_suggestions_input_alter(
+  &$suggestions, array $variables
+) {
+  if (
+    isset($variables['element']['#is_button']) &&
+    $variables['element']['#is_button'] === true &&
+    isset($variables['element']['#use_button_element']) &&
+    $variables['element']['#use_button_element'] === true
+  ) {
+    $suggestions[] = 'input__button_element';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
  * This adds our 'node__extended' as a template suggestion so that we can
  * extend node.html.twig without re-implementing the whole template.
  */

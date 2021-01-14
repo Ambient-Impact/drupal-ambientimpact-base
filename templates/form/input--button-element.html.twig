@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override for an 'input' #type form element using a <button>.
+ *
+ * Available variables:
+ *
+ * - attributes: A list of HTML attributes for the input element.
+ *
+ * - children: Optional additional rendered elements.
+ *
+ * @see \template_preprocess_input()
+ *
+ * @see \ambientimpact_base_theme_suggestions_input_alter()
+ *   Adds this template as a suggestion if '#use_button_element' is found on a
+ *   '#type' => 'input' with '#is_button' set to true.
+ *
+ * @see https://www.drupal.org/project/drupal/issues/1671190
+ *   Drupal core issue to switch over to the <button> element.
+ *
+ * @see https://drupal.stackexchange.com/a/226494
+ *   Solution based on this Drupal Answers answer.
+ */
+#}
+<button{{ attributes }}>
+  {{ children }}
+</button>
