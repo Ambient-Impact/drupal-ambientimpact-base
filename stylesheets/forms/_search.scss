@@ -1,0 +1,92 @@
+// -----------------------------------------------------------------------------
+//   Base search page and block partial
+// -----------------------------------------------------------------------------
+
+///
+/// The spacing around the search button.
+///
+/// If using a plain button, this will be used as both padding and negative
+/// margins to compensate, or if using a non-plain button (which assumes a
+/// background), will simply be the margin between this and the search field.
+///
+$search-button-spacing: $general-spacing / 2 !default;
+
+///
+/// The maximum width of the search form container.
+///
+$search-form-container-max-width: 30em !default;
+
+///
+/// Styles for the search form container.
+///
+/// @require {variable} $search-form-container-max-width
+///
+@mixin search-form-container {
+  max-width: $search-form-container-max-width;
+
+  margin: 0 auto;
+}
+
+///
+/// Styles for search form field containers.
+///
+/// This should be applied to the Drupal form field container element that wraps
+/// the input and the label.
+///
+@mixin search-form-field-container {
+  // If we're in a .form--inline, try to make this field as wide as possible.
+  //
+  // @see ./_inline.scss
+  flex-grow: 1;
+
+  input {
+    box-sizing: border-box;
+
+    width: 100%;
+  }
+}
+
+///
+/// Styles for search form submit buttons.
+///
+/// @require {mixin} on-icon-container
+/// @require {mixin} root-conditions
+/// @require {variable} $search-button-spacing
+///
+@mixin search-form-submit {
+  &:not(.plain-button) {
+    @include root-conditions(('[dir=ltr]'), 'html') {
+      margin-left:  $search-button-spacing;
+    }
+    @include root-conditions(('[dir=rtl]'), 'html') {
+      margin-right: $search-button-spacing;
+    }
+  }
+  &.plain-button {
+    margin-top:     -#{$search-button-spacing};
+    margin-bottom:  -#{$search-button-spacing};
+
+    @include root-conditions(('[dir=ltr]'), 'html') {
+      margin-left:  0;
+      margin-right: -#{$search-button-spacing};
+    }
+    @include root-conditions(('[dir=rtl]'), 'html') {
+      margin-left:  -#{$search-button-spacing};
+      margin-right: 0;
+    }
+
+    padding: $search-button-spacing;
+
+    // This is necessary as the global max-width: 100%; causes plain buttons to
+    // get smushed and thus be less than square.
+    max-width: none;
+  }
+
+  // We want to only apply the increased size when the icon has loaded the text
+  // is hidden.
+  @include on-icon-container {
+    &--icon-standalone-loaded {
+      font-size: 150%;
+    }
+  }
+}
