@@ -31,11 +31,15 @@ $material-button-font-family: $font-stack !default;
 
 // All buttons.
 .material-button, .form-submit {
+  @if $material-buttons {
+    // Ripples are applied to both buttons that have the button styling and
+    // plain buttons.
+    @include material-ripple;
+  }
+
   &:not(.plain-button) {
     @if $material-buttons {
       @include material-button;
-
-      @include material-ripple;
 
       font-family:  $material-button-font-family;
       font-weight:  $material-button-font-weight;
