@@ -30,7 +30,7 @@ $material-button-font-weight: $font-weight-strong !default;
 $material-button-font-family: $font-stack !default;
 
 // All buttons.
-.material-button, .form-submit {
+.button, .material-button, .form-submit {
   @if $material-buttons {
     // Ripples are applied to both buttons that have the button styling and
     // plain buttons.
@@ -54,8 +54,10 @@ $material-button-font-family: $font-stack !default;
   cursor: default !important;
 }
 
-// Primary buttons. There may be multiple #edit-submit--<number> buttons, so use
-// an attribute selector.
+// Primary buttons. There may be multiple submit buttons on a page, either as
+// #edit-submit or with a number appended in the form of #edit-submit--*, so we
+// use an attribute selector to catch those.
+.button--primary,
 [id^='edit-submit'] {
   &:not(.plain-button) {
     @if $material-buttons {
@@ -65,6 +67,7 @@ $material-button-font-family: $font-stack !default;
         $background-colour-interact:
           $material-button-background-colour-primary-interact
       );
+
       font-weight: $material-button-font-weight;
 
       // This button has a light current colour, which means the focus
