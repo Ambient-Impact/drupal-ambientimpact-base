@@ -99,3 +99,20 @@ $material-button-font-family: $font-stack !default;
     }
   }
 }
+
+// Class for elements used as a placeholder for buttons, usually a link that
+// gets swapped out by JavaScript as progressive enhancement. This only applies
+// the layout and typography of buttons to avoid layout shifting when the swap
+// occurs, but no other styling that would cause a user to mistake it for a
+// button. This is so as not to contribute to the anti-pattern of links that
+// look like buttons and vice versa:
+//
+// @see https://ambientimpact.com/web/snippets/but-sometimes-links-look-like-buttons-and-buttons-look-like-links
+.button-placeholder {
+  @if $material-buttons {
+    @include material-button-base;
+
+    font-family:  $material-button-font-family;
+    font-weight:  $material-button-font-weight;
+  }
+}
