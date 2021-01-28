@@ -142,7 +142,10 @@ $image-link-active-filters: contrast(100%) brightness(100%) !default;
       }
     }
   }
-  .site-logo {
+  .site-logo,
+  // Button placeholders have padding that causes the fancy underlines to be
+  // significantly misaligned because of the much larger border box.
+  .button-placeholder:any-link {
     @if $use-fancy-link-underlines == true {
       @include remove-fancy-link-underlines;
     }
@@ -150,12 +153,11 @@ $image-link-active-filters: contrast(100%) brightness(100%) !default;
 }
 
 // Restore the native underlines to these elements.
-.#{$photoswipe-root-class}__caption__center {
- :any-link {
-   @if $use-fancy-link-underlines == true {
-     text-decoration:  underline !important;
-   }
- }
+@if $use-fancy-link-underlines == true {
+  .#{$photoswipe-root-class}__caption__center :any-link,
+  .button-placeholder:any-link {
+    text-decoration: underline !important;
+  }
 }
 
 // PhotoSwipe has a dark background by default, so set link colours for that
