@@ -12,6 +12,11 @@
 $search-button-spacing: $general-spacing / 2 !default;
 
 ///
+/// The size of the search button icon.
+///
+$search-button-icon-size: 1.5em !default;
+
+///
 /// The maximum width of the search form container.
 ///
 $search-form-container-max-width: 30em !default;
@@ -53,6 +58,9 @@ $search-form-container-max-width: 30em !default;
 /// @require {mixin} root-conditions
 /// @require {variable} $search-button-spacing
 ///
+/// @todo Can parts of this be split into multiple mixins, so that things like
+///   the margins can be used independently?
+///
 @mixin search-form-submit {
   &:not(.plain-button) {
     @include root-conditions(('[dir=ltr]'), 'html') {
@@ -82,11 +90,11 @@ $search-form-container-max-width: 30em !default;
     max-width: none;
   }
 
-  // We want to only apply the increased size when the icon has loaded the text
-  // is hidden.
+  // We want to only apply the increased size when the icon has loaded and the
+  // text is hidden.
   @include on-icon-container {
     &--icon-standalone-loaded {
-      font-size: 150%;
+      @include set-icon-size($search-button-icon-size);
     }
   }
 }
