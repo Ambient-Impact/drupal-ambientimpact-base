@@ -2,20 +2,6 @@
 //   Base node partial
 // -----------------------------------------------------------------------------
 
-///
-/// Unpublished node background colour on light colour scheme.
-///
-$node-unpublished-background-colour-on-light: adjust-color(
-  $foreground-colour-on-light, $alpha: -0.93
-) !default;
-
-///
-/// Unpublished node background colour on dark colour scheme.
-///
-$node-unpublished-background-colour-on-dark: adjust-color(
-  $foreground-colour-on-dark, $alpha: -0.93
-) !default;
-
 .node {
   // Spacing between node sections.
   * + &__content,
@@ -32,6 +18,9 @@ $node-unpublished-background-colour-on-dark: adjust-color(
   // Unpublished nodes.
   &--unpublished {
     position: relative;
+
+    // This overrides the Classy node CSS background colour.
+    background-color: transparent;
 
     // This places a large, faded 'UNPUBLISHED' behind the node.
     &::before {
@@ -57,28 +46,13 @@ $node-unpublished-background-colour-on-dark: adjust-color(
       // node width.
       white-space:    nowrap;
 
-      opacity: 0.2;
+      opacity: 0.3;
 
-      @include on-dark-colour-scheme {
-        opacity: 0.3;
-      }
+      // Give it a slight blur so it fades into the background a bit.
+      filter: blur(2px);
 
       // Just in case the z-index doesn't work as intended.
       pointer-events: none;
-    }
-
-    // This overrides the Classy node CSS with our own colour.
-    @include set-colours(
-      $background:            $node-unpublished-background-colour-on-light,
-      $background-reference:  $background-colour-light
-    );
-
-    // Dark mode variant.
-    @include on-dark-colour-scheme {
-      @include set-colours(
-        $background:            $node-unpublished-background-colour-on-dark,
-        $background-reference:  $background-colour-dark
-      );
     }
   }
 }
