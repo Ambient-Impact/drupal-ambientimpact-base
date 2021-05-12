@@ -89,7 +89,12 @@ $list-multicolumn-gap: $list-marker-indent + $general-spacing !default;
 // Default list styles.
 @include content-area {
   @include vertical-spacing-against-previous(
-    'ol, ul:not(.contextual-links)',
+    'ol',
+    $spacing-small: $content-item-vertical-spacing-small,
+    $spacing-large: $content-item-vertical-spacing-large
+  );
+  @include vertical-spacing-against-previous(
+    'ul:not(.contextual-links)',
     $spacing-small: $content-item-vertical-spacing-small,
     $spacing-large: $content-item-vertical-spacing-large
   );
@@ -97,7 +102,12 @@ $list-multicolumn-gap: $list-marker-indent + $general-spacing !default;
   li {
     // Nested lists use the list item spacing as anything else looks off.
     @include vertical-spacing-against-previous(
-      'ol, ul:not(.contextual-links)',
+      'ol',
+      $spacing-small: $list-item-spacing,
+      $spacing-large: $list-item-spacing
+    );
+    @include vertical-spacing-against-previous(
+      'ul:not(.contextual-links)',
       $spacing-small: $list-item-spacing,
       $spacing-large: $list-item-spacing
     );
