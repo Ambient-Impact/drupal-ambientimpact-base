@@ -403,6 +403,56 @@ function ambientimpact_base_preprocess_field(&$variables, $hook) {
 }
 
 /**
+ * Prepares variables for responsive image formatter templates.
+ *
+ * Default template: responsive-image-formatter.html.twig.
+ *
+ * This prevents an \InvalidArgumentException in \Drupal\Core\Url::fromUri()
+ * if the 'url' variable is a local absolute path, i.e. starts with '/'. This
+ * seems to occur with our responsive-image-formatter.html.twig, and possibly
+ * other edge cases. If \Drupal\Core\Url::fromUserInput() can parse it, the
+ * resulting Url object will be used. If it throws an error, an empty string
+ * will be used for the URL and the exception will be logged.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *
+ *   - item: An ImageItem object.
+ *
+ *   - item_attributes: An optional associative array of HTML attributes to be
+ *     placed in the img tag.
+ *
+ *   - responsive_image_style_id: A responsive image style.
+ *
+ *   - url: An optional \Drupal\Core\Url object.
+ *
+ * @see \template_preprocess_responsive_image_formatter()
+ */
+function ambientimpact_base_preprocess_responsive_image_formatter(
+  &$variables
+) {
+
+  // Return if there's no URL or it's not a string.
+  if (empty($variables['url']) || !\is_string($variables['url'])) {
+    return;
+  }
+
+  try {
+    $url = Url::fromUserInput($variables['url']);
+
+  } catch (\Exception $exception) {
+
+    \watchdog_exception('ambientimpact_base', $exception);
+
+    $url = '';
+
+  }
+
+  $variables['url'] = $url;
+
+}
+
+/**
  * Prepares variables for single local action link templates.
  *
  * Default template: menu-local-action.html.twig.
