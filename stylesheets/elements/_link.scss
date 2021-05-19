@@ -26,7 +26,7 @@ $use-image-link-styles: true !default;
 /// This excludes <canvas> elements because they often have their hover states
 /// defined elsewhere, on a per-element basis.
 ///
-$image-link-elements: img, picture !default;
+$image-link-elements: img !default;
 
 ///
 /// Image element filters in a link when link is not highlighted/actived.
