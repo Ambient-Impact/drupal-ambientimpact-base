@@ -77,7 +77,10 @@ body, .ui-widget, input, textarea {
 // These selectors get the bold font weight.
 strong,
 .breadcrumb ol,
-.form-item label,
+// Note that we explicitly exclude radio and checkbox labels as this is intended
+// to differentiate the label from text inputs, while radio and checkbox labels
+// don't need that and bold labels can feel a bit much in those cases.
+.form-item:not(.form-type-radio):not(.form-type-checkbox) > label,
 .field .field__label,
 .pager__item,
 .pager__item.is-active,
