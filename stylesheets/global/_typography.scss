@@ -81,6 +81,7 @@ strong,
 // to differentiate the label from text inputs, while radio and checkbox labels
 // don't need that and bold labels can feel a bit much in those cases.
 .form-item:not(.form-type-radio):not(.form-type-checkbox) > label,
+.form-composite > legend,
 .field .field__label,
 .pager__item,
 .pager__item.is-active,
