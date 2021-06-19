@@ -1,0 +1,84 @@
+// -----------------------------------------------------------------------------
+//   Base table partial
+// -----------------------------------------------------------------------------
+
+///
+/// <table> element background colour on light backgrounds.
+///
+$table-background-colour-on-light:
+  mix($foreground-colour-on-light, $background-colour-light, 10%) !default;
+
+///
+/// <thead> element background colour on light backgrounds.
+///
+$table-header-background-colour-on-light: hsla(0, 0, 0, 0.05) !default;
+
+///
+/// <thead> element background colour on dark backgrounds.
+///
+$table-header-background-colour-on-dark: hsla(0, 0, 100%, 0.05) !default;
+
+///
+/// <table> element background colour on dark backgrounds.
+///
+$table-background-colour-on-dark:
+  mix($foreground-colour-on-dark, $background-colour-dark, 10%) !default;
+
+///
+/// <table> element border radius.
+///
+$table-border-radius: $material-border-radius !default;
+
+table {
+  @include set-colours(
+    $background: $table-background-colour-on-light
+  );
+
+  @include on-dark-colour-scheme {
+    @include set-colours(
+      $background: $table-background-colour-on-dark
+    );
+  }
+
+  border-radius: $table-border-radius;
+}
+
+thead {
+  @include set-colours(
+    $background:            $table-header-background-colour-on-light,
+    $background-reference:  $table-background-colour-on-light
+  );
+
+  @include on-dark-colour-scheme {
+    @include set-colours(
+      $background:            $table-header-background-colour-on-dark,
+      $background-reference:  $table-background-colour-on-dark
+    );
+  }
+}
+
+td, th {
+  --table-cell-padding-vertical:        0.3em;
+  --table-cell-padding-horizontal:      0.4em;
+  --table-cell-padding-horizontal-edge: 0.7em;
+
+  padding:
+    var(--table-cell-padding-vertical) var(--table-cell-padding-horizontal);
+
+  @include root-conditions(('[dir=ltr]'), 'html') {
+    &:first-child {
+      padding-left: var(--table-cell-padding-horizontal-edge);
+    }
+    &:last-child {
+      padding-right: var(--table-cell-padding-horizontal-edge);
+    }
+  }
+  @include root-conditions(('[dir=rtl]'), 'html') {
+    &:first-child {
+      padding-right: var(--table-cell-padding-horizontal-edge);
+    }
+    &:last-child {
+      padding-left: var(--table-cell-padding-horizontal-edge);
+    }
+  }
+}
