@@ -30,6 +30,8 @@ $table-background-colour-on-dark:
 $table-border-radius: $material-border-radius !default;
 
 :root {
+  --table-border-radius: #{$table-border-radius};
+
   --table-cell-padding-vertical:        0.3em;
   --table-cell-padding-horizontal:      0.4em;
   --table-cell-padding-horizontal-edge: 0.7em;
@@ -46,7 +48,7 @@ table {
     );
   }
 
-  border-radius: $table-border-radius;
+  border-radius: var(--table-border-radius);
 }
 
 thead {
