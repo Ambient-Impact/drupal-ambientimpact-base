@@ -29,6 +29,12 @@ $table-background-colour-on-dark:
 ///
 $table-border-radius: $material-border-radius !default;
 
+:root {
+  --table-cell-padding-vertical:        0.3em;
+  --table-cell-padding-horizontal:      0.4em;
+  --table-cell-padding-horizontal-edge: 0.7em;
+}
+
 table {
   @include set-colours(
     $background: $table-background-colour-on-light
@@ -58,10 +64,6 @@ thead {
 }
 
 td, th {
-  --table-cell-padding-vertical:        0.3em;
-  --table-cell-padding-horizontal:      0.4em;
-  --table-cell-padding-horizontal-edge: 0.7em;
-
   padding:
     var(--table-cell-padding-vertical) var(--table-cell-padding-horizontal);
 
