@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------------
+//   Base select form element partial
+// -----------------------------------------------------------------------------
+
+select {
+  // This fixes the normalize.css v3.0.3 default of 'color: inherit;' causing
+  // Firefox's select to inherit a light text colour in dark mode, but because
+  // Firefox 90.0 does not yet have dark mode user agent styles for form
+  // elements, a light background colour is used by default by the browser and
+  // so the text is unreadable. Newer versions of normalize.css have removed
+  // this, so this can be removed when Drupal core upgrades to a newer version
+  // and/or Firefox adds dark mode form element user agent styles.
+  //
+  // Chrome has dark mode form element user agent styles and so does not have
+  // this issue.
+  //
+  // @link https://bugzilla.mozilla.org/show_bug.cgi?id=1539252
+  color: initial;
+}
