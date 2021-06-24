@@ -38,6 +38,30 @@ $table-border-radius: $material-border-radius !default;
 }
 
 table {
+
+  // CSS-only responsive tables loosely based on this CodePen by David Bushell.
+  //
+  // @link https://codepen.io/dbushell/pen/wGaamR
+
+  // If max-content is not supported as a max-width value, display as
+  // inline-block as displaying as a table does not allow overflow scrolling.
+  // Using inline-block allows the table to mimic max-content and not be wider
+  // than it needs to be.
+  display: inline-block;
+
+  // If the browser supports using max-content as a max-width value, display
+  // as block to avoid using the inline box model.
+  @supports (max-width: max-content) {
+    display: block;
+  }
+
+  // Scroll horizontally rather than overflowing the container.
+  overflow-x: auto;
+
+  // If the browser supports max-content as a value, set the max-width so that
+  // the table may be centred horizontally if needed.
+  max-width: max-content;
+
   @include set-colours(
     $background: $table-background-colour-on-light
   );
