@@ -25,16 +25,47 @@ $table-background-colour-on-dark:
   mix($foreground-colour-on-dark, $background-colour-dark, 10%) !default;
 
 ///
+/// Table cell border width.
+///
+$table-cell-border-width: 2px !default;
+
+///
+/// Table cell border style.
+///
+$table-cell-border-style: solid !default;
+
+///
+/// Table cell border colour on light backgrounds.
+///
+$table-cell-border-colour-on-light: hsla(0, 0, 100%, 0.6) !default;
+
+///
+/// Table cell border colour on dark backgrounds.
+///
+$table-cell-border-colour-on-dark: hsla(0, 0, 100%, 0.1) !default;
+
+///
 /// <table> element border radius.
 ///
 $table-border-radius: $material-border-radius !default;
 
 :root {
-  --table-border-radius: #{$table-border-radius};
-
   --table-cell-padding-vertical:        0.3em;
-  --table-cell-padding-horizontal:      0.4em;
-  --table-cell-padding-horizontal-edge: 0.7em;
+  --table-cell-padding-horizontal:      0.7em;
+  // If you don't use borders between cells, this custom property can be set to
+  // a slightly larger value to increase the left and right padding for cells at
+  // the left and right edges respectively.
+  --table-cell-padding-horizontal-edge: var(--table-cell-padding-horizontal);
+
+  --table-cell-border-width:            #{$table-cell-border-width};
+  --table-cell-border-style:            #{$table-cell-border-style};
+  --table-cell-border-colour:           #{$table-cell-border-colour-on-light};
+
+  @include on-dark-colour-scheme {
+    --table-cell-border-colour:        #{$table-cell-border-colour-on-dark};
+  }
+
+  --table-border-radius: #{$table-border-radius};
 }
 
 table {
@@ -97,24 +128,49 @@ thead {
   }
 }
 
+thead + tbody tr:first-child,
+tr + tr {
+  border-top:
+    var(--table-cell-border-width)
+    var(--table-cell-border-style)
+    var(--table-cell-border-colour);
+}
+
 td, th {
   padding:
     var(--table-cell-padding-vertical) var(--table-cell-padding-horizontal);
 
+  border-left:
+    var(--table-cell-border-width)
+    var(--table-cell-border-style)
+    var(--table-cell-border-colour);
+  border-right:
+    var(--table-cell-border-width)
+    var(--table-cell-border-style)
+    var(--table-cell-border-colour);
+
   @include root-conditions(('[dir=ltr]'), 'html') {
     &:first-child {
       padding-left: var(--table-cell-padding-horizontal-edge);
+
+      border-left-width: 0;
     }
     &:last-child {
       padding-right: var(--table-cell-padding-horizontal-edge);
+
+      border-right-width: 0;
     }
   }
   @include root-conditions(('[dir=rtl]'), 'html') {
     &:first-child {
       padding-right: var(--table-cell-padding-horizontal-edge);
+
+      border-right-width: 0;
     }
     &:last-child {
       padding-left: var(--table-cell-padding-horizontal-edge);
+
+      border-left-width: 0;
     }
   }
 }
