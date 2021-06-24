@@ -62,6 +62,14 @@ table {
   // the table may be centred horizontally if needed.
   max-width: max-content;
 
+  @at-root {
+    @include vertical-spacing-against-previous(
+      &,
+      $spacing-small: $content-item-vertical-spacing-small,
+      $spacing-large: $content-item-vertical-spacing-large
+    );
+  }
+
   @include set-colours(
     $background: $table-background-colour-on-light
   );
