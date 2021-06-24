@@ -82,6 +82,10 @@ table {
 
   // If the browser supports using max-content as a max-width value, display
   // as block to avoid using the inline box model.
+  //
+  // @link https://caniuse.com/mdn-css_properties_width_max-content
+  //
+  // @link https://developer.mozilla.org/en-US/docs/Web/CSS/max-content
   @supports (max-width: max-content) {
     display: block;
   }
