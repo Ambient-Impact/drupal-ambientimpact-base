@@ -2,35 +2,30 @@
 //   Base form actions container partial
 // -----------------------------------------------------------------------------
 
+// This lays out form actions buttons as wrapping flexbox aligned to the right.
 .form-actions {
-  // Use grid for simple gaps between buttons so that they don't require margin
-  // trickery.
-  @include use-grid {
-    display:  grid;
+  display: flex;
 
-    grid-gap:           $general-spacing;
-    grid-auto-flow:     column;
-    // @see https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns
-    grid-auto-columns:  max-content;
+  flex-wrap: wrap;
 
-    // This right-aligns the buttons in LTR text direction as most people are
-    // right-handed. It does nothing on RTL, as this would left-align the
-    // buttons.
-    // @todo Can this be made configurable via some sort of JavaScript control
-    // that swaps to left-aligned? One idea is to have a small button in on the
-    // opposite side with an arrow icon pointing in that direction and a tooltip
-    // that indicates it would change the alignment.
-    @include root-conditions(('[dir=ltr]'), 'html') {
-      justify-content:    end;
-    }
+  gap: $general-spacing;
 
-    // If the parent of this actions container is flex or grid, override the
-    // default align-items: stretch, as that'll cause buttons to potentially
-    // enlarge vertically.
-    align-items: center;
+  // This right-aligns the buttons in LTR text direction as most people are
+  // right-handed. It does nothing on RTL, as this would left-align the buttons.
+  //
+  // @todo Can this be made configurable via some sort of JavaScript control
+  //   that swaps to left-aligned? One idea is to have a small button in on the
+  //   opposite side with an arrow icon pointing in that direction and a tooltip
+  //   that indicates it would change the alignment.
+  @include root-conditions(('[dir=ltr]'), 'html') {
+    justify-content: end;
+  }
 
-    .button {
-      margin: 0;
-    }
+  // Override the default align-items: stretch, as that'll cause buttons to
+  // potentially enlarge vertically.
+  align-items: center;
+
+  .button {
+    margin: 0;
   }
 }
