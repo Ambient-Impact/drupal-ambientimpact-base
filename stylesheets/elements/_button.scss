@@ -115,6 +115,13 @@ $material-button-font-family: $font-stack !default;
   @if $material-buttons {
     @include material-button-base;
 
+    // Chromium and Firefox default to inline-block for buttons, so apply that
+    // to placeholders. Note that we have to exclude hidden elements as this
+    // could override that and cause unexpected results.
+    &:not([hidden]) {
+      display: inline-block;
+    }
+
     font-family:  $material-button-font-family;
     font-weight:  $material-button-font-weight;
   }
