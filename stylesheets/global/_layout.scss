@@ -71,10 +71,14 @@ $layout-with-one-sidebar-max-width: $layout-no-sidebars-max-width +
 ///
 /// The content column width, as a grid-template-columns value.
 ///
+/// Note that this needs to use a minmax() so that any tables in the content
+/// column with data-table-column-width attributes (which set a min-width) do
+/// not break the layout. No idea why this works.
+///
 /// @link https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
 ///   Lists valid values.
 ///
-$layout-content-column-width: 1fr !default;
+$layout-content-column-width: minmax(20em, 1fr) !default;
 
 ///
 /// The sidebar column widths, as a grid-template-columns value.
