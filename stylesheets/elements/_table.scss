@@ -177,4 +177,17 @@ td, th {
       border-left-width: 0;
     }
   }
+
+  // These data attributes can be applied to ensure a given column does not get
+  // too narrow where text can be hard to read, e.g. on narrow screens/mobile.
+  &[data-table-column-width='long'] {
+    min-width: 15em;
+  }
+  &[data-table-column-width='medium'] {
+    min-width: 10em;
+  }
+  &[data-table-column-width='small'] {
+    min-width: 5em;
+  }
+
 }
