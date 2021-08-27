@@ -13,16 +13,6 @@
 
       font-weight: $font-weight-strong;
 
-      // Active links should not have a background colour, both when no
-      // iteraction is occuring or when it is.
-      &.is-active {
-        background-color: transparent;
-
-        @include link-hover {
-          background-color: transparent;
-        }
-      }
-
       @include material-ripple;
 
       // This overrides Classy's :focus background-color that comes through if
@@ -30,6 +20,22 @@
       // white, which is a bit jarring on the dark colour scheme.
       &.disable-default-active-state.pointer-focus-hide:focus {
         background-color: transparent;
+      }
+    }
+
+    // Active links should not have a background colour, both when no
+    // iteraction is occuring or when it is.
+    &.is-active a {
+      background-color: transparent;
+
+      @include link-hover {
+        background-color: transparent;
+      }
+
+      &::after {
+        content: '';
+
+        @include material-tabs-item-current;
       }
     }
   }
