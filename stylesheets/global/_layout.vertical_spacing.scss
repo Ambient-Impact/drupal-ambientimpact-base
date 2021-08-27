@@ -37,7 +37,7 @@ $vertical-spacing-breakpoint: '>=30em' !default;
 ///   Used in this mixin.
 ///
 $vertical-spacing-ignore-elements: '.hidden', '.visually-hidden',
-  '[data-contextual-id]', 'script', 'style' !default;
+  '[hidden]', '[data-contextual-id]', 'script', 'style' !default;
 
 ///
 /// Apply generic vertical spacing with a breakpoint.
