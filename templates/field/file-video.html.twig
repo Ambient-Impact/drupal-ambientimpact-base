@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Theme override to display a file entity as a <video> element.
+ *
+ * This overrides the Classy template to add the 'tracks' variable.
+ *
+ * Available variables:
+ *
+ * - attributes: An array of HTML attributes, intended to be added to the
+ *   <video> element.
+ *
+ * - files: An array of files to be added as sources for the <video> element.
+ *   Each element is an array with the following elements:
+ *
+ *   - file: The full file object.
+ *
+ *   - source_attributes: An array of HTML attributes for to be added to the
+ *     <source> element.
+ *
+ * - tracks: One or more track elements for captions, subtitles, or metadata.
+ *
+ * @ingroup themeable
+ *
+ * @see https://www.drupal.org/project/drupal/issues/3002770
+ *   Drupal core issue to add transcript/caption/subtitle support for local
+ *   audio and video media.
+ *
+ * @see \Drupal\ambientimpact_media\EventSubscriber\Theme\ThemeRegistryAlterTracksVariableEventSubscriber
+ *   Adds the 'tracks' variable.
+ */
+#}
+{{ attach_library('classy/file') }}
+<video {{ attributes }}>
+  {% for file in files %}
+    <source {{ file.source_attributes }} />
+  {% endfor %}
+
+  {% if tracks %}
+    {{ tracks }}
+  {% endif %}
+</video>
