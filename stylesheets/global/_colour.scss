@@ -2,6 +2,15 @@
 //   Base colour partial
 // -----------------------------------------------------------------------------
 
+///
+/// The accent colour, primarily used for the accent-color property.
+///
+/// This defaults to the Material primary colour.
+///
+/// @see https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
+///
+$accent-colour: $material-primary-colour !default;
+
 // Apply colours to both <html> and <body> as <body> may have margins which
 // would cause the default white background of <html> to show through.
 html, body {
@@ -10,4 +19,12 @@ html, body {
   @include on-dark-colour-scheme {
     @include set-colours($background: $background-colour-dark);
   }
+
+  // This sets the global accent colour to the Material primary colour. This
+  // currently affects browser-rendered checkboxes and radio buttons in Firefox
+  // and Chrome but is placed here in case it later applies to other elements as
+  // well.
+  //
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
+  accent-color: $accent-colour;
 }
