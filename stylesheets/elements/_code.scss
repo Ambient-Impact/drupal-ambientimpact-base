@@ -50,15 +50,6 @@ code {
   // just look awkward.
   white-space: pre-wrap;
 
-  // <code> elements inside of links end up with their parent's text crop
-  // colour because the text crop is defined on the link while the <code>'s
-  // background colour does not affect it, as the background colour is in a
-  // child and doesn't cascade upwards.
-  //
-  // @todo give <code> in links actual underlines and stuff?
-  a & {
-    @include text-underline-crop(
-      custom-property('background-colour')
-    );
   }
+
 }

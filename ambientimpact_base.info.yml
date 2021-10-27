@@ -20,7 +20,6 @@ regions:
 
 libraries:
   - ambientimpact_ux/component.abbr
-  - ambientimpact_ux/component.link.underline
   - ambientimpact_ux/component.pointer_focus_hide
 
 libraries-override:

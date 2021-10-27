@@ -12,14 +12,6 @@ $media-field-spacing: $layout-gutter !default;
 
 .field--type-image,
 .field--type-video-embed-field {
-  // Remove fancy link underlines on links not inside a <figcaption>.
-  @if $use-fancy-link-underlines == true {
-    .field__item > :link,
-    figure > :link,
-    figure > :not(figcaption) :link {
-      @include remove-fancy-link-underlines;
-    }
-  }
 
   img {
     // Ensure images are always the full width of the field item.

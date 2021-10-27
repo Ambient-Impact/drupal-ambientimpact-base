@@ -127,11 +127,6 @@ $pager-navigation-item-hitbox-padding:
           $active-on-dark:  $item-foreground
         );
 
-        @if $use-fancy-link-underlines == true {
-          @include remove-fancy-link-underlines;
-        }
-
-        text-decoration: none;
       }
     }
 
