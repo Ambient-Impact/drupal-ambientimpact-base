@@ -50,6 +50,9 @@ code {
   // just look awkward.
   white-space: pre-wrap;
 
+  // Inherit the link colour if inside of a link.
+  :any-link & {
+    color: inherit;
   }
 
 }
