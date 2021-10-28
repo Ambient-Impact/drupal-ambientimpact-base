@@ -2,6 +2,8 @@
 //   Base form item partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:math';
+
 .form-checkboxes,
 .form-radios {
   .form-item {
@@ -11,7 +13,7 @@
 
   @include vertical-spacing-against-previous(
     '.form-item',
-    $spacing-small: $content-item-vertical-spacing-small / 2,
-    $spacing-large: $content-item-vertical-spacing-small / 2
+    $spacing-small: math.div($content-item-vertical-spacing-small, 2),
+    $spacing-large: math.div($content-item-vertical-spacing-small, 2)
   );
 }

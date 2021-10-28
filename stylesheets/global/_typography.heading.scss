@@ -2,6 +2,9 @@
 //   Base typography heading partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:list';
+@use 'sass:math';
+
 ///
 /// Heading selector.
 ///
@@ -72,7 +75,7 @@ $heading-font-weight: $font-weight-strong !default;
   }
 
   @for $i from $from through $to {
-    $selector: append($selector, 'h' + $i, comma);
+    $selector: list.append($selector, 'h' + $i, comma);
   }
 
   #{$selector} {
@@ -97,20 +100,20 @@ $heading-font-weight: $font-weight-strong !default;
 @mixin heading-font-size($level) {
   // Use the static heading sizes by default in case the browser doesn't
   // understand calc() or responsive type is disabled.
-  font-size: nth($heading-font-sizes, $level);
+  font-size: list.nth($heading-font-sizes, $level);
 
   @if $use-responsive-type == true {
     @include responsive-type(
       font-size,
       $font-scale-width-min,
       $font-scale-width-max,
-      exponent(
+      math.pow(
         $font-scale-min,
-        nth($heading-font-exponents, $level)
+        list.nth($heading-font-exponents, $level)
       ) * to-number('1' + $heading-font-scale-unit),
-      exponent(
+      math.pow(
         $font-scale-max,
-        nth($heading-font-exponents, $level)
+        list.nth($heading-font-exponents, $level)
       ) * to-number('1' + $heading-font-scale-unit)
     );
   }

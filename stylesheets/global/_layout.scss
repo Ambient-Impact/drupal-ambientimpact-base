@@ -2,6 +2,8 @@
 //   Base layout partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:math';
+
 // This handles the basic layout of the page, including horizontal and vertical
 // gutters for the layout container, and lays out any sidebars next to the
 // content column if one or both sidebars are present, if the viewport width
@@ -16,7 +18,7 @@
 ///
 /// This is the spacing added on the left and right of the layout container.
 ///
-$layout-gutter: $general-spacing / 2 !default;
+$layout-gutter: math.div($general-spacing, 2) !default;
 
 ///
 /// The space between the top of the viewport and the layout container.
@@ -64,9 +66,9 @@ $layout-with-one-sidebar-min-width: 38em !default;
 /// This is calculated as the midway point between $layout-no-sidebars-max-width
 /// and $layout-with-both-sidebars-max-width.
 ///
-$layout-with-one-sidebar-max-width: $layout-no-sidebars-max-width +
-  ($layout-with-both-sidebars-max-width - $layout-no-sidebars-max-width) / 2
-  !default;
+$layout-with-one-sidebar-max-width: $layout-no-sidebars-max-width + math.div(
+  $layout-with-both-sidebars-max-width - $layout-no-sidebars-max-width, 2
+) !default;
 
 ///
 /// The content column width, as a grid-template-columns value.

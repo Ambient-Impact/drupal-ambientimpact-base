@@ -2,27 +2,31 @@
 //   Base table partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:color';
+
 ///
 /// <table> element background colour on light backgrounds.
 ///
-$table-background-colour-on-light:
-  mix($foreground-colour-on-light, $background-colour-light, 10%) !default;
+$table-background-colour-on-light: color.mix(
+  $foreground-colour-on-light, $background-colour-light, 10%
+) !default;
 
 ///
 /// <thead> element background colour on light backgrounds.
 ///
-$table-header-background-colour-on-light: hsla(0, 0, 0, 0.05) !default;
+$table-header-background-colour-on-light: hsla(0, 0%, 0%, 0.05) !default;
 
 ///
 /// <thead> element background colour on dark backgrounds.
 ///
-$table-header-background-colour-on-dark: hsla(0, 0, 100%, 0.05) !default;
+$table-header-background-colour-on-dark: hsla(0, 0%, 100%, 0.05) !default;
 
 ///
 /// <table> element background colour on dark backgrounds.
 ///
-$table-background-colour-on-dark:
-  mix($foreground-colour-on-dark, $background-colour-dark, 10%) !default;
+$table-background-colour-on-dark: color.mix(
+  $foreground-colour-on-dark, $background-colour-dark, 10%
+) !default;
 
 ///
 /// Table cell border width.
@@ -37,12 +41,12 @@ $table-cell-border-style: solid !default;
 ///
 /// Table cell border colour on light backgrounds.
 ///
-$table-cell-border-colour-on-light: hsla(0, 0, 100%, 0.6) !default;
+$table-cell-border-colour-on-light: hsla(0, 0%, 100%, 0.6) !default;
 
 ///
 /// Table cell border colour on dark backgrounds.
 ///
-$table-cell-border-colour-on-dark: hsla(0, 0, 100%, 0.1) !default;
+$table-cell-border-colour-on-dark: hsla(0, 0%, 100%, 0.1) !default;
 
 ///
 /// <table> element border radius.

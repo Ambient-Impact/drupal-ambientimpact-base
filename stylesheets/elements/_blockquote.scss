@@ -5,6 +5,8 @@
 // This adds a decorative quotation mark and vertical line on the left or right
 // of a <blockquote> on LTR or RTL language direction, respectively.
 
+@use 'sass:math';
+
 ///
 /// <blockquote> line width. This should be divisible by 2.
 ///
@@ -100,8 +102,8 @@ blockquote {
 
   // Decorative vertical line.
   &::after {
-    $line-indent: $blockquote-quotation-mark-size / 2;
-    $line-adjust: $blockquote-line-width / 2 * -1;
+    $line-indent: math.div($blockquote-quotation-mark-size, 2);
+    $line-adjust: math.div($blockquote-line-width, 2 * -1);
 
     @include root-conditions(('[dir=ltr]'), 'html') {
       left:         $line-indent;
