@@ -104,7 +104,7 @@ blockquote {
   // Decorative vertical line.
   &::after {
     $line-indent: math.div($blockquote-quotation-mark-size, 2);
-    $line-adjust: math.div($blockquote-line-width, 2 * -1);
+    $line-adjust: math.div($blockquote-line-width, 2) * -1;
 
     @include root-conditions(('[dir=ltr]'), 'html') {
       left:         $line-indent;
