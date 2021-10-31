@@ -2,6 +2,8 @@
 //   Base Drupal pager partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:list';
+
 ///
 /// The pager font-size.
 ///
@@ -25,8 +27,9 @@ $pager-numerical-item-padding: 0.4em 0.8em !default;
 /// the 'First', 'Previous', 'Next', or 'Last' items - to give them a larger
 /// click/tap area.
 ///
-$pager-numerical-item-hitbox-padding:
-  0.2em nth($pager-numerical-item-padding, 2) !default;
+$pager-numerical-item-hitbox-padding: 0.2em list.nth(
+  $pager-numerical-item-padding, 2
+) !default;
 
 ///
 /// Pager navigation item padding.
@@ -34,8 +37,9 @@ $pager-numerical-item-hitbox-padding:
 /// This is applied to all non-numerical pager item links - i.e. the 'First',
 /// 'Previous', 'Next', and 'Last' items.
 ///
-$pager-navigation-item-padding:
-  nth($pager-numerical-item-padding, 1) 0.5em !default;
+$pager-navigation-item-padding: list.nth(
+  $pager-numerical-item-padding, 1
+) 0.5em !default;
 
 ///
 /// Pager navigation item hitbox padding.
@@ -44,8 +48,8 @@ $pager-navigation-item-padding:
 /// 'Previous', 'Next', and 'Last' items - to give them a larger click/tap area.
 ///
 $pager-navigation-item-hitbox-padding:
-  nth($pager-numerical-item-hitbox-padding, 1)
-  nth($pager-navigation-item-padding, 2)
+  list.nth($pager-numerical-item-hitbox-padding, 1)
+  list.nth($pager-navigation-item-padding, 2)
   !default;
 
 @at-root {
@@ -149,10 +153,10 @@ $pager-navigation-item-hitbox-padding:
 
         position: absolute;
 
-        top:    -#{nth($pager-numerical-item-hitbox-padding, 1)};
-        bottom: -#{nth($pager-numerical-item-hitbox-padding, 1)};
-        left:   -#{nth($pager-numerical-item-hitbox-padding, 2)};
-        right:  -#{nth($pager-numerical-item-hitbox-padding, 2)};
+        top:    -#{list.nth($pager-numerical-item-hitbox-padding, 1)};
+        bottom: -#{list.nth($pager-numerical-item-hitbox-padding, 1)};
+        left:   -#{list.nth($pager-numerical-item-hitbox-padding, 2)};
+        right:  -#{list.nth($pager-numerical-item-hitbox-padding, 2)};
       }
     }
 
@@ -169,10 +173,10 @@ $pager-navigation-item-hitbox-padding:
       :link {
         // Hitbox.
         &::before {
-          top:    -#{nth($pager-navigation-item-hitbox-padding, 1)};
-          bottom: -#{nth($pager-navigation-item-hitbox-padding, 1)};
-          left:   -#{nth($pager-navigation-item-hitbox-padding, 2)};
-          right:  -#{nth($pager-navigation-item-hitbox-padding, 2)};
+          top:    -#{list.nth($pager-navigation-item-hitbox-padding, 1)};
+          bottom: -#{list.nth($pager-navigation-item-hitbox-padding, 1)};
+          left:   -#{list.nth($pager-navigation-item-hitbox-padding, 2)};
+          right:  -#{list.nth($pager-navigation-item-hitbox-padding, 2)};
         }
       }
     }

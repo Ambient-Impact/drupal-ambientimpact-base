@@ -2,6 +2,7 @@
 //   Base code element partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:color';
 ///
 /// Inline <code> element background colour on light backgrounds.
 ///
@@ -10,8 +11,9 @@ $code-inline-background-colour-on-light: $background-colour-dark !default;
 ///
 /// Inline <code> element background colour on dark backgrounds.
 ///
-$code-inline-background-colour-on-dark:
-  mix($foreground-colour-on-dark, $background-colour-dark, 10%) !default;
+$code-inline-background-colour-on-dark: color.mix(
+  $foreground-colour-on-dark, $background-colour-dark, 10%
+) !default;
 
 ///
 /// Inline <code> element padding.

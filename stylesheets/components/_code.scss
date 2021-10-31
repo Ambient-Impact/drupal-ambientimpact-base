@@ -2,6 +2,8 @@
 //   Base code block partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:color';
+
 ///
 /// Highlighted code background colour on light backgrounds.
 ///
@@ -11,19 +13,19 @@ $code-highlighted-background-colour-on-light: $background-colour-dark !default;
 /// Highlighted code background colour on dark backgrounds.
 ///
 $code-highlighted-background-colour-on-dark:
-  mix($foreground-colour-on-dark, $background-colour-dark, 10%) !default;
+  color.mix($foreground-colour-on-dark, $background-colour-dark, 10%) !default;
 
 ///
 /// Highlighted code header background colour on light backgrounds.
 ///
 $code-highlighted-header-background-colour-on-light:
-  mix($foreground-colour-on-dark, $background-colour-dark, 30%) !default;
+  color.mix($foreground-colour-on-dark, $background-colour-dark, 30%) !default;
 
 ///
 /// Highlighted code header background colour on dark backgrounds.
 ///
 $code-highlighted-header-background-colour-on-dark:
-  mix($foreground-colour-on-dark, $background-colour-dark, 20%) !default;
+  color.mix($foreground-colour-on-dark, $background-colour-dark, 20%) !default;
 
 ///
 /// Highlighted code title padding.

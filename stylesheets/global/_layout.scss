@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 @use 'sass:math';
+@use 'sass:meta';
 
 // This handles the basic layout of the page, including horizontal and vertical
 // gutters for the layout container, and lays out any sidebars next to the
@@ -352,13 +353,13 @@ html {
 .layout-container {
   @include layout-container-base-horizontal;
 
-  @if type-of($layout-bottom-spacing) == 'number' {
+  @if meta.type-of($layout-bottom-spacing) == 'number' {
     padding-bottom: $layout-bottom-spacing;
   }
 
   box-sizing:   border-box;
 
-  @if type-of($layout-top-spacing) == 'number' {
+  @if meta.type-of($layout-top-spacing) == 'number' {
     // This is not applied to the <body>, as the Toolbar uses that to offset the
     // viewport.
     margin-top:   $layout-top-spacing;

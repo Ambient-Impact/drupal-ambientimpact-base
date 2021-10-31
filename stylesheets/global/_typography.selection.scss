@@ -2,16 +2,21 @@
 //   Base typography selection partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:color';
+
 ///
 /// Selected text background colour.
 ///
-$text-selection-background-colour: lighten($material-primary-colour, 10%);
+$text-selection-background-colour: color.adjust(
+  $material-primary-colour, $lightness: 10%
+);
 
 ///
 /// Selected text background colour when the viewport is inactive/blurred.
 ///
-$text-inactive-selection-background-colour:
-  desaturate($text-selection-background-colour, 60%);
+$text-inactive-selection-background-colour: color.adjust(
+  $text-selection-background-colour, $saturation: -60%
+);
 
 // Set default selection colours.
 * {

@@ -2,6 +2,8 @@
 //   Base button partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:color';
+
 ///
 /// Whether to use Material Design-style buttons.
 ///
@@ -17,7 +19,7 @@ $material-button-background-colour-primary:
 /// The background colour for primary Material buttons when hovered/focused.
 ///
 $material-button-background-colour-primary-interact:
-  lighten($material-primary-colour, 8%) !default;
+  color.adjust($material-primary-colour, $lightness: 8%) !default;
 
 ///
 /// Material button font weight.

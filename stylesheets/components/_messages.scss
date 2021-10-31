@@ -2,6 +2,8 @@
 //   Base Drupal messages partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:color';
+
 // This defines and sets the Classy status, warning, and error message colours
 // using our colour system, which also includes dark variants.
 
@@ -37,38 +39,44 @@ $messages-status-card-colour-on-light: $messages-status-base-colour !default;
 ///
 /// Status message border colour on light backgrounds.
 ///
-$messages-status-border-colour-on-light:
-  mix($messages-status-base-colour, $background-colour-light, 40%) !default;
+$messages-status-border-colour-on-light: color.mix(
+  $messages-status-base-colour, $background-colour-light, 40%
+) !default;
 
 ///
 /// Status message border colour on dark backgrounds.
 ///
-$messages-status-border-colour-on-dark:
-  mix($messages-status-base-colour, $background-colour-dark, 40%) !default;
+$messages-status-border-colour-on-dark: color.mix(
+  $messages-status-base-colour, $background-colour-dark, 40%
+) !default;
 
 ///
 /// Status message foreground colour on light backgrounds.
 ///
-$messages-status-foreground-colour-on-light:
-  mix($messages-status-base-colour, $foreground-colour-on-light, 40%) !default;
+$messages-status-foreground-colour-on-light: color.mix(
+  $messages-status-base-colour, $foreground-colour-on-light, 40%
+) !default;
 
 ///
 /// Status message foreground colour on dark backgrounds.
 ///
-$messages-status-foreground-colour-on-dark:
-  mix($messages-status-base-colour, $foreground-colour-on-dark, 40%) !default;
+$messages-status-foreground-colour-on-dark: color.mix(
+  $messages-status-base-colour, $foreground-colour-on-dark, 40%
+) !default;
 
 ///
 /// Status message background colour on light backgrounds.
 ///
-$messages-status-background-colour-on-light:
-  mix($messages-status-base-colour, $background-colour-light, 8%) !default;
+$messages-status-background-colour-on-light: color.mix(
+  $messages-status-base-colour, $background-colour-light, 8%
+) !default;
 
 ///
 /// Status message background colour on dark backgrounds.
 ///
-$messages-status-background-colour-on-dark:
-  mix($messages-status-base-colour, $background-colour-dark, 8%) !default;
+$messages-status-background-colour-on-dark: color.mix(
+  $messages-status-base-colour, $background-colour-dark, 8%
+) !default;
 
 ///
 /// Warning message base colour.
@@ -89,38 +97,44 @@ $messages-warning-card-colour-on-light: $messages-warning-base-colour !default;
 ///
 /// Warning message border colour on light backgrounds.
 ///
-$messages-warning-border-colour-on-light:
-  mix($messages-warning-base-colour, $background-colour-light, 35%) !default;
+$messages-warning-border-colour-on-light: color.mix(
+  $messages-warning-base-colour, $background-colour-light, 35%
+) !default;
 
 ///
 /// Warning message border colour on dark backgrounds.
 ///
-$messages-warning-border-colour-on-dark:
-  mix($messages-warning-base-colour, $background-colour-dark, 35%) !default;
+$messages-warning-border-colour-on-dark: color.mix(
+  $messages-warning-base-colour, $background-colour-dark, 35%
+) !default;
 
 ///
 /// Warning message foreground colour on light backgrounds.
 ///
-$messages-warning-foreground-colour-on-light:
-  mix($messages-warning-base-colour, $foreground-colour-on-light, 40%) !default;
+$messages-warning-foreground-colour-on-light: color.mix(
+  $messages-warning-base-colour, $foreground-colour-on-light, 40%
+) !default;
 
 ///
 /// Warning message foreground colour on dark backgrounds.
 ///
-$messages-warning-foreground-colour-on-dark:
-  mix($messages-warning-base-colour, $foreground-colour-on-dark, 40%) !default;
+$messages-warning-foreground-colour-on-dark: color.mix(
+  $messages-warning-base-colour, $foreground-colour-on-dark, 40%
+) !default;
 
 ///
 /// Warning message background colour on light backgrounds.
 ///
-$messages-warning-background-colour-on-light:
-  mix($messages-warning-base-colour, $background-colour-light, 6%) !default;
+$messages-warning-background-colour-on-light: color.mix(
+  $messages-warning-base-colour, $background-colour-light, 6%
+) !default;
 
 ///
 /// Warning message background colour on dark backgrounds.
 ///
-$messages-warning-background-colour-on-dark:
-  mix($messages-warning-base-colour, $background-colour-dark, 6%) !default;
+$messages-warning-background-colour-on-dark: color.mix(
+  $messages-warning-base-colour, $background-colour-dark, 6%
+) !default;
 
 ///
 /// Error message base colour.
@@ -141,38 +155,44 @@ $messages-error-card-colour-on-light: $messages-error-base-colour !default;
 ///
 /// Error message border colour on light backgrounds.
 ///
-$messages-error-border-colour-on-light:
-  mix($messages-error-base-colour, $background-colour-light, 25%) !default;
+$messages-error-border-colour-on-light: color.mix(
+  $messages-error-base-colour, $background-colour-light, 25%
+) !default;
 
 ///
 /// Error message border colour on dark backgrounds.
 ///
-$messages-error-border-colour-on-dark:
-  mix($messages-error-base-colour, $background-colour-dark, 25%) !default;
+$messages-error-border-colour-on-dark: color.mix(
+  $messages-error-base-colour, $background-colour-dark, 25%
+) !default;
 
 ///
 /// Error message foreground colour on light backgrounds.
 ///
-$messages-error-foreground-colour-on-light:
-  mix($messages-error-base-colour, $foreground-colour-on-light, 40%) !default;
+$messages-error-foreground-colour-on-light: color.mix(
+  $messages-error-base-colour, $foreground-colour-on-light, 40%
+) !default;
 
 ///
 /// Error message foreground colour on dark backgrounds.
 ///
-$messages-error-foreground-colour-on-dark:
-  mix($messages-error-base-colour, $foreground-colour-on-dark, 40%) !default;
+$messages-error-foreground-colour-on-dark: color.mix(
+  $messages-error-base-colour, $foreground-colour-on-dark, 40%
+) !default;
 
 ///
 /// Error message background colour on light backgrounds.
 ///
-$messages-error-background-colour-on-light:
-  mix($messages-error-base-colour, $background-colour-light, 6%) !default;
+$messages-error-background-colour-on-light: color.mix(
+  $messages-error-base-colour, $background-colour-light, 6%
+) !default;
 
 ///
 /// Error message background colour on dark backgrounds.
 ///
-$messages-error-background-colour-on-dark:
-  mix($messages-error-base-colour, $background-colour-dark, 6%) !default;
+$messages-error-background-colour-on-dark: color.mix(
+  $messages-error-base-colour, $background-colour-dark, 6%
+) !default;
 
 .messages {
   // Classy uses a box-shadow on the left (LTR) or right (RTL) as a fake border,

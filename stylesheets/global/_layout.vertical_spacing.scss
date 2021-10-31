@@ -2,6 +2,8 @@
 //   Base layout (vertical spacing) partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:selector';
+
 ///
 /// Generic vertical spacing between elements when on larger screens.
 ///
@@ -156,7 +158,7 @@ $vertical-spacing-ignore-elements: '.hidden', '.visually-hidden',
   // placeholder with the ignored element selector, which expands the selector
   // much like @extend works.
   // @see https://sass-lang.com/documentation/functions/selector#selector-replace
-  $previous-selector: selector-replace(
+  $previous-selector: selector.replace(
     $ignore, '.vertical-spacing-placeholder', $not + $previous-qualifier
   );
 
