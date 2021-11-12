@@ -23,6 +23,12 @@ libraries:
   - ambientimpact_ux/component.pointer_focus_hide
 
 libraries-override:
+
+  classy/base:
+    css:
+      component:
+        css/components/field.css: false
+
   # Remove the GeshiFilter static CSS as we provide our own with our own
   # classes.
   geshifilter/geshifilter: false
