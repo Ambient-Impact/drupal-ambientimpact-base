@@ -2,13 +2,18 @@
 //   Base table partial
 // -----------------------------------------------------------------------------
 
+@use '../global/content';
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use 'material.common/material.general' as material-general;
 @use 'sass:color';
+@use 'sass/helpers/colour';
+@use 'sass/helpers/selector';
 
 ///
 /// <table> element background colour on light backgrounds.
 ///
 $table-background-colour-on-light: color.mix(
-  $foreground-colour-on-light, $background-colour-light, 10%
+  colour.$foreground-colour-on-light, colour.$background-colour-light, 10%
 ) !default;
 
 ///
@@ -25,7 +30,7 @@ $table-header-background-colour-on-dark: hsla(0, 0%, 100%, 0.05) !default;
 /// <table> element background colour on dark backgrounds.
 ///
 $table-background-colour-on-dark: color.mix(
-  $foreground-colour-on-dark, $background-colour-dark, 10%
+  colour.$foreground-colour-on-dark, colour.$background-colour-dark, 10%
 ) !default;
 
 ///
@@ -51,7 +56,7 @@ $table-cell-border-colour-on-dark: hsla(0, 0%, 100%, 0.1) !default;
 ///
 /// <table> element border radius.
 ///
-$table-border-radius: $material-border-radius !default;
+$table-border-radius: material-general.$material-border-radius !default;
 
 :root {
   --table-cell-padding-vertical:        0.3em;
@@ -65,7 +70,7 @@ $table-border-radius: $material-border-radius !default;
   --table-cell-border-style:            #{$table-cell-border-style};
   --table-cell-border-colour:           #{$table-cell-border-colour-on-light};
 
-  @include on-dark-colour-scheme {
+  @include colour.on-dark-colour-scheme {
     --table-cell-border-colour:        #{$table-cell-border-colour-on-dark};
   }
 
@@ -102,19 +107,19 @@ table {
   max-width: max-content;
 
   @at-root {
-    @include vertical-spacing-against-previous(
+    @include vertical-spacing.vertical-spacing-against-previous(
       &,
-      $spacing-small: $content-item-vertical-spacing-small,
-      $spacing-large: $content-item-vertical-spacing-large
+      $spacing-small: content.$content-item-vertical-spacing-small,
+      $spacing-large: content.$content-item-vertical-spacing-large
     );
   }
 
-  @include set-colours(
+  @include colour.set-colours(
     $background: $table-background-colour-on-light
   );
 
-  @include on-dark-colour-scheme {
-    @include set-colours(
+  @include colour.on-dark-colour-scheme {
+    @include colour.set-colours(
       $background: $table-background-colour-on-dark
     );
   }
@@ -123,13 +128,13 @@ table {
 }
 
 thead {
-  @include set-colours(
+  @include colour.set-colours(
     $background:            $table-header-background-colour-on-light,
     $background-reference:  $table-background-colour-on-light
   );
 
-  @include on-dark-colour-scheme {
-    @include set-colours(
+  @include colour.on-dark-colour-scheme {
+    @include colour.set-colours(
       $background:            $table-header-background-colour-on-dark,
       $background-reference:  $table-background-colour-on-dark
     );
@@ -157,7 +162,7 @@ td, th {
     var(--table-cell-border-style)
     var(--table-cell-border-colour);
 
-  @include root-conditions(('[dir=ltr]'), 'html') {
+  @include selector.root-conditions(('[dir=ltr]'), 'html') {
     &:first-child {
       padding-left: var(--table-cell-padding-horizontal-edge);
 
@@ -169,7 +174,7 @@ td, th {
       border-right-width: 0;
     }
   }
-  @include root-conditions(('[dir=rtl]'), 'html') {
+  @include selector.root-conditions(('[dir=rtl]'), 'html') {
     &:first-child {
       padding-right: var(--table-cell-padding-horizontal-edge);
 

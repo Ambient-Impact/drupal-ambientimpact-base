@@ -2,8 +2,11 @@
 //   Base component list partial
 // -----------------------------------------------------------------------------
 
-@include vertical-spacing-against-previous(
+@use '../global/content';
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+
+@include vertical-spacing.vertical-spacing-against-previous(
   '.ambientimpact-component-list__items',
-  $spacing-small: $content-item-vertical-spacing-small,
-  $spacing-large: $content-item-vertical-spacing-large
+  $spacing-small: content.$content-item-vertical-spacing-small,
+  $spacing-large: content.$content-item-vertical-spacing-large
 );

@@ -3,11 +3,13 @@
 // -----------------------------------------------------------------------------
 
 @use 'sass:math';
+@use 'sass/helpers/selector';
+@use 'sass/variables/general';
 
 ///
 /// The gap between two inline links items.
 ///
-$links-inline-gap: $general-spacing !default;
+$links-inline-gap: general.$general-spacing !default;
 
 ul.links {
   &.inline {
@@ -15,10 +17,10 @@ ul.links {
 
     // This aligns the edge of the text with the bounding box of the list's
     // parent container.
-    @include root-conditions(('[dir=ltr]'), 'html') {
+    @include selector.root-conditions(('[dir=ltr]'), 'html') {
       margin-left:    math.div($links-inline-gap, 2) * -1;
     }
-    @include root-conditions(('[dir=rtl]'), 'html') {
+    @include selector.root-conditions(('[dir=rtl]'), 'html') {
       margin-right:   math.div($links-inline-gap, 2) * -1;
     }
 

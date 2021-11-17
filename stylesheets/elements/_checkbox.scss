@@ -2,6 +2,8 @@
 //   Base <input type="checkbox"> element partial
 // -----------------------------------------------------------------------------
 
+@use '../global/colour';
+
 input[type='checkbox'] {
 
   // Only apply the size to browsers that support accent-color as the size
@@ -9,7 +11,7 @@ input[type='checkbox'] {
   // than native operating system ones.
   //
   // @see https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
-  @supports (accent-color: #{$accent-colour}) {
+  @supports (accent-color: #{colour.$accent-colour}) {
     --size: 0.8em;
 
     width:  var(--size);

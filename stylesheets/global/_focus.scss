@@ -2,8 +2,11 @@
 //   Base focused element partial
 // -----------------------------------------------------------------------------
 
+@use 'sass/helpers/outline';
+@use 'sass/helpers/transition';
+
 a {
-  @include focus-outline($is-link: true);
+  @include outline.focus-outline($is-link: true);
 }
 
 button,
@@ -15,7 +18,7 @@ input[type="reset"],
 input[type="radio"],
 input[type="checkbox"],
 [tabindex]:not([tabindex="-1"]) {
-  @include focus-outline;
+  @include outline.focus-outline;
 }
 
 // This allows invisible elements that can receive focus (e.g. from keyboard,
@@ -44,5 +47,5 @@ input[type="checkbox"],
 // example of this are contextual triggers. Note that this could potentially
 // have issues with focusables that don't use .visually-hidden.
 .focusable:not(.visually-hidden) {
-  @include transition-fade-active;
+  @include transition.transition-fade-active;
 }

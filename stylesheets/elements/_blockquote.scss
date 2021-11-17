@@ -2,11 +2,16 @@
 //   Base <blockquote> element partial
 // -----------------------------------------------------------------------------
 
-// This adds a decorative quotation mark and vertical line on the left or right
-// of a <blockquote> on LTR or RTL language direction, respectively.
-
+@use '../global/content';
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use 'icon';
 @use 'sass:color';
 @use 'sass:math';
+@use 'sass/helpers/colour';
+@use 'sass/helpers/selector';
+
+// This adds a decorative quotation mark and vertical line on the left or right
+// of a <blockquote> on LTR or RTL language direction, respectively.
 
 ///
 /// <blockquote> line width. This should be divisible by 2.
@@ -16,26 +21,28 @@ $blockquote-line-width: 2px !default;
 ///
 /// <blockquote> quotation mark size.
 ///
-$blockquote-quotation-mark-size: $icon-size !default;
+$blockquote-quotation-mark-size: icon.$icon-size !default;
 
 ///
 /// Spacing between a <blockquote> quotation mark and adjacent elements.
 ///
-$blockquote-quotation-mark-spacing: $icon-text-spacing + 0.2em !default;
+$blockquote-quotation-mark-spacing: icon.$icon-text-spacing + 0.2em !default;
 
 ///
 /// Colour of the decorative quotation mark and line on a <blockquote>
 ///
-$blockquote-decoration-colour-on-light:
-  color.mix($foreground-colour-on-light, $background-colour-light, 50%) !default;
+$blockquote-decoration-colour-on-light: color.mix(
+  colour.$foreground-colour-on-light, colour.$background-colour-light, 50%
+) !default;
 
-$blockquote-decoration-colour-on-dark:
-  color.mix($foreground-colour-on-dark, $background-colour-dark, 50%) !default;
+$blockquote-decoration-colour-on-dark: color.mix(
+  colour.$foreground-colour-on-dark, colour.$background-colour-dark, 50%
+) !default;
 
-@include vertical-spacing-against-previous(
+@include vertical-spacing.vertical-spacing-against-previous(
   'blockquote',
-  $spacing-small: $content-item-vertical-spacing-small,
-  $spacing-large: $content-item-vertical-spacing-large
+  $spacing-small: content.$content-item-vertical-spacing-small,
+  $spacing-large: content.$content-item-vertical-spacing-large
 );
 
 blockquote {
@@ -51,10 +58,10 @@ blockquote {
   $container-indent:
     $blockquote-quotation-mark-size + $blockquote-quotation-mark-spacing;
 
-  @include root-conditions(('[dir=ltr]'), 'html') {
+  @include selector.root-conditions(('[dir=ltr]'), 'html') {
     padding-left:   $container-indent;
   }
-  @include root-conditions(('[dir=rtl]'), 'html') {
+  @include selector.root-conditions(('[dir=rtl]'), 'html') {
     padding-right:  $container-indent;
   }
 
@@ -83,7 +90,7 @@ blockquote {
     background-repeat:  no-repeat;
     background-size:    $blockquote-quotation-mark-size;
 
-    @include on-dark-colour-scheme {
+    @include colour.on-dark-colour-scheme {
       background-image:   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M10.026 20.021L2 12V3.979h8.026v16.042zm11.974 0L13.979 12V3.979H22v16.042z" fill="rgba(' + color.red($blockquote-decoration-colour-on-dark) + ',' + color.green($blockquote-decoration-colour-on-dark) + ',' + color.blue($blockquote-decoration-colour-on-dark) + ',' + color.alpha($blockquote-decoration-colour-on-dark) + ')"/></svg>');
     }
 
@@ -93,10 +100,10 @@ blockquote {
     // will need to be adjusted.
     top: 0.25em;
 
-    @include root-conditions(('[dir=ltr]'), 'html') {
+    @include selector.root-conditions(('[dir=ltr]'), 'html') {
       left: 0;
     }
-    @include root-conditions(('[dir=rtl]'), 'html') {
+    @include selector.root-conditions(('[dir=rtl]'), 'html') {
       right: 0;
     }
   }
@@ -106,11 +113,11 @@ blockquote {
     $line-indent: math.div($blockquote-quotation-mark-size, 2);
     $line-adjust: math.div($blockquote-line-width, 2) * -1;
 
-    @include root-conditions(('[dir=ltr]'), 'html') {
+    @include selector.root-conditions(('[dir=ltr]'), 'html') {
       left:         $line-indent;
       margin-left:  $line-adjust;
     }
-    @include root-conditions(('[dir=rtl]'), 'html') {
+    @include selector.root-conditions(('[dir=rtl]'), 'html') {
       right:        $line-indent;
       margin-right: $line-adjust;
     }
@@ -123,7 +130,7 @@ blockquote {
 
     background-color: $blockquote-decoration-colour-on-light;
 
-    @include on-dark-colour-scheme {
+    @include colour.on-dark-colour-scheme {
       background-color: $blockquote-decoration-colour-on-dark;
     }
   }

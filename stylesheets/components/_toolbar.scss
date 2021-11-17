@@ -2,6 +2,8 @@
 //   Base Drupal administrative toolbar component partial
 // -----------------------------------------------------------------------------
 
+@use 'sass/helpers/z-index';
+
 .toolbar {
   .toolbar-loading.toolbar-horizontal & {
     .toolbar-bar {
@@ -28,7 +30,7 @@
     // This is the element that's either absolute or fixed depending on the
     // screen width.
     .toolbar-bar {
-      @include z-index('toolbar');
+      @include z-index.z-index('toolbar');
     }
   }
 }

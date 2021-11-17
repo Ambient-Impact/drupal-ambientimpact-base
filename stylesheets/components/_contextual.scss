@@ -2,6 +2,8 @@
 //   Base Drupal contextual links component partial
 // -----------------------------------------------------------------------------
 
+@use 'sass/helpers/z-index';
+
 .contextual {
-  @include z-index(admin);
+  @include z-index.z-index(admin);
 }

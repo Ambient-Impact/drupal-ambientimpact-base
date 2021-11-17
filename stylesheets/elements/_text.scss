@@ -2,6 +2,8 @@
 //   Base text input partial
 // -----------------------------------------------------------------------------
 
+@use 'material.input' as material-input;
+
 ///
 /// Whether to use Material Design-style text inputs.
 ///
@@ -19,6 +21,6 @@ $material-inputs: true !default;
 // .form-item-textarea--autosize {
 .form-type-textarea {
   @if $material-inputs {
-    @include material-input;
+    @include material-input.material-input;
   }
 }

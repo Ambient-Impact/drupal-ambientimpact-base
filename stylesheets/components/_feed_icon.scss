@@ -2,6 +2,8 @@
 //   Base feed icon link partial
 // -----------------------------------------------------------------------------
 
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+
 // This overrides core/themes/classy/css/components/icons.css to make the icon
 // visible and remove the background image.
 .feed-icon {
@@ -17,7 +19,7 @@
   text-indent:  0;
 }
 
-@include vertical-spacing-against-previous(
+@include vertical-spacing.vertical-spacing-against-previous(
   '.feed-icons'
 );
 

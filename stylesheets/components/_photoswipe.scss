@@ -2,25 +2,22 @@
 //   Base PhotoSwipe component partial
 // -----------------------------------------------------------------------------
 
+@use '../global/layout';
+@use 'material.ripple' as material-ripple;
 @use 'sass:math';
 @use 'sass:meta';
-
-// If $photoswipe-theme has been defined, set the theme to that. See
-// $photoswipe-themes in the photoswipe component partial in ambientimpact_core.
-@if meta.variable-exists(photoswipe-theme) {
-  @include set-photoswipe-theme($photoswipe-theme);
-}
+@use 'sass/variables/general';
 
 .pswp {
   &__caption__center {
-    @include layout-max-width;
+    @include layout.layout-max-width;
 
-    padding: math.div($general-spacing, 2);
+    padding: math.div(general.$general-spacing, 2);
   }
 
   // @todo Make this work for mouse events; works fine if touch or :active is
   // forced on via DevTools.
   &__button#{&}__button {
-    @include material-ripple;
+    @include material-ripple.material-ripple;
   }
 }

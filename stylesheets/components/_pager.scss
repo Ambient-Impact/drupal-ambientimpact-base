@@ -2,7 +2,11 @@
 //   Base Drupal pager partial
 // -----------------------------------------------------------------------------
 
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use 'link/link.colour' as link-colour;
+@use 'link/link.var' as link-var;
 @use 'sass:list';
+@use 'sass/helpers/colour';
 
 ///
 /// The pager font-size.
@@ -53,7 +57,7 @@ $pager-navigation-item-hitbox-padding:
   !default;
 
 @at-root {
-  @include vertical-spacing-against-previous('.pager');
+  @include vertical-spacing.vertical-spacing-against-previous('.pager');
 }
 
 .pager {
@@ -106,20 +110,20 @@ $pager-navigation-item-hitbox-padding:
       // .layout-container, since the specificity is high enough to override the
       // fancy link underlines selectors.
       :any-link {
-        $item-background: get-contrasting-colour(
-          $background:          $background-colour,
-          $foreground-on-light: $link-normal-colour-on-light,
-          $foreground-on-dark:  $link-normal-colour-on-dark
+        $item-background: colour.get-contrasting-colour(
+          $background:          colour.$background-colour,
+          $foreground-on-light: link-var.$link-normal-colour-on-light,
+          $foreground-on-dark:  link-var.$link-normal-colour-on-dark
         );
-        $item-foreground: get-contrasting-colour(
+        $item-foreground: colour.get-contrasting-colour(
           $background:          $item-background
         );
 
-        @include set-colours(
+        @include colour.set-colours(
           $background:          $item-background
         );
 
-        @include link-colours(
+        @include link-colour.link-colours(
           $background:      $item-background,
 
           $normal-on-light: $item-foreground,

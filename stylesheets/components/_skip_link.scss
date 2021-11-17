@@ -2,6 +2,12 @@
 //   Base skip to content link partial
 // -----------------------------------------------------------------------------
 
+@use 'material.common/material.general' as material-general;
+@use 'material.common/material.shadow' as material-shadow;
+@use 'sass/helpers/colour';
+@use 'sass/helpers/outline';
+@use 'sass/helpers/z-index';
+
 // This styles the "Skip to main content" link to give a semi-transparent
 // background, a Material shadow, some border radius, and positions it
 // absolutely in the top centre of the page.
@@ -9,7 +15,7 @@
 ///
 /// Skip to content link background colour.
 ///
-$skip-link-background-colour: greyscale(25%, 0.6) !default;
+$skip-link-background-colour: colour.greyscale(25%, 0.6) !default;
 
 ///
 /// Skip to content link focus outline colour.
@@ -26,7 +32,7 @@ $skip-link-outline-colour: black !default;
     left:   0;
     right:  0;
 
-    @include z-index('floating');
+    @include z-index.z-index('floating');
 
     // Since this is meant to be focused by means other than a pointer, such as
     // by keyboard, we can make it click-through so that it's not accidentally
@@ -37,14 +43,14 @@ $skip-link-outline-colour: black !default;
   :link {
     padding: 0.5em 1em;
 
-    border-bottom-left-radius:  $material-border-radius;
-    border-bottom-right-radius: $material-border-radius;
+    border-bottom-left-radius:  material-general.$material-border-radius;
+    border-bottom-right-radius: material-general.$material-border-radius;
 
-    @include set-colours($background: $skip-link-background-colour);
+    @include colour.set-colours($background: $skip-link-background-colour);
 
-    @include material-shadow(2);
+    @include material-shadow.material-shadow(2);
 
-    @include focus-outline(
+    @include outline.focus-outline(
       $is-link: true,
       $colour:  $skip-link-outline-colour
     );

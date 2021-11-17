@@ -2,6 +2,10 @@
 //   Base off-canvas panel component partial
 // -----------------------------------------------------------------------------
 
+@use '../global/layout';
+@use 'sass/helpers/colour';
+@use 'material.common/material.panel' as material-panel;
+
 // This applies the theme layout to off-canvas panels so that they match the
 // rest of the page.
 
@@ -9,26 +13,26 @@
   // Auto panel theme; switches between light and dark based on
   // prefers-colour-scheme media feature.
   &.offcanvas-panel--theme-auto {
-    @include set-colours(
-      $background: $material-panel-background-colour-light
+    @include colour.set-colours(
+      $background: material-panel.$material-panel-background-colour-light
     );
 
-    @include on-dark-colour-scheme {
-      @include set-colours(
-        $background: $material-panel-background-colour-dark-on-dark
+    @include colour.on-dark-colour-scheme {
+      @include colour.set-colours(
+        $background: material-panel.$material-panel-background-colour-dark-on-dark
       );
     }
   }
   // Light panel theme.
   &.offcanvas-panel--theme-light {
-    @include set-colours(
-      $background: $material-panel-background-colour-light
+    @include colour.set-colours(
+      $background: material-panel.$material-panel-background-colour-light
     );
   }
   // Dark panel theme.
   &.offcanvas-panel--theme-dark {
-    @include set-colours(
-      $background: $material-panel-background-colour-dark
+    @include colour.set-colours(
+      $background: material-panel.$material-panel-background-colour-dark
     );
   }
 
@@ -36,21 +40,21 @@
 
   .offcanvas-panel__content,
   .offcanvas-panel__ui {
-    padding-left:   $layout-gutter;
-    padding-right:  $layout-gutter;
+    padding-left:   layout.$layout-gutter;
+    padding-right:  layout.$layout-gutter;
   }
 
   .offcanvas-panel__ui {
-    padding-bottom: $layout-gutter;
+    padding-bottom: layout.$layout-gutter;
   }
 
   .offcanvas-panel__content {
     &::before {
-      height:   $layout-gutter;
+      height:   layout.$layout-gutter;
     }
 
     &::after {
-      height:   ($layout-gutter * 2) + 2.5em;
+      height:   (layout.$layout-gutter * 2) + 2.5em;
     }
   }
 
@@ -58,7 +62,7 @@
   &.offcanvas-panel--bottom {
     .offcanvas-panel__content,
     .offcanvas-panel__ui {
-      @include layout-max-width;
+      @include layout.layout-max-width;
     }
   }
 }

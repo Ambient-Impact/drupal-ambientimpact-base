@@ -2,17 +2,21 @@
 //   Base code element partial
 // -----------------------------------------------------------------------------
 
+@use 'material.common/material.general' as material-general;
 @use 'sass:color';
+@use 'sass/helpers/colour';
+
 ///
 /// Inline <code> element background colour on light backgrounds.
 ///
-$code-inline-background-colour-on-light: $background-colour-dark !default;
+$code-inline-background-colour-on-light:
+  colour.$background-colour-dark !default;
 
 ///
 /// Inline <code> element background colour on dark backgrounds.
 ///
 $code-inline-background-colour-on-dark: color.mix(
-  $foreground-colour-on-dark, $background-colour-dark, 10%
+  colour.$foreground-colour-on-dark, colour.$background-colour-dark, 10%
 ) !default;
 
 ///
@@ -23,17 +27,17 @@ $code-inline-padding: 0.1em 0.2em !default;
 ///
 /// Inline <code> element border radius.
 ///
-$code-inline-border-radius: $material-border-radius !default;
+$code-inline-border-radius: material-general.$material-border-radius !default;
 
 code {
   padding: $code-inline-padding;
 
-  @include set-colours(
+  @include colour.set-colours(
     $background: $code-inline-background-colour-on-light
   );
 
-  @include on-dark-colour-scheme {
-    @include set-colours(
+  @include colour.on-dark-colour-scheme {
+    @include colour.set-colours(
       $background: $code-inline-background-colour-on-dark
     );
   }

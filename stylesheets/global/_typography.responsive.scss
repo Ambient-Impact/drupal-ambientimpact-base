@@ -2,6 +2,8 @@
 //   Base typography responsive partial
 // -----------------------------------------------------------------------------
 
+@use 'sass/helpers/typography.responsive' as typography-responsive-helper;
+
 ///
 /// Whether to use responsive type.
 ///
@@ -43,7 +45,7 @@ html {
   // Use responsive type if set to do so. Note that the responsive-type mixin
   // has a @supports check so we don't need one here.
   @if $use-responsive-type == true {
-    @include responsive-type(
+    @include typography-responsive-helper.responsive-type(
       font-size,
       $font-scale-width-min,
       $font-scale-width-max,

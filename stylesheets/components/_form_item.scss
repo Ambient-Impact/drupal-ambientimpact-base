@@ -2,6 +2,8 @@
 //   Base form item partial
 // -----------------------------------------------------------------------------
 
+@use '../global/content';
+@use '../global/layout.vertical_spacing' as vertical-spacing;
 @use 'sass:math';
 
 .form-checkboxes,
@@ -11,9 +13,9 @@
     margin-bottom:  0;
   }
 
-  @include vertical-spacing-against-previous(
+  @include vertical-spacing.vertical-spacing-against-previous(
     '.form-item',
-    $spacing-small: math.div($content-item-vertical-spacing-small, 2),
-    $spacing-large: math.div($content-item-vertical-spacing-small, 2)
+    $spacing-small: math.div(content.$content-item-vertical-spacing-small, 2),
+    $spacing-large: math.div(content.$content-item-vertical-spacing-small, 2)
   );
 }

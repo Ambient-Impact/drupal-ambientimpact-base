@@ -2,9 +2,11 @@
 //   Base form label partial
 // -----------------------------------------------------------------------------
 
+@use 'material.input/material.input.label' as material-input-label;
+
 // Give display-only item labels the same styles as static Material Input
 // labels.
 // @see https://api.drupal.org/api/drupal/core!lib!Drupal!Core!Render!Element!Item.php/class/Item
 .form-type-item label {
-  @include material-input-label-static(inherit);
+  @include material-input-label.material-input-label-static(inherit);
 }

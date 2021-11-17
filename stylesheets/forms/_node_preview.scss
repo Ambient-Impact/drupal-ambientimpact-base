@@ -2,6 +2,12 @@
 //   Base node preview form partial
 // -----------------------------------------------------------------------------
 
+@use '../global/layout';
+@use 'material.common/material.panel' as material-panel;
+@use 'material.common/material.shadow' as material-shadow;
+@use 'sass/helpers/colour';
+@use 'sass/variables/general';
+
 // This styles the node preview controls as a Material panel that matches the
 // base horizontal layout and adds a dark colour scheme. Note that the Stable
 // theme provides the basic fixed positioning.
@@ -11,18 +17,20 @@
 // inaccessible.
 
 .node-preview-container {
-  padding-top:    $general-spacing;
-  padding-bottom: $general-spacing;
+  padding-top:    general.$general-spacing;
+  padding-bottom: general.$general-spacing;
 
-  @include layout-container-base-horizontal;
+  @include layout.layout-container-base-horizontal;
 
-  @include set-colours($background: $material-panel-background-colour-light);
+  @include colour.set-colours(
+    $background: material-panel.$material-panel-background-colour-light
+  );
 
-  @include material-shadow(2);
+  @include material-shadow.material-shadow(2);
 
-  @include on-dark-colour-scheme {
-    @include set-colours(
-      $background: $material-panel-background-colour-dark-on-dark
+  @include colour.on-dark-colour-scheme {
+    @include colour.set-colours(
+      $background: material-panel.$material-panel-background-colour-dark-on-dark
     );
 
     select {

@@ -2,13 +2,16 @@
 //   Base form actions container partial
 // -----------------------------------------------------------------------------
 
+@use 'sass/helpers/selector';
+@use 'sass/variables/general';
+
 // This lays out form actions buttons as wrapping flexbox aligned to the right.
 .form-actions {
   display: flex;
 
   flex-wrap: wrap;
 
-  gap: $general-spacing;
+  gap: general.$general-spacing;
 
   // This right-aligns the buttons in LTR text direction as most people are
   // right-handed. It does nothing on RTL, as this would left-align the buttons.
@@ -19,7 +22,7 @@
   //   that swaps to left-aligned? One idea is to have a small button in on the
   //   opposite side with an arrow icon pointing in that direction and a tooltip
   //   that indicates it would change the alignment.
-  @include root-conditions(('[dir=ltr]'), 'html') {
+  @include selector.root-conditions(('[dir=ltr]'), 'html') {
     justify-content: flex-end;
   }
 

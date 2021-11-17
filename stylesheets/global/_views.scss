@@ -2,13 +2,16 @@
 //   Base views partial
 // -----------------------------------------------------------------------------
 
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use 'sass/variables/general';
+
 ///
 /// Vertical spacing between views elements when on larger screens.
 ///
 /// @see $vertical-spacing-breakpoint
 ///   The breakpoint that determines when this is used.
 ///
-$views-spacing-large: $general-spacing * 2 !default;
+$views-spacing-large: general.$general-spacing * 2 !default;
 
 ///
 /// Vertical spacing between views elements when on smaller screens.
@@ -16,10 +19,10 @@ $views-spacing-large: $general-spacing * 2 !default;
 /// @see $vertical-spacing-breakpoint
 ///   The breakpoint that determines when this is used.
 ///
-$views-spacing-small: $general-spacing * 1 !default;
+$views-spacing-small: general.$general-spacing * 1 !default;
 
 @at-root {
-  @include vertical-spacing-against-previous(
+  @include vertical-spacing.vertical-spacing-against-previous(
     '.view-content, .view-footer',
     $spacing-small: $views-spacing-small,
     $spacing-large: $views-spacing-large

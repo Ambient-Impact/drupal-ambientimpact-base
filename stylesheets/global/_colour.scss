@@ -2,6 +2,9 @@
 //   Base colour partial
 // -----------------------------------------------------------------------------
 
+@use 'material.common/material.colour' as material-colour;
+@use 'sass/helpers/colour';
+
 ///
 /// The accent colour, primarily used for the accent-color property.
 ///
@@ -9,15 +12,15 @@
 ///
 /// @see https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
 ///
-$accent-colour: $material-primary-colour !default;
+$accent-colour: material-colour.$material-primary-colour !default;
 
 // Apply colours to both <html> and <body> as <body> may have margins which
 // would cause the default white background of <html> to show through.
 html, body {
-  @include set-colours($background: $background-colour-light);
+  @include colour.set-colours($background: colour.$background-colour-light);
 
-  @include on-dark-colour-scheme {
-    @include set-colours($background: $background-colour-dark);
+  @include colour.on-dark-colour-scheme {
+    @include colour.set-colours($background: colour.$background-colour-dark);
   }
 
   // This sets the global accent colour to the Material primary colour. This

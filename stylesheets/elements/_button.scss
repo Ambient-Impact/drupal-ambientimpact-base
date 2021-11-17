@@ -2,7 +2,12 @@
 //   Base button partial
 // -----------------------------------------------------------------------------
 
+@use '../global/typography';
+@use 'material.button' as material-button;
+@use 'material.common/material.colour' as material-colour;
+@use 'material.ripple' as material-ripple;
 @use 'sass:color';
+@use 'sass/helpers/transition';
 
 ///
 /// Whether to use Material Design-style buttons.
@@ -13,35 +18,36 @@ $material-buttons: true !default;
 /// The background colour for primary Material buttons in a form.
 ///
 $material-button-background-colour-primary:
-  $material-primary-colour !default;
+  material-colour.$material-primary-colour !default;
 
 ///
 /// The background colour for primary Material buttons when hovered/focused.
 ///
-$material-button-background-colour-primary-interact:
-  color.adjust($material-primary-colour, $lightness: 8%) !default;
+$material-button-background-colour-primary-interact: color.adjust(
+  material-colour.$material-primary-colour, $lightness: 8%
+) !default;
 
 ///
 /// Material button font weight.
 ///
-$material-button-font-weight: $font-weight-strong !default;
+$material-button-font-weight: typography.$font-weight-strong !default;
 
 ///
 /// Material button font family.
 ///
-$material-button-font-family: $font-stack !default;
+$material-button-font-family: typography.$font-stack !default;
 
 // All buttons.
 .button, .material-button, .form-submit {
   @if $material-buttons {
     // Ripples are applied to both buttons that have the button styling and
     // plain buttons.
-    @include material-ripple;
+    @include material-ripple.material-ripple;
   }
 
   &:not(.plain-button) {
     @if $material-buttons {
-      @include material-button;
+      @include material-button.material-button;
 
       font-family:  $material-button-font-family;
       font-weight:  $material-button-font-weight;
@@ -63,7 +69,7 @@ $material-button-font-family: $font-stack !default;
 [id^='edit-submit'] {
   &:not(.plain-button) {
     @if $material-buttons {
-      @include material-button(
+      @include material-button.material-button(
         $background-colour:
           $material-button-background-colour-primary,
         $background-colour-interact:
@@ -94,13 +100,13 @@ $material-button-font-family: $font-stack !default;
   @if $material-buttons {
     color:      $material-button-background-colour-primary;
 
-    @include    transition-fade-normal();
+    @include    transition.transition-fade-normal();
 
     &:hover,
     &:focus {
       color:    $material-button-background-colour-primary-interact;
 
-      @include  transition-fade-hover();
+      @include  transition.transition-fade-hover();
     }
   }
 }
@@ -115,7 +121,7 @@ $material-button-font-family: $font-stack !default;
 // @see https://ambientimpact.com/web/snippets/but-sometimes-links-look-like-buttons-and-buttons-look-like-links
 .button-placeholder {
   @if $material-buttons {
-    @include material-button-base;
+    @include material-button.material-button-base;
 
     // Chromium and Firefox default to inline-block for buttons, so apply that
     // to placeholders. Note that we have to exclude hidden elements as this

@@ -2,6 +2,8 @@
 //   Base <mark> element partial
 // -----------------------------------------------------------------------------
 
+@use 'material.common/material.general' as material-general;
+
 ///
 /// <mark> element padding.
 ///
@@ -10,7 +12,7 @@ $mark-padding: 0 0.2em 0.15em !default;
 ///
 /// <mark> element border radius.
 ///
-$mark-border-radius: $material-border-radius !default;
+$mark-border-radius: material-general.$material-border-radius !default;
 
 mark {
   padding: $mark-padding;

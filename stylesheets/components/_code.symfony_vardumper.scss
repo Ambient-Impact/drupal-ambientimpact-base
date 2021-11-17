@@ -2,10 +2,16 @@
 //   Base Symfony VarDumper code block partial
 // -----------------------------------------------------------------------------
 
+@use 'code' as *;
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use 'sass/helpers/colour';
+
 // @see https://github.com/symfony/var-dumper
 
 @at-root {
-  @include vertical-spacing-against-previous('.sf-dump.sf-dump');
+  @include vertical-spacing.vertical-spacing-against-previous(
+    '.sf-dump.sf-dump'
+  );
 }
 
 .sf-dump.sf-dump {
@@ -25,14 +31,14 @@
   // Symbols are not wrapped in anything, so by setting the default colour to
   // the symbol and overriding that on specific elements has almost the same
   // effect.
-  @include set-colours(
+  @include colour.set-colours(
     $background:  $code-highlighted-background-colour-on-light,
     $foreground-on-dark:  $code-highlighted-colour-symbol,
     $foreground-on-light: $code-highlighted-colour-symbol
   );
 
-  @include on-dark-colour-scheme {
-    @include set-colours(
+  @include colour.on-dark-colour-scheme {
+    @include colour.set-colours(
       $background:  $code-highlighted-background-colour-on-dark,
       $foreground-on-dark:  $code-highlighted-colour-symbol,
       $foreground-on-light: $code-highlighted-colour-symbol

@@ -2,10 +2,15 @@
 //   Base Drupal <details> component/element partial
 // -----------------------------------------------------------------------------
 
-@include vertical-spacing-against-previous(
+@use '../global/content';
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use 'sass/variables/general';
+@use 'sass/helpers/selector';
+
+@include vertical-spacing.vertical-spacing-against-previous(
   'details',
-  $spacing-small: $content-item-vertical-spacing-small,
-  $spacing-large: $content-item-vertical-spacing-large
+  $spacing-small: content.$content-item-vertical-spacing-small,
+  $spacing-large: content.$content-item-vertical-spacing-large
 );
 details {
   margin-top:     0;
@@ -14,15 +19,15 @@ details {
   summary {
     // This gives the end of the <summary> line a padding equal to that of the
     // .details-wrapper so that text doesn't flow past that boundary.
-    @include root-conditions(('[dir=ltr]'), 'html') {
-      padding-right:  $general-spacing;
+    @include selector.root-conditions(('[dir=ltr]'), 'html') {
+      padding-right:  general.$general-spacing;
     }
-    @include root-conditions(('[dir=rtl]'), 'html') {
-      padding-left:   $general-spacing;
+    @include selector.root-conditions(('[dir=rtl]'), 'html') {
+      padding-left:   general.$general-spacing;
     }
   }
 
   > .details-wrapper {
-    padding: $general-spacing;
+    padding: general.$general-spacing;
   }
 }

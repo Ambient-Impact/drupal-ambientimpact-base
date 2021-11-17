@@ -2,7 +2,10 @@
 //   Base search page and block partial
 // -----------------------------------------------------------------------------
 
+@use 'icon';
 @use 'sass:math';
+@use 'sass/helpers/selector';
+@use 'sass/variables/general';
 
 ///
 /// The spacing around the search button.
@@ -11,7 +14,7 @@
 /// margins to compensate, or if using a non-plain button (which assumes a
 /// background), will simply be the margin between this and the search field.
 ///
-$search-button-spacing: math.div($general-spacing, 2) !default;
+$search-button-spacing: math.div(general.$general-spacing, 2) !default;
 
 ///
 /// The size of the search button icon.
@@ -65,10 +68,10 @@ $search-form-container-max-width: 30em !default;
 ///
 @mixin search-form-submit {
   &:not(.plain-button) {
-    @include root-conditions(('[dir=ltr]'), 'html') {
+    @include selector.root-conditions(('[dir=ltr]'), 'html') {
       margin-left:  $search-button-spacing;
     }
-    @include root-conditions(('[dir=rtl]'), 'html') {
+    @include selector.root-conditions(('[dir=rtl]'), 'html') {
       margin-right: $search-button-spacing;
     }
   }
@@ -76,11 +79,11 @@ $search-form-container-max-width: 30em !default;
     margin-top:     -#{$search-button-spacing};
     margin-bottom:  -#{$search-button-spacing};
 
-    @include root-conditions(('[dir=ltr]'), 'html') {
+    @include selector.root-conditions(('[dir=ltr]'), 'html') {
       margin-left:  0;
       margin-right: -#{$search-button-spacing};
     }
-    @include root-conditions(('[dir=rtl]'), 'html') {
+    @include selector.root-conditions(('[dir=rtl]'), 'html') {
       margin-left:  -#{$search-button-spacing};
       margin-right: 0;
     }
@@ -94,9 +97,9 @@ $search-form-container-max-width: 30em !default;
 
   // We want to only apply the increased size when the icon has loaded and the
   // text is hidden.
-  @include on-icon-container {
+  @include icon.on-icon-container {
     &--icon-standalone-loaded {
-      @include set-icon-size($search-button-icon-size);
+      @include icon.set-icon-size($search-button-icon-size);
     }
   }
 }

@@ -2,11 +2,13 @@
 //   Base abbreviation partial
 // -----------------------------------------------------------------------------
 
+@use 'abbr/abbr';
+
 // abbr dotted underline, applied both with native title attribute and when
 // using Tippy.js. The underline thickness is shared with other underlines for
 // consistency.
 .layout-container {
-  @include abbr {
+  @include abbr.abbr {
     // Override normalize.css.
     border-bottom-width: 0;
 

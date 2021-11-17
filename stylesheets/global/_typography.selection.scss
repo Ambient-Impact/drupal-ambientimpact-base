@@ -2,13 +2,15 @@
 //   Base typography selection partial
 // -----------------------------------------------------------------------------
 
+@use 'material.common/material.colour' as material-colour;
 @use 'sass:color';
+@use 'sass/helpers/typography.selection' as typography-selection-helper;
 
 ///
 /// Selected text background colour.
 ///
 $text-selection-background-colour: color.adjust(
-  $material-primary-colour, $lightness: 10%
+  material-colour.$material-primary-colour, $lightness: 10%
 );
 
 ///
@@ -20,5 +22,5 @@ $text-inactive-selection-background-colour: color.adjust(
 
 // Set default selection colours.
 * {
-  @include selection;
+  @include typography-selection-helper.selection;
 }

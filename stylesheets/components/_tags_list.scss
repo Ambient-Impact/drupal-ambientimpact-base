@@ -2,6 +2,8 @@
 //   Base tags list component partial
 // -----------------------------------------------------------------------------
 
+@use 'sass/variables/general';
+
 ///
 /// The minimum width of tag list columns.
 ///
@@ -15,7 +17,7 @@ $tags-list-column-max-count: 4 !default;
 ///
 /// The horizontal and vertical gap between tag list items.
 ///
-$tags-list-gap: $general-spacing * 0.75 !default;
+$tags-list-gap: general.$general-spacing * 0.75 !default;
 
 %tags-list {
   $columns: $tags-list-column-max-count $tags-list-column-min-width;
@@ -42,7 +44,7 @@ $tags-list-gap: $general-spacing * 0.75 !default;
 
   // Grid layout, if supported.
   // @todo Do we actually need this? CSS columns seem pretty solid.
-  // @include use-grid {
+  // @include layout.use-grid {
   //   display:   grid;
   //   grid-gap:  $tags-list-gap;
   //   grid-template-columns:

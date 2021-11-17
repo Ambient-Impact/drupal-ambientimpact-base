@@ -2,15 +2,17 @@
 //   Base overlay component partial
 // -----------------------------------------------------------------------------
 
+@use 'sass/helpers/colour';
+
 ///
 /// Overlay colour in a light colour scheme.
 ///
-$overlay-colour-light: $background-colour-light !default;
+$overlay-colour-light: colour.$background-colour-light !default;
 
 ///
 /// Overlay colour in a dark colour scheme.
 ///
-$overlay-colour-dark: $background-colour-dark !default;
+$overlay-colour-dark: colour.$background-colour-dark !default;
 
 ///
 /// Overlay opacity when visible.
@@ -18,10 +20,10 @@ $overlay-colour-dark: $background-colour-dark !default;
 $overlay-opacity: 0.6 !default;
 
 .overlay {
-  @include set-colours($background: $overlay-colour-light);
+  @include colour.set-colours($background: $overlay-colour-light);
 
-  @include on-dark-colour-scheme {
-    @include set-colours($background: $overlay-colour-dark);
+  @include colour.on-dark-colour-scheme {
+    @include colour.set-colours($background: $overlay-colour-dark);
   }
 
   &--is-active {

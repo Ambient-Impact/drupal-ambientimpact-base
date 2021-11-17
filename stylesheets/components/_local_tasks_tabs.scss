@@ -2,18 +2,23 @@
 //   Base local tasks tabs partial
 // -----------------------------------------------------------------------------
 
+@use '../global/typography';
+@use 'link/link.state' as link-state;
+@use 'material.ripple' as material-ripple;
+@use 'material.tabs' as material-tabs;
+
 .tabs.primary {
-  @include material-tabs-container;
+  @include material-tabs.material-tabs-container;
 
   li {
     margin: 0;
 
     a {
-      @include material-tabs-item;
+      @include material-tabs.material-tabs-item;
 
-      font-weight: $font-weight-strong;
+      font-weight: typography.$font-weight-strong;
 
-      @include material-ripple;
+      @include material-ripple.material-ripple;
 
       // This overrides Classy's :focus background-color that comes through if
       // you click and drag a tab link, so that it doesn't show the bright
@@ -28,14 +33,14 @@
     &.is-active a {
       background-color: transparent;
 
-      @include link-hover {
+      @include link-state.link-hover {
         background-color: transparent;
       }
 
       &::after {
         content: '';
 
-        @include material-tabs-item-current;
+        @include material-tabs.material-tabs-item-current;
       }
     }
   }

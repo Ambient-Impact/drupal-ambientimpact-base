@@ -2,13 +2,17 @@
 //   Base Drupal media fields partial
 // -----------------------------------------------------------------------------
 
+@use '../global/layout';
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use 'sass/variables/general';
+
 ///
 /// Media field spacing.
 ///
 /// This is used as the overall field padding and spacing between field items.
 /// Defaults to $layout-gutter to look consistent with the page layout spacing.
 ///
-$media-field-spacing: $layout-gutter !default;
+$media-field-spacing: layout.$layout-gutter !default;
 
 .field--type-image,
 .field--type-video-embed-field {
@@ -20,7 +24,7 @@ $media-field-spacing: $layout-gutter !default;
 
   // Spacing between field items and any preceding element (usually another
   // field item).
-  @include vertical-spacing-against-previous(
+  @include vertical-spacing.vertical-spacing-against-previous(
     '.field__item',
     $spacing-small: $media-field-spacing,
     $spacing-large: $media-field-spacing
@@ -83,6 +87,6 @@ $media-field-spacing: $layout-gutter !default;
     // major browser yet supports the :has() pseudo-class as of 2019-06-20.
     //
     // @see https://developer.mozilla.org/en-US/docs/Web/CSS/:has
-    margin-bottom: $general-spacing * 2.5;
+    margin-bottom: general.$general-spacing * 2.5;
   }
 }

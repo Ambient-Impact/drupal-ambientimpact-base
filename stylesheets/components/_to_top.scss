@@ -2,22 +2,27 @@
 //   Base scroll to top component partial
 // -----------------------------------------------------------------------------
 
+@use '../global/layout';
+@use '../global/typography';
+@use 'material.ripple' as material-ripple;
+@use 'sass/helpers/selector';
+
 .to-top {
   // Set the horizontal distance from the viewport edges to the gutter so that
   // it fits in with the rest of the layout.
-  @include root-conditions(('[dir=ltr]'), 'html') {
-    right:  $layout-gutter;
+  @include selector.root-conditions(('[dir=ltr]'), 'html') {
+    right:  layout.$layout-gutter;
   }
-  @include root-conditions(('[dir=rtl]'), 'html') {
-    left:   $layout-gutter;
+  @include selector.root-conditions(('[dir=rtl]'), 'html') {
+    left:   layout.$layout-gutter;
   }
 
   &__link {
     // This is a floating action button so it should use the same font weight as
     // other Material buttons, but it's set in its own component CSS so we have
     // to override that here.
-    font-weight: $font-weight-strong;
+    font-weight: typography.$font-weight-strong;
 
-    @include material-ripple;
+    @include material-ripple.material-ripple;
   }
 }

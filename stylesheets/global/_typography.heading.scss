@@ -4,6 +4,9 @@
 
 @use 'sass:list';
 @use 'sass:math';
+@use 'typography';
+@use 'typography.responsive' as typography-responsive;
+@use 'sass/helpers/typography.responsive' as typography-responsive-helper;
 
 ///
 /// Heading selector.
@@ -37,12 +40,12 @@ $heading-font-scale-unit: 'em' !default;
 ///
 /// The heading font stack.
 ///
-$heading-font-stack: $font-stack !default;
+$heading-font-stack: typography.$font-stack !default;
 
 ///
 /// The heading font weight.
 ///
-$heading-font-weight: $font-weight-strong !default;
+$heading-font-weight: typography.$font-weight-strong !default;
 
 ///
 /// Apply styles to a range of headings.
@@ -102,17 +105,17 @@ $heading-font-weight: $font-weight-strong !default;
   // understand calc() or responsive type is disabled.
   font-size: list.nth($heading-font-sizes, $level);
 
-  @if $use-responsive-type == true {
-    @include responsive-type(
+  @if typography-responsive.$use-responsive-type == true {
+    @include typography-responsive-helper.responsive-type(
       font-size,
-      $font-scale-width-min,
-      $font-scale-width-max,
+      typography-responsive.$font-scale-width-min,
+      typography-responsive.$font-scale-width-max,
       math.pow(
-        $font-scale-min,
+        typography-responsive.$font-scale-min,
         list.nth($heading-font-exponents, $level)
       ) * to-number('1' + $heading-font-scale-unit),
       math.pow(
-        $font-scale-max,
+        typography-responsive.$font-scale-max,
         list.nth($heading-font-exponents, $level)
       ) * to-number('1' + $heading-font-scale-unit)
     );

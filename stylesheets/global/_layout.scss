@@ -4,6 +4,10 @@
 
 @use 'sass:math';
 @use 'sass:meta';
+@use 'sass/helpers/breakpoint';
+@use 'sass/helpers/layout';
+@use 'sass/helpers/selector';
+@use 'sass/variables/general';
 @import 'include-media';
 
 // This handles the basic layout of the page, including horizontal and vertical
@@ -20,17 +24,17 @@
 ///
 /// This is the spacing added on the left and right of the layout container.
 ///
-$layout-gutter: math.div($general-spacing, 2) !default;
+$layout-gutter: math.div(general.$general-spacing, 2) !default;
 
 ///
 /// The space between the top of the viewport and the layout container.
 ///
-$layout-top-spacing: $general-spacing * 1.5 !default;
+$layout-top-spacing: general.$general-spacing * 1.5 !default;
 
 ///
 /// The space between the bottom of the viewport and the layout container.
 ///
-$layout-bottom-spacing: $general-spacing * 8 !default;
+$layout-bottom-spacing: general.$general-spacing * 8 !default;
 
 ///
 /// The maximum width of the site layout when no sidebars are present.
@@ -95,9 +99,9 @@ $layout-sidebar-column-width: minmax(8em, 12em) !default;
 ///
 /// The gap between layout columns.
 ///
-$layout-gap: $general-spacing !default;
+$layout-gap: general.$general-spacing !default;
 
-@include add-breakpoints((
+@include breakpoint.add-breakpoints((
   // The minimum width to display sidebar beside the content column when one
   // sidebar is present.
   'layout-with-one-sidebar':  $layout-gutter * 2 +
@@ -133,7 +137,7 @@ $layout-gap: $general-spacing !default;
 @mixin on-sidebar($sidebar) {
   // Only the first sidebar.
   @if ($sidebar == first) {
-    @include root-conditions(
+    @include selector.root-conditions(
       '.has-sidebar-first:not(.has-sidebar-second)', 'body'
     ) {
       @content;
@@ -141,7 +145,7 @@ $layout-gap: $general-spacing !default;
 
   // Only the second sidebar.
   } @else if ($sidebar == second) {
-    @include root-conditions(
+    @include selector.root-conditions(
       '.has-sidebar-second:not(.has-sidebar-first)', 'body'
     ) {
       @content;
@@ -149,7 +153,7 @@ $layout-gap: $general-spacing !default;
 
   // Only if one sidebar is present, regardless of which it is.
   } @else if ($sidebar == one) {
-    @include root-conditions((
+    @include selector.root-conditions((
       '.has-sidebar-first:not(.has-sidebar-second)',
       '.has-sidebar-second:not(.has-sidebar-first)',
     ), 'body') {
@@ -158,14 +162,14 @@ $layout-gap: $general-spacing !default;
 
   // Only if both sidebars.
   } @else if ($sidebar == both) {
-    @include root-conditions('.has-both-sidebars', 'body') {
+    @include selector.root-conditions('.has-both-sidebars', 'body') {
       @content;
     }
 
   // Any other value is treated as 'any', which will match one or both sidebars
   // being present.
   } @else {
-    @include root-conditions((
+    @include selector.root-conditions((
       '.has-sidebar-first:not(.has-sidebar-second)',
       '.has-sidebar-second:not(.has-sidebar-first)',
       '.has-both-sidebars',
@@ -245,7 +249,7 @@ $layout-gap: $general-spacing !default;
 @mixin layout-max-width {
   max-width: $layout-no-sidebars-max-width;
 
-  @include use-grid {
+  @include layout.use-grid {
     @include on-sidebar(one) {
       max-width: $layout-with-one-sidebar-max-width;
     }
@@ -293,7 +297,7 @@ $layout-gap: $general-spacing !default;
 /// @require {variable} $layout-content-column-width
 ///
 @mixin layout-grid {
-  @include use-grid {
+  @include layout.use-grid {
     // One or both sidebars is/are present.
     @include on-sidebar-beside-content(any) {
       display: grid;

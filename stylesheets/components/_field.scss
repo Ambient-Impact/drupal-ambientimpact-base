@@ -2,6 +2,11 @@
 //   Base Drupal field partial
 // -----------------------------------------------------------------------------
 
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use 'sass/helpers/layout';
+@use 'sass/helpers/selector';
+@use 'sass/variables/general';
+
 // @todo Remove fallbacks when flexbox with gap properties is well supported.
 
 :root {
@@ -11,7 +16,7 @@
 
 .field--label-inline {
 
-  @include supports-flexbox-gap {
+  @include layout.supports-flexbox-gap {
 
     display:    flex;
     flex-wrap:  wrap;
@@ -23,23 +28,23 @@
 
   .field__label {
 
-    @include root-conditions(('[dir=ltr]'), 'html') {
+    @include selector.root-conditions(('[dir=ltr]'), 'html') {
       float: left;
       padding-right: var(--field-column-gap);
     }
 
-    @include root-conditions(('[dir=rtl]'), 'html') {
+    @include selector.root-conditions(('[dir=rtl]'), 'html') {
       float: right;
       padding-left: var(--field-column-gap);
     }
 
-    @include supports-flexbox-gap {
-      @include root-conditions(('[dir=ltr]'), 'html') {
+    @include layout.supports-flexbox-gap {
+      @include selector.root-conditions(('[dir=ltr]'), 'html') {
         float: none;
         padding-right: 0;
       }
 
-      @include root-conditions(('[dir=rtl]'), 'html') {
+      @include selector.root-conditions(('[dir=rtl]'), 'html') {
         float: none;
         padding-left: 0;
       }
@@ -53,9 +58,9 @@
 }
 
 @at-root {
-  @include vertical-spacing-against-previous(
+  @include vertical-spacing.vertical-spacing-against-previous(
     '.field',
-    $spacing-small: $general-spacing,
-    $spacing-large: $general-spacing * 1.5
+    $spacing-small: general.$general-spacing,
+    $spacing-large: general.$general-spacing * 1.5
   );
 }

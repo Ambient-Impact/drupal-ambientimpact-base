@@ -2,6 +2,11 @@
 //   Base list partial
 // -----------------------------------------------------------------------------
 
+@use '../global/content';
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use 'sass/helpers/selector';
+@use 'sass/variables/general';
+
 ///
 /// List marker indent.
 ///
@@ -15,7 +20,7 @@ $list-marker-indent: 1.2em !default;
 ///
 /// This is usually the vertical spacing between two list items.
 ///
-$list-item-spacing: $general-spacing * 0.5 !default;
+$list-item-spacing: general.$general-spacing * 0.5 !default;
 
 ///
 /// Multicolumn list max column count.
@@ -33,25 +38,25 @@ $list-multicolumn-width: 10em !default;
 /// This includes the list marker indent so that columns other than the first
 /// have the correct indent to match the indent on the list itself.
 ///
-$list-multicolumn-gap: $list-marker-indent + $general-spacing !default;
+$list-multicolumn-gap: $list-marker-indent + general.$general-spacing !default;
 
 ///
 /// Remove list styles, e.g. padding and bullets.
 ///
 @mixin unlisted-list {
-  @include root-conditions(('[dir=ltr]'), 'html') {
+  @include selector.root-conditions(('[dir=ltr]'), 'html') {
     padding-left:   0 !important;
   }
-  @include root-conditions(('[dir=rtl]'), 'html') {
+  @include selector.root-conditions(('[dir=rtl]'), 'html') {
     padding-right:  0 !important;
   }
 
   li {
     // Remove horizontal margins on items in .item-list lists.
-    @include root-conditions(('[dir=ltr]'), 'html') {
+    @include selector.root-conditions(('[dir=ltr]'), 'html') {
       margin-left:   0;
     }
-    @include root-conditions(('[dir=rtl]'), 'html') {
+    @include selector.root-conditions(('[dir=rtl]'), 'html') {
       margin-right:  0;
     }
 
@@ -87,26 +92,26 @@ $list-multicolumn-gap: $list-marker-indent + $general-spacing !default;
 }
 
 // Default list styles.
-@include content-area {
-  @include vertical-spacing-against-previous(
+@include content.content-area {
+  @include vertical-spacing.vertical-spacing-against-previous(
     'ol',
-    $spacing-small: $content-item-vertical-spacing-small,
-    $spacing-large: $content-item-vertical-spacing-large
+    $spacing-small: content.$content-item-vertical-spacing-small,
+    $spacing-large: content.$content-item-vertical-spacing-large
   );
-  @include vertical-spacing-against-previous(
+  @include vertical-spacing.vertical-spacing-against-previous(
     'ul:not(.contextual-links)',
-    $spacing-small: $content-item-vertical-spacing-small,
-    $spacing-large: $content-item-vertical-spacing-large
+    $spacing-small: content.$content-item-vertical-spacing-small,
+    $spacing-large: content.$content-item-vertical-spacing-large
   );
 
   li {
     // Nested lists use the list item spacing as anything else looks off.
-    @include vertical-spacing-against-previous(
+    @include vertical-spacing.vertical-spacing-against-previous(
       'ol',
       $spacing-small: $list-item-spacing,
       $spacing-large: $list-item-spacing
     );
-    @include vertical-spacing-against-previous(
+    @include vertical-spacing.vertical-spacing-against-previous(
       'ul:not(.contextual-links)',
       $spacing-small: $list-item-spacing,
       $spacing-large: $list-item-spacing
@@ -124,11 +129,11 @@ $list-multicolumn-gap: $list-marker-indent + $general-spacing !default;
 
       // This gives the list just enough space on the side to display and
       // correctly line up list markers.
-      @include root-conditions(('[dir=ltr]'), 'html') {
+      @include selector.root-conditions(('[dir=ltr]'), 'html') {
         padding-left:   $list-marker-indent;
         padding-right:  0;
       }
-      @include root-conditions(('[dir=rtl]'), 'html') {
+      @include selector.root-conditions(('[dir=rtl]'), 'html') {
         padding-left:   0;
         padding-right:  $list-marker-indent;
       }

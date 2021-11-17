@@ -2,13 +2,15 @@
 //   Base content partial
 // -----------------------------------------------------------------------------
 
+@use 'sass/variables/general';
+
 ///
 /// Generic content item vertical spacing on smaller screens.
 ///
 /// @see {Mixin} vertical-spacing-against-previous
 ///   Primarily intended to be used with this mixin but can be used anywhere.
 ///
-$content-item-vertical-spacing-small: $general-spacing * 0.9 !default;
+$content-item-vertical-spacing-small: general.$general-spacing * 0.9 !default;
 
 ///
 /// Generic content item vertical spacing on larger screens.
@@ -16,7 +18,7 @@ $content-item-vertical-spacing-small: $general-spacing * 0.9 !default;
 /// @see {Mixin} vertical-spacing-against-previous
 ///   Primarily intended to be used with this mixin but can be used anywhere.
 ///
-$content-item-vertical-spacing-large: $general-spacing * 1.2 !default;
+$content-item-vertical-spacing-large: general.$general-spacing * 1.2 !default;
 
 ///
 /// Apply styles to site content.

@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 @use 'sass:selector';
+@use 'sass/variables/general';
 @import 'include-media';
 
 ///
@@ -11,7 +12,7 @@
 /// @see $vertical-spacing-breakpoint
 ///   The breakpoint that determines when this is used.
 ///
-$vertical-spacing-large: $general-spacing * 5 !default;
+$vertical-spacing-large: general.$general-spacing * 5 !default;
 
 ///
 /// Generic vertical spacing between elements when on smaller screens.
@@ -19,7 +20,7 @@ $vertical-spacing-large: $general-spacing * 5 !default;
 /// @see $vertical-spacing-breakpoint
 ///   The breakpoint that determines when this is used.
 ///
-$vertical-spacing-small: $general-spacing * 2.5 !default;
+$vertical-spacing-small: general.$general-spacing * 2.5 !default;
 
 ///
 /// Generic element vertical spacing breakpoint.

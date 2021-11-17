@@ -2,10 +2,13 @@
 //   Base <p> element partial
 // -----------------------------------------------------------------------------
 
-@include vertical-spacing-against-previous(
+@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use '../global/content';
+
+@include vertical-spacing.vertical-spacing-against-previous(
   'p',
-  $spacing-small: $content-item-vertical-spacing-small,
-  $spacing-large: $content-item-vertical-spacing-large
+  $spacing-small: content.$content-item-vertical-spacing-small,
+  $spacing-large: content.$content-item-vertical-spacing-large
 );
 
 p {
