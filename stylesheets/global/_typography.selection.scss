@@ -9,15 +9,15 @@
 ///
 /// Selected text background colour.
 ///
-$text-selection-background-colour: color.adjust(
+typography-selection.$text-selection-background-colour: color.adjust(
   material-colour.$material-primary-colour, $lightness: 10%
 );
 
 ///
 /// Selected text background colour when the viewport is inactive/blurred.
 ///
-$text-inactive-selection-background-colour: color.adjust(
-  $text-selection-background-colour, $saturation: -60%
+typography-selection.$text-inactive-selection-background-colour: color.adjust(
+  typography-selection.$text-selection-background-colour, $saturation: -60%
 );
 
 // Set default selection colours.
