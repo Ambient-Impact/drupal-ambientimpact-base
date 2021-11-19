@@ -100,7 +100,7 @@ $layout-sidebar-column-width: minmax(8em, 12em) !default;
 ///
 $layout-gap: general.$general-spacing !default;
 
-@include breakpoint.add-breakpoints((
+@include breakpoint.add((
   // The minimum width to display sidebar beside the content column when one
   // sidebar is present.
   'layout-with-one-sidebar':  $layout-gutter * 2 +
