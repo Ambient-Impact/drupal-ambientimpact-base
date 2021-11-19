@@ -3,8 +3,8 @@
 // -----------------------------------------------------------------------------
 
 @use 'sass:selector';
+@use 'sass/helpers/breakpoint';
 @use 'sass/variables/general';
-@import 'include-media';
 
 ///
 /// Generic vertical spacing between elements when on larger screens.
@@ -73,7 +73,7 @@ $vertical-spacing-ignore-elements: '.hidden', '.visually-hidden',
   // If the small and large spacing are the same, don't bother with the
   // breakpoint.
   @if $spacing-small != $spacing-large {
-    @include media($breakpoint) {
+    @include breakpoint.on($breakpoint) {
       #{$property}: $spacing-large;
     }
   }

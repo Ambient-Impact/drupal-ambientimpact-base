@@ -8,7 +8,6 @@
 @use 'sass/helpers/layout';
 @use 'sass/helpers/selector';
 @use 'sass/variables/general';
-@import 'include-media';
 
 // This handles the basic layout of the page, including horizontal and vertical
 // gutters for the layout container, and lays out any sidebars next to the
@@ -204,7 +203,7 @@ $layout-gap: general.$general-spacing !default;
 ///
 @mixin on-sidebar-beside-content($sidebar) {
   @if ($sidebar == both) {
-    @include media('>=layout-with-both-sidebars') {
+    @include breakpoint.on('>=layout-with-both-sidebars') {
       @include on-sidebar($sidebar) {
         @content;
       };
@@ -218,12 +217,12 @@ $layout-gap: general.$general-spacing !default;
   // we duplicate the styles, one for a single sidebar and one both sidebars at
   // their respective media queries.
   } @else if ($sidebar == any) {
-    @include media('>=layout-with-one-sidebar') {
+    @include breakpoint.on('>=layout-with-one-sidebar') {
       @include on-sidebar(one) {
         @content;
       };
     }
-    @include media('>=layout-with-both-sidebars') {
+    @include breakpoint.on('>=layout-with-both-sidebars') {
       @include on-sidebar(both) {
         @content;
       };
@@ -232,7 +231,7 @@ $layout-gap: general.$general-spacing !default;
   // Any other value is assumed to be one of 'first', 'second', or 'one', all of
   // which fall under the one sidebar media query.
   } @else {
-    @include media('>=layout-with-one-sidebar') {
+    @include breakpoint.on('>=layout-with-one-sidebar') {
       @include on-sidebar($sidebar) {
         @content;
       };
