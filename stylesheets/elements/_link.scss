@@ -5,7 +5,6 @@
 @use 'sass/helpers/colour';
 @use 'link/link';
 @use 'link/link.colour' as link-colour;
-@use 'link/link.custom_property' as link-custom-property;
 @use 'link/link.state' as link-state;
 @use 'photoswipe';
 @use 'sass/helpers/transition';
@@ -96,7 +95,7 @@ $image-link-active-filters: contrast(100%) brightness(100%) !default;
 .offcanvas-panel {
   // Include link colours as custom properties in case they're useful for
   // JavaScript, etc.
-  @include link-custom-property.link-colour-custom-properties;
+  @include link-colour.link-colour-custom-properties;
 
   :any-link {
     // Any links.
