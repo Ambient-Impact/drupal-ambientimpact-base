@@ -7,6 +7,7 @@
 @use 'typography';
 @use 'typography.responsive' as typography-responsive;
 @use 'sass/helpers/typography.responsive' as typography-responsive-helper;
+@use 'SassyCast' as sassy-cast;
 
 ///
 /// Heading selector.
@@ -113,11 +114,11 @@ $heading-font-weight: typography.$font-weight-strong !default;
       math.pow(
         typography-responsive.$font-scale-min,
         list.nth($heading-font-exponents, $level)
-      ) * to-number('1' + $heading-font-scale-unit),
+      ) * sassy-cast.to-number('1' + $heading-font-scale-unit),
       math.pow(
         typography-responsive.$font-scale-max,
         list.nth($heading-font-exponents, $level)
-      ) * to-number('1' + $heading-font-scale-unit)
+      ) * sassy-cast.to-number('1' + $heading-font-scale-unit)
     );
   }
 }
