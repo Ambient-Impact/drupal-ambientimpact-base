@@ -4,7 +4,7 @@
 
 @use 'material.common/material.colour' as material-colour;
 @use 'sass:color';
-@use 'sass/helpers/typography.selection' as typography-selection-helper;
+@use 'sass/helpers/typography.selection' as typography-selection;
 
 ///
 /// Selected text background colour.
@@ -22,5 +22,5 @@ $text-inactive-selection-background-colour: color.adjust(
 
 // Set default selection colours.
 * {
-  @include typography-selection-helper.selection;
+  @include typography-selection.selection;
 }
