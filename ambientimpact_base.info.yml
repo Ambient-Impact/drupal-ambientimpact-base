@@ -6,6 +6,9 @@ package: Ambient.Impact
 core_version_requirement: ^8 || ^9
 hidden: true
 
+dependencies:
+  - ambientimpact_core:ambientimpact_core
+
 regions:
   header: 'Header'
   primary_menu: 'Primary menu'
