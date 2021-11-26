@@ -1,3 +1,3 @@
-@forward 'inline';
-@forward 'search';
-@forward 'node_preview';
+@use 'inline';
+@use 'search';
+@use 'node_preview';

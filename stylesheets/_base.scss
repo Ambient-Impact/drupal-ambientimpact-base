@@ -2,7 +2,7 @@
 //   Ambient.Impact - Base theme - Shared base partial
 // -----------------------------------------------------------------------------
 
-@forward 'global';
-@forward 'elements';
-@forward 'forms';
-@forward 'components';
+@use 'global';
+@use 'elements';
+@use 'forms';
+@use 'components';
