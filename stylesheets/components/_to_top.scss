@@ -5,7 +5,9 @@
 @use '../global/layout';
 @use '../global/typography';
 @use 'material.ripple' as material-ripple;
+@use 'sass/helpers/colour';
 @use 'sass/helpers/selector';
+@use 'to_top/_to_top' as to-top;
 
 .to-top {
   // Set the horizontal distance from the viewport edges to the gutter so that
@@ -24,5 +26,23 @@
     font-weight: typography.$font-weight-strong;
 
     @include material-ripple.material-ripple;
+
+    // This is required so that --material-ripple-colour is generated, as the
+    // to top component doesn't include the Material ripple module by default
+    // and thus the ripple colour event callback never gets triggered.
+    //
+    // @todo Find a way to remove the need for this.
+    @include material-ripple.ripple-colour(
+      $background-colour: to-top.$background-colour-normal-on-light,
+      $foreground-colour: to-top.$foreground-colour-on-light
+    );
+
+    @include colour.on-dark-colour-scheme {
+      @include material-ripple.ripple-colour(
+        $background-colour: to-top.$background-colour-normal-on-dark,
+        $foreground-colour: to-top.$foreground-colour-on-dark
+      );
+    }
+
   }
 }

@@ -6,6 +6,7 @@
 @use 'link/link.state' as link-state;
 @use 'material.ripple' as material-ripple;
 @use 'material.tabs' as material-tabs;
+@use 'sass/helpers/colour';
 
 .tabs.primary {
   @include material-tabs.material-tabs-container;
@@ -19,6 +20,23 @@
       font-weight: typography.$font-weight-strong;
 
       @include material-ripple.material-ripple;
+
+      // This is required so that --material-ripple-colour is generated, as the
+      // Material tabs component doesn't include the Material ripple module by
+      // default and thus the ripple colour event callback never gets triggered.
+      //
+      // @todo Find a way to remove the need for this.
+      @include material-ripple.ripple-colour(
+        $background-colour: colour.$background-colour-light,
+        $foreground-colour: colour.$foreground-colour-on-light
+      );
+
+      @include colour.on-dark-colour-scheme {
+        @include material-ripple.ripple-colour(
+          $background-colour: colour.$background-colour-dark,
+          $foreground-colour: colour.$foreground-colour-on-dark
+        );
+      }
 
       // This overrides Classy's :focus background-color that comes through if
       // you click and drag a tab link, so that it doesn't show the bright
