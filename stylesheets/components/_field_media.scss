@@ -17,6 +17,8 @@ $media-field-spacing: layout.$layout-gutter !default;
 .field--type-image,
 .field--type-video-embed-field {
 
+  --field-item-gap: #{$media-field-spacing};
+
   img {
     // Ensure images are always the full width of the field item.
     width:  100%;

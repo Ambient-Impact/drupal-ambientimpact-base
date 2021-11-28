@@ -12,6 +12,7 @@
 :root {
   --field-column-gap: 0.75em;
   --field-row-gap:    0.25em;
+  --field-item-gap:   1em;
 }
 
 .field--label-inline {
@@ -63,4 +64,15 @@
     $spacing-small: general.$general-spacing,
     $spacing-large: general.$general-spacing * 1.5
   );
+}
+
+// This adds a gap between field items that aren't set to have an inline label.
+:not(.field--label-inline) > .field__items {
+  @include layout.supports-flexbox-gap {
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--field-item-gap);
+
+  }
 }
