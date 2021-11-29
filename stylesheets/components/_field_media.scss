@@ -10,14 +10,14 @@
 /// Media field spacing.
 ///
 /// This is used as the overall field padding and spacing between field items.
-/// Defaults to $layout-gutter to look consistent with the page layout spacing.
+/// Defaults to $gutter to look consistent with the page layout spacing.
 ///
-$media-field-spacing: layout.$layout-gutter !default;
+$spacing: layout.$gutter !default;
 
 .field--type-image,
 .field--type-video-embed-field {
 
-  --field-item-gap: #{$media-field-spacing};
+  --field-item-gap: #{$spacing};
 
   img {
     // Ensure images are always the full width of the field item.
@@ -26,10 +26,10 @@ $media-field-spacing: layout.$layout-gutter !default;
 
   // Spacing between field items and any preceding element (usually another
   // field item).
-  @include vertical-spacing.vertical-spacing-against-previous(
+  @include vertical-spacing.against-previous(
     '.field__item',
-    $spacing-small: $media-field-spacing,
-    $spacing-large: $media-field-spacing
+    $spacing-small: $spacing,
+    $spacing-large: $spacing
   );
 
   // These are centred using horizontal margins. Note that we have to include
@@ -55,7 +55,7 @@ $media-field-spacing: layout.$layout-gutter !default;
   }
 
   figcaption {
-    margin-top: $media-field-spacing;
+    margin-top: $spacing;
 
     text-align: center;
 
@@ -83,9 +83,9 @@ $media-field-spacing: layout.$layout-gutter !default;
   .field--type-image figcaption {
     // If a <figcaption> is in a multiple item field, distinguish it from any
     // <figure> that may follow it with a margin-bottom. Note that in this case,
-    // we're using $general-spacing and not $media-field-spacing as the latter
-    // is specifically meant to match the layout gutter. Also note that it's
-    // impractical to use the vertical-spacing-against-previous mixin here as no
+    // we're using $general-spacing and not $spacing as the latter is
+    // specifically meant to match the layout gutter. Also note that it's
+    // impractical to use the against-previous mixin here as no
     // major browser yet supports the :has() pseudo-class as of 2019-06-20.
     //
     // @see https://developer.mozilla.org/en-US/docs/Web/CSS/:has

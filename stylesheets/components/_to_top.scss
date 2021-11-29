@@ -13,10 +13,10 @@
   // Set the horizontal distance from the viewport edges to the gutter so that
   // it fits in with the rest of the layout.
   @include selector.root-conditions(('[dir=ltr]'), 'html') {
-    right:  layout.$layout-gutter;
+    right:  layout.$gutter;
   }
   @include selector.root-conditions(('[dir=rtl]'), 'html') {
-    left:   layout.$layout-gutter;
+    left:   layout.$gutter;
   }
 
   &__link {

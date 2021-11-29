@@ -20,7 +20,7 @@
   padding-top:    general.$general-spacing;
   padding-bottom: general.$general-spacing;
 
-  @include layout.layout-container-base-horizontal;
+  @include layout.container-base-horizontal;
 
   @include colour.set-colours(
     $background: material-panel.$material-panel-background-colour-light

@@ -7,10 +7,10 @@
 @use 'sass/variables/general';
 @use 'sass/helpers/selector';
 
-@include vertical-spacing.vertical-spacing-against-previous(
+@include vertical-spacing.against-previous(
   'details',
-  $spacing-small: content.$content-item-vertical-spacing-small,
-  $spacing-large: content.$content-item-vertical-spacing-large
+  $spacing-small: content.$item-vertical-spacing-small,
+  $spacing-large: content.$item-vertical-spacing-large
 );
 details {
   margin-top:     0;

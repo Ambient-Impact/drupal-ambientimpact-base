@@ -28,22 +28,22 @@ $use-image-link-styles: true !default;
 /// This excludes <canvas> elements because they often have their hover states
 /// defined elsewhere, on a per-element basis.
 ///
-$image-link-elements: img !default;
+$image-elements: img !default;
 
 ///
 /// Image element filters in a link when link is not highlighted/actived.
 ///
-$image-link-normal-filters: contrast(100%) brightness(100%) !default;
+$image-normal-filters: contrast(100%) brightness(100%) !default;
 
 ///
 /// Image element filters in a link when link is highlighted.
 ///
-$image-link-hover-filters: contrast(75%) brightness(150%) !default;
+$image-hover-filters: contrast(75%) brightness(150%) !default;
 
 ///
 /// Image element filters in a link when link is activated.
 ///
-$image-link-active-filters: contrast(100%) brightness(100%) !default;
+$image-active-filters: contrast(100%) brightness(100%) !default;
 
 ///
 /// Images in links.
@@ -54,14 +54,14 @@ $image-link-active-filters: contrast(100%) brightness(100%) !default;
 /// @require {mixin} transition-fade-active
 /// @require {mixin} link-hover
 /// @require {mixin} link-active
-/// @require {variable} $image-link-elements
-/// @require {variable} $image-link-normal-filters
-/// @require {variable} $image-link-hover-filters
-/// @require {variable} $image-link-active-filters
+/// @require {variable} $image-elements
+/// @require {variable} $image-normal-filters
+/// @require {variable} $image-hover-filters
+/// @require {variable} $image-active-filters
 ///
-@mixin image-link {
-  #{$image-link-elements} {
-    filter: $image-link-normal-filters;
+@mixin image {
+  #{$image-elements} {
+    filter: $image-normal-filters;
 
     @include transition.transition-fade-base(
       $props: filter
@@ -69,16 +69,16 @@ $image-link-active-filters: contrast(100%) brightness(100%) !default;
   }
 
   @include link-state.link-hover {
-    #{$image-link-elements} {
-      filter: $image-link-hover-filters;
+    #{$image-elements} {
+      filter: $image-hover-filters;
 
       @include transition.transition-fade-active();
     }
   }
 
   @include link-state.link-active {
-    #{$image-link-elements} {
-      filter: $image-link-active-filters;
+    #{$image-elements} {
+      filter: $image-active-filters;
     }
   }
 }
@@ -115,7 +115,7 @@ $image-link-active-filters: contrast(100%) brightness(100%) !default;
 
       // Apply the image link mixin to all links.
       @if $use-image-link-styles == true {
-        @include image-link;
+        @include image;
       }
     }
   }

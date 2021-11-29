@@ -7,17 +7,17 @@
 ///
 /// <mark> element padding.
 ///
-$mark-padding: 0 0.2em 0.15em !default;
+$padding: 0 0.2em 0.15em !default;
 
 ///
 /// <mark> element border radius.
 ///
-$mark-border-radius: material-general.$material-border-radius !default;
+$border-radius: material-general.$material-border-radius !default;
 
 mark {
-  padding: $mark-padding;
+  padding: $padding;
 
-  border-radius: $mark-border-radius;
+  border-radius: $border-radius;
 
   // If this wraps to a new line, this property makes the horizontal padding and
   // border radius apply to each line where they break:

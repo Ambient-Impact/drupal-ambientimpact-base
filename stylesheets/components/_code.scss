@@ -11,46 +11,44 @@
 ///
 /// Highlighted code background colour on light backgrounds.
 ///
-$code-highlighted-background-colour-on-light:
-  colour.$background-colour-dark !default;
+$background-colour-on-light: colour.$background-colour-dark !default;
 
 ///
 /// Highlighted code background colour on dark backgrounds.
 ///
-$code-highlighted-background-colour-on-dark: color.mix(
+$background-colour-on-dark: color.mix(
   colour.$foreground-colour-on-dark, colour.$background-colour-dark, 10%
 ) !default;
 
 ///
 /// Highlighted code header background colour on light backgrounds.
 ///
-$code-highlighted-header-background-colour-on-light: color.mix(
+$header-background-colour-on-light: color.mix(
   colour.$foreground-colour-on-dark, colour.$background-colour-dark, 30%
 ) !default;
 
 ///
 /// Highlighted code header background colour on dark backgrounds.
 ///
-$code-highlighted-header-background-colour-on-dark: color.mix(
+$header-background-colour-on-dark: color.mix(
   colour.$foreground-colour-on-dark, colour.$background-colour-dark, 20%
 ) !default;
 
 ///
 /// Highlighted code title padding.
 ///
-$code-highlighted-block-title-padding:
+$block-title-padding:
   (general.$general-spacing * 0.7) general.$general-spacing !default;
 
 ///
 /// Highlighted code body padding.
 ///
-$code-highlighted-block-body-padding: general.$general-spacing !default;
+$block-body-padding: general.$general-spacing !default;
 
 ///
 /// Highlighted code border-radius.
 ///
-$code-highlighted-border-radius:
-  material-general.$material-border-radius !default;
+$border-radius: material-general.$material-border-radius !default;
 
 ///
 /// Highlighted code string colour.
@@ -58,7 +56,7 @@ $code-highlighted-border-radius:
 /// @link https://www.monokai.pro/
 ///   From Monokai colour scheme.
 ///
-$code-highlighted-colour-string: #e7b248 !default;
+$colour-string: #e7b248 !default;
 
 ///
 /// Highlighted code symbol colour.
@@ -66,7 +64,7 @@ $code-highlighted-colour-string: #e7b248 !default;
 /// @link https://www.monokai.pro/
 ///   From Monokai colour scheme.
 ///
-$code-highlighted-colour-symbol: #f92468 !default;
+$colour-symbol: #f92468 !default;
 
 ///
 /// Highlighted code number colour.
@@ -74,7 +72,7 @@ $code-highlighted-colour-symbol: #f92468 !default;
 /// @link https://www.monokai.pro/
 ///   From Monokai colour scheme.
 ///
-$code-highlighted-colour-number: #ac80ff !default;
+$colour-number: #ac80ff !default;
 
 ///
 /// Highlighted code keyword colour.
@@ -82,24 +80,24 @@ $code-highlighted-colour-number: #ac80ff !default;
 /// @link https://www.monokai.pro/
 ///   From Monokai colour scheme.
 ///
-$code-highlighted-colour-keyword: #67d8ef !default;
+$colour-keyword: #67d8ef !default;
 
 ///
 /// Highlighted code reserved word colour.
 ///
 /// @link https://github.com/equinusocio/material-theme
 ///   Inspired by the Material Theme for Sublime Text.
-$code-highlighted-colour-reserved-word: #89ddff !default;
+$colour-reserved-word: #89ddff !default;
 
 ///
 /// Highlighted code method colour.
 ///
 /// @link https://www.monokai.pro/
 ///   From Monokai colour scheme.
-$code-highlighted-colour-method: #a6ce28 !default;
+$colour-method: #a6ce28 !default;
 
 @at-root {
-  @include vertical-spacing.vertical-spacing-against-previous(
+  @include vertical-spacing.against-previous(
     '.code-highlighted'
   );
 }
@@ -107,20 +105,20 @@ $code-highlighted-colour-method: #a6ce28 !default;
   // Header, displaying the human name of the code language.
   &__heading {
     margin:       0;
-    padding:      $code-highlighted-block-title-padding;
+    padding:      $block-title-padding;
 
     @include colour.set-colours(
-      $background: $code-highlighted-header-background-colour-on-light
+      $background: $header-background-colour-on-light
     );
 
     @include colour.on-dark-colour-scheme {
       @include colour.set-colours(
-        $background: $code-highlighted-header-background-colour-on-dark
+        $background: $header-background-colour-on-dark
       );
     }
 
-    border-top-left-radius:   $code-highlighted-border-radius;
-    border-top-right-radius:  $code-highlighted-border-radius;
+    border-top-left-radius:   $border-radius;
+    border-top-right-radius:  $border-radius;
 
     // Reset line height to get a bit less vertical spacing.
     line-height:    1;
@@ -130,20 +128,16 @@ $code-highlighted-colour-method: #a6ce28 !default;
   &__code {
     // Reset any browser default margins.
     margin:   0;
-    padding:  $code-highlighted-block-body-padding;
+    padding:  $block-body-padding;
 
-    @include colour.set-colours(
-      $background:  $code-highlighted-background-colour-on-light
-    );
+    @include colour.set-colours($background: $background-colour-on-light);
 
     @include colour.on-dark-colour-scheme {
-      @include colour.set-colours(
-        $background:  $code-highlighted-background-colour-on-dark
-      );
+      @include colour.set-colours($background: $background-colour-on-dark);
     }
 
-    border-bottom-left-radius:  $code-highlighted-border-radius;
-    border-bottom-right-radius: $code-highlighted-border-radius;
+    border-bottom-left-radius:  $border-radius;
+    border-bottom-right-radius: $border-radius;
 
     overflow-x:     auto;
 
@@ -155,28 +149,28 @@ $code-highlighted-colour-method: #a6ce28 !default;
   }
 
   &__symbol {
-    color: $code-highlighted-colour-symbol;
+    color: $colour-symbol;
   }
 
   &__string {
-    color: $code-highlighted-colour-string;
+    color: $colour-string;
   }
 
   &__number {
-    color: $code-highlighted-colour-number;
+    color: $colour-number;
   }
 
   &__keyword {
-    color: $code-highlighted-colour-keyword;
+    color: $colour-keyword;
 
     font-style: italic;
   }
 
   &__reserved-word {
-    color: $code-highlighted-colour-reserved-word;
+    color: $colour-reserved-word;
   }
 
   &__method {
-    color: $code-highlighted-colour-method;
+    color: $colour-method;
   }
 }

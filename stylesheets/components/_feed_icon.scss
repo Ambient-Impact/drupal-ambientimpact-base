@@ -19,7 +19,7 @@
   text-indent:  0;
 }
 
-@include vertical-spacing.vertical-spacing-against-previous(
+@include vertical-spacing.against-previous(
   '.feed-icons'
 );
 

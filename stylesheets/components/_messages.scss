@@ -13,7 +13,7 @@
 ///
 /// Messages border radius.
 ///
-$messages-border-radius: material-general.$material-border-radius !default;
+$border-radius: material-general.$material-border-radius !default;
 
 ///
 /// Messages card thickness.
@@ -21,7 +21,7 @@ $messages-border-radius: material-general.$material-border-radius !default;
 /// The card is the thick vertical border on the left (LTR) or right (RTL) of
 /// the message.
 ///
-$messages-card-thickness: 8px !default;
+$card-thickness: 8px !default;
 
 ///
 /// Status message base colour.
@@ -32,53 +32,53 @@ $messages-card-thickness: 8px !default;
 /// also change the derived colours, such as the card, border, background, and
 /// foreground colours.
 ///
-$messages-status-base-colour: #77b259 !default;
+$status-base-colour: #77b259 !default;
 
 ///
 /// Status message card colour on light backgrounds.
 ///
-$messages-status-card-colour-on-light: $messages-status-base-colour !default;
+$status-card-colour-on-light: $status-base-colour !default;
 
 ///
 /// Status message border colour on light backgrounds.
 ///
-$messages-status-border-colour-on-light: color.mix(
-  $messages-status-base-colour, colour.$background-colour-light, 40%
+$status-border-colour-on-light: color.mix(
+  $status-base-colour, colour.$background-colour-light, 40%
 ) !default;
 
 ///
 /// Status message border colour on dark backgrounds.
 ///
-$messages-status-border-colour-on-dark: color.mix(
-  $messages-status-base-colour, colour.$background-colour-dark, 40%
+$status-border-colour-on-dark: color.mix(
+  $status-base-colour, colour.$background-colour-dark, 40%
 ) !default;
 
 ///
 /// Status message foreground colour on light backgrounds.
 ///
-$messages-status-foreground-colour-on-light: color.mix(
-  $messages-status-base-colour, colour.$foreground-colour-on-light, 40%
+$status-foreground-colour-on-light: color.mix(
+  $status-base-colour, colour.$foreground-colour-on-light, 40%
 ) !default;
 
 ///
 /// Status message foreground colour on dark backgrounds.
 ///
-$messages-status-foreground-colour-on-dark: color.mix(
-  $messages-status-base-colour, colour.$foreground-colour-on-dark, 40%
+$status-foreground-colour-on-dark: color.mix(
+  $status-base-colour, colour.$foreground-colour-on-dark, 40%
 ) !default;
 
 ///
 /// Status message background colour on light backgrounds.
 ///
-$messages-status-background-colour-on-light: color.mix(
-  $messages-status-base-colour, colour.$background-colour-light, 8%
+$status-background-colour-on-light: color.mix(
+  $status-base-colour, colour.$background-colour-light, 8%
 ) !default;
 
 ///
 /// Status message background colour on dark backgrounds.
 ///
-$messages-status-background-colour-on-dark: color.mix(
-  $messages-status-base-colour, colour.$background-colour-dark, 8%
+$status-background-colour-on-dark: color.mix(
+  $status-base-colour, colour.$background-colour-dark, 8%
 ) !default;
 
 ///
@@ -90,53 +90,53 @@ $messages-status-background-colour-on-dark: color.mix(
 /// also change the derived colours, such as the card, border, background, and
 /// foreground colours.
 ///
-$messages-warning-base-colour: #e09600 !default;
+$warning-base-colour: #e09600 !default;
 
 ///
 /// Warning message card colour on light backgrounds.
 ///
-$messages-warning-card-colour-on-light: $messages-warning-base-colour !default;
+$warning-card-colour-on-light: $warning-base-colour !default;
 
 ///
 /// Warning message border colour on light backgrounds.
 ///
-$messages-warning-border-colour-on-light: color.mix(
-  $messages-warning-base-colour, colour.$background-colour-light, 35%
+$warning-border-colour-on-light: color.mix(
+  $warning-base-colour, colour.$background-colour-light, 35%
 ) !default;
 
 ///
 /// Warning message border colour on dark backgrounds.
 ///
-$messages-warning-border-colour-on-dark: color.mix(
-  $messages-warning-base-colour, colour.$background-colour-dark, 35%
+$warning-border-colour-on-dark: color.mix(
+  $warning-base-colour, colour.$background-colour-dark, 35%
 ) !default;
 
 ///
 /// Warning message foreground colour on light backgrounds.
 ///
-$messages-warning-foreground-colour-on-light: color.mix(
-  $messages-warning-base-colour, colour.$foreground-colour-on-light, 40%
+$warning-foreground-colour-on-light: color.mix(
+  $warning-base-colour, colour.$foreground-colour-on-light, 40%
 ) !default;
 
 ///
 /// Warning message foreground colour on dark backgrounds.
 ///
-$messages-warning-foreground-colour-on-dark: color.mix(
-  $messages-warning-base-colour, colour.$foreground-colour-on-dark, 40%
+$warning-foreground-colour-on-dark: color.mix(
+  $warning-base-colour, colour.$foreground-colour-on-dark, 40%
 ) !default;
 
 ///
 /// Warning message background colour on light backgrounds.
 ///
-$messages-warning-background-colour-on-light: color.mix(
-  $messages-warning-base-colour, colour.$background-colour-light, 6%
+$warning-background-colour-on-light: color.mix(
+  $warning-base-colour, colour.$background-colour-light, 6%
 ) !default;
 
 ///
 /// Warning message background colour on dark backgrounds.
 ///
-$messages-warning-background-colour-on-dark: color.mix(
-  $messages-warning-base-colour, colour.$background-colour-dark, 6%
+$warning-background-colour-on-dark: color.mix(
+  $warning-base-colour, colour.$background-colour-dark, 6%
 ) !default;
 
 ///
@@ -148,53 +148,53 @@ $messages-warning-background-colour-on-dark: color.mix(
 /// also change the derived colours, such as the card, border, background, and
 /// foreground colours.
 ///
-$messages-error-base-colour: #e62600 !default;
+$error-base-colour: #e62600 !default;
 
 ///
 /// Error message card colour on light backgrounds.
 ///
-$messages-error-card-colour-on-light: $messages-error-base-colour !default;
+$error-card-colour-on-light: $error-base-colour !default;
 
 ///
 /// Error message border colour on light backgrounds.
 ///
-$messages-error-border-colour-on-light: color.mix(
-  $messages-error-base-colour, colour.$background-colour-light, 25%
+$error-border-colour-on-light: color.mix(
+  $error-base-colour, colour.$background-colour-light, 25%
 ) !default;
 
 ///
 /// Error message border colour on dark backgrounds.
 ///
-$messages-error-border-colour-on-dark: color.mix(
-  $messages-error-base-colour, colour.$background-colour-dark, 25%
+$error-border-colour-on-dark: color.mix(
+  $error-base-colour, colour.$background-colour-dark, 25%
 ) !default;
 
 ///
 /// Error message foreground colour on light backgrounds.
 ///
-$messages-error-foreground-colour-on-light: color.mix(
-  $messages-error-base-colour, colour.$foreground-colour-on-light, 40%
+$error-foreground-colour-on-light: color.mix(
+  $error-base-colour, colour.$foreground-colour-on-light, 40%
 ) !default;
 
 ///
 /// Error message foreground colour on dark backgrounds.
 ///
-$messages-error-foreground-colour-on-dark: color.mix(
-  $messages-error-base-colour, colour.$foreground-colour-on-dark, 40%
+$error-foreground-colour-on-dark: color.mix(
+  $error-base-colour, colour.$foreground-colour-on-dark, 40%
 ) !default;
 
 ///
 /// Error message background colour on light backgrounds.
 ///
-$messages-error-background-colour-on-light: color.mix(
-  $messages-error-base-colour, colour.$background-colour-light, 6%
+$error-background-colour-on-light: color.mix(
+  $error-base-colour, colour.$background-colour-light, 6%
 ) !default;
 
 ///
 /// Error message background colour on dark backgrounds.
 ///
-$messages-error-background-colour-on-dark: color.mix(
-  $messages-error-base-colour, colour.$background-colour-dark, 6%
+$error-background-colour-on-dark: color.mix(
+  $error-base-colour, colour.$background-colour-dark, 6%
 ) !default;
 
 .messages {
@@ -202,10 +202,10 @@ $messages-error-background-colour-on-dark: color.mix(
   // but does not ensure that that edge lines up with boxes above or below; this
   // does that.
   @include selector.root-conditions(('[dir=ltr]'), 'html') {
-    margin-left:  $messages-card-thickness;
+    margin-left:  $card-thickness;
   }
   @include selector.root-conditions(('[dir=rtl]'), 'html') {
-    margin-right: $messages-card-thickness;
+    margin-right: $card-thickness;
   }
 
   // Ensure children can't break out and set their z-index as above things that
@@ -218,157 +218,157 @@ $messages-error-background-colour-on-dark: color.mix(
   // line-height.
   background-position: 10px calc(17px + 0.3em);
 
-  border-radius: $messages-border-radius;
+  border-radius: $border-radius;
 
   &--status {
     @include colour.set-colours(
-      $background:          $messages-status-background-colour-on-light,
-      $foreground-on-light: $messages-status-foreground-colour-on-light
+      $background:          $status-background-colour-on-light,
+      $foreground-on-light: $status-foreground-colour-on-light
     );
 
     @include colour.on-dark-colour-scheme {
       @include colour.set-colours(
-        $background:          $messages-status-background-colour-on-dark,
-        $foreground-on-dark:  $messages-status-foreground-colour-on-dark
+        $background:          $status-background-colour-on-dark,
+        $foreground-on-dark:  $status-foreground-colour-on-dark
       );
     }
 
     @include selector.root-conditions(('[dir=ltr]'), 'html') {
       border-color:
-        $messages-status-border-colour-on-light
-        $messages-status-border-colour-on-light
-        $messages-status-border-colour-on-light
+        $status-border-colour-on-light
+        $status-border-colour-on-light
+        $status-border-colour-on-light
         transparent;
 
       box-shadow:
-        -$messages-card-thickness 0 0 $messages-status-card-colour-on-light;
+        -$card-thickness 0 0 $status-card-colour-on-light;
 
       @include colour.on-dark-colour-scheme {
         border-color:
-          $messages-status-border-colour-on-dark
-          $messages-status-border-colour-on-dark
-          $messages-status-border-colour-on-dark
+          $status-border-colour-on-dark
+          $status-border-colour-on-dark
+          $status-border-colour-on-dark
           transparent;
       }
     }
     @include selector.root-conditions(('[dir=rtl]'), 'html') {
       border-color:
-        $messages-status-border-colour-on-light
+        $status-border-colour-on-light
         transparent
-        $messages-status-border-colour-on-light
-        $messages-status-border-colour-on-light;
+        $status-border-colour-on-light
+        $status-border-colour-on-light;
 
       box-shadow:
-        $messages-card-thickness 0 0 $messages-status-card-colour-on-light;
+        $card-thickness 0 0 $status-card-colour-on-light;
 
       @include colour.on-dark-colour-scheme {
         border-color:
-          $messages-status-border-colour-on-dark
+          $status-border-colour-on-dark
           transparent
-          $messages-status-border-colour-on-dark
-          $messages-status-border-colour-on-dark;
+          $status-border-colour-on-dark
+          $status-border-colour-on-dark;
       }
     }
   }
 
   &--warning {
     @include colour.set-colours(
-      $background:          $messages-warning-background-colour-on-light,
-      $foreground-on-light: $messages-warning-foreground-colour-on-light
+      $background:          $warning-background-colour-on-light,
+      $foreground-on-light: $warning-foreground-colour-on-light
     );
 
     @include colour.on-dark-colour-scheme {
       @include colour.set-colours(
-        $background:          $messages-warning-background-colour-on-dark,
-        $foreground-on-dark:  $messages-warning-foreground-colour-on-dark
+        $background:          $warning-background-colour-on-dark,
+        $foreground-on-dark:  $warning-foreground-colour-on-dark
       );
     }
 
     @include selector.root-conditions(('[dir=ltr]'), 'html') {
       border-color:
-        $messages-warning-border-colour-on-light
-        $messages-warning-border-colour-on-light
-        $messages-warning-border-colour-on-light
+        $warning-border-colour-on-light
+        $warning-border-colour-on-light
+        $warning-border-colour-on-light
         transparent;
 
       box-shadow:
-        -$messages-card-thickness 0 0 $messages-warning-card-colour-on-light;
+        -$card-thickness 0 0 $warning-card-colour-on-light;
 
       @include colour.on-dark-colour-scheme {
         border-color:
-          $messages-warning-border-colour-on-dark
-          $messages-warning-border-colour-on-dark
-          $messages-warning-border-colour-on-dark
+          $warning-border-colour-on-dark
+          $warning-border-colour-on-dark
+          $warning-border-colour-on-dark
           transparent;
       }
     }
     @include selector.root-conditions(('[dir=rtl]'), 'html') {
       border-color:
-        $messages-warning-border-colour-on-light
+        $warning-border-colour-on-light
         transparent
-        $messages-warning-border-colour-on-light
-        $messages-warning-border-colour-on-light;
+        $warning-border-colour-on-light
+        $warning-border-colour-on-light;
 
       box-shadow:
-        $messages-card-thickness 0 0 $messages-warning-card-colour-on-light;
+        $card-thickness 0 0 $warning-card-colour-on-light;
 
       @include colour.on-dark-colour-scheme {
         border-color:
-          $messages-warning-border-colour-on-dark
+          $warning-border-colour-on-dark
           transparent
-          $messages-warning-border-colour-on-dark
-          $messages-warning-border-colour-on-dark;
+          $warning-border-colour-on-dark
+          $warning-border-colour-on-dark;
       }
     }
   }
 
   &--error {
     @include colour.set-colours(
-      $background:          $messages-error-background-colour-on-light,
-      $foreground-on-light: $messages-error-foreground-colour-on-light
+      $background:          $error-background-colour-on-light,
+      $foreground-on-light: $error-foreground-colour-on-light
     );
 
     @include colour.on-dark-colour-scheme {
       @include colour.set-colours(
-        $background:          $messages-error-background-colour-on-dark,
-        $foreground-on-dark:  $messages-error-foreground-colour-on-dark
+        $background:          $error-background-colour-on-dark,
+        $foreground-on-dark:  $error-foreground-colour-on-dark
       );
     }
 
     @include selector.root-conditions(('[dir=ltr]'), 'html') {
       border-color:
-        $messages-error-border-colour-on-light
-        $messages-error-border-colour-on-light
-        $messages-error-border-colour-on-light
+        $error-border-colour-on-light
+        $error-border-colour-on-light
+        $error-border-colour-on-light
         transparent;
 
       box-shadow:
-        -$messages-card-thickness 0 0 $messages-error-card-colour-on-light;
+        -$card-thickness 0 0 $error-card-colour-on-light;
 
       @include colour.on-dark-colour-scheme {
         border-color:
-          $messages-error-border-colour-on-dark
-          $messages-error-border-colour-on-dark
-          $messages-error-border-colour-on-dark
+          $error-border-colour-on-dark
+          $error-border-colour-on-dark
+          $error-border-colour-on-dark
           transparent;
       }
     }
     @include selector.root-conditions(('[dir=rtl]'), 'html') {
       border-color:
-        $messages-error-border-colour-on-light
+        $error-border-colour-on-light
         transparent
-        $messages-error-border-colour-on-light
-        $messages-error-border-colour-on-light;
+        $error-border-colour-on-light
+        $error-border-colour-on-light;
 
       box-shadow:
-        $messages-card-thickness 0 0 $messages-error-card-colour-on-light;
+        $card-thickness 0 0 $error-card-colour-on-light;
 
       @include colour.on-dark-colour-scheme {
         border-color:
-          $messages-error-border-colour-on-dark
+          $error-border-colour-on-dark
           transparent
-          $messages-error-border-colour-on-dark
-          $messages-error-border-colour-on-dark;
+          $error-border-colour-on-dark
+          $error-border-colour-on-dark;
       }
     }
   }

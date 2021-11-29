@@ -15,12 +15,12 @@
 ///
 /// Skip to content link background colour.
 ///
-$skip-link-background-colour: colour.greyscale(25%, 0.6) !default;
+$background-colour: colour.greyscale(25%, 0.6) !default;
 
 ///
 /// Skip to content link focus outline colour.
 ///
-$skip-link-outline-colour: black !default;
+$outline-colour: black !default;
 
 .skip-link-container {
   @supports (pointer-events: none) and (display: flex) {
@@ -46,13 +46,13 @@ $skip-link-outline-colour: black !default;
     border-bottom-left-radius:  material-general.$material-border-radius;
     border-bottom-right-radius: material-general.$material-border-radius;
 
-    @include colour.set-colours($background: $skip-link-background-colour);
+    @include colour.set-colours($background: $background-colour);
 
     @include material-shadow.material-shadow(2);
 
     @include outline.focus-outline(
       $is-link: true,
-      $colour:  $skip-link-outline-colour
+      $colour:  $outline-colour
     );
   }
 }

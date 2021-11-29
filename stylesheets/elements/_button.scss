@@ -17,25 +17,25 @@ $material-buttons: true !default;
 ///
 /// The background colour for primary Material buttons in a form.
 ///
-$material-button-background-colour-primary:
+$background-colour-primary:
   material-colour.$material-primary-colour !default;
 
 ///
 /// The background colour for primary Material buttons when hovered/focused.
 ///
-$material-button-background-colour-primary-interact: color.adjust(
+$background-colour-primary-interact: color.adjust(
   material-colour.$material-primary-colour, $lightness: 8%
 ) !default;
 
 ///
 /// Material button font weight.
 ///
-$material-button-font-weight: typography.$font-weight-strong !default;
+$font-weight: typography.$font-weight-strong !default;
 
 ///
 /// Material button font family.
 ///
-$material-button-font-family: typography.$font-stack !default;
+$font-family: typography.$font-stack !default;
 
 // All buttons.
 .button, .material-button, .form-submit {
@@ -49,8 +49,8 @@ $material-button-font-family: typography.$font-stack !default;
     @if $material-buttons {
       @include material-button.material-button;
 
-      font-family:  $material-button-font-family;
-      font-weight:  $material-button-font-weight;
+      font-family:  $font-family;
+      font-weight:  $font-weight;
     } @else {
       padding: 0.3em 0.6em;
     }
@@ -71,18 +71,18 @@ $material-button-font-family: typography.$font-stack !default;
     @if $material-buttons {
       @include material-button.material-button(
         $background-colour:
-          $material-button-background-colour-primary,
+          $background-colour-primary,
         $background-colour-interact:
-          $material-button-background-colour-primary-interact
+          $background-colour-primary-interact
       );
 
-      font-weight: $material-button-font-weight;
+      font-weight: $font-weight;
 
       // This button has a light current colour, which means the focus
       // outline will be almost or totally invisible against the
       // background, which we currently assume to be light.
       &:focus {
-        outline-color: $material-button-background-colour-primary;
+        outline-color: $background-colour-primary;
       }
     }
   }
@@ -98,13 +98,13 @@ $material-button-font-family: typography.$font-stack !default;
   background-color: transparent;
 
   @if $material-buttons {
-    color:      $material-button-background-colour-primary;
+    color:      $background-colour-primary;
 
     @include    transition.transition-fade-normal();
 
     &:hover,
     &:focus {
-      color:    $material-button-background-colour-primary-interact;
+      color:    $background-colour-primary-interact;
 
       @include  transition.transition-fade-hover();
     }
@@ -130,7 +130,7 @@ $material-button-font-family: typography.$font-stack !default;
       display: inline-block;
     }
 
-    font-family:  $material-button-font-family;
-    font-weight:  $material-button-font-weight;
+    font-family:  $font-family;
+    font-weight:  $font-weight;
   }
 }

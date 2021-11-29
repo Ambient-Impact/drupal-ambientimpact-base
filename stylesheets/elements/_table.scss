@@ -12,51 +12,51 @@
 ///
 /// <table> element background colour on light backgrounds.
 ///
-$table-background-colour-on-light: color.mix(
+$background-colour-on-light: color.mix(
   colour.$foreground-colour-on-light, colour.$background-colour-light, 10%
 ) !default;
 
 ///
 /// <thead> element background colour on light backgrounds.
 ///
-$table-header-background-colour-on-light: hsla(0, 0%, 0%, 0.05) !default;
+$header-background-colour-on-light: hsla(0, 0%, 0%, 0.05) !default;
 
 ///
 /// <thead> element background colour on dark backgrounds.
 ///
-$table-header-background-colour-on-dark: hsla(0, 0%, 100%, 0.05) !default;
+$header-background-colour-on-dark: hsla(0, 0%, 100%, 0.05) !default;
 
 ///
 /// <table> element background colour on dark backgrounds.
 ///
-$table-background-colour-on-dark: color.mix(
+$background-colour-on-dark: color.mix(
   colour.$foreground-colour-on-dark, colour.$background-colour-dark, 10%
 ) !default;
 
 ///
 /// Table cell border width.
 ///
-$table-cell-border-width: 2px !default;
+$cell-border-width: 2px !default;
 
 ///
 /// Table cell border style.
 ///
-$table-cell-border-style: solid !default;
+$cell-border-style: solid !default;
 
 ///
 /// Table cell border colour on light backgrounds.
 ///
-$table-cell-border-colour-on-light: hsla(0, 0%, 100%, 0.6) !default;
+$cell-border-colour-on-light: hsla(0, 0%, 100%, 0.6) !default;
 
 ///
 /// Table cell border colour on dark backgrounds.
 ///
-$table-cell-border-colour-on-dark: hsla(0, 0%, 100%, 0.1) !default;
+$cell-border-colour-on-dark: hsla(0, 0%, 100%, 0.1) !default;
 
 ///
 /// <table> element border radius.
 ///
-$table-border-radius: material-general.$material-border-radius !default;
+$border-radius: material-general.$material-border-radius !default;
 
 :root {
   --table-cell-padding-vertical:        0.3em;
@@ -66,15 +66,15 @@ $table-border-radius: material-general.$material-border-radius !default;
   // the left and right edges respectively.
   --table-cell-padding-horizontal-edge: var(--table-cell-padding-horizontal);
 
-  --table-cell-border-width:            #{$table-cell-border-width};
-  --table-cell-border-style:            #{$table-cell-border-style};
-  --table-cell-border-colour:           #{$table-cell-border-colour-on-light};
+  --table-cell-border-width:            #{$cell-border-width};
+  --table-cell-border-style:            #{$cell-border-style};
+  --table-cell-border-colour:           #{$cell-border-colour-on-light};
 
   @include colour.on-dark-colour-scheme {
-    --table-cell-border-colour:        #{$table-cell-border-colour-on-dark};
+    --table-cell-border-colour:        #{$cell-border-colour-on-dark};
   }
 
-  --table-border-radius: #{$table-border-radius};
+  --table-border-radius: #{$border-radius};
 }
 
 table {
@@ -107,20 +107,20 @@ table {
   max-width: max-content;
 
   @at-root {
-    @include vertical-spacing.vertical-spacing-against-previous(
+    @include vertical-spacing.against-previous(
       &,
-      $spacing-small: content.$content-item-vertical-spacing-small,
-      $spacing-large: content.$content-item-vertical-spacing-large
+      $spacing-small: content.$item-vertical-spacing-small,
+      $spacing-large: content.$item-vertical-spacing-large
     );
   }
 
   @include colour.set-colours(
-    $background: $table-background-colour-on-light
+    $background: $background-colour-on-light
   );
 
   @include colour.on-dark-colour-scheme {
     @include colour.set-colours(
-      $background: $table-background-colour-on-dark
+      $background: $background-colour-on-dark
     );
   }
 
@@ -129,14 +129,14 @@ table {
 
 thead {
   @include colour.set-colours(
-    $background:            $table-header-background-colour-on-light,
-    $background-reference:  $table-background-colour-on-light
+    $background:            $header-background-colour-on-light,
+    $background-reference:  $background-colour-on-light
   );
 
   @include colour.on-dark-colour-scheme {
     @include colour.set-colours(
-      $background:            $table-header-background-colour-on-dark,
-      $background-reference:  $table-background-colour-on-dark
+      $background:            $header-background-colour-on-dark,
+      $background-reference:  $background-colour-on-dark
     );
   }
 }

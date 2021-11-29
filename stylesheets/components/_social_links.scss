@@ -10,12 +10,12 @@
 ///
 /// The spacing between two network items in the social links block list.
 ///
-$social-links-network-item-spacing: general.$general-spacing !default;
+$network-item-spacing: general.$general-spacing !default;
 
 .ambientimpact-social-links {
   $self: &;
 
-  @include list.unlisted-list;
+  @include list.unlisted;
 
   &--orientation-horizontal {
     ///
@@ -27,7 +27,7 @@ $social-links-network-item-spacing: general.$general-spacing !default;
     /// vertically, regardless of how many rows and columns there are, e.g. when
     /// the network items wrap due to small screen width.
     ///
-    $network-padding: math.div($social-links-network-item-spacing, 2);
+    $network-padding: math.div($network-item-spacing, 2);
 
     margin: -$network-padding;
 

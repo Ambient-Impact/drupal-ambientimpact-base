@@ -23,56 +23,56 @@
 ///
 /// This is the spacing added on the left and right of the layout container.
 ///
-$layout-gutter: math.div(general.$general-spacing, 2) !default;
+$gutter: math.div(general.$general-spacing, 2) !default;
 
 ///
 /// The space between the top of the viewport and the layout container.
 ///
-$layout-top-spacing: general.$general-spacing * 1.5 !default;
+$spacing-top: general.$general-spacing * 1.5 !default;
 
 ///
 /// The space between the bottom of the viewport and the layout container.
 ///
-$layout-bottom-spacing: general.$general-spacing * 8 !default;
+$spacing-bottom: general.$general-spacing * 8 !default;
 
 ///
 /// The maximum width of the site layout when no sidebars are present.
 ///
-/// Note that $layout-gutter is added to this on either side. This default value
+/// Note that $gutter is added to this on either side. This default value
 /// is optimal for a single column layout, but may need to be increased if
 /// sidebars or other columns are needed.
 ///
-$layout-no-sidebars-max-width: 45em !default;
+$no-sidebars-max-width: 45em !default;
 
 ///
 /// The minimum width of the layout to display both sidebars beside content.
 ///
-/// Note that this should not include the $layout-gutter as that's added on top
+/// Note that this should not include the $gutter as that's added on top
 /// of this value.
 ///
-$layout-with-both-sidebars-min-width: 42em !default;
+$with-both-sidebars-min-width: 42em !default;
 
 ///
 /// The maximum width of the site layout when both sidebars are present.
 ///
-$layout-with-both-sidebars-max-width: 70em !default;
+$with-both-sidebars-max-width: 70em !default;
 
 ///
 /// The minimum width of the layout to display one sidebar beside content.
 ///
-/// Note that this should not include the $layout-gutter as that's added on top
+/// Note that this should not include the $gutter as that's added on top
 /// of this value.
 ///
-$layout-with-one-sidebar-min-width: 38em !default;
+$with-one-sidebar-min-width: 38em !default;
 
 ///
 /// The maximum width of the site layout when one sidebar is present.
 ///
-/// This is calculated as the midway point between $layout-no-sidebars-max-width
-/// and $layout-with-both-sidebars-max-width.
+/// This is calculated as the midway point between $no-sidebars-max-width
+/// and $with-both-sidebars-max-width.
 ///
-$layout-with-one-sidebar-max-width: $layout-no-sidebars-max-width + math.div(
-  $layout-with-both-sidebars-max-width - $layout-no-sidebars-max-width, 2
+$with-one-sidebar-max-width: $no-sidebars-max-width + math.div(
+  $with-both-sidebars-max-width - $no-sidebars-max-width, 2
 ) !default;
 
 ///
@@ -85,7 +85,7 @@ $layout-with-one-sidebar-max-width: $layout-no-sidebars-max-width + math.div(
 /// @link https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
 ///   Lists valid values.
 ///
-$layout-content-column-width: minmax(20em, 1fr) !default;
+$content-column-width: minmax(20em, 1fr) !default;
 
 ///
 /// The sidebar column widths, as a grid-template-columns value.
@@ -93,23 +93,23 @@ $layout-content-column-width: minmax(20em, 1fr) !default;
 /// @link https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
 ///   Lists valid values.
 ///
-$layout-sidebar-column-width: minmax(8em, 12em) !default;
+$sidebar-column-width: minmax(8em, 12em) !default;
 
 ///
 /// The gap between layout columns.
 ///
-$layout-gap: general.$general-spacing !default;
+$gap: general.$general-spacing !default;
 
 @include breakpoint.add((
   // The minimum width to display sidebar beside the content column when one
   // sidebar is present.
-  'layout-with-one-sidebar':  $layout-gutter * 2 +
-    $layout-with-one-sidebar-min-width,
+  'layout-with-one-sidebar':  $gutter * 2 +
+    $with-one-sidebar-min-width,
 
   // The minimum width to display sidebars beside the content column when both
   // sidebars are present.
-  'layout-with-both-sidebars': $layout-gutter * 2 +
-    $layout-with-both-sidebars-min-width,
+  'layout-with-both-sidebars': $gutter * 2 +
+    $with-both-sidebars-min-width,
 ));
 
 ///
@@ -245,15 +245,15 @@ $layout-gap: general.$general-spacing !default;
 /// @require {mixin} on-sidebar
 /// @require {mixin} use-grid
 ///
-@mixin layout-max-width {
-  max-width: $layout-no-sidebars-max-width;
+@mixin max-width {
+  max-width: $no-sidebars-max-width;
 
   @include layout.use-grid {
     @include on-sidebar(one) {
-      max-width: $layout-with-one-sidebar-max-width;
+      max-width: $with-one-sidebar-max-width;
     }
     @include on-sidebar(both) {
-      max-width: $layout-with-both-sidebars-max-width;
+      max-width: $with-both-sidebars-max-width;
     }
   }
 }
@@ -264,16 +264,16 @@ $layout-gap: general.$general-spacing !default;
 /// This primarily sets the horizontal gutter, max-width of content, and centres
 /// content inside the layout container.
 ///
-/// @require {mixin} layout-max-width
-/// @require {variable} $layout-gutter
+/// @require {mixin} max-width
+/// @require {variable} $gutter
 ///
-@mixin layout-container-base-horizontal {
-  padding-left:   $layout-gutter;
-  padding-right:  $layout-gutter;
+@mixin container-base-horizontal {
+  padding-left:   $gutter;
+  padding-right:  $gutter;
 
   // All direct children are width-constrained and centred horizontally.
   > * {
-    @include layout-max-width;
+    @include max-width;
 
     margin-left:  auto;
     margin-right: auto;
@@ -291,17 +291,17 @@ $layout-gap: general.$general-spacing !default;
 ///
 /// @require {mixin} use-grid
 /// @require {mixin} on-sidebar-beside-content
-/// @require {variable} $layout-gap
-/// @require {variable} $layout-sidebar-column-width
-/// @require {variable} $layout-content-column-width
+/// @require {variable} $gap
+/// @require {variable} $sidebar-column-width
+/// @require {variable} $content-column-width
 ///
-@mixin layout-grid {
+@mixin grid {
   @include layout.use-grid {
     // One or both sidebars is/are present.
     @include on-sidebar-beside-content(any) {
       display: grid;
 
-      grid-gap: $layout-gap;
+      grid-gap: $gap;
     }
 
     // The first sidebar is present but the second sidebar is not.
@@ -309,8 +309,8 @@ $layout-gap: general.$general-spacing !default;
       grid-template-areas: 'sidebar-first main-content';
 
       grid-template-columns:
-        $layout-sidebar-column-width
-        $layout-content-column-width;
+        $sidebar-column-width
+        $content-column-width;
     }
 
     // The second sidebar is present but the first sidebar is not.
@@ -318,8 +318,8 @@ $layout-gap: general.$general-spacing !default;
       grid-template-areas: 'main-content sidebar-second';
 
       grid-template-columns:
-        $layout-content-column-width
-        $layout-sidebar-column-width;
+        $content-column-width
+        $sidebar-column-width;
     }
 
     // Both sidebars are present.
@@ -327,9 +327,9 @@ $layout-gap: general.$general-spacing !default;
       grid-template-areas: 'sidebar-first main-content sidebar-second';
 
       grid-template-columns:
-        $layout-sidebar-column-width
-        $layout-content-column-width
-        $layout-sidebar-column-width;
+        $sidebar-column-width
+        $content-column-width
+        $sidebar-column-width;
     }
 
     @content;
@@ -355,18 +355,18 @@ html {
 // area that is considered the site, e.g. the Drupal toolbar when it hasn't been
 // enhanced by JavaScript.
 .layout-container {
-  @include layout-container-base-horizontal;
+  @include container-base-horizontal;
 
-  @if meta.type-of($layout-bottom-spacing) == 'number' {
-    padding-bottom: $layout-bottom-spacing;
+  @if meta.type-of($spacing-bottom) == 'number' {
+    padding-bottom: $spacing-bottom;
   }
 
   box-sizing:   border-box;
 
-  @if meta.type-of($layout-top-spacing) == 'number' {
+  @if meta.type-of($spacing-top) == 'number' {
     // This is not applied to the <body>, as the Toolbar uses that to offset the
     // viewport.
-    margin-top:   $layout-top-spacing;
+    margin-top:   $spacing-top;
   }
 
   // If subgrid is supported, set the grid on this rather than on
@@ -380,8 +380,8 @@ html {
   // @link https://caniuse.com/#feat=css-subgrid
   // @link https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Subgrid
   @supports (grid-template-columns: subgrid) {
-    @include layout-grid;
-    @include layout-max-width;
+    @include grid;
+    @include max-width;
 
     // Centre the layout container instead of children.
     margin-left:  auto;
@@ -426,7 +426,7 @@ main[role='main'] {
 
   @supports not (grid-template-columns: subgrid) {
     // If subgrid is not supported, create the grid on this.
-    @include layout-grid;
+    @include grid;
   }
 
   .layout-content {

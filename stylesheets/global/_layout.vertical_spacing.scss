@@ -9,18 +9,18 @@
 ///
 /// Generic vertical spacing between elements when on larger screens.
 ///
-/// @see $vertical-spacing-breakpoint
+/// @see $spacing-breakpoint
 ///   The breakpoint that determines when this is used.
 ///
-$vertical-spacing-large: general.$general-spacing * 5 !default;
+$spacing-large: general.$general-spacing * 5 !default;
 
 ///
 /// Generic vertical spacing between elements when on smaller screens.
 ///
-/// @see $vertical-spacing-breakpoint
+/// @see $spacing-breakpoint
 ///   The breakpoint that determines when this is used.
 ///
-$vertical-spacing-small: general.$general-spacing * 2.5 !default;
+$spacing-small: general.$general-spacing * 2.5 !default;
 
 ///
 /// Generic element vertical spacing breakpoint.
@@ -30,17 +30,17 @@ $vertical-spacing-small: general.$general-spacing * 2.5 !default;
 /// layout in browsers that have panels that slide in and out of view, changing
 /// the viewport height - this is most common in mobile browsers.
 ///
-$vertical-spacing-breakpoint: '>=30em' !default;
+$spacing-breakpoint: '>=30em' !default;
 
 ///
 /// Elements ignored when applying generic vertical spacing.
 ///
 /// Elements in this list are assumed to not take up visual space.
 ///
-/// @see {Mixin} vertical-spacing-against-previous
+/// @see {Mixin} against-previous
 ///   Used in this mixin.
 ///
-$vertical-spacing-ignore-elements: '.hidden', '.visually-hidden',
+$ignore-elements: '.hidden', '.visually-hidden',
   '[hidden]', '[data-contextual-id]', 'script', 'style' !default;
 
 ///
@@ -49,24 +49,24 @@ $vertical-spacing-ignore-elements: '.hidden', '.visually-hidden',
 /// @param {String} $property [margin-top]
 ///   The property to set the spacing to.
 ///
-/// @param {Number} $spacing-small [$vertical-spacing-small]
+/// @param {Number} $spacing-small [$spacing-small]
 ///   The small screen spacing value to use.
 ///
-/// @param {Number} $spacing-large [$vertical-spacing-large]
+/// @param {Number} $spacing-large [$spacing-large]
 ///   The large screen spacing value to use.
 ///
-/// @param {String} $breakpoint [$vertical-spacing-breakpoint]
+/// @param {String} $breakpoint [$spacing-breakpoint]
 ///   The breakpoint at which to switch between the small and large spacing.
 ///
-/// @require $vertical-spacing-large
-/// @require $vertical-spacing-small
-/// @require $vertical-spacing-breakpoint
+/// @require $spacing-large
+/// @require $spacing-small
+/// @require $spacing-breakpoint
 ///
 @mixin vertical-spacing(
   $property:      margin-top,
-  $spacing-small: $vertical-spacing-small,
-  $spacing-large: $vertical-spacing-large,
-  $breakpoint:    $vertical-spacing-breakpoint
+  $spacing-small: $spacing-small,
+  $spacing-large: $spacing-large,
+  $breakpoint:    $spacing-breakpoint
 ) {
   #{$property}: $spacing-small;
 
@@ -87,12 +87,12 @@ $vertical-spacing-ignore-elements: '.hidden', '.visually-hidden',
 ///
 /// @example scss - Basic usage with a parent selector
 ///   .descendent .parent {
-///     @include vertical-spacing-against-previous('.target');
+///     @include against-previous('.target');
 ///   }
 ///
 /// @example scss - Basic usage without a parent selector
 ///   @at-root {
-///     @include vertical-spacing-against-previous('.target');
+///     @include against-previous('.target');
 ///   }
 ///
 /// @param {String} $target-selector
@@ -103,40 +103,40 @@ $vertical-spacing-ignore-elements: '.hidden', '.visually-hidden',
 /// @param {String} $previous-qualifier ['']
 ///   The an optional selector to include in the previous element selectors.
 ///
-/// @param {List} $ignore-elements [$vertical-spacing-ignore-elements]
+/// @param {List} $ignore-elements [$ignore-elements]
 ///   A list of element selectors to ignore when looking for previous siblings;
 ///   these are treated as if they don't exist.
 ///
 /// @param {String} $property [margin-top]
 ///   The property to set the spacing to.
 ///
-/// @param {Number} $spacing-small [$vertical-spacing-small]
+/// @param {Number} $spacing-small [$spacing-small]
 ///   The small screen spacing value to use.
 ///
-/// @param {Number} $spacing-large [$vertical-spacing-large]
+/// @param {Number} $spacing-large [$spacing-large]
 ///   The large screen spacing value to use.
 ///
-/// @param {String} $breakpoint [$vertical-spacing-breakpoint]
+/// @param {String} $breakpoint [$spacing-breakpoint]
 ///   The breakpoint at which to switch between the small and large spacing.
 ///
-/// @require $vertical-spacing-large
-/// @require $vertical-spacing-small
-/// @require $vertical-spacing-breakpoint
-/// @require $vertical-spacing-ignore-elements
+/// @require $spacing-large
+/// @require $spacing-small
+/// @require $spacing-breakpoint
+/// @require $ignore-elements
 /// @require {Mixin} vertical-spacing
 ///
 /// @todo Switch over to the
 /// [:is() pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:is)
 /// when all major browsers/layout engines support it to simplify the selectors.
 ///
-@mixin vertical-spacing-against-previous(
+@mixin against-previous(
   $target-selector,
   $previous-qualifier:  '',
-  $ignore-elements:     $vertical-spacing-ignore-elements,
+  $ignore-elements:     $ignore-elements,
   $property:            margin-top,
-  $spacing-small:       $vertical-spacing-small,
-  $spacing-large:       $vertical-spacing-large,
-  $breakpoint:          $vertical-spacing-breakpoint
+  $spacing-small:       $spacing-small,
+  $spacing-large:       $spacing-large,
+  $breakpoint:          $spacing-breakpoint
 ) {
   $not: '';
 

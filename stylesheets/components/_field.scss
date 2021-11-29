@@ -59,7 +59,7 @@
 }
 
 @at-root {
-  @include vertical-spacing.vertical-spacing-against-previous(
+  @include vertical-spacing.against-previous(
     '.field',
     $spacing-small: general.$general-spacing,
     $spacing-large: general.$general-spacing * 1.5

@@ -14,25 +14,25 @@
 /// margins to compensate, or if using a non-plain button (which assumes a
 /// background), will simply be the margin between this and the search field.
 ///
-$search-button-spacing: math.div(general.$general-spacing, 2) !default;
+$button-spacing: math.div(general.$general-spacing, 2) !default;
 
 ///
 /// The size of the search button icon.
 ///
-$search-button-icon-size: 1.5em !default;
+$button-icon-size: 1.5em !default;
 
 ///
 /// The maximum width of the search form container.
 ///
-$search-form-container-max-width: 30em !default;
+$form-container-max-width: 30em !default;
 
 ///
 /// Styles for the search form container.
 ///
-/// @require {variable} $search-form-container-max-width
+/// @require {variable} $form-container-max-width
 ///
-@mixin search-form-container {
-  max-width: $search-form-container-max-width;
+@mixin form-container {
+  max-width: $form-container-max-width;
 
   margin: 0 auto;
 }
@@ -43,7 +43,7 @@ $search-form-container-max-width: 30em !default;
 /// This should be applied to the Drupal form field container element that wraps
 /// the input and the label.
 ///
-@mixin search-form-field-container {
+@mixin field-container {
   // If we're in a .form--inline, try to make this field as wide as possible.
   //
   // @see ./_inline.scss
@@ -61,34 +61,34 @@ $search-form-container-max-width: 30em !default;
 ///
 /// @require {mixin} on-icon-container
 /// @require {mixin} root-conditions
-/// @require {variable} $search-button-spacing
+/// @require {variable} $button-spacing
 ///
 /// @todo Can parts of this be split into multiple mixins, so that things like
 ///   the margins can be used independently?
 ///
-@mixin search-form-submit {
+@mixin form-submit {
   &:not(.plain-button) {
     @include selector.root-conditions(('[dir=ltr]'), 'html') {
-      margin-left:  $search-button-spacing;
+      margin-left:  $button-spacing;
     }
     @include selector.root-conditions(('[dir=rtl]'), 'html') {
-      margin-right: $search-button-spacing;
+      margin-right: $button-spacing;
     }
   }
   &.plain-button {
-    margin-top:     -#{$search-button-spacing};
-    margin-bottom:  -#{$search-button-spacing};
+    margin-top:     -#{$button-spacing};
+    margin-bottom:  -#{$button-spacing};
 
     @include selector.root-conditions(('[dir=ltr]'), 'html') {
       margin-left:  0;
-      margin-right: -#{$search-button-spacing};
+      margin-right: -#{$button-spacing};
     }
     @include selector.root-conditions(('[dir=rtl]'), 'html') {
-      margin-left:  -#{$search-button-spacing};
+      margin-left:  -#{$button-spacing};
       margin-right: 0;
     }
 
-    padding: $search-button-spacing;
+    padding: $button-spacing;
 
     // This is necessary as the global max-width: 100%; causes plain buttons to
     // get smushed and thus be less than square.
@@ -99,7 +99,7 @@ $search-form-container-max-width: 30em !default;
   // text is hidden.
   @include icon.on-icon-container {
     &--icon-standalone-loaded {
-      @include icon.set-icon-size($search-button-icon-size);
+      @include icon.set-icon-size($button-icon-size);
     }
   }
 }

@@ -9,7 +9,7 @@
 ///
 /// The gap between two inline links items.
 ///
-$links-inline-gap: general.$general-spacing !default;
+$inline-gap: general.$general-spacing !default;
 
 ul.links {
   &.inline {
@@ -18,15 +18,15 @@ ul.links {
     // This aligns the edge of the text with the bounding box of the list's
     // parent container.
     @include selector.root-conditions(('[dir=ltr]'), 'html') {
-      margin-left:    math.div($links-inline-gap, 2) * -1;
+      margin-left:    math.div($inline-gap, 2) * -1;
     }
     @include selector.root-conditions(('[dir=rtl]'), 'html') {
-      margin-right:   math.div($links-inline-gap, 2) * -1;
+      margin-right:   math.div($inline-gap, 2) * -1;
     }
 
     li {
-      padding-left:   math.div($links-inline-gap, 2);
-      padding-right:  math.div($links-inline-gap, 2);
+      padding-left:   math.div($inline-gap, 2);
+      padding-right:  math.div($inline-gap, 2);
     }
   }
 }

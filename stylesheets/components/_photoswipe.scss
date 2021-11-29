@@ -10,7 +10,7 @@
 
 .pswp {
   &__caption__center {
-    @include layout.layout-max-width;
+    @include layout.max-width;
 
     padding: math.div(general.$general-spacing, 2);
   }

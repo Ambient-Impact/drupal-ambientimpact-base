@@ -14,7 +14,7 @@
 /// This is increased compared to the base font-size to make numerical pager
 /// items more visible and easier to hit.
 ///
-$pager-font-size: 120% !default;
+$font-size: 120% !default;
 
 ///
 /// Pager numerical item padding.
@@ -22,7 +22,7 @@ $pager-font-size: 120% !default;
 /// This is applied to all numerical pager item links - i.e. those that aren't
 /// the 'First', 'Previous', 'Next', or 'Last' items.
 ///
-$pager-numerical-item-padding: 0.4em 0.8em !default;
+$numerical-item-padding: 0.4em 0.8em !default;
 
 ///
 /// Pager numerical item hitbox padding.
@@ -31,8 +31,8 @@ $pager-numerical-item-padding: 0.4em 0.8em !default;
 /// the 'First', 'Previous', 'Next', or 'Last' items - to give them a larger
 /// click/tap area.
 ///
-$pager-numerical-item-hitbox-padding: 0.2em list.nth(
-  $pager-numerical-item-padding, 2
+$numerical-item-hitbox-padding: 0.2em list.nth(
+  $numerical-item-padding, 2
 ) !default;
 
 ///
@@ -41,8 +41,8 @@ $pager-numerical-item-hitbox-padding: 0.2em list.nth(
 /// This is applied to all non-numerical pager item links - i.e. the 'First',
 /// 'Previous', 'Next', and 'Last' items.
 ///
-$pager-navigation-item-padding: list.nth(
-  $pager-numerical-item-padding, 1
+$navigation-item-padding: list.nth(
+  $numerical-item-padding, 1
 ) 0.5em !default;
 
 ///
@@ -51,13 +51,13 @@ $pager-navigation-item-padding: list.nth(
 /// This is applied to all non-numerical pager item links - i.e. the 'First',
 /// 'Previous', 'Next', and 'Last' items - to give them a larger click/tap area.
 ///
-$pager-navigation-item-hitbox-padding:
-  list.nth($pager-numerical-item-hitbox-padding, 1)
-  list.nth($pager-navigation-item-padding, 2)
+$navigation-item-hitbox-padding:
+  list.nth($numerical-item-hitbox-padding, 1)
+  list.nth($navigation-item-padding, 2)
   !default;
 
 @at-root {
-  @include vertical-spacing.vertical-spacing-against-previous('.pager');
+  @include vertical-spacing.against-previous('.pager');
 }
 
 .pager {
@@ -75,7 +75,7 @@ $pager-navigation-item-hitbox-padding:
     margin:   0;
     padding:  0;
 
-    font-size:    $pager-font-size;
+    font-size:    $font-size;
   }
 
   &__item {
@@ -83,7 +83,7 @@ $pager-navigation-item-hitbox-padding:
 
     display: inline-block;
 
-    padding: $pager-numerical-item-padding;
+    padding: $numerical-item-padding;
 
     // Don't wrap white-space within an item before icons load or they fail to.
     // Item text is at most two words, and when icons are loaded, they're single
@@ -97,7 +97,7 @@ $pager-navigation-item-hitbox-padding:
       padding: 0;
 
       :link {
-        padding: $pager-numerical-item-hitbox-padding;
+        padding: $numerical-item-hitbox-padding;
 
         &::before {
           display: none;
@@ -157,10 +157,10 @@ $pager-navigation-item-hitbox-padding:
 
         position: absolute;
 
-        top:    -#{list.nth($pager-numerical-item-hitbox-padding, 1)};
-        bottom: -#{list.nth($pager-numerical-item-hitbox-padding, 1)};
-        left:   -#{list.nth($pager-numerical-item-hitbox-padding, 2)};
-        right:  -#{list.nth($pager-numerical-item-hitbox-padding, 2)};
+        top:    -#{list.nth($numerical-item-hitbox-padding, 1)};
+        bottom: -#{list.nth($numerical-item-hitbox-padding, 1)};
+        left:   -#{list.nth($numerical-item-hitbox-padding, 2)};
+        right:  -#{list.nth($numerical-item-hitbox-padding, 2)};
       }
     }
 
@@ -168,7 +168,7 @@ $pager-navigation-item-hitbox-padding:
     &--previous,
     &--next,
     &--last {
-      padding:  $pager-navigation-item-padding;
+      padding:  $navigation-item-padding;
 
       // Fallback if flexbox is not supported, so that these don't look
       // completely misaligned with the numbers.
@@ -177,10 +177,10 @@ $pager-navigation-item-hitbox-padding:
       :link {
         // Hitbox.
         &::before {
-          top:    -#{list.nth($pager-navigation-item-hitbox-padding, 1)};
-          bottom: -#{list.nth($pager-navigation-item-hitbox-padding, 1)};
-          left:   -#{list.nth($pager-navigation-item-hitbox-padding, 2)};
-          right:  -#{list.nth($pager-navigation-item-hitbox-padding, 2)};
+          top:    -#{list.nth($navigation-item-hitbox-padding, 1)};
+          bottom: -#{list.nth($navigation-item-hitbox-padding, 1)};
+          left:   -#{list.nth($navigation-item-hitbox-padding, 2)};
+          right:  -#{list.nth($navigation-item-hitbox-padding, 2)};
         }
       }
     }

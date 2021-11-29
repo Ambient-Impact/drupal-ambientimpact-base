@@ -7,18 +7,18 @@
 ///
 /// Generic content item vertical spacing on smaller screens.
 ///
-/// @see {Mixin} vertical-spacing-against-previous
+/// @see {Mixin} against-previous
 ///   Primarily intended to be used with this mixin but can be used anywhere.
 ///
-$content-item-vertical-spacing-small: general.$general-spacing * 0.9 !default;
+$item-vertical-spacing-small: general.$general-spacing * 0.9 !default;
 
 ///
 /// Generic content item vertical spacing on larger screens.
 ///
-/// @see {Mixin} vertical-spacing-against-previous
+/// @see {Mixin} against-previous
 ///   Primarily intended to be used with this mixin but can be used anywhere.
 ///
-$content-item-vertical-spacing-large: general.$general-spacing * 1.2 !default;
+$item-vertical-spacing-large: general.$general-spacing * 1.2 !default;
 
 ///
 /// Apply styles to site content.
@@ -27,7 +27,7 @@ $content-item-vertical-spacing-large: general.$general-spacing * 1.2 !default;
 ///
 /// @content
 ///
-@mixin content-area {
+@mixin area {
   .node__content,
   .views-field:not(.views-field-contextual-links) {
     @content;

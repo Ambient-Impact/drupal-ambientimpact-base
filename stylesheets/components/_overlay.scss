@@ -7,26 +7,26 @@
 ///
 /// Overlay colour in a light colour scheme.
 ///
-$overlay-colour-light: colour.$background-colour-light !default;
+$colour-light: colour.$background-colour-light !default;
 
 ///
 /// Overlay colour in a dark colour scheme.
 ///
-$overlay-colour-dark: colour.$background-colour-dark !default;
+$colour-dark: colour.$background-colour-dark !default;
 
 ///
 /// Overlay opacity when visible.
 ///
-$overlay-opacity: 0.6 !default;
+$opacity: 0.6 !default;
 
 .overlay {
-  @include colour.set-colours($background: $overlay-colour-light);
+  @include colour.set-colours($background: $colour-light);
 
   @include colour.on-dark-colour-scheme {
-    @include colour.set-colours($background: $overlay-colour-dark);
+    @include colour.set-colours($background: $colour-dark);
   }
 
   &--is-active {
-    opacity: $overlay-opacity;
+    opacity: $opacity;
   }
 }

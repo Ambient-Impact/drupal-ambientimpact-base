@@ -11,7 +11,7 @@ input[type='checkbox'] {
   // than native operating system ones.
   //
   // @see https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
-  @supports (accent-color: #{colour.$accent-colour}) {
+  @supports (accent-color: #{colour.$accent}) {
     --size: 0.8em;
 
     width:  var(--size);

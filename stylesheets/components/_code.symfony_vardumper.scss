@@ -2,14 +2,14 @@
 //   Base Symfony VarDumper code block partial
 // -----------------------------------------------------------------------------
 
-@use 'code' as *;
+@use 'code';
 @use '../global/layout.vertical_spacing' as vertical-spacing;
 @use 'sass/helpers/colour';
 
 // @see https://github.com/symfony/var-dumper
 
 @at-root {
-  @include vertical-spacing.vertical-spacing-against-previous(
+  @include vertical-spacing.against-previous(
     '.sf-dump.sf-dump'
   );
 }
@@ -19,9 +19,9 @@
   margin-top:     0;
   margin-bottom:  0;
 
-  padding: $code-highlighted-block-body-padding;
+  padding: code.$block-body-padding;
 
-  border-radius: $code-highlighted-border-radius;
+  border-radius: code.$border-radius;
 
   // By default, this is set to a fixed, small size, so set it to a percentage
   // to inherit responsive font scaling. 100% feels a bit too big here, so we're
@@ -32,41 +32,41 @@
   // the symbol and overriding that on specific elements has almost the same
   // effect.
   @include colour.set-colours(
-    $background:  $code-highlighted-background-colour-on-light,
-    $foreground-on-dark:  $code-highlighted-colour-symbol,
-    $foreground-on-light: $code-highlighted-colour-symbol
+    $background:          code.$background-colour-on-light,
+    $foreground-on-dark:  code.$colour-symbol,
+    $foreground-on-light: code.$colour-symbol
   );
 
   @include colour.on-dark-colour-scheme {
     @include colour.set-colours(
-      $background:  $code-highlighted-background-colour-on-dark,
-      $foreground-on-dark:  $code-highlighted-colour-symbol,
-      $foreground-on-light: $code-highlighted-colour-symbol
+      $background:          code.$background-colour-on-dark,
+      $foreground-on-dark:  code.$colour-symbol,
+      $foreground-on-light: code.$colour-symbol
     );
   }
 
   .sf-dump-str,
   .sf-dump-key {
-    color: $code-highlighted-colour-string;
+    color: code.$colour-string;
   }
 
   .sf-dump-note {
-    color: $code-highlighted-colour-keyword;
+    color: code.$colour-keyword;
 
     font-style: italic;
   }
 
   .sf-dump-index {
-    color: $code-highlighted-colour-number;
+    color: code.$colour-number;
   }
 
   .sf-dump-public,
   .sf-dump-protected,
   .sf-dump-private {
-    color: $code-highlighted-colour-method;
+    color: code.$colour-method;
   }
 
   .sf-dump-const {
-    color: $code-highlighted-colour-reserved-word;
+    color: code.$colour-reserved-word;
   }
 }

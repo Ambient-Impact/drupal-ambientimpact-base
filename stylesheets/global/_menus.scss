@@ -18,7 +18,7 @@
 ///   The content to wrap in selectors; the selectors will point to links, not
 ///   the list items.
 ///
-@mixin menu-item-is-active-path($active-trail: true) {
+@mixin is-item-active-path($active-trail: true) {
   > :any-link,
   > button {
     &.is-active {

@@ -9,40 +9,39 @@
 ///
 /// Inline <code> element background colour on light backgrounds.
 ///
-$code-inline-background-colour-on-light:
-  colour.$background-colour-dark !default;
+$background-colour-on-light: colour.$background-colour-dark !default;
 
 ///
 /// Inline <code> element background colour on dark backgrounds.
 ///
-$code-inline-background-colour-on-dark: color.mix(
+$background-colour-on-dark: color.mix(
   colour.$foreground-colour-on-dark, colour.$background-colour-dark, 10%
 ) !default;
 
 ///
 /// Inline <code> element padding.
 ///
-$code-inline-padding: 0.1em 0.2em !default;
+$padding: 0.1em 0.2em !default;
 
 ///
 /// Inline <code> element border radius.
 ///
-$code-inline-border-radius: material-general.$material-border-radius !default;
+$border-radius: material-general.$material-border-radius !default;
 
 code {
-  padding: $code-inline-padding;
+  padding: $padding;
 
   @include colour.set-colours(
-    $background: $code-inline-background-colour-on-light
+    $background: $background-colour-on-light
   );
 
   @include colour.on-dark-colour-scheme {
     @include colour.set-colours(
-      $background: $code-inline-background-colour-on-dark
+      $background: $background-colour-on-dark
     );
   }
 
-  border-radius: $code-inline-border-radius;
+  border-radius: $border-radius;
 
   // If this wraps to a new line, this property makes the horizontal padding and
   // border radius apply to each line where they break:

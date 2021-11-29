@@ -40,21 +40,21 @@
 
   .offcanvas-panel__content,
   .offcanvas-panel__ui {
-    padding-left:   layout.$layout-gutter;
-    padding-right:  layout.$layout-gutter;
+    padding-left:   layout.$gutter;
+    padding-right:  layout.$gutter;
   }
 
   .offcanvas-panel__ui {
-    padding-bottom: layout.$layout-gutter;
+    padding-bottom: layout.$gutter;
   }
 
   .offcanvas-panel__content {
     &::before {
-      height:   layout.$layout-gutter;
+      height:   layout.$gutter;
     }
 
     &::after {
-      height:   (layout.$layout-gutter * 2) + 2.5em;
+      height:   (layout.$gutter * 2) + 2.5em;
     }
   }
 
@@ -62,7 +62,7 @@
   &.offcanvas-panel--bottom {
     .offcanvas-panel__content,
     .offcanvas-panel__ui {
-      @include layout.layout-max-width;
+      @include layout.max-width;
     }
   }
 }
