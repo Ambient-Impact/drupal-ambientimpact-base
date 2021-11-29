@@ -4,8 +4,11 @@
 
 @use 'sass/variables/general';
 
-// <hr> defaults usually stink, so let's do something here. Based on:
-// http://osvaldas.info/keeping-css-short-with-currentcolor
+// This replaces the often uninteresting default browser styles for <hr> with
+// a line that inherits its colour from the text colour via currentColor.
+//
+// @see http://osvaldas.info/keeping-css-short-with-currentcolor
+
 hr {
   width: 60%;
   height: 0.1em;

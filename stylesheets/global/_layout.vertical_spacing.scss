@@ -156,16 +156,17 @@ $ignore-elements: '.hidden', '.visually-hidden',
     $ignore: '#{$ignore}, .vertical-spacing-placeholder + #{$selector}';
   }
 
-  // This uses the built-in Sass selector-replace() to dynamically replace the
+  // This uses the built-in Sass selector.replace() to dynamically replace the
   // placeholder with the ignored element selector, which expands the selector
   // much like @extend works.
-  // @see https://sass-lang.com/documentation/functions/selector#selector-replace
+  //
+  // @see https://sass-lang.com/documentation/modules/selector#replace
   $previous-selector: selector.replace(
     $ignore, '.vertical-spacing-placeholder', $not + $previous-qualifier
   );
 
-  // Use Sass' selector nesting to join together the previous element selector
-  // and the target selector.
+  // Use Sass' selector nesting to join the previous element selector and the
+  // target selector together.
   #{$previous-selector} {
     & + #{$target-selector} {
       @include vertical-spacing(
