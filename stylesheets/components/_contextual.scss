@@ -5,5 +5,5 @@
 @use 'sass/helpers/z-index';
 
 .contextual {
-  @include z-index.z-index(admin);
+  @include z-index.get(admin);
 }

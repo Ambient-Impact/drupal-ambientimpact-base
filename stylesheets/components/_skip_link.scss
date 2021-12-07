@@ -32,7 +32,7 @@ $outline-colour: black !default;
     left:   0;
     right:  0;
 
-    @include z-index.z-index('floating');
+    @include z-index.get('floating');
 
     // Since this is meant to be focused by means other than a pointer, such as
     // by keyboard, we can make it click-through so that it's not accidentally

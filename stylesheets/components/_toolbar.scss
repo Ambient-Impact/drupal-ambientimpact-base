@@ -30,7 +30,7 @@
     // This is the element that's either absolute or fixed depending on the
     // screen width.
     .toolbar-bar {
-      @include z-index.z-index('toolbar');
+      @include z-index.get('toolbar');
     }
   }
 }
