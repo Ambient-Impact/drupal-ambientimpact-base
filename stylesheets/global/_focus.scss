@@ -6,7 +6,7 @@
 @use 'sass/helpers/transition';
 
 a {
-  @include outline.focus-outline($is-link: true);
+  @include outline.focus($is-link: true);
 }
 
 button,
@@ -18,7 +18,7 @@ input[type="reset"],
 input[type="radio"],
 input[type="checkbox"],
 [tabindex]:not([tabindex="-1"]) {
-  @include outline.focus-outline;
+  @include outline.focus;
 }
 
 // This allows invisible elements that can receive focus (e.g. from keyboard,
