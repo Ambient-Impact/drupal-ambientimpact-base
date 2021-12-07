@@ -95,7 +95,7 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
 .offcanvas-panel {
   // Include link colours as custom properties in case they're useful for
   // JavaScript, etc.
-  @include link-colour.link-colour-custom-properties;
+  @include link-colour.custom-properties;
 
   :any-link {
     // Any links.
@@ -109,7 +109,7 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
         @include link.link;
 
         @include colour.on-dark-colour-scheme {
-          @include link-colour.link-colours(colour.$background-colour-dark);
+          @include link-colour.set(colour.$background-colour-dark);
         }
       }
 

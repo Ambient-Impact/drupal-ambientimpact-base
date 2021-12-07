@@ -112,8 +112,8 @@ $navigation-item-hitbox-padding:
       :any-link {
         $item-background: colour.get-contrasting-colour(
           $background:          colour.$background-colour,
-          $foreground-on-light: link-var.$link-normal-colour-on-light,
-          $foreground-on-dark:  link-var.$link-normal-colour-on-dark
+          $foreground-on-light: link-var.$normal-colour-on-light,
+          $foreground-on-dark:  link-var.$normal-colour-on-dark
         );
         $item-foreground: colour.get-contrasting-colour(
           $background:          $item-background
@@ -123,7 +123,7 @@ $navigation-item-hitbox-padding:
           $background:          $item-background
         );
 
-        @include link-colour.link-colours(
+        @include link-colour.set(
           $background:      $item-background,
 
           $normal-on-light: $item-foreground,
