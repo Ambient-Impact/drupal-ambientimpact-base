@@ -51,7 +51,7 @@
     &.is-active a {
       background-color: transparent;
 
-      @include link-state.link-hover {
+      @include link-state.hover {
         background-color: transparent;
       }
 

@@ -68,7 +68,7 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
     );
   }
 
-  @include link-state.link-hover {
+  @include link-state.hover {
     #{$image-elements} {
       filter: $image-hover-filters;
 
@@ -76,7 +76,7 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
     }
   }
 
-  @include link-state.link-active {
+  @include link-state.active {
     #{$image-elements} {
       filter: $image-active-filters;
     }
