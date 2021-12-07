@@ -47,5 +47,5 @@ input[type="checkbox"],
 // example of this are contextual triggers. Note that this could potentially
 // have issues with focusables that don't use .visually-hidden.
 .focusable:not(.visually-hidden) {
-  @include transition.transition-fade-active;
+  @include transition.fade-active;
 }

@@ -50,8 +50,8 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
 ///
 /// This applies image link filters to images based on link states.
 ///
-/// @require {mixin} transition-fade-base
-/// @require {mixin} transition-fade-active
+/// @require {mixin} transition.fade-base
+/// @require {mixin} transition.fade-active
 /// @require {mixin} link-hover
 /// @require {mixin} link-active
 /// @require {variable} $image-elements
@@ -63,7 +63,7 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
   #{$image-elements} {
     filter: $image-normal-filters;
 
-    @include transition.transition-fade-base(
+    @include transition.fade-base(
       $props: filter
     );
   }
@@ -72,7 +72,7 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
     #{$image-elements} {
       filter: $image-hover-filters;
 
-      @include transition.transition-fade-active();
+      @include transition.fade-active();
     }
   }
 
