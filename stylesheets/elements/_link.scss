@@ -38,7 +38,7 @@ $image-normal-filters: contrast(100%) brightness(100%) !default;
 ///
 /// Image element filters in a link when link is highlighted.
 ///
-$image-hover-filters: contrast(75%) brightness(150%) !default;
+$image-highlight-filters: contrast(75%) brightness(150%) !default;
 
 ///
 /// Image element filters in a link when link is activated.
@@ -52,11 +52,11 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
 ///
 /// @require {mixin} transition.fade-base
 /// @require {mixin} transition.fade-active
-/// @require {mixin} link-state.hover
+/// @require {mixin} link-state.highlight
 /// @require {mixin} link-state.active
 /// @require {variable} $image-elements
 /// @require {variable} $image-normal-filters
-/// @require {variable} $image-hover-filters
+/// @require {variable} $image-highlight-filters
 /// @require {variable} $image-active-filters
 ///
 @mixin image {
@@ -68,9 +68,9 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
     );
   }
 
-  @include link-state.hover {
+  @include link-state.highlight {
     #{$image-elements} {
-      filter: $image-hover-filters;
+      filter: $image-highlight-filters;
 
       @include transition.fade-active();
     }

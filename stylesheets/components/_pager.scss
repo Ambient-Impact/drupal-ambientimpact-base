@@ -124,15 +124,15 @@ $navigation-item-hitbox-padding:
         );
 
         @include link-colour.set(
-          $background:      $item-background,
+          $background: $item-background,
 
-          $normal-on-light: $item-foreground,
-          $hover-on-light:  $item-foreground,
-          $active-on-light: $item-foreground,
+          $normal-on-light:     $item-foreground,
+          $highlight-on-light:  $item-foreground,
+          $active-on-light:     $item-foreground,
 
-          $normal-on-dark:  $item-foreground,
-          $hover-on-dark:   $item-foreground,
-          $active-on-dark:  $item-foreground
+          $normal-on-dark:      $item-foreground,
+          $highlight-on-dark:   $item-foreground,
+          $active-on-dark:      $item-foreground
         );
 
       }
