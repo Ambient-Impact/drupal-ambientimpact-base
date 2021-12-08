@@ -52,8 +52,8 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
 ///
 /// @require {mixin} transition.fade-base
 /// @require {mixin} transition.fade-active
-/// @require {mixin} link-hover
-/// @require {mixin} link-active
+/// @require {mixin} link-state.hover
+/// @require {mixin} link-state.active
 /// @require {variable} $image-elements
 /// @require {variable} $image-normal-filters
 /// @require {variable} $image-hover-filters
