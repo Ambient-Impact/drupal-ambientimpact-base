@@ -100,13 +100,13 @@ $font-family: typography.$font-stack !default;
   @if $material-buttons {
     color:      $background-colour-primary;
 
-    @include    transition.transition-fade-normal();
+    @include    transition.fade-base();
 
     &:hover,
     &:focus {
       color:    $background-colour-primary-interact;
 
-      @include  transition.transition-fade-hover();
+      @include  transition.fade-highlight();
     }
   }
 }
