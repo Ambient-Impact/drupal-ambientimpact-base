@@ -51,7 +51,7 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
 /// This applies image link filters to images based on link states.
 ///
 /// @require {mixin} transition.fade-base
-/// @require {mixin} transition.fade-active
+/// @require {mixin} transition.fade-highlight
 /// @require {mixin} link-state.highlight
 /// @require {mixin} link-state.active
 /// @require {variable} $image-elements
@@ -72,7 +72,7 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
     #{$image-elements} {
       filter: $image-highlight-filters;
 
-      @include transition.fade-active();
+      @include transition.fade-highlight();
     }
   }
 
