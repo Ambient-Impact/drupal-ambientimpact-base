@@ -47,7 +47,7 @@ $font-family: typography.$font-stack !default;
 
   &:not(.plain-button) {
     @if $material-buttons {
-      @include material-button.material-button;
+      @include material-button.button;
 
       font-family:  $font-family;
       font-weight:  $font-weight;
@@ -69,7 +69,7 @@ $font-family: typography.$font-stack !default;
 [id^='edit-submit'] {
   &:not(.plain-button) {
     @if $material-buttons {
-      @include material-button.material-button(
+      @include material-button.button(
         $background-colour:
           $background-colour-primary,
         $background-colour-interact:
@@ -121,7 +121,7 @@ $font-family: typography.$font-stack !default;
 // @see https://ambientimpact.com/web/snippets/but-sometimes-links-look-like-buttons-and-buttons-look-like-links
 .button-placeholder {
   @if $material-buttons {
-    @include material-button.material-button-base;
+    @include material-button.base;
 
     // Chromium and Firefox default to inline-block for buttons, so apply that
     // to placeholders. Note that we have to exclude hidden elements as this
