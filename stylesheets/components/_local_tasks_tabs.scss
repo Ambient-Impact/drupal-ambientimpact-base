@@ -9,13 +9,13 @@
 @use 'sass/helpers/colour';
 
 .tabs.primary {
-  @include material-tabs.material-tabs-container;
+  @include material-tabs.container;
 
   li {
     margin: 0;
 
     a {
-      @include material-tabs.material-tabs-item;
+      @include material-tabs.item;
 
       font-weight: typography.$font-weight-strong;
 
@@ -58,7 +58,7 @@
       &::after {
         content: '';
 
-        @include material-tabs.material-tabs-item-current;
+        @include material-tabs.item-current;
       }
     }
   }
