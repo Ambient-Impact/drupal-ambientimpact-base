@@ -8,6 +8,7 @@ hidden: true
 
 dependencies:
   - ambientimpact_core:ambientimpact_core
+  - ambientimpact_ux:ambientimpact_ux
 
 regions:
   header: 'Header'
