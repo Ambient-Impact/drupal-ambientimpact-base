@@ -26,7 +26,7 @@
     $background: material-panel.$background-colour-light
   );
 
-  @include material-shadow.material-shadow(2);
+  @include material-shadow.shadow(2);
 
   @include colour.on-dark-colour-scheme {
     @include colour.set-colours(

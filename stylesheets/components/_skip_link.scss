@@ -48,7 +48,7 @@ $outline-colour: black !default;
 
     @include colour.set-colours($background: $background-colour);
 
-    @include material-shadow.material-shadow(2);
+    @include material-shadow.shadow(2);
 
     @include outline.focus(
       $is-link: true,
