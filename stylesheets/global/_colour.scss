@@ -12,7 +12,7 @@
 ///
 /// @see https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
 ///
-$accent: material-colour.$material-primary-colour !default;
+$accent: material-colour.$primary !default;
 
 // Apply colours to both <html> and <body> as <body> may have margins which
 // would cause the default white background of <html> to show through.

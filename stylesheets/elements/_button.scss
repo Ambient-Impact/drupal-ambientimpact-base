@@ -17,14 +17,13 @@ $material-buttons: true !default;
 ///
 /// The background colour for primary Material buttons in a form.
 ///
-$background-colour-primary:
-  material-colour.$material-primary-colour !default;
+$background-colour-primary: material-colour.$primary !default;
 
 ///
 /// The background colour for primary Material buttons when hovered/focused.
 ///
 $background-colour-primary-interact: color.adjust(
-  material-colour.$material-primary-colour, $lightness: 8%
+  material-colour.$primary, $lightness: 8%
 ) !default;
 
 ///

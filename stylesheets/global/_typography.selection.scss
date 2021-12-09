@@ -10,7 +10,7 @@
 /// Selected text background colour.
 ///
 typography-selection.$text-selection-background-colour: color.adjust(
-  material-colour.$material-primary-colour, $lightness: 10%
+  material-colour.$primary, $lightness: 10%
 );
 
 ///
