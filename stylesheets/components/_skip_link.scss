@@ -43,8 +43,8 @@ $outline-colour: black !default;
   :link {
     padding: 0.5em 1em;
 
-    border-bottom-left-radius:  material-general.$material-border-radius;
-    border-bottom-right-radius: material-general.$material-border-radius;
+    border-bottom-left-radius:  material-general.$border-radius;
+    border-bottom-right-radius: material-general.$border-radius;
 
     @include colour.set-colours($background: $background-colour);
 

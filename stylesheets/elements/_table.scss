@@ -56,7 +56,7 @@ $cell-border-colour-on-dark: hsla(0, 0%, 100%, 0.1) !default;
 ///
 /// <table> element border radius.
 ///
-$border-radius: material-general.$material-border-radius !default;
+$border-radius: material-general.$border-radius !default;
 
 :root {
   --table-cell-padding-vertical:        0.3em;
