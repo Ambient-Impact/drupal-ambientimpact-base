@@ -14,25 +14,25 @@
   // prefers-colour-scheme media feature.
   &.offcanvas-panel--theme-auto {
     @include colour.set-colours(
-      $background: material-panel.$material-panel-background-colour-light
+      $background: material-panel.$background-colour-light
     );
 
     @include colour.on-dark-colour-scheme {
       @include colour.set-colours(
-        $background: material-panel.$material-panel-background-colour-dark-on-dark
+        $background: material-panel.$background-colour-dark-on-dark
       );
     }
   }
   // Light panel theme.
   &.offcanvas-panel--theme-light {
     @include colour.set-colours(
-      $background: material-panel.$material-panel-background-colour-light
+      $background: material-panel.$background-colour-light
     );
   }
   // Dark panel theme.
   &.offcanvas-panel--theme-dark {
     @include colour.set-colours(
-      $background: material-panel.$material-panel-background-colour-dark
+      $background: material-panel.$background-colour-dark
     );
   }
 

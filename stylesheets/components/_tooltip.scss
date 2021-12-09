@@ -8,10 +8,8 @@
 // This adjusts the default tooltip Material theme colours to contrast against
 // otherwise similar background lightness/darkness.
 @each $theme-name, $background-colour in (
-  material-light:
-    material-panel.$material-panel-background-colour-light-on-light,
-  material-dark:
-    material-panel.$material-panel-background-colour-dark-on-dark,
+  material-light: material-panel.$background-colour-light-on-light,
+  material-dark:  material-panel.$background-colour-dark-on-dark,
 ) {
   @include tooltip.tooltip-material-theme(
     $theme-name, $background-colour
