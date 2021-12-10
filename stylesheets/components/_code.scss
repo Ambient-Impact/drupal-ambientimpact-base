@@ -11,27 +11,27 @@
 ///
 /// Highlighted code background colour on light backgrounds.
 ///
-$background-colour-on-light: colour.$background-colour-dark !default;
+$background-colour-on-light: colour.$background-dark !default;
 
 ///
 /// Highlighted code background colour on dark backgrounds.
 ///
 $background-colour-on-dark: color.mix(
-  colour.$foreground-colour-on-dark, colour.$background-colour-dark, 10%
+  colour.$foreground-on-dark, colour.$background-dark, 10%
 ) !default;
 
 ///
 /// Highlighted code header background colour on light backgrounds.
 ///
 $header-background-colour-on-light: color.mix(
-  colour.$foreground-colour-on-dark, colour.$background-colour-dark, 30%
+  colour.$foreground-on-dark, colour.$background-dark, 30%
 ) !default;
 
 ///
 /// Highlighted code header background colour on dark backgrounds.
 ///
 $header-background-colour-on-dark: color.mix(
-  colour.$foreground-colour-on-dark, colour.$background-colour-dark, 20%
+  colour.$foreground-on-dark, colour.$background-dark, 20%
 ) !default;
 
 ///
@@ -107,12 +107,12 @@ $colour-method: #a6ce28 !default;
     margin:       0;
     padding:      $block-title-padding;
 
-    @include colour.set-colours(
+    @include colour.set(
       $background: $header-background-colour-on-light
     );
 
-    @include colour.on-dark-colour-scheme {
-      @include colour.set-colours(
+    @include colour.on-dark-scheme {
+      @include colour.set(
         $background: $header-background-colour-on-dark
       );
     }
@@ -130,10 +130,10 @@ $colour-method: #a6ce28 !default;
     margin:   0;
     padding:  $block-body-padding;
 
-    @include colour.set-colours($background: $background-colour-on-light);
+    @include colour.set($background: $background-colour-on-light);
 
-    @include colour.on-dark-colour-scheme {
-      @include colour.set-colours($background: $background-colour-on-dark);
+    @include colour.on-dark-scheme {
+      @include colour.set($background: $background-colour-on-dark);
     }
 
     border-bottom-left-radius:  $border-radius;

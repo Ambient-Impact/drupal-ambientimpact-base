@@ -46,7 +46,7 @@ $outline-colour: black !default;
     border-bottom-left-radius:  material-general.$border-radius;
     border-bottom-right-radius: material-general.$border-radius;
 
-    @include colour.set-colours($background: $background-colour);
+    @include colour.set($background: $background-colour);
 
     @include material-shadow.shadow(2);
 

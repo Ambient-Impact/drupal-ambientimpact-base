@@ -110,16 +110,16 @@ $navigation-item-hitbox-padding:
       // .layout-container, since the specificity is high enough to override the
       // fancy link underlines selectors.
       :any-link {
-        $item-background: colour.get-contrasting-colour(
-          $background:          colour.$background-colour,
+        $item-background: colour.get-contrasting(
+          $background:          colour.$background,
           $foreground-on-light: link-var.$normal-colour-on-light,
           $foreground-on-dark:  link-var.$normal-colour-on-dark
         );
-        $item-foreground: colour.get-contrasting-colour(
+        $item-foreground: colour.get-contrasting(
           $background:          $item-background
         );
 
-        @include colour.set-colours(
+        @include colour.set(
           $background:          $item-background
         );
 

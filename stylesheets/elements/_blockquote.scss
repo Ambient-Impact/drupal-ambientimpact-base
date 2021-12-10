@@ -34,7 +34,7 @@ $quotation-mark-spacing: icon.$icon-text-spacing + 0.2em !default;
 /// This affects the decorative quotation mark and vertical line.
 ///
 $decoration-colour-on-light: color.mix(
-  colour.$foreground-colour-on-light, colour.$background-colour-light, 50%
+  colour.$foreground-on-light, colour.$background-light, 50%
 ) !default;
 
 ///
@@ -43,7 +43,7 @@ $decoration-colour-on-light: color.mix(
 /// This affects the decorative quotation mark and vertical line.
 ///
 $decoration-colour-on-dark: color.mix(
-  colour.$foreground-colour-on-dark, colour.$background-colour-dark, 50%
+  colour.$foreground-on-dark, colour.$background-dark, 50%
 ) !default;
 
 @include vertical-spacing.against-previous(
@@ -97,7 +97,7 @@ blockquote {
     background-repeat:  no-repeat;
     background-size:    $quotation-mark-size;
 
-    @include colour.on-dark-colour-scheme {
+    @include colour.on-dark-scheme {
       background-image:   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M10.026 20.021L2 12V3.979h8.026v16.042zm11.974 0L13.979 12V3.979H22v16.042z" fill="rgba(' + color.red($decoration-colour-on-dark) + ',' + color.green($decoration-colour-on-dark) + ',' + color.blue($decoration-colour-on-dark) + ',' + color.alpha($decoration-colour-on-dark) + ')"/></svg>');
     }
 
@@ -137,7 +137,7 @@ blockquote {
 
     background-color: $decoration-colour-on-light;
 
-    @include colour.on-dark-colour-scheme {
+    @include colour.on-dark-scheme {
       background-color: $decoration-colour-on-dark;
     }
   }

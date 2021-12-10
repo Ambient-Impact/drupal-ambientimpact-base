@@ -31,14 +31,14 @@
   // Symbols are not wrapped in anything, so by setting the default colour to
   // the symbol and overriding that on specific elements has almost the same
   // effect.
-  @include colour.set-colours(
+  @include colour.set(
     $background:          code.$background-colour-on-light,
     $foreground-on-dark:  code.$colour-symbol,
     $foreground-on-light: code.$colour-symbol
   );
 
-  @include colour.on-dark-colour-scheme {
-    @include colour.set-colours(
+  @include colour.on-dark-scheme {
+    @include colour.set(
       $background:          code.$background-colour-on-dark,
       $foreground-on-dark:  code.$colour-symbol,
       $foreground-on-light: code.$colour-symbol

@@ -7,12 +7,12 @@
 ///
 /// Overlay colour in a light colour scheme.
 ///
-$colour-light: colour.$background-colour-light !default;
+$colour-light: colour.$background-light !default;
 
 ///
 /// Overlay colour in a dark colour scheme.
 ///
-$colour-dark: colour.$background-colour-dark !default;
+$colour-dark: colour.$background-dark !default;
 
 ///
 /// Overlay opacity when visible.
@@ -20,10 +20,10 @@ $colour-dark: colour.$background-colour-dark !default;
 $opacity: 0.6 !default;
 
 .overlay {
-  @include colour.set-colours($background: $colour-light);
+  @include colour.set($background: $colour-light);
 
-  @include colour.on-dark-colour-scheme {
-    @include colour.set-colours($background: $colour-dark);
+  @include colour.on-dark-scheme {
+    @include colour.set($background: $colour-dark);
   }
 
   &--is-active {

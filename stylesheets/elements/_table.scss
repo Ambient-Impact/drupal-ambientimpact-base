@@ -13,7 +13,7 @@
 /// <table> element background colour on light backgrounds.
 ///
 $background-colour-on-light: color.mix(
-  colour.$foreground-colour-on-light, colour.$background-colour-light, 10%
+  colour.$foreground-on-light, colour.$background-light, 10%
 ) !default;
 
 ///
@@ -30,7 +30,7 @@ $header-background-colour-on-dark: hsla(0, 0%, 100%, 0.05) !default;
 /// <table> element background colour on dark backgrounds.
 ///
 $background-colour-on-dark: color.mix(
-  colour.$foreground-colour-on-dark, colour.$background-colour-dark, 10%
+  colour.$foreground-on-dark, colour.$background-dark, 10%
 ) !default;
 
 ///
@@ -70,7 +70,7 @@ $border-radius: material-general.$border-radius !default;
   --table-cell-border-style:            #{$cell-border-style};
   --table-cell-border-colour:           #{$cell-border-colour-on-light};
 
-  @include colour.on-dark-colour-scheme {
+  @include colour.on-dark-scheme {
     --table-cell-border-colour:        #{$cell-border-colour-on-dark};
   }
 
@@ -114,12 +114,12 @@ table {
     );
   }
 
-  @include colour.set-colours(
+  @include colour.set(
     $background: $background-colour-on-light
   );
 
-  @include colour.on-dark-colour-scheme {
-    @include colour.set-colours(
+  @include colour.on-dark-scheme {
+    @include colour.set(
       $background: $background-colour-on-dark
     );
   }
@@ -128,13 +128,13 @@ table {
 }
 
 thead {
-  @include colour.set-colours(
+  @include colour.set(
     $background:            $header-background-colour-on-light,
     $background-reference:  $background-colour-on-light
   );
 
-  @include colour.on-dark-colour-scheme {
-    @include colour.set-colours(
+  @include colour.on-dark-scheme {
+    @include colour.set(
       $background:            $header-background-colour-on-dark,
       $background-reference:  $background-colour-on-dark
     );

@@ -43,42 +43,42 @@ $status-card-colour-on-light: $status-base-colour !default;
 /// Status message border colour on light backgrounds.
 ///
 $status-border-colour-on-light: color.mix(
-  $status-base-colour, colour.$background-colour-light, 40%
+  $status-base-colour, colour.$background-light, 40%
 ) !default;
 
 ///
 /// Status message border colour on dark backgrounds.
 ///
 $status-border-colour-on-dark: color.mix(
-  $status-base-colour, colour.$background-colour-dark, 40%
+  $status-base-colour, colour.$background-dark, 40%
 ) !default;
 
 ///
 /// Status message foreground colour on light backgrounds.
 ///
 $status-foreground-colour-on-light: color.mix(
-  $status-base-colour, colour.$foreground-colour-on-light, 40%
+  $status-base-colour, colour.$foreground-on-light, 40%
 ) !default;
 
 ///
 /// Status message foreground colour on dark backgrounds.
 ///
 $status-foreground-colour-on-dark: color.mix(
-  $status-base-colour, colour.$foreground-colour-on-dark, 40%
+  $status-base-colour, colour.$foreground-on-dark, 40%
 ) !default;
 
 ///
 /// Status message background colour on light backgrounds.
 ///
 $status-background-colour-on-light: color.mix(
-  $status-base-colour, colour.$background-colour-light, 8%
+  $status-base-colour, colour.$background-light, 8%
 ) !default;
 
 ///
 /// Status message background colour on dark backgrounds.
 ///
 $status-background-colour-on-dark: color.mix(
-  $status-base-colour, colour.$background-colour-dark, 8%
+  $status-base-colour, colour.$background-dark, 8%
 ) !default;
 
 ///
@@ -101,42 +101,42 @@ $warning-card-colour-on-light: $warning-base-colour !default;
 /// Warning message border colour on light backgrounds.
 ///
 $warning-border-colour-on-light: color.mix(
-  $warning-base-colour, colour.$background-colour-light, 35%
+  $warning-base-colour, colour.$background-light, 35%
 ) !default;
 
 ///
 /// Warning message border colour on dark backgrounds.
 ///
 $warning-border-colour-on-dark: color.mix(
-  $warning-base-colour, colour.$background-colour-dark, 35%
+  $warning-base-colour, colour.$background-dark, 35%
 ) !default;
 
 ///
 /// Warning message foreground colour on light backgrounds.
 ///
 $warning-foreground-colour-on-light: color.mix(
-  $warning-base-colour, colour.$foreground-colour-on-light, 40%
+  $warning-base-colour, colour.$foreground-on-light, 40%
 ) !default;
 
 ///
 /// Warning message foreground colour on dark backgrounds.
 ///
 $warning-foreground-colour-on-dark: color.mix(
-  $warning-base-colour, colour.$foreground-colour-on-dark, 40%
+  $warning-base-colour, colour.$foreground-on-dark, 40%
 ) !default;
 
 ///
 /// Warning message background colour on light backgrounds.
 ///
 $warning-background-colour-on-light: color.mix(
-  $warning-base-colour, colour.$background-colour-light, 6%
+  $warning-base-colour, colour.$background-light, 6%
 ) !default;
 
 ///
 /// Warning message background colour on dark backgrounds.
 ///
 $warning-background-colour-on-dark: color.mix(
-  $warning-base-colour, colour.$background-colour-dark, 6%
+  $warning-base-colour, colour.$background-dark, 6%
 ) !default;
 
 ///
@@ -159,42 +159,42 @@ $error-card-colour-on-light: $error-base-colour !default;
 /// Error message border colour on light backgrounds.
 ///
 $error-border-colour-on-light: color.mix(
-  $error-base-colour, colour.$background-colour-light, 25%
+  $error-base-colour, colour.$background-light, 25%
 ) !default;
 
 ///
 /// Error message border colour on dark backgrounds.
 ///
 $error-border-colour-on-dark: color.mix(
-  $error-base-colour, colour.$background-colour-dark, 25%
+  $error-base-colour, colour.$background-dark, 25%
 ) !default;
 
 ///
 /// Error message foreground colour on light backgrounds.
 ///
 $error-foreground-colour-on-light: color.mix(
-  $error-base-colour, colour.$foreground-colour-on-light, 40%
+  $error-base-colour, colour.$foreground-on-light, 40%
 ) !default;
 
 ///
 /// Error message foreground colour on dark backgrounds.
 ///
 $error-foreground-colour-on-dark: color.mix(
-  $error-base-colour, colour.$foreground-colour-on-dark, 40%
+  $error-base-colour, colour.$foreground-on-dark, 40%
 ) !default;
 
 ///
 /// Error message background colour on light backgrounds.
 ///
 $error-background-colour-on-light: color.mix(
-  $error-base-colour, colour.$background-colour-light, 6%
+  $error-base-colour, colour.$background-light, 6%
 ) !default;
 
 ///
 /// Error message background colour on dark backgrounds.
 ///
 $error-background-colour-on-dark: color.mix(
-  $error-base-colour, colour.$background-colour-dark, 6%
+  $error-base-colour, colour.$background-dark, 6%
 ) !default;
 
 .messages {
@@ -221,13 +221,13 @@ $error-background-colour-on-dark: color.mix(
   border-radius: $border-radius;
 
   &--status {
-    @include colour.set-colours(
+    @include colour.set(
       $background:          $status-background-colour-on-light,
       $foreground-on-light: $status-foreground-colour-on-light
     );
 
-    @include colour.on-dark-colour-scheme {
-      @include colour.set-colours(
+    @include colour.on-dark-scheme {
+      @include colour.set(
         $background:          $status-background-colour-on-dark,
         $foreground-on-dark:  $status-foreground-colour-on-dark
       );
@@ -243,7 +243,7 @@ $error-background-colour-on-dark: color.mix(
       box-shadow:
         -$card-thickness 0 0 $status-card-colour-on-light;
 
-      @include colour.on-dark-colour-scheme {
+      @include colour.on-dark-scheme {
         border-color:
           $status-border-colour-on-dark
           $status-border-colour-on-dark
@@ -261,7 +261,7 @@ $error-background-colour-on-dark: color.mix(
       box-shadow:
         $card-thickness 0 0 $status-card-colour-on-light;
 
-      @include colour.on-dark-colour-scheme {
+      @include colour.on-dark-scheme {
         border-color:
           $status-border-colour-on-dark
           transparent
@@ -272,13 +272,13 @@ $error-background-colour-on-dark: color.mix(
   }
 
   &--warning {
-    @include colour.set-colours(
+    @include colour.set(
       $background:          $warning-background-colour-on-light,
       $foreground-on-light: $warning-foreground-colour-on-light
     );
 
-    @include colour.on-dark-colour-scheme {
-      @include colour.set-colours(
+    @include colour.on-dark-scheme {
+      @include colour.set(
         $background:          $warning-background-colour-on-dark,
         $foreground-on-dark:  $warning-foreground-colour-on-dark
       );
@@ -294,7 +294,7 @@ $error-background-colour-on-dark: color.mix(
       box-shadow:
         -$card-thickness 0 0 $warning-card-colour-on-light;
 
-      @include colour.on-dark-colour-scheme {
+      @include colour.on-dark-scheme {
         border-color:
           $warning-border-colour-on-dark
           $warning-border-colour-on-dark
@@ -312,7 +312,7 @@ $error-background-colour-on-dark: color.mix(
       box-shadow:
         $card-thickness 0 0 $warning-card-colour-on-light;
 
-      @include colour.on-dark-colour-scheme {
+      @include colour.on-dark-scheme {
         border-color:
           $warning-border-colour-on-dark
           transparent
@@ -323,13 +323,13 @@ $error-background-colour-on-dark: color.mix(
   }
 
   &--error {
-    @include colour.set-colours(
+    @include colour.set(
       $background:          $error-background-colour-on-light,
       $foreground-on-light: $error-foreground-colour-on-light
     );
 
-    @include colour.on-dark-colour-scheme {
-      @include colour.set-colours(
+    @include colour.on-dark-scheme {
+      @include colour.set(
         $background:          $error-background-colour-on-dark,
         $foreground-on-dark:  $error-foreground-colour-on-dark
       );
@@ -345,7 +345,7 @@ $error-background-colour-on-dark: color.mix(
       box-shadow:
         -$card-thickness 0 0 $error-card-colour-on-light;
 
-      @include colour.on-dark-colour-scheme {
+      @include colour.on-dark-scheme {
         border-color:
           $error-border-colour-on-dark
           $error-border-colour-on-dark
@@ -363,7 +363,7 @@ $error-background-colour-on-dark: color.mix(
       box-shadow:
         $card-thickness 0 0 $error-card-colour-on-light;
 
-      @include colour.on-dark-colour-scheme {
+      @include colour.on-dark-scheme {
         border-color:
           $error-border-colour-on-dark
           transparent

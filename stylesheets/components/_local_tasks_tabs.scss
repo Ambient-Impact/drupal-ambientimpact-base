@@ -27,14 +27,14 @@
       //
       // @todo Find a way to remove the need for this.
       @include material-ripple.ripple-colour(
-        $background-colour: colour.$background-colour-light,
-        $foreground-colour: colour.$foreground-colour-on-light
+        $background-colour: colour.$background-light,
+        $foreground-colour: colour.$foreground-on-light
       );
 
-      @include colour.on-dark-colour-scheme {
+      @include colour.on-dark-scheme {
         @include material-ripple.ripple-colour(
-          $background-colour: colour.$background-colour-dark,
-          $foreground-colour: colour.$foreground-colour-on-dark
+          $background-colour: colour.$background-dark,
+          $foreground-colour: colour.$foreground-on-dark
         );
       }
 

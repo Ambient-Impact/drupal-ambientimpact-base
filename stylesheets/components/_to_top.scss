@@ -37,7 +37,7 @@
       $foreground-colour: to-top.$foreground-colour-on-light
     );
 
-    @include colour.on-dark-colour-scheme {
+    @include colour.on-dark-scheme {
       @include material-ripple.ripple-colour(
         $background-colour: to-top.$background-colour-normal-on-dark,
         $foreground-colour: to-top.$foreground-colour-on-dark

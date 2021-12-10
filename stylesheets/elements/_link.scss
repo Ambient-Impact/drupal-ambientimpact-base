@@ -108,8 +108,8 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
       @if $use-link-styles == true {
         @include link.link;
 
-        @include colour.on-dark-colour-scheme {
-          @include link-colour.set(colour.$background-colour-dark);
+        @include colour.on-dark-scheme {
+          @include link-colour.set(colour.$background-dark);
         }
       }
 

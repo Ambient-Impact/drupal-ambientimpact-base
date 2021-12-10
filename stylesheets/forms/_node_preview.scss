@@ -22,14 +22,14 @@
 
   @include layout.container-base-horizontal;
 
-  @include colour.set-colours(
+  @include colour.set(
     $background: material-panel.$background-colour-light
   );
 
   @include material-shadow.shadow(2);
 
-  @include colour.on-dark-colour-scheme {
-    @include colour.set-colours(
+  @include colour.on-dark-scheme {
+    @include colour.set(
       $background: material-panel.$background-colour-dark-on-dark
     );
 
