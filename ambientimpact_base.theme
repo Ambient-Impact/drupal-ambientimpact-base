@@ -11,7 +11,7 @@ use Drupal\Component\Utility\UrlHelper;
  *
  * This attaches the Material input component to text input types.
  */
-function ambientimpact_base_element_info_alter(array &$info) {
+function ambientimpact_base_element_info_alter(array &$info): void {
   if (isset($info['textarea'])) {
     $info['textarea']['#attached']['library'][] =
       'ambientimpact_ux/component.textarea';
@@ -55,7 +55,7 @@ function ambientimpact_base_element_info_alter(array &$info) {
  */
 function ambientimpact_base_theme_suggestions_input_alter(
   &$suggestions, array $variables
-) {
+): void {
   if (
     isset($variables['element']['#is_button']) &&
     $variables['element']['#is_button'] === true &&
@@ -74,7 +74,7 @@ function ambientimpact_base_theme_suggestions_input_alter(
  */
 function ambientimpact_base_theme_suggestions_node_alter(
   array &$suggestions, array $variables
-) {
+): void {
   $suggestions[] = 'node__extended';
 }
 
@@ -96,7 +96,7 @@ function ambientimpact_base_theme_suggestions_node_alter(
  *
  * @see https://caniuse.com/mdn-html_elements_meta_name_color-scheme
  */
-function ambientimpact_base_preprocess_html(array &$variables) {
+function ambientimpact_base_preprocess_html(array &$variables): void {
 
   $variables['page']['#attached']['html_head'][] = [
     [
@@ -119,7 +119,7 @@ function ambientimpact_base_preprocess_html(array &$variables) {
  */
 function ambientimpact_base_preprocess_block__ambientimpact_block_social_links(
   array &$variables
-) {
+): void {
   $variables['#attached']['library'][] =
     'ambientimpact_block/component.social_links.tooltips';
 }
@@ -190,7 +190,7 @@ function ambientimpact_base_preprocess_block__ambientimpact_block_social_links(
  */
 function ambientimpact_base_preprocess_block__system_branding_block(
   array &$variables
-) {
+): void {
   // Create the 'front_page_url' variable if it hasn't been provided.
   if (!isset($variables['front_page_url'])) {
     $variables['front_page_url'] = Url::fromRoute('<front>');
@@ -392,7 +392,7 @@ function ambientimpact_base_preprocess_block__system_branding_block(
  * @see \Drupal\ambientimpact_media\Plugin\AmbientImpact\Component\Image::preprocessFieldSetImageFieldMaxWidth()
  *   This adds a max-width on each field item.
  */
-function ambientimpact_base_preprocess_field(&$variables, $hook) {
+function ambientimpact_base_preprocess_field(&$variables, $hook): void {
   // Media thumbnail field.
   if (
     $variables['field_type'] === 'image' &&
@@ -463,7 +463,7 @@ function ambientimpact_base_preprocess_field(&$variables, $hook) {
  */
 function ambientimpact_base_preprocess_responsive_image_formatter(
   &$variables
-) {
+): void {
 
   // Return if there's no URL or it's not a string.
   if (empty($variables['url']) || !\is_string($variables['url'])) {
@@ -506,7 +506,7 @@ function ambientimpact_base_preprocess_responsive_image_formatter(
  * @see template_preprocess_menu_local_action()
  *   Sets the default classes.
  */
-function ambientimpact_base_preprocess_menu_local_action(&$variables) {
+function ambientimpact_base_preprocess_menu_local_action(&$variables): void {
   $baseClass = 'action-links';
   $linkAttributes = &$variables['link']['#options']['attributes'];
 
