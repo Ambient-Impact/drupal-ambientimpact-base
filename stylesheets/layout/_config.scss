@@ -1,0 +1,86 @@
+// -----------------------------------------------------------------------------
+//   Layout configuration partial
+// -----------------------------------------------------------------------------
+
+@use 'sass:math';
+@use 'sass/variables/general';
+
+///
+/// The gap between layout columns.
+///
+$gap: general.$general-spacing !default;
+
+///
+/// This is the spacing added on the left and right of the layout container.
+///
+$gutter: math.div(general.$general-spacing, 2) !default;
+
+///
+/// The space between the top of the viewport and the layout container.
+///
+$spacing-top: general.$general-spacing * 1.5 !default;
+
+///
+/// The space between the bottom of the viewport and the layout container.
+///
+$spacing-bottom: general.$general-spacing * 8 !default;
+
+///
+/// The maximum width of the site layout when no sidebars are present.
+///
+/// Note that $gutter is added to this on either side. This default value
+/// is optimal for a single column layout, but may need to be increased if
+/// sidebars or other columns are needed.
+///
+$no-sidebars-max-width: 45em !default;
+
+///
+/// The minimum width of the layout to display both sidebars beside content.
+///
+/// Note that this should not include the $gutter as that's added on top
+/// of this value.
+///
+$with-both-sidebars-min-width: 42em !default;
+
+///
+/// The maximum width of the site layout when both sidebars are present.
+///
+$with-both-sidebars-max-width: 70em !default;
+
+///
+/// The minimum width of the layout to display one sidebar beside content.
+///
+/// Note that this should not include the $gutter as that's added on top
+/// of this value.
+///
+$with-one-sidebar-min-width: 38em !default;
+
+///
+/// The maximum width of the site layout when one sidebar is present.
+///
+/// This is calculated as the midway point between $no-sidebars-max-width
+/// and $with-both-sidebars-max-width.
+///
+$with-one-sidebar-max-width: $no-sidebars-max-width + math.div(
+  $with-both-sidebars-max-width - $no-sidebars-max-width, 2
+) !default;
+
+///
+/// The content column width, as a grid-template-columns value.
+///
+/// Note that this needs to use a minmax() so that any tables in the content
+/// column with data-table-column-width attributes (which set a min-width) do
+/// not break the layout. No idea why this works.
+///
+/// @link https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
+///   Lists valid values.
+///
+$content-column-width: minmax(20em, 1fr) !default;
+
+///
+/// The sidebar column widths, as a grid-template-columns value.
+///
+/// @link https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
+///   Lists valid values.
+///
+$sidebar-column-width: minmax(8em, 12em) !default;

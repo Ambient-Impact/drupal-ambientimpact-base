@@ -1,0 +1,52 @@
+// -----------------------------------------------------------------------------
+//   Layout container partial
+// -----------------------------------------------------------------------------
+
+@use 'config';
+@use 'sass/helpers/layout';
+@use 'sidebars';
+
+///
+/// The maximum width for a container based on whether sidebars are present.
+///
+/// @require {mixin} sidebars.on-sidebar
+/// @require {mixin} layout.use-grid
+///
+@mixin max-width {
+
+  max-width: config.$no-sidebars-max-width;
+
+  @include layout.use-grid {
+    @include sidebars.on-sidebar(one) {
+      max-width: config.$with-one-sidebar-max-width;
+    }
+    @include sidebars.on-sidebar(both) {
+      max-width: config.$with-both-sidebars-max-width;
+    }
+  }
+
+}
+
+///
+/// Base layout container horizontal styles.
+///
+/// This primarily sets the horizontal gutter, max-width of content, and centres
+/// content inside the layout container.
+///
+/// @require {mixin} max-width
+/// @require {variable} config.$gutter
+///
+@mixin base-horizontal {
+
+  padding-left:   config.$gutter;
+  padding-right:  config.$gutter;
+
+  // All direct children are width-constrained and centred horizontally.
+  > * {
+    @include max-width;
+
+    margin-left:  auto;
+    margin-right: auto;
+  }
+
+}

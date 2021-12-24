@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------------
+//   Layout breakpoints partial
+// -----------------------------------------------------------------------------
+
+@use 'config';
+@use 'sass/helpers/breakpoint';
+
+@include breakpoint.add((
+  // The minimum width to display sidebar beside the content column when one
+  // sidebar is present.
+  'layout-with-one-sidebar': config.$gutter * 2 +
+    config.$with-one-sidebar-min-width,
+
+  // The minimum width to display sidebars beside the content column when both
+  // sidebars are present.
+  'layout-with-both-sidebars': config.$gutter * 2 +
+    config.$with-both-sidebars-min-width,
+));

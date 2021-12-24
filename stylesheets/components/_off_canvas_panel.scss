@@ -2,7 +2,8 @@
 //   Base off-canvas panel component partial
 // -----------------------------------------------------------------------------
 
-@use '../global/layout';
+@use '../layout/config' as layout-config;
+@use '../layout/container' as layout-container;
 @use 'sass/helpers/colour';
 @use 'material.common/material.panel' as material-panel;
 
@@ -40,21 +41,21 @@
 
   .offcanvas-panel__content,
   .offcanvas-panel__ui {
-    padding-left:   layout.$gutter;
-    padding-right:  layout.$gutter;
+    padding-left:   layout-config.$gutter;
+    padding-right:  layout-config.$gutter;
   }
 
   .offcanvas-panel__ui {
-    padding-bottom: layout.$gutter;
+    padding-bottom: layout-config.$gutter;
   }
 
   .offcanvas-panel__content {
     &::before {
-      height:   layout.$gutter;
+      height:   layout-config.$gutter;
     }
 
     &::after {
-      height:   (layout.$gutter * 2) + 2.5em;
+      height:   (layout-config.$gutter * 2) + 2.5em;
     }
   }
 
@@ -62,7 +63,7 @@
   &.offcanvas-panel--bottom {
     .offcanvas-panel__content,
     .offcanvas-panel__ui {
-      @include layout.max-width;
+      @include layout-container.max-width;
     }
   }
 }

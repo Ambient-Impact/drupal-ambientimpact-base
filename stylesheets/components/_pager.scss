@@ -2,7 +2,7 @@
 //   Base Drupal pager partial
 // -----------------------------------------------------------------------------
 
-@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use '../layout/vertical_spacing' as vertical-spacing;
 @use 'link/link.colour' as link-colour;
 @use 'link/link.var' as link-var;
 @use 'sass:list';

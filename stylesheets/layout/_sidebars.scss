@@ -1,0 +1,134 @@
+// -----------------------------------------------------------------------------
+//   Layout sidebars partial
+// -----------------------------------------------------------------------------
+
+@use 'breakpoints';
+@use 'sass/helpers/breakpoint';
+@use 'sass/helpers/selector';
+
+///
+/// Apply styles when one or more sidebars are present in the markup.
+///
+/// @param {String} $sidebar
+///   The sidebar condition to match. Must be one of:
+///
+///   - first: Only the first sidebar is present
+///
+///   - second: Only the second sidebar is present
+///
+///   - one: Only one sidebar is present, either the first or second
+///
+///   - both: Both sidebars are present
+///
+///   - any: At least one sidebar is present
+///
+/// @content
+///   The content to apply based on the $sidebar parameter.
+///
+/// @require {mixin} selector.root-conditions
+///
+@mixin on-sidebar($sidebar) {
+  // Only the first sidebar.
+  @if ($sidebar == first) {
+    @include selector.root-conditions(
+      '.has-sidebar-first:not(.has-sidebar-second)', 'body'
+    ) {
+      @content;
+    }
+
+  // Only the second sidebar.
+  } @else if ($sidebar == second) {
+    @include selector.root-conditions(
+      '.has-sidebar-second:not(.has-sidebar-first)', 'body'
+    ) {
+      @content;
+    }
+
+  // Only if one sidebar is present, regardless of which it is.
+  } @else if ($sidebar == one) {
+    @include selector.root-conditions((
+      '.has-sidebar-first:not(.has-sidebar-second)',
+      '.has-sidebar-second:not(.has-sidebar-first)',
+    ), 'body') {
+      @content;
+    }
+
+  // Only if both sidebars.
+  } @else if ($sidebar == both) {
+    @include selector.root-conditions('.has-both-sidebars', 'body') {
+      @content;
+    }
+
+  // Any other value is treated as 'any', which will match one or both sidebars
+  // being present.
+  } @else {
+    @include selector.root-conditions((
+      '.has-sidebar-first:not(.has-sidebar-second)',
+      '.has-sidebar-second:not(.has-sidebar-first)',
+      '.has-both-sidebars',
+    ), 'body') {
+      @content;
+    }
+  }
+}
+
+///
+/// Apply styles when one or more sidebars are placed beside the content column.
+///
+/// @param {String} $sidebar
+///   The sidebar condition to match. Must be one of:
+///
+///   - first: Only the first sidebar is present
+///
+///   - second: Only the second sidebar is present
+///
+///   - one: Only one sidebar is present, either the first or second
+///
+///   - both: Both sidebars are present
+///
+///   - any: At least one sidebar is present
+///
+/// @content
+///   The content to apply based on the $sidebar parameter.
+///
+/// @require {mixin} on-sidebar
+/// @require {mixin} selector.root-conditions
+/// @require {mixin} breakpoint.on
+///
+@mixin on-sidebar-beside-content($sidebar) {
+  @if ($sidebar == both) {
+    @include breakpoint.on('>=layout-with-both-sidebars') {
+      @include on-sidebar($sidebar) {
+        @content;
+      };
+    }
+
+  // 'any' is requires special handling because we need to apply the provided
+  // styles with the appropriate media query, but we can't simply just wrap it
+  // all in the '>=layout-with-one-sidebar' query because that would erroneously
+  // match when both sidebars are present in the markup but before the viewport
+  // is wide enough to actually display them next to the content. In this case,
+  // we duplicate the styles, one for a single sidebar and one both sidebars at
+  // their respective media queries.
+  } @else if ($sidebar == any) {
+    @include breakpoint.on('>=layout-with-one-sidebar') {
+      @include on-sidebar(one) {
+        @content;
+      };
+    }
+    @include breakpoint.on('>=layout-with-both-sidebars') {
+      @include on-sidebar(both) {
+        @content;
+      };
+    }
+
+  // Any other value is assumed to be one of 'first', 'second', or 'one', all of
+  // which fall under the one sidebar media query.
+  } @else {
+    @include breakpoint.on('>=layout-with-one-sidebar') {
+      @include on-sidebar($sidebar) {
+        @content;
+      };
+    }
+  }
+}

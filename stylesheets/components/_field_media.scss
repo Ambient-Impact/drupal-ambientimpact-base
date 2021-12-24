@@ -2,8 +2,8 @@
 //   Base Drupal media fields partial
 // -----------------------------------------------------------------------------
 
-@use '../global/layout';
-@use '../global/layout.vertical_spacing' as vertical-spacing;
+@use '../layout/config' as layout-config;
+@use '../layout/vertical_spacing' as vertical-spacing;
 @use 'sass/variables/general';
 
 ///
@@ -12,7 +12,9 @@
 /// This is used as the overall field padding and spacing between field items.
 /// Defaults to $gutter to look consistent with the page layout spacing.
 ///
-$spacing: layout.$gutter !default;
+/// @require {variable} layout-config.$gutter
+///
+$spacing: layout-config.$gutter !default;
 
 .field--type-image,
 .field--type-video-embed-field {

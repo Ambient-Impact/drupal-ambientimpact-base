@@ -2,7 +2,7 @@
 //   Base PhotoSwipe component partial
 // -----------------------------------------------------------------------------
 
-@use '../global/layout';
+@use '../layout/container' as layout-container;
 @use 'material.ripple' as material-ripple;
 @use 'sass:math';
 @use 'sass:meta';
@@ -10,7 +10,7 @@
 
 .pswp {
   &__caption__center {
-    @include layout.max-width;
+    @include layout-container.max-width;
 
     padding: math.div(general.$general-spacing, 2);
   }

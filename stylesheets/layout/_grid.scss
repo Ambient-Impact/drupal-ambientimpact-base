@@ -1,0 +1,68 @@
+// -----------------------------------------------------------------------------
+//   Layout grid partial
+// -----------------------------------------------------------------------------
+
+@use 'config';
+@use 'sass/helpers/breakpoint';
+@use 'sass/helpers/layout';
+@use 'sidebars';
+
+///
+/// Layout grid.
+///
+/// This sets the various grid properties depending on which sidebars are
+/// present and at the appropriate viewport widths.
+///
+/// @content
+///   Any additional styles to add at the end of the use-grid block.
+///
+/// @require {mixin} layout.use-grid
+/// @require {mixin} sidebars.on-sidebar-beside-content
+/// @require {variable} config.$gap
+/// @require {variable} config.$sidebar-column-width
+/// @require {variable} config.$content-column-width
+///
+@mixin grid {
+
+  @include layout.use-grid {
+
+    // One or both sidebars is/are present.
+    @include sidebars.on-sidebar-beside-content(any) {
+      display: grid;
+
+      grid-gap: config.$gap;
+    }
+
+    // The first sidebar is present but the second sidebar is not.
+    @include sidebars.on-sidebar-beside-content(first) {
+      grid-template-areas: 'sidebar-first main-content';
+
+      grid-template-columns:
+        config.$sidebar-column-width
+        config.$content-column-width;
+    }
+
+    // The second sidebar is present but the first sidebar is not.
+    @include sidebars.on-sidebar-beside-content(second) {
+      grid-template-areas: 'main-content sidebar-second';
+
+      grid-template-columns:
+        config.$content-column-width
+        config.$sidebar-column-width;
+    }
+
+    // Both sidebars are present.
+    @include sidebars.on-sidebar-beside-content(both) {
+      grid-template-areas: 'sidebar-first main-content sidebar-second';
+
+      grid-template-columns:
+        config.$sidebar-column-width
+        config.$content-column-width
+        config.$sidebar-column-width;
+    }
+
+    @content;
+
+  }
+
+}
