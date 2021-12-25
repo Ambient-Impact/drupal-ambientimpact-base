@@ -2,9 +2,9 @@
 //   Base local tasks actions partial
 // -----------------------------------------------------------------------------
 
-@use '../global/typography';
+@use '../typography/config' as typography-config;
 
 .action-links {
   font-size:    120%;
-  font-weight:  typography.$font-weight-strong;
+  font-weight:  typography-config.$font-weight-strong;
 }

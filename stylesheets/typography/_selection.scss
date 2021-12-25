@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-//   Base typography selection partial
+//   Typography selection partial
 // -----------------------------------------------------------------------------
 
 @use 'material.common/material.colour' as material-colour;
@@ -20,7 +20,13 @@ typography-selection.$text-inactive-selection-background-colour: color.adjust(
   typography-selection.$text-selection-background-colour, $saturation: -60%
 );
 
-// Set default selection colours.
-* {
-  @include typography-selection.selection;
+///
+/// Output default selected text colours.
+///
+/// @require {mixin} typography-selection.selection
+///
+@mixin output {
+  * {
+    @include typography-selection.selection;
+  }
 }

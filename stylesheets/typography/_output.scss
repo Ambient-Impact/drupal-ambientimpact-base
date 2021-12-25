@@ -1,0 +1,60 @@
+// -----------------------------------------------------------------------------
+//   Typography output partial
+// -----------------------------------------------------------------------------
+
+@use 'config';
+@use 'headings';
+@use 'responsive';
+@use 'selection';
+
+@include responsive.output;
+@include selection.output;
+@include headings.output;
+
+body {
+  font-size:    config.$font-size;
+  line-height:  1.5;
+
+  // This prevents overly-long words from breaking out of the layout in
+  // supporting browsers. Note that overflow-wrap will only break a word if it
+  // exceeds the available space, compared to the legacy word-break property,
+  // which always breaks words when they exceed the available space.
+  //
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap
+  overflow-wrap: break-word;
+}
+
+// Reset overflow-wrap to normal on these elements to fix a strange issue in
+// Chrome 79 on Android that would sometimes cause word and line breaks even if
+// there was more than enough room for each word.
+.field__label,
+.field__item--link-no-title,
+.ambientimpact-icon {
+  overflow-wrap: normal;
+}
+
+body, .ui-widget, input, textarea {
+  font-family:  config.$font-stack;
+  font-weight:  config.$font-weight-normal;
+}
+
+// These selectors get the bold font weight.
+strong,
+.breadcrumb ol,
+// Note that we explicitly exclude radio and checkbox labels as this is intended
+// to differentiate the label from text inputs, while radio and checkbox labels
+// don't need that and bold labels can feel a bit much in those cases.
+.form-item:not(.form-type-radio):not(.form-type-checkbox) > label,
+.form-composite > legend,
+.field .field__label,
+.pager__item,
+.pager__item.is-active,
+.ambientimpact-component-list__demo-link :link {
+  font-weight: config.$font-weight-strong;
+}
+
+// Try and catch any inline bold styles and apply our font weight.
+[style*='font-weight: bold'],
+[style*='font-weight:bold'] {
+  font-weight: config.$font-weight-strong !important;
+}

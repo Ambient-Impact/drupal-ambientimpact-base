@@ -2,7 +2,7 @@
 //   Base local tasks tabs partial
 // -----------------------------------------------------------------------------
 
-@use '../global/typography';
+@use '../typography/config' as typography-config;
 @use 'link/link.state' as link-state;
 @use 'material.ripple' as material-ripple;
 @use 'material.tabs' as material-tabs;
@@ -17,7 +17,7 @@
     a {
       @include material-tabs.item;
 
-      font-weight: typography.$font-weight-strong;
+      font-weight: typography-config.$font-weight-strong;
 
       @include material-ripple.material-ripple;
 

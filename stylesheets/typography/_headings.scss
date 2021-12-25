@@ -1,11 +1,11 @@
 // -----------------------------------------------------------------------------
-//   Base typography heading partial
+//   Typography headings partial
 // -----------------------------------------------------------------------------
 
+@use 'config';
 @use 'sass:list';
 @use 'sass:math';
-@use 'typography';
-@use 'typography.responsive' as typography-responsive;
+@use 'responsive' as typography-responsive;
 @use 'sass/helpers/typography.responsive' as typography-responsive-helper;
 @use 'SassyCast' as sassy-cast;
 
@@ -41,12 +41,12 @@ $heading-font-scale-unit: 'em' !default;
 ///
 /// The heading font stack.
 ///
-$heading-font-stack: typography.$font-stack !default;
+$heading-font-stack: config.$font-stack !default;
 
 ///
 /// The heading font weight.
 ///
-$heading-font-weight: typography.$font-weight-strong !default;
+$heading-font-weight: config.$font-weight-strong !default;
 
 ///
 /// Apply styles to a range of headings.
@@ -123,15 +123,27 @@ $heading-font-weight: typography.$font-weight-strong !default;
   }
 }
 
-// Apply heading font stack and weight to all headings.
-@include headings {
-  font-family: $heading-font-stack;
-  font-weight: $heading-font-weight;
-}
+///
+/// Output base heading styles.
+///
+/// @require {mixin} headings
+/// @require {mixin} heading-font-size
+/// @require {variable} $heading-font-stack
+/// @require {variable} $heading-font-weight
+///
+@mixin output {
 
-// Apply heading font sizes. This has to be done individually, per level.
-@for $i from 1 through 6 {
-  h#{$i} {
-    @include heading-font-size($i);
+  // Apply heading font stack and weight to all headings.
+  @include headings {
+    font-family: $heading-font-stack;
+    font-weight: $heading-font-weight;
   }
+
+  // Apply heading font sizes. This has to be done individually, per level.
+  @for $i from 1 through 6 {
+    h#{$i} {
+      @include heading-font-size($i);
+    }
+  }
+
 }

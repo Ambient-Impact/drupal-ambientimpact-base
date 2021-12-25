@@ -2,7 +2,7 @@
 //   Base button partial
 // -----------------------------------------------------------------------------
 
-@use '../global/typography';
+@use '../typography/config' as typography-config;
 @use 'material.button' as material-button;
 @use 'material.common/material.colour' as material-colour;
 @use 'material.ripple' as material-ripple;
@@ -29,12 +29,12 @@ $background-colour-primary-interact: color.adjust(
 ///
 /// Material button font weight.
 ///
-$font-weight: typography.$font-weight-strong !default;
+$font-weight: typography-config.$font-weight-strong !default;
 
 ///
 /// Material button font family.
 ///
-$font-family: typography.$font-stack !default;
+$font-family: typography-config.$font-stack !default;
 
 // All buttons.
 .button, .material-button, .form-submit {

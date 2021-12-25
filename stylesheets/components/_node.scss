@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 
 @use '../layout/vertical_spacing' as vertical-spacing;
-@use '../global/typography';
+@use '../typography/config' as typography-config;
 @use 'sass/variables/general';
 
 .node {
@@ -15,7 +15,7 @@
 
   // Footer links.
   &__links {
-    font-weight:    typography.$font-weight-strong;
+    font-weight:    typography-config.$font-weight-strong;
     text-transform: uppercase;
   }
 
