@@ -22,11 +22,8 @@ $use-image-link-styles: true !default;
 ///
 /// Elements that are considered "image" elements, inside of a link.
 ///
-/// This excludes <svg> elements as applying a filter seems to make them varying
-/// levels of blurry.
-///
-/// This excludes <canvas> elements because they often have their hover states
-/// defined elsewhere, on a per-element basis.
+/// Note that this excludes <svg> and <canvas> elements by default those often
+/// have their own specific styles.
 ///
 $image-elements: img !default;
 
@@ -46,9 +43,13 @@ $image-highlight-filters: contrast(75%) brightness(150%) !default;
 $image-active-filters: contrast(100%) brightness(100%) !default;
 
 ///
-/// Images in links.
+/// Links containing images.
 ///
 /// This applies image link filters to images based on link states.
+///
+/// @param {List} $image-elements [$image-elements]
+///   Selectors of elements that are considered to be image elements to apply
+///   styles to.
 ///
 /// @require {mixin} transition.fade-base
 /// @require {mixin} transition.fade-highlight
@@ -59,7 +60,7 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
 /// @require {variable} $image-highlight-filters
 /// @require {variable} $image-active-filters
 ///
-@mixin image {
+@mixin image($image-elements: $image-elements) {
   #{$image-elements} {
     filter: $image-normal-filters;
 
@@ -83,49 +84,66 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
   }
 }
 
-// Link styles. These are limited to layout containers and other content
-// containers so that we don't affect the administrative toolbar and other
-// elements outside of what would be considered the site content itself. By
-// using :any-link we can target only valid links, i.e. those that have a valid
-// href.
-//
-// @see https://css-tricks.com/how-to-disable-links/
-.layout-container,
-.node-preview-container,
-.offcanvas-panel {
-  // Include link colours as custom properties in case they're useful for
-  // JavaScript, etc.
-  @include link-colour.custom-properties;
+///
+/// Output base link styles.
+///
+/// @require {mixin} colour.on-dark-scheme
+/// @require {mixin} image
+/// @require {mixin} link.link
+/// @require {mixin} link-colour.custom-properties
+/// @require {mixin} link-colour.set
+/// @require {variable} colour.$background-dark
+/// @require {variable} photoswipe.$photoswipe-background-colour-theme-dark
+/// @require {variable} photoswipe.$photoswipe-root-class
+/// @require {variable} $use-image-link-styles
+/// @require {variable} $use-link-styles
+///
+@mixin output {
 
-  :any-link {
-    // Any links.
-    &,
-    // Currently active menu item links.
-    &.is-active,
-    // jQuery UI widget content.
-    .ui-widget-content & {
-      // Basic link styles.
-      @if $use-link-styles == true {
-        @include link.link;
+  // These are limited to layout containers and other content containers so that
+  // we don't affect the administrative toolbar and other elements outside of
+  // what would be considered the site content itself. By using :any-link we can
+  // target only valid links, i.e. those that have a valid href.
+  //
+  // @see https://css-tricks.com/how-to-disable-links/
+  .layout-container,
+  .node-preview-container,
+  .offcanvas-panel {
+    // Include link colours as custom properties in case they're useful for
+    // JavaScript, etc.
+    @include link-colour.custom-properties;
 
-        @include colour.on-dark-scheme {
-          @include link-colour.set(colour.$background-dark);
+    :any-link {
+      // Any links.
+      &,
+      // Currently active menu item links.
+      &.is-active,
+      // jQuery UI widget content.
+      .ui-widget-content & {
+        // Basic link styles.
+        @if $use-link-styles == true {
+          @include link.link;
+
+          @include colour.on-dark-scheme {
+            @include link-colour.set(colour.$background-dark);
+          }
+        }
+
+        // Apply the image link mixin to all links.
+        @if $use-image-link-styles == true {
+          @include image;
         }
       }
+    }
 
-      // Apply the image link mixin to all links.
-      @if $use-image-link-styles == true {
-        @include image;
-      }
+  }
+
+  // PhotoSwipe has a dark background by default, so set link colours for that
+  // type of background.
+  .#{photoswipe.$photoswipe-root-class} :any-link {
+    @if $use-link-styles == true {
+      @include link.link(photoswipe.$photoswipe-background-colour-theme-dark);
     }
   }
 
-}
-
-// PhotoSwipe has a dark background by default, so set link colours for that
-// type of background.
-.#{photoswipe.$photoswipe-root-class} :any-link {
-  @if $use-link-styles == true {
-    @include link.link(photoswipe.$photoswipe-background-colour-theme-dark);
-  }
 }

@@ -20,6 +20,8 @@ $marker-indent: 1.2em !default;
 ///
 /// This is usually the vertical spacing between two list items.
 ///
+/// @require {variable} general.$general-spacing
+///
 $item-spacing: general.$general-spacing * 0.5 !default;
 
 ///
@@ -38,12 +40,18 @@ $multicolumn-width: 10em !default;
 /// This includes the list marker indent so that columns other than the first
 /// have the correct indent to match the indent on the list itself.
 ///
+/// @require {variable} general.$general-spacing
+/// @require {variable} $marker-indent
+///
 $multicolumn-gap: $marker-indent + general.$general-spacing !default;
 
 ///
 /// Remove list styles, e.g. padding and bullets.
 ///
+/// @require {mixin} selector.root-conditions
+///
 @mixin unlisted {
+
   @include selector.root-conditions(('[dir=ltr]'), 'html') {
     padding-left:   0 !important;
   }
@@ -62,15 +70,18 @@ $multicolumn-gap: $marker-indent + general.$general-spacing !default;
 
     list-style: none;
   }
-}
-.unlisted-list,
-// If you use an 'item_list', you can pass it
-// '#context' => ['list_style' => 'unlisted']
-.item-list--unlisted .item-list__unlisted {
-  @include unlisted;
+
 }
 
-.multicolumn-list {
+///
+/// Multiple column list styles.
+///
+/// @require {variable} $multicolumn-count
+/// @require {variable} $multicolumn-gap
+/// @require {variable} $multicolumn-width
+///
+@mixin multicolumn {
+
   @supports (column-gap: $multicolumn-gap) {
     column-count: $multicolumn-count;
     column-width: $multicolumn-width;
@@ -89,65 +100,95 @@ $multicolumn-gap: $marker-indent + general.$general-spacing !default;
       break-inside: avoid-column;
     }
   }
+
 }
 
-// Default list styles.
-@include content.area {
-  @include vertical-spacing.against-previous(
-    'ol',
-    $spacing-small: content.$item-vertical-spacing-small,
-    $spacing-large: content.$item-vertical-spacing-large
-  );
-  @include vertical-spacing.against-previous(
-    'ul:not(.contextual-links)',
-    $spacing-small: content.$item-vertical-spacing-small,
-    $spacing-large: content.$item-vertical-spacing-large
-  );
+///
+/// Output base list styles.
+///
+/// @require {mixin} content.area
+/// @require {mixin} multicolumn
+/// @require {mixin} selector.root-conditions
+/// @require {mixin} unlisted
+/// @require {mixin} vertical-spacing.against-previous
+/// @require {variable} content.$item-vertical-spacing-large
+/// @require {variable} content.$item-vertical-spacing-small
+/// @require {variable} $item-spacing
+/// @require {variable} $marker-indent
+///
+@mixin output {
 
-  li {
-    // Nested lists use the list item spacing as anything else looks off.
+  // Default list styles.
+  @include content.area {
     @include vertical-spacing.against-previous(
       'ol',
-      $spacing-small: $item-spacing,
-      $spacing-large: $item-spacing
+      $spacing-small: content.$item-vertical-spacing-small,
+      $spacing-large: content.$item-vertical-spacing-large
     );
     @include vertical-spacing.against-previous(
       'ul:not(.contextual-links)',
-      $spacing-small: $item-spacing,
-      $spacing-large: $item-spacing
+      $spacing-small: content.$item-vertical-spacing-small,
+      $spacing-large: content.$item-vertical-spacing-large
     );
-  }
 
-  ol,
-  ul {
-    &:not(.contextual-links):not(.links) {
-      // This removes the default top margin but is overridden by the above when
-      // a valid previous element is present.
-      margin-top:     0;
-      // We don't need a bottom margin.
-      margin-bottom:  0;
+    li {
+      // Nested lists use the list item spacing as anything else looks off.
+      @include vertical-spacing.against-previous(
+        'ol',
+        $spacing-small: $item-spacing,
+        $spacing-large: $item-spacing
+      );
+      @include vertical-spacing.against-previous(
+        'ul:not(.contextual-links)',
+        $spacing-small: $item-spacing,
+        $spacing-large: $item-spacing
+      );
+    }
 
-      // This gives the list just enough space on the side to display and
-      // correctly line up list markers.
-      @include selector.root-conditions(('[dir=ltr]'), 'html') {
-        padding-left:   $marker-indent;
-        padding-right:  0;
-      }
-      @include selector.root-conditions(('[dir=rtl]'), 'html') {
-        padding-left:   0;
-        padding-right:  $marker-indent;
-      }
+    ol,
+    ul {
+      &:not(.contextual-links):not(.links) {
+        // This removes the default top margin but is overridden by the above
+        // when a valid previous element is present.
+        margin-top:     0;
+        // We don't need a bottom margin.
+        margin-bottom:  0;
 
-      li {
-        // Remove any default margins.
-        margin: 0;
-      }
+        // This gives the list just enough space on the side to display and
+        // correctly line up list markers.
+        @include selector.root-conditions(('[dir=ltr]'), 'html') {
+          padding-left:   $marker-indent;
+          padding-right:  0;
+        }
+        @include selector.root-conditions(('[dir=rtl]'), 'html') {
+          padding-left:   0;
+          padding-right:  $marker-indent;
+        }
 
-      // The against-previous mixin is probably overkill here,
-      // so just use a simple + combinator.
-      li + li {
-        margin-top: $item-spacing;
+        li {
+          // Remove any default margins.
+          margin: 0;
+        }
+
+        // The against-previous mixin is probably overkill here, so just use a
+        // simple + combinator.
+        li + li {
+          margin-top: $item-spacing;
+        }
       }
     }
   }
+
+  .multicolumn-list {
+    @include multicolumn;
+  }
+
+  .unlisted-list,
+  // If you use an 'item_list', you can pass it:
+  // '#context' => ['list_style' => 'unlisted']
+  .item-list--unlisted .item-list__unlisted {
+    @include unlisted;
+  }
+
 }
+

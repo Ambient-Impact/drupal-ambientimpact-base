@@ -17,10 +17,14 @@ $material-buttons: true !default;
 ///
 /// The background colour for primary Material buttons in a form.
 ///
+/// @require {variable} material-colour.$primary
+///
 $background-colour-primary: material-colour.$primary !default;
 
 ///
 /// The background colour for primary Material buttons when hovered/focused.
+///
+/// @require {variable} material-colour.$primary
 ///
 $background-colour-primary-interact: color.adjust(
   material-colour.$primary, $lightness: 8%
@@ -29,107 +33,130 @@ $background-colour-primary-interact: color.adjust(
 ///
 /// Material button font weight.
 ///
+/// @require {variable} typography-config.$font-weight-strong
+///
 $font-weight: typography-config.$font-weight-strong !default;
 
 ///
 /// Material button font family.
 ///
+/// @require {variable} typography-config.$font-stack
+///
 $font-family: typography-config.$font-stack !default;
 
-// All buttons.
-.button, .material-button, .form-submit {
-  @if $material-buttons {
-    // Ripples are applied to both buttons that have the button styling and
-    // plain buttons.
-    @include material-ripple.material-ripple;
-  }
+///
+/// Output base button styles.
+///
+/// @require {mixin} material-button.base
+/// @require {mixin} material-button.button
+/// @require {mixin} material-ripple.material-ripple
+/// @require {mixin} transition.fade-base
+/// @require {mixin} transition.fade-highlight
+/// @require {variable} $font-family
+/// @require {variable} $font-weight
+/// @require {variable} $material-buttons
+/// @require {variable} $background-colour-primary
+/// @require {variable} $background-colour-primary-interact
+///
+@mixin output {
 
-  &:not(.plain-button) {
+  // All buttons.
+  .button, .material-button, .form-submit {
     @if $material-buttons {
-      @include material-button.button;
-
-      font-family:  $font-family;
-      font-weight:  $font-weight;
-    } @else {
-      padding: 0.3em 0.6em;
+      // Ripples are applied to both buttons that have the button styling and
+      // plain buttons.
+      @include material-ripple.material-ripple;
     }
+
+    &:not(.plain-button) {
+      @if $material-buttons {
+        @include material-button.button;
+
+        font-family:  $font-family;
+        font-weight:  $font-weight;
+      } @else {
+        padding: 0.3em 0.6em;
+      }
+    }
+
+    // Override normalize.css from Drupal core.
+    //
+    // @todo Is cursor: pointer in normalize.css more intuitive for people, or
+    //   does it just blur the lines between buttons and links?
+    cursor: default !important;
   }
 
-  // Override normalize.css from Drupal core.
-  // @todo Is cursor: pointer in normalize.css more intuitive for people, or
-  // does it just blur the lines between buttons and links?
-  cursor: default !important;
-}
+  // Primary buttons. There may be multiple submit buttons on a page, either as
+  // #edit-submit or with a number appended in the form of #edit-submit--*, so
+  // we use an attribute selector to catch those.
+  .button--primary,
+  [id^='edit-submit'] {
+    &:not(.plain-button) {
+      @if $material-buttons {
+        @include material-button.button(
+          $background-colour:
+            $background-colour-primary,
+          $background-colour-interact:
+            $background-colour-primary-interact
+        );
 
-// Primary buttons. There may be multiple submit buttons on a page, either as
-// #edit-submit or with a number appended in the form of #edit-submit--*, so we
-// use an attribute selector to catch those.
-.button--primary,
-[id^='edit-submit'] {
-  &:not(.plain-button) {
-    @if $material-buttons {
-      @include material-button.button(
-        $background-colour:
-          $background-colour-primary,
-        $background-colour-interact:
-          $background-colour-primary-interact
-      );
+        font-weight: $font-weight;
 
-      font-weight: $font-weight;
-
-      // This button has a light current colour, which means the focus
-      // outline will be almost or totally invisible against the
-      // background, which we currently assume to be light.
-      &:focus {
-        outline-color: $background-colour-primary;
+        // This button has a light current colour, which means the focus
+        // outline will be almost or totally invisible against the
+        // background, which we currently assume to be light.
+        &:focus {
+          outline-color: $background-colour-primary;
+        }
       }
     }
   }
-}
 
-// Plain buttons have no background, shadows, or increased padding, but still
-// use the Material button typography. These are intended for places where space
-// is at a premium and minimalism is preferred, e.g. on toasts or other
-// components.
-.plain-button {
-  padding:          0;
-  border-width:     0;
-  background-color: transparent;
+  // Plain buttons have no background, shadows, or increased padding, but still
+  // use the Material button typography. These are intended for places where
+  // space is at a premium and minimalism is preferred, e.g. on toasts or other
+  // components.
+  .plain-button {
+    padding:          0;
+    border-width:     0;
+    background-color: transparent;
 
-  @if $material-buttons {
-    color:      $background-colour-primary;
+    @if $material-buttons {
+      color:      $background-colour-primary;
 
-    @include    transition.fade-base();
+      @include    transition.fade-base();
 
-    &:hover,
-    &:focus {
-      color:    $background-colour-primary-interact;
+      &:hover,
+      &:focus {
+        color:    $background-colour-primary-interact;
 
-      @include  transition.fade-highlight();
+        @include  transition.fade-highlight();
+      }
     }
   }
-}
 
-// Class for elements used as a placeholder for buttons, usually a link that
-// gets swapped out by JavaScript as progressive enhancement. This only applies
-// the layout and typography of buttons to avoid layout shifting when the swap
-// occurs, but no other styling that would cause a user to mistake it for a
-// button. This is so as not to contribute to the anti-pattern of links that
-// look like buttons and vice versa:
-//
-// @see https://ambientimpact.com/web/snippets/but-sometimes-links-look-like-buttons-and-buttons-look-like-links
-.button-placeholder {
-  @if $material-buttons {
-    @include material-button.base;
+  // Class for elements used as a placeholder for buttons, usually a link that
+  // gets swapped out by JavaScript as progressive enhancement. This only
+  // applies the layout and typography of buttons to avoid layout shifting when
+  // the swap occurs, but no other styling that would cause a user to mistake it
+  // for a button. This is so as not to contribute to the anti-pattern of links
+  // that look like buttons and vice versa:
+  //
+  // @see https://ambientimpact.com/web/snippets/but-sometimes-links-look-like-buttons-and-buttons-look-like-links
+  .button-placeholder {
+    @if $material-buttons {
+      @include material-button.base;
 
-    // Chromium and Firefox default to inline-block for buttons, so apply that
-    // to placeholders. Note that we have to exclude hidden elements as this
-    // could override that and cause unexpected results.
-    &:not([hidden]) {
-      display: inline-block;
+      // Chromium and Firefox default to inline-block for buttons, so apply that
+      // to placeholders. Note that we have to exclude hidden elements as this
+      // could override that and cause unexpected results.
+      &:not([hidden]) {
+        display: inline-block;
+      }
+
+      font-family:  $font-family;
+      font-weight:  $font-weight;
     }
-
-    font-family:  $font-family;
-    font-weight:  $font-weight;
   }
+
 }

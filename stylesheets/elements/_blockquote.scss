@@ -46,99 +46,116 @@ $decoration-colour-on-dark: color.mix(
   colour.$foreground-on-dark, colour.$background-dark, 50%
 ) !default;
 
-@include vertical-spacing.against-previous(
-  'blockquote',
-  $spacing-small: content.$item-vertical-spacing-small,
-  $spacing-large: content.$item-vertical-spacing-large
-);
+///
+/// Output base blockquote styles.
+///
+/// @require {mixin} colour.on-dark-scheme
+/// @require {mixin} selector.root-conditions
+/// @require {mixin} vertical-spacing.against-previous
+/// @require {variable} content.$item-vertical-spacing-large
+/// @require {variable} content.$item-vertical-spacing-small
+/// @require {variable} $decoration-colour-on-dark
+/// @require {variable} $decoration-colour-on-light
+/// @require {variable} $quotation-mark-size
+/// @require {variable} $quotation-mark-spacing
+///
+@mixin output {
 
-blockquote {
-  position: relative;
+  @include vertical-spacing.against-previous(
+    'blockquote',
+    $spacing-small: content.$item-vertical-spacing-small,
+    $spacing-large: content.$item-vertical-spacing-large
+  );
 
-  // Minimum height so that we don't end up with an awkwardly short vertical
-  // line below the quotation mark.
-  min-height: 2em;
+  blockquote {
+    position: relative;
 
-  margin:   0;
-  padding:  0;
+    // Minimum height so that we don't end up with an awkwardly short vertical
+    // line below the quotation mark.
+    min-height: 2em;
 
-  $container-indent:
-    $quotation-mark-size + $quotation-mark-spacing;
+    margin:   0;
+    padding:  0;
 
-  @include selector.root-conditions(('[dir=ltr]'), 'html') {
-    padding-left:   $container-indent;
-  }
-  @include selector.root-conditions(('[dir=rtl]'), 'html') {
-    padding-right:  $container-indent;
-  }
-
-  &::before,
-  &::after {
-    content:  '';
-
-    position: absolute;
-  }
-
-  // Decorative quotation mark.
-  //
-  // @link https://www.fontsquirrel.com/fonts/Furore
-  //   From the Furore font, which does not have a license.
-  //
-  // @link https://jakearchibald.github.io/svgomg/
-  //   Used to clean up the SVG after export from Adobe Illustrator.
-  //
-  // @link https://stackoverflow.com/a/37683760
-  //   Details of inlining and use of rgba().
-  &::before {
-    width:  $quotation-mark-size;
-    height: $quotation-mark-size;
-
-    background-image:   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M10.026 20.021L2 12V3.979h8.026v16.042zm11.974 0L13.979 12V3.979H22v16.042z" fill="rgba(' + color.red($decoration-colour-on-light) + ',' + color.green($decoration-colour-on-light) + ',' + color.blue($decoration-colour-on-light) + ',' + color.alpha($decoration-colour-on-light) + ')"/></svg>');
-    background-repeat:  no-repeat;
-    background-size:    $quotation-mark-size;
-
-    @include colour.on-dark-scheme {
-      background-image:   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M10.026 20.021L2 12V3.979h8.026v16.042zm11.974 0L13.979 12V3.979H22v16.042z" fill="rgba(' + color.red($decoration-colour-on-dark) + ',' + color.green($decoration-colour-on-dark) + ',' + color.blue($decoration-colour-on-dark) + ',' + color.alpha($decoration-colour-on-dark) + ')"/></svg>');
-    }
-
-    // This attempts to align the top of the quotation mark with the top of an
-    // ajacent <p> element's first line character, expected to be in upper case.
-    // Note that if the base line-height in _typography.scss is changed, this
-    // will need to be adjusted.
-    top: 0.25em;
-
-    @include selector.root-conditions(('[dir=ltr]'), 'html') {
-      left: 0;
-    }
-    @include selector.root-conditions(('[dir=rtl]'), 'html') {
-      right: 0;
-    }
-  }
-
-  // Decorative vertical line.
-  &::after {
-    $line-indent: math.div($quotation-mark-size, 2);
-    $line-adjust: math.div($line-width, 2) * -1;
-
-    @include selector.root-conditions(('[dir=ltr]'), 'html') {
-      left:         $line-indent;
-      margin-left:  $line-adjust;
-    }
-    @include selector.root-conditions(('[dir=rtl]'), 'html') {
-      right:        $line-indent;
-      margin-right: $line-adjust;
-    }
-
-    top:
+    $container-indent:
       $quotation-mark-size + $quotation-mark-spacing;
-    bottom:   0;
 
-    width:    $line-width;
+    @include selector.root-conditions(('[dir=ltr]'), 'html') {
+      padding-left:   $container-indent;
+    }
+    @include selector.root-conditions(('[dir=rtl]'), 'html') {
+      padding-right:  $container-indent;
+    }
 
-    background-color: $decoration-colour-on-light;
+    &::before,
+    &::after {
+      content:  '';
 
-    @include colour.on-dark-scheme {
-      background-color: $decoration-colour-on-dark;
+      position: absolute;
+    }
+
+    // Decorative quotation mark.
+    //
+    // @link https://www.fontsquirrel.com/fonts/Furore
+    //   From the Furore font, which does not have a license.
+    //
+    // @link https://jakearchibald.github.io/svgomg/
+    //   Used to clean up the SVG after export from Adobe Illustrator.
+    //
+    // @link https://stackoverflow.com/a/37683760
+    //   Details of inlining and use of rgba().
+    &::before {
+      width:  $quotation-mark-size;
+      height: $quotation-mark-size;
+
+      background-image:   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M10.026 20.021L2 12V3.979h8.026v16.042zm11.974 0L13.979 12V3.979H22v16.042z" fill="rgba(' + color.red($decoration-colour-on-light) + ',' + color.green($decoration-colour-on-light) + ',' + color.blue($decoration-colour-on-light) + ',' + color.alpha($decoration-colour-on-light) + ')"/></svg>');
+      background-repeat:  no-repeat;
+      background-size:    $quotation-mark-size;
+
+      @include colour.on-dark-scheme {
+        background-image:   url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M10.026 20.021L2 12V3.979h8.026v16.042zm11.974 0L13.979 12V3.979H22v16.042z" fill="rgba(' + color.red($decoration-colour-on-dark) + ',' + color.green($decoration-colour-on-dark) + ',' + color.blue($decoration-colour-on-dark) + ',' + color.alpha($decoration-colour-on-dark) + ')"/></svg>');
+      }
+
+      // This attempts to align the top of the quotation mark with the top of an
+      // ajacent <p> element's first line character, expected to be in upper
+      // case. Note that if the base line-height in _typography.scss is changed,
+      // this will need to be adjusted.
+      top: 0.25em;
+
+      @include selector.root-conditions(('[dir=ltr]'), 'html') {
+        left: 0;
+      }
+      @include selector.root-conditions(('[dir=rtl]'), 'html') {
+        right: 0;
+      }
+    }
+
+    // Decorative vertical line.
+    &::after {
+      $line-indent: math.div($quotation-mark-size, 2);
+      $line-adjust: math.div($line-width, 2) * -1;
+
+      @include selector.root-conditions(('[dir=ltr]'), 'html') {
+        left:         $line-indent;
+        margin-left:  $line-adjust;
+      }
+      @include selector.root-conditions(('[dir=rtl]'), 'html') {
+        right:        $line-indent;
+        margin-right: $line-adjust;
+      }
+
+      top:
+        $quotation-mark-size + $quotation-mark-spacing;
+      bottom:   0;
+
+      width:    $line-width;
+
+      background-color: $decoration-colour-on-light;
+
+      @include colour.on-dark-scheme {
+        background-color: $decoration-colour-on-dark;
+      }
     }
   }
+
 }

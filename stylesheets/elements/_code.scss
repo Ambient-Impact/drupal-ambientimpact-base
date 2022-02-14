@@ -9,10 +9,15 @@
 ///
 /// Inline <code> element background colour on light backgrounds.
 ///
+/// @require {variable} colour.$background-dark
+///
 $background-colour-on-light: colour.$background-dark !default;
 
 ///
 /// Inline <code> element background colour on dark backgrounds.
+///
+/// @require {variable} colour.$foreground-on-dark
+/// @require {variable} colour.$background-dark
 ///
 $background-colour-on-dark: color.mix(
   colour.$foreground-on-dark, colour.$background-dark, 10%
@@ -26,38 +31,53 @@ $padding: 0.1em 0.2em !default;
 ///
 /// Inline <code> element border radius.
 ///
+/// @require {variable} material-general.$border-radius
+///
 $border-radius: material-general.$border-radius !default;
 
-code {
-  padding: $padding;
+///
+/// Output base <code> element styles.
+///
+/// @require {mixin} colour.on-dark-scheme
+/// @require {variable} $background-colour-on-dark
+/// @require {variable} $background-colour-on-light
+/// @require {variable} $border-radius
+/// @require {variable} $padding
+///
+@mixin output {
 
-  @include colour.set(
-    $background: $background-colour-on-light
-  );
+  code {
+    padding: $padding;
 
-  @include colour.on-dark-scheme {
     @include colour.set(
-      $background: $background-colour-on-dark
+      $background: $background-colour-on-light
     );
-  }
 
-  border-radius: $border-radius;
+    @include colour.on-dark-scheme {
+      @include colour.set(
+        $background: $background-colour-on-dark
+      );
+    }
 
-  // If this wraps to a new line, this property makes the horizontal padding and
-  // border radius apply to each line where they break:
-  //
-  // @see http://callmenick.com/post/multi-line-padded-text-css-box-decoration-break
-  box-decoration-break: clone;
+    border-radius: $border-radius;
 
-  // This ensures that the element wraps to a new line if it exceeds the
-  // available width. By default, this would not break to a new line, which
-  // could cause it to get clipped off, break out of the layout, or otherwise
-  // just look awkward.
-  white-space: pre-wrap;
+    // If this wraps to a new line, this property makes the horizontal padding
+    // and border radius apply to each line where they break:
+    //
+    // @see http://callmenick.com/post/multi-line-padded-text-css-box-decoration-break
+    box-decoration-break: clone;
 
-  // Inherit the link colour if inside of a link.
-  :any-link & {
-    color: inherit;
+    // This ensures that the element wraps to a new line if it exceeds the
+    // available width. By default, this would not break to a new line, which
+    // could cause it to get clipped off, break out of the layout, or otherwise
+    // just look awkward.
+    white-space: pre-wrap;
+
+    // Inherit the link colour if inside of a link.
+    :any-link & {
+      color: inherit;
+    }
+
   }
 
 }
