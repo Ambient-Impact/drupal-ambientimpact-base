@@ -86,6 +86,14 @@ $font-family: typography-config.$font-stack !default;
     cursor: default !important;
   }
 
+  // Both Firefox and Chrome seem to set white-space: pre; for <input> button
+  // elements but not for <button> elements in their user agent stylesheets,
+  // which can result in text getting clipped in some edge cases. This
+  // normalizes the property with the default for <button> elements.
+  input.form-submit {
+    white-space: normal;
+  }
+
   // Primary buttons. There may be multiple submit buttons on a page, either as
   // #edit-submit or with a number appended in the form of #edit-submit--*, so
   // we use an attribute selector to catch those.
