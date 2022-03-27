@@ -78,9 +78,21 @@ $with-one-sidebar-max-width: $no-sidebars-max-width + math.div(
 $content-column-width: minmax(20em, 1fr) !default;
 
 ///
+/// The minimum width of sidebar columns when displayed beside content.
+///
+$sidebar-column-min-width: 8em !default;
+
+///
+/// The maximum width of sidebar columns when displayed beside content.
+///
+$sidebar-column-max-width: 12em !default;
+
+///
 /// The sidebar column widths, as a grid-template-columns value.
 ///
 /// @link https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
 ///   Lists valid values.
 ///
-$sidebar-column-width: minmax(8em, 12em) !default;
+$sidebar-column-width: minmax(
+  $sidebar-column-min-width, $sidebar-column-max-width
+) !default;
