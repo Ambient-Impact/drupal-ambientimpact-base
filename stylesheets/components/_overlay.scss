@@ -2,22 +2,30 @@
 //   Base overlay component partial
 // -----------------------------------------------------------------------------
 
+@use 'sass:color';
 @use 'sass/helpers/colour';
-
-///
-/// Overlay colour in a light colour scheme.
-///
-$colour-light: colour.$background-light !default;
-
-///
-/// Overlay colour in a dark colour scheme.
-///
-$colour-dark: colour.$background-dark !default;
 
 ///
 /// Overlay opacity when visible.
 ///
+/// Note that this is applied to the overlay background colour rather than as
+/// the opacity property to allow for full use of backdrop-filter. The effect of
+/// backdrop-filter scales down along with the opacity property, but is not
+/// affected by any opacity in the background colour itself.
+///
 $opacity: 0.8 !default;
+
+///
+/// Overlay colour on light colour scheme.
+///
+$colour-light: color.change(
+  colour.$background-light, $alpha: $opacity
+) !default;
+
+///
+/// Overlay colour on dark colour scheme.
+///
+$colour-dark: color.change(colour.$background-dark, $alpha: $opacity) !default;
 
 .overlay {
   @include colour.set($background: $colour-light);
@@ -27,6 +35,6 @@ $opacity: 0.8 !default;
   }
 
   &--is-active {
-    opacity: $opacity;
+    opacity: 1;
   }
 }
