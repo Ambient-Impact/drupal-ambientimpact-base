@@ -17,7 +17,7 @@ $colour-dark: colour.$background-dark !default;
 ///
 /// Overlay opacity when visible.
 ///
-$opacity: 0.6 !default;
+$opacity: 0.8 !default;
 
 .overlay {
   @include colour.set($background: $colour-light);
