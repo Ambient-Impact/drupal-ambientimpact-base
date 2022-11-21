@@ -465,8 +465,13 @@ function ambientimpact_base_preprocess_responsive_image_formatter(
   &$variables
 ): void {
 
-  // Return if there's no URL or it's not a string.
-  if (empty($variables['url']) || !\is_string($variables['url'])) {
+  // Return if there's no URL, if it's not a string, or if it looks like a valid
+  // external URL.
+  if (
+    empty($variables['url']) ||
+    !\is_string($variables['url']) ||
+    UrlHelper::isExternal($url) === true && UrlHelper::isValid($url, true)
+  ) {
     return;
   }
 
