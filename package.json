@@ -1,0 +1,16 @@
+{
+  "name": "drupal-ambientimpact-base",
+  "version": "5.0.0",
+  "license": "GPL-2.0",
+  "repository": "github:Ambient-Impact/drupal-ambientimpact-base",
+  "exports": {
+    "./package.json": "./package.json",
+    "./baseThemeImporter": "./javascript/base_theme_importer.js"
+  },
+  "devDependencies": {
+    "sassy-cast": "github:Ambient-Impact/SassyCast#adbbd499bb36eb0c7015ae6f23c00e3a78dc54b3"
+  },
+  "dependencies": {
+    "ambientimpact-drupal-modules": "workspace:^6"
+  }
+}
