@@ -470,7 +470,8 @@ function ambientimpact_base_preprocess_responsive_image_formatter(
   if (
     empty($variables['url']) ||
     !\is_string($variables['url']) ||
-    UrlHelper::isExternal($url) === true && UrlHelper::isValid($url, true)
+    UrlHelper::isExternal($variables['url']) === true &&
+    UrlHelper::isValid($variables['url'], true)
   ) {
     return;
   }
