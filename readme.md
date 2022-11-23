@@ -38,7 +38,7 @@ Then, in your root ```composer.json```, add the following to the
 ```json
 "drupal/ambientimpact_base": {
   "type": "vcs",
-  "url": "https://github.com/neurocracy/drupal-ambientimpact-base.git"
+  "url": "https://github.com/Ambient-Impact/drupal-ambientimpact-base.git"
 }
 ```
 
