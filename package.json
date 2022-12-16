@@ -11,6 +11,6 @@
     "sassy-cast": "github:Ambient-Impact/SassyCast#adbbd499bb36eb0c7015ae6f23c00e3a78dc54b3"
   },
   "dependencies": {
-    "ambientimpact-drupal-modules": "workspace:^6"
+    "ambientimpact-drupal-modules": "workspace:^6 || ^7"
   }
 }
