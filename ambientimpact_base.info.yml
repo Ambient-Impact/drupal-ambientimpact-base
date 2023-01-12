@@ -9,6 +9,7 @@ hidden: true
 dependencies:
   - ambientimpact_core:ambientimpact_core
   - ambientimpact_ux:ambientimpact_ux
+  - classy:classy
 
 regions:
   header: 'Header'

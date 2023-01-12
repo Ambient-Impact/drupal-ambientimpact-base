@@ -9,5 +9,8 @@
       "homepage": "https://ambientimpact.com/",
       "role": "Developer"
     }
-  ]
+  ],
+  "require": {
+    "drupal/classy": "^1.0"
+  }
 }
