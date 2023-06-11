@@ -3,7 +3,7 @@ description: A reusable base theme.
 type: theme
 base theme: classy
 package: Ambient.Impact
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9.5 || ^10.0
 hidden: true
 
 dependencies:

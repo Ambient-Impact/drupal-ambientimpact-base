@@ -8,7 +8,7 @@ work-in-progress. Stable releases may be provided at a later date.
 
 # Requirements
 
-* [Drupal 9 or 10](https://www.drupal.org/download) ([Drupal 8 is end-of-life](https://www.drupal.org/psa-2021-11-30))
+* [Drupal 9.5 or 10](https://www.drupal.org/download) ([Drupal 8 is end-of-life](https://www.drupal.org/psa-2021-11-30))
 
 * PHP 8
 
@@ -43,7 +43,7 @@ Then, in your root ```composer.json```, add the following to the
 ```
 
 Then, in your project's root, run ```composer require
-"drupal/ambientimpact_base:5.x-dev@dev"``` to have Composer install the theme
+"drupal/ambientimpact_base:6.x-dev@dev"``` to have Composer install the theme
 and its required dependencies for you.
 
 ----
@@ -57,3 +57,5 @@ The following major version bumps indicate breaking changes:
 * 4.x - Refactored to use [Sass modules](https://sass-lang.com/blog/the-module-system-is-launched); all development is now against this and will no longer compile using the old ```@import``` directive.
 
 * 5.x - Front-end package manager is now [Yarn](https://yarnpkg.com/); front-end build process ported to [Webpack](https://webpack.js.org/).
+
+* 6.x - Requires Drupal 9.5 or [Drupal 10](https://www.drupal.org/project/drupal/releases/10.0.0).
