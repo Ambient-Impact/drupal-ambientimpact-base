@@ -19,7 +19,7 @@ work-in-progress. Stable releases may be provided at a later date.
 Before attempting to install this, you must add the Composer repositories as
 described in the installation instructions for these dependencies:
 
-* Several [```ambientimpact_*``` modules](https://github.com/Ambient-Impact/drupal-modules) must be present.
+* The [`ambientimpact_core`](https://github.com/Ambient-Impact/drupal-ambientimpact-core) and [`ambientimpact_ux`](https://github.com/Ambient-Impact/drupal-ambientimpact-ux) modules.
 
 ----
 

@@ -12,6 +12,8 @@
   ],
   "require": {
     "drupal/core": "^9.5 || ^10.0",
+    "drupal/ambientimpact_core": "1.x-dev@dev",
+    "drupal/ambientimpact_ux": "1.x-dev@dev",
     "drupal/classy": "^1.0"
   }
 }
