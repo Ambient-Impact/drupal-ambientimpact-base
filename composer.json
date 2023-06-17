@@ -3,6 +3,10 @@
   "description": "Ambient.Impact - Base theme",
   "type": "drupal-custom-theme",
   "license": "GPL-2.0-or-later",
+  "support": {
+    "docs": "https://github.com/Ambient-Impact/drupal-ambientimpact-base",
+    "source": "https://github.com/Ambient-Impact/drupal-ambientimpact-base"
+  },
   "authors": [
     {
       "name": "Ambient.Impact",
