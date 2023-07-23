@@ -1,0 +1,8 @@
+// -----------------------------------------------------------------------------
+//   Base user account form partial
+// -----------------------------------------------------------------------------
+
+.field--type-image.field--name-user-picture img {
+  // Undo _field_media.scss so this doesn't stretch the whole width.
+  width: auto;
+}
