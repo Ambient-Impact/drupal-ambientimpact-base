@@ -1,7 +1,7 @@
 {
   "name": "drupal-ambientimpact-base",
   "version": "6.0.0",
-  "license": "GPL-2.0",
+  "license": "GPL-2.0-or-later",
   "repository": "github:Ambient-Impact/drupal-ambientimpact-base",
   "exports": {
     "./package.json": "./package.json",
