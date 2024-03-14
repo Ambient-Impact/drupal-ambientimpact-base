@@ -14,12 +14,19 @@ work-in-progress. Stable releases may be provided at a later date.
 
 * [Composer](https://getcomposer.org/)
 
+* [Yarn](https://yarnpkg.com/) 3 or 4
+
 ## Drupal dependencies
 
 Before attempting to install this, you must add the Composer repositories as
 described in the installation instructions for these dependencies:
 
 * The [`ambientimpact_core`](https://github.com/Ambient-Impact/drupal-ambientimpact-core) and [`ambientimpact_ux`](https://github.com/Ambient-Impact/drupal-ambientimpact-ux) modules.
+
+## Front-end dependencies
+
+To build front-end assets for this project, [Node.js](https://nodejs.org/) and
+[Yarn](https://yarnpkg.com/) are required.
 
 ----
 
@@ -53,6 +60,58 @@ In your root `composer.json`, add the following to the `"repositories"` section:
 Once you've completed all of the above, run `composer require
 "drupal/ambientimpact_base:^6.0@dev"` in the root of your project to have
 Composer install this and its required dependencies for you.
+
+## Front-end assets
+
+To build front-end assets for this project, you'll need to install
+[Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/).
+
+This package makes use of [Yarn
+Workspaces](https://yarnpkg.com/features/workspaces) and references other local
+workspace dependencies. In the `package.json` in the root of your Drupal
+project, you'll need to add the following:
+
+```json
+"workspaces": [
+  "<web directory>/themes/custom/*"
+],
+```
+
+where `<web directory>` is your public Drupal directory name, `web` by default.
+Once those are defined, add the following to the `"dependencies"` section of
+your top-level `package.json`:
+
+```json
+"drupal-ambientimpact-base": "workspace:^6"
+```
+
+Then run `yarn install` and let Yarn do the rest.
+
+### Optional: install yarn.BUILD
+
+While not required, we recommend installing [yarn.BUILD](https://yarn.build/) to
+make building all of the front-end assets even easier.
+
+----
+
+# Building front-end assets
+
+We use [Webpack](https://webpack.js.org/) and [Symfony Webpack
+Encore](https://symfony.com/doc/current/frontend.html) to automate most of the
+build process. These will have been installed for you if you followed the Yarn
+installation instructions above.
+
+If you have [yarn.BUILD](https://yarn.build/) installed, you can run:
+
+```
+yarn build
+```
+
+from the root of your Drupal site. If you want to build just this package, run:
+
+```
+yarn workspace drupal-ambientimpact-site run build
+```
 
 ----
 
