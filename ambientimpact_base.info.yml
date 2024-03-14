@@ -39,6 +39,13 @@ libraries-override:
   geshifilter/geshifilter: false
 
 libraries-extend:
+
+  ambientimpact_ux/component.details:
+    - ambientimpact_base/details
+
+  classy/base:
+    - ambientimpact_base/details
+
   # This adds the displace component to the Gin toolbar libraries as a
   # dependency so that the --displace-* CSS custom properties are automatically
   # set on the <body> element whenever the toolbar allocates space. This is

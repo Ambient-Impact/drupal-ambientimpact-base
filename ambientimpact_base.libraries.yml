@@ -1,0 +1,4 @@
+details:
+  css:
+    theme:
+      stylesheets/elements/details.css: {}

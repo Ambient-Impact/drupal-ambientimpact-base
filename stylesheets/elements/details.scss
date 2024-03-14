@@ -1,0 +1,25 @@
+// -----------------------------------------------------------------------------
+//   Base details element
+// -----------------------------------------------------------------------------
+
+details {
+
+  // Matches user agent stylesheets.
+  > summary:first-of-type {
+
+    // normalize.css sets this as display: block, which removes the list marker
+    // in Chrome; setting as list-item restores the default Chrome user agent
+    // styles.
+    display: list-item;
+
+    // @see https://css-tricks.com/two-issues-styling-the-details-element-and-how-to-solve-them/
+    cursor: pointer;
+
+    * {
+      // @see https://css-tricks.com/two-issues-styling-the-details-element-and-how-to-solve-them/
+      display: inline;
+    }
+
+  }
+
+}
