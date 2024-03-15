@@ -2,3 +2,4 @@ details:
   css:
     theme:
       stylesheets/elements/details.css: {}
+      stylesheets/elements/details.animated.css: {}
