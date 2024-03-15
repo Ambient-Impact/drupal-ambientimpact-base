@@ -1,8 +1,29 @@
 // -----------------------------------------------------------------------------
-//   Base details element
+//   Base <details> element
 // -----------------------------------------------------------------------------
 
+@use '../global/content';
+@use '../layout/vertical_spacing' as vertical-spacing;
+@use 'sass/variables/general';
+@use 'sass/helpers/selector';
+
+@include vertical-spacing.against-previous(
+  'details',
+  $spacing-small: content.$item-vertical-spacing-small,
+  $spacing-large: content.$item-vertical-spacing-large
+);
+
+:root {
+
+  --details-content-padding-block:  #{general.$general-spacing};
+  --details-content-padding-inline: #{general.$general-spacing};
+
+}
+
 details {
+
+  margin-top:     0;
+  margin-bottom:  0;
 
   // Matches user agent stylesheets.
   > summary:first-of-type {
@@ -20,6 +41,21 @@ details {
       display: inline;
     }
 
+    // This gives the end of the <summary> line a padding equal to that of the
+    // .details-wrapper so that text doesn't flow past that boundary.
+    @include selector.root-conditions(('[dir=ltr]'), 'html') {
+      padding-right: var(--details-content-padding-inline);
+    }
+    @include selector.root-conditions(('[dir=rtl]'), 'html') {
+      padding-left: var(--details-content-padding-inline);
+    }
+
+  }
+
+  > .details-wrapper {
+    padding:
+      var(--details-content-padding-block)
+      var(--details-content-padding-inline);
   }
 
 }
