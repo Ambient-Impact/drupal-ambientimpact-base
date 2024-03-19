@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Drupal\ambientimpact_base\ResponsiveImageFormatterPreprocess;
 use Drupal\ambientimpact_base\SiteBrandingBlockProperties;
 
