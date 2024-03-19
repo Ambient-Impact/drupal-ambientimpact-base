@@ -1,0 +1,44 @@
+// -----------------------------------------------------------------------------
+//   Base <details> element with an icon instead a list marker
+// -----------------------------------------------------------------------------
+
+@use 'icon';
+
+.details--has-icon {
+
+  // Remove the list marker when an icon is present. Note the specific selectors
+  // and combinators to match the module and browser default styles.
+  > summary:first-of-type,
+  &[open] > summary:first-of-type {
+    list-style-type: none;
+  }
+
+  > summary:first-of-type {
+
+    @include icon.on-icon-container {
+
+      @include icon.set-icon-display(block);
+
+      @include icon.set-icon-vertical-alignment(centre);
+
+      @include icon.set-icon-size(icon.$icon-size * 1.1);
+
+      @include icon.set-icon-text-spacing(0.4em);
+
+      @include icon.set-icon-text-indent(0);
+
+    }
+
+    @include icon.icon-transform-transition($transition-duration: 0.2s);
+
+  }
+
+  &[open] > summary:first-of-type {
+
+    @include icon.on-icon-icon {
+      transform: rotate(180deg);
+    }
+
+  }
+
+}

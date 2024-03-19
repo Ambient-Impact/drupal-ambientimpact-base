@@ -309,3 +309,31 @@ function ambientimpact_base_preprocess_menu_local_action(&$variables): void {
   }
 
 }
+
+/**
+ * Prepares variables for details element templates.
+ *
+ * This wraps the summary element text in an icon and adds a class to the
+ * details element indicating an icon is present for styling.
+ */
+function ambientimpact_base_preprocess_details(array &$variables): void {
+
+  $icon = [
+    '#type'   => 'ambientimpact_icon',
+    '#icon'   => 'arrow-down',
+    '#bundle' => 'core',
+  ];
+
+  // This is the one that's actually output.
+  $variables['title'] = $icon + [
+    '#text' => $variables['title'],
+  ];
+
+  // Wrap the title under 'element' for the sake of consistency.
+  $variables['element']['#title'] = $icon + [
+    '#text' => $variables['element']['#title'],
+  ];
+
+  $variables['attributes']['class'][] = 'details--has-icon';
+
+}

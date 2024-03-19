@@ -3,3 +3,4 @@ details:
     theme:
       stylesheets/elements/details.css: {}
       stylesheets/elements/details.animated.css: {}
+      stylesheets/elements/details.icon.css: {}
