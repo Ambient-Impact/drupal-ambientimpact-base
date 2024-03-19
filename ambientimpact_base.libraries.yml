@@ -2,5 +2,17 @@ details:
   css:
     theme:
       stylesheets/elements/details.css: {}
+
+details.animated:
+  css:
+    theme:
       stylesheets/elements/details.animated.css: {}
+  dependencies:
+    - ambientimpact_base/details
+
+details.icon:
+  css:
+    theme:
       stylesheets/elements/details.icon.css: {}
+  dependencies:
+    - ambientimpact_base/details

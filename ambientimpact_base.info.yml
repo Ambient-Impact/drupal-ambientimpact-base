@@ -41,7 +41,7 @@ libraries-override:
 libraries-extend:
 
   ambientimpact_ux/component.details:
-    - ambientimpact_base/details
+    - ambientimpact_base/details.animated
 
   classy/base:
     - ambientimpact_base/details
