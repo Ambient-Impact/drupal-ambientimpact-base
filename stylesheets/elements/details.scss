@@ -4,6 +4,7 @@
 
 @use '../global/content';
 @use '../layout/vertical_spacing' as vertical-spacing;
+@use 'material.common/material.general' as material-general;
 @use 'sass/variables/general';
 @use 'sass/helpers/selector';
 
@@ -24,6 +25,8 @@ details {
 
   margin-top:     0;
   margin-bottom:  0;
+
+  border-radius: material-general.$border-radius;
 
   // Matches user agent stylesheets.
   > summary:first-of-type {
