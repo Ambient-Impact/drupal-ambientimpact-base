@@ -336,4 +336,9 @@ function ambientimpact_base_preprocess_details(array &$variables): void {
 
   $variables['attributes']['class'][] = 'details--has-icon';
 
+  // Note that the detailsfilter module only attaches the top-level #attached
+  // and attaching this farther into the tree doesn't seem to bubble it up
+  // annoyingly.
+  $variables['#attached']['library'][] = 'ambientimpact_base/details.icon';
+
 }
