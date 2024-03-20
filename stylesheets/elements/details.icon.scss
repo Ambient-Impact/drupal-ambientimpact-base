@@ -27,6 +27,20 @@
 
       @include icon.set-icon-text-indent(0);
 
+      // Drupal's "Convert line breaks into HTML (i.e. <br> and <p>)" input
+      // filter (filter_autop) has an annoying tendency to wrap the icon text
+      // element in a <p> element, which breaks the CSS grid layout. This
+      // effectively unwraps it to fix that. Note that display: contents; still
+      // has some accessibility issues as of early 2024, but these don't seem to
+      // apply to this specific situation.
+      //
+      // @see https://caniuse.com/css-display-contents
+      //
+      // @todo Fix this at the input filter level or elsewhere upstream.
+      p {
+        display: contents;
+      }
+
     }
 
     @include icon.icon-transform-transition($transition-duration: 0.2s);
