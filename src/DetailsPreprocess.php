@@ -42,6 +42,8 @@ class DetailsPreprocess implements ContainerInjectionInterface {
 
     $this->iconifySummary($variables);
 
+    $this->addCacheMetadata($variables);
+
   }
 
   /**
@@ -76,6 +78,29 @@ class DetailsPreprocess implements ContainerInjectionInterface {
     // and attaching this farther into the tree doesn't seem to bubble it up
     // annoyingly.
     $variables['#attached']['library'][] = 'ambientimpact_base/details.icon';
+
+  }
+
+  /**
+   * Add cache metadata to the details element.
+   *
+   * Adds additional cache metadata to the details render array from the
+   * component plug-in manager to make it easier to invalidate rendered content
+   * containing said element.
+   *
+   * @param array &$variables
+   */
+  protected function addCacheMetadata(array &$variables): void {
+
+    /** @var \Drupal\Core\Cache\CacheableMetadata */
+    $detailsMetadata = CacheableMetadata::createFromRenderArray($variables);
+
+    /** @var \Drupal\Core\Cache\CacheableMetadata */
+    $componentMetadata = CacheableMetadata::createFromObject(
+      $this->componentManager,
+    );
+
+    $detailsMetadata->merge($componentMetadata)->applyTo($variables);
 
   }
 
