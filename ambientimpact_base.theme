@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Drupal\ambientimpact_base\DetailsPreprocess;
 use Drupal\ambientimpact_base\ResponsiveImageFormatterPreprocess;
 use Drupal\ambientimpact_base\SiteBrandingBlockProperties;
 
@@ -313,32 +314,11 @@ function ambientimpact_base_preprocess_menu_local_action(&$variables): void {
 /**
  * Prepares variables for details element templates.
  *
- * This wraps the summary element text in an icon and adds a class to the
- * details element indicating an icon is present for styling.
+ * @see \Drupal\ambientimpact_base\DetailsPreprocess::preprocess()
+ *   Variables preprocessed by this.
  */
 function ambientimpact_base_preprocess_details(array &$variables): void {
 
-  $icon = [
-    '#type'   => 'ambientimpact_icon',
-    '#icon'   => 'arrow-down',
-    '#bundle' => 'core',
-  ];
-
-  // This is the one that's actually output.
-  $variables['title'] = $icon + [
-    '#text' => $variables['title'],
-  ];
-
-  // Wrap the title under 'element' for the sake of consistency.
-  $variables['element']['#title'] = $icon + [
-    '#text' => $variables['element']['#title'],
-  ];
-
-  $variables['attributes']['class'][] = 'details--has-icon';
-
-  // Note that the detailsfilter module only attaches the top-level #attached
-  // and attaching this farther into the tree doesn't seem to bubble it up
-  // annoyingly.
-  $variables['#attached']['library'][] = 'ambientimpact_base/details.icon';
+  \Drupal::classResolver(DetailsPreprocess::class)->preprocess($variables);
 
 }
