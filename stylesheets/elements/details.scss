@@ -5,7 +5,9 @@
 @use '../global/content';
 @use '../layout/vertical_spacing' as vertical-spacing;
 @use 'material.common/material.general' as material-general;
+@use 'material.ripple' as material-ripple;
 @use 'sass/variables/general';
+@use 'sass/helpers/colour';
 @use 'sass/helpers/selector';
 
 @include vertical-spacing.against-previous(
@@ -52,6 +54,22 @@ details {
     @include selector.root-conditions(('[dir=rtl]'), 'html') {
       padding-left: var(--details-content-padding-inline);
     }
+
+    @include material-ripple.ripple-colour(
+      $background-colour: colour.$background-light,
+      $foreground-colour: colour.$foreground-on-light,
+    );
+
+    @include colour.on-dark-scheme {
+      @include material-ripple.ripple-colour(
+        $background-colour: colour.$background-dark,
+        $foreground-colour: colour.$foreground-on-dark,
+      );
+    }
+
+    // @include colour.set;
+
+    @include material-ripple.material-ripple;
 
   }
 
