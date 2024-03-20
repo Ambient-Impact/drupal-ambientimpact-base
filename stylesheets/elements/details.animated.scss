@@ -48,11 +48,15 @@
 
     // Same as .details-wrapper
     padding:
+      0
+      var(--details-content-padding-inline)
       var(--details-content-padding-block)
       var(--details-content-padding-inline);
 
     visibility: visible;
     z-index: -2;
+
+    background-color: var(--background-colour);
 
     // opacity: 0;
 

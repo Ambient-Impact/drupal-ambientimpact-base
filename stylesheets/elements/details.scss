@@ -5,8 +5,11 @@
 @use '../global/content';
 @use '../layout/vertical_spacing' as vertical-spacing;
 @use 'material.common/material.general' as material-general;
-@use 'sass/variables/general';
+@use 'material.common/material.shadow' as material-shadow;
+@use 'sass/helpers/colour';
 @use 'sass/helpers/selector';
+@use 'sass/variables/general';
+@use 'sass:color';
 
 @include vertical-spacing.against-previous(
   'details',
@@ -16,7 +19,8 @@
 
 :root {
 
-  --details-content-padding-block:  #{general.$general-spacing};
+  --details-content-padding-block:  #{general.$general-spacing * 0.7};
+
   --details-content-padding-inline: #{general.$general-spacing};
 
 }
@@ -27,6 +31,28 @@ details {
   margin-bottom:  0;
 
   border-radius: material-general.$border-radius;
+
+  border-width: 0;
+
+  @include colour.set(
+    $background: color.adjust(colour.$background-light, $lightness: -5%),
+  );
+
+  filter:
+    drop-shadow(material-shadow.filter-downward(1))
+    drop-shadow(material-shadow.filter-ambient(1));
+
+  @include colour.on-dark-scheme {
+
+    @include colour.set(
+      $background: color.adjust(colour.$background-dark, $lightness: +20%),
+    );
+
+    filter:
+      drop-shadow(material-shadow.filter-downward(2))
+      drop-shadow(material-shadow.filter-ambient(2));
+
+  }
 
   // Matches user agent stylesheets.
   > summary:first-of-type {
@@ -44,19 +70,16 @@ details {
       display: inline;
     }
 
-    // This gives the end of the <summary> line a padding equal to that of the
-    // .details-wrapper so that text doesn't flow past that boundary.
-    @include selector.root-conditions(('[dir=ltr]'), 'html') {
-      padding-right: var(--details-content-padding-inline);
-    }
-    @include selector.root-conditions(('[dir=rtl]'), 'html') {
-      padding-left: var(--details-content-padding-inline);
-    }
+    padding:
+      var(--details-content-padding-block)
+      var(--details-content-padding-inline);
 
   }
 
   > .details-wrapper {
     padding:
+      0
+      var(--details-content-padding-inline)
       var(--details-content-padding-block)
       var(--details-content-padding-inline);
   }
