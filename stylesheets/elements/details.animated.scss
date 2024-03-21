@@ -9,10 +9,26 @@
   // Matches user agent stylesheets.
   > summary:first-of-type {
 
+    ///
+    /// Bottom clip value; uses measured heights from JavaScript.
+    ///
+    /// This also includes rather large fallback values just in case so that
+    /// we don't fail too badly if the custom properties are not valid or set.
+    ///
+    --details-summary-clip-bottom: calc(
+      var(--details-summary-height, 1000vh) +
+      var(--details-content-height, 1000vh)
+    );
+
     // This clips all content that overflows above to each side, while allowing
     // content to be visible downwards. This allows the sliding cloned content
     // to seem to roll up into the summary.
-    clip-path: polygon(0 0, 100% 0, 100% 100vh, 0% 100vh);
+    clip-path: polygon(
+      0     0,
+      100%  0,
+      100%  var(--details-summary-clip-bottom),
+      0%    var(--details-summary-clip-bottom)
+    );
 
     // Since we clip this element, we have to inset the focus outline or it'll
     // also get clipped and thus be invisible.
