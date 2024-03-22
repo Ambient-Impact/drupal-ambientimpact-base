@@ -6,15 +6,6 @@
 
 .details-animated {
 
-  // Matches user agent stylesheets.
-  > summary:first-of-type {
-
-    &:not(.details--demo-unstyled), &:not(.details--demo-unstyled) * {
-      display: revert;
-    }
-
-  }
-
   &__content-clone {
 
     // opacity: 0;
