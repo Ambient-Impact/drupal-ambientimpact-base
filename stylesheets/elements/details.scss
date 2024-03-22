@@ -86,20 +86,6 @@ details:not(.details--demo-unstyled) {
       var(--details-content-padding-block)
       var(--details-content-padding-inline);
 
-    @include material-ripple.ripple-colour(
-      $background-colour: colour.$background-light,
-      $foreground-colour: colour.$foreground-on-light,
-    );
-
-    @include colour.on-dark-scheme {
-      @include material-ripple.ripple-colour(
-        $background-colour: colour.$background-dark,
-        $foreground-colour: colour.$foreground-on-dark,
-      );
-    }
-
-    // @include colour.set;
-
     @include material-ripple.material-ripple;
 
   }
