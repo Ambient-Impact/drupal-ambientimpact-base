@@ -43,11 +43,21 @@
 
     }
 
-    @include icon.icon-transform-transition($transition-duration: 0.2s);
+    // Use the close duration from the animated variant if available, with a
+    // fallback value if not defined.
+    @include icon.icon-transform-transition(
+      $transition-duration: var(--details-close-duration, 0.2s)
+    );
 
   }
 
   &[open] > summary:first-of-type {
+
+    // Use the open duration from the animated variant if available, with a
+    // fallback value if not defined.
+    @include icon.icon-transform-transition(
+      $transition-duration: var(--details-open-duration, 0.2s)
+    );
 
     @include icon.on-icon-icon {
       transform: rotate(180deg);

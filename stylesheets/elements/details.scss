@@ -6,9 +6,11 @@
 @use '../layout/vertical_spacing' as vertical-spacing;
 @use 'material.common/material.general' as material-general;
 @use 'material.ripple' as material-ripple;
-@use 'sass/variables/general';
+@use 'material.common/material.shadow' as material-shadow;
 @use 'sass/helpers/colour';
 @use 'sass/helpers/selector';
+@use 'sass/variables/general';
+@use 'sass:color';
 
 @include vertical-spacing.against-previous(
   'details',
@@ -18,17 +20,15 @@
 
 :root {
 
-  --details-content-padding-block:  #{general.$general-spacing};
+  --details-content-padding-block:  #{general.$general-spacing * 0.7};
+
   --details-content-padding-inline: #{general.$general-spacing};
 
 }
 
+// This is separated from the rest so it can apply to all <details>, including
+// the unstyled demo.
 details {
-
-  margin-top:     0;
-  margin-bottom:  0;
-
-  border-radius: material-general.$border-radius;
 
   // Matches user agent stylesheets.
   > summary:first-of-type {
@@ -38,6 +38,42 @@ details {
     // styles.
     display: list-item;
 
+  }
+
+}
+
+details:not(.details--demo-unstyled) {
+
+  margin-top:     0;
+  margin-bottom:  0;
+
+  border-radius: material-general.$border-radius;
+
+  border-width: 0;
+
+  @include colour.set(
+    $background: color.adjust(colour.$background-light, $lightness: -5%),
+  );
+
+  filter:
+    drop-shadow(material-shadow.filter-downward(1))
+    drop-shadow(material-shadow.filter-ambient(1));
+
+  @include colour.on-dark-scheme {
+
+    @include colour.set(
+      $background: color.adjust(colour.$background-dark, $lightness: +20%),
+    );
+
+    filter:
+      drop-shadow(material-shadow.filter-downward(2))
+      drop-shadow(material-shadow.filter-ambient(2));
+
+  }
+
+  // Matches user agent stylesheets.
+  > summary:first-of-type {
+
     // @see https://css-tricks.com/two-issues-styling-the-details-element-and-how-to-solve-them/
     cursor: pointer;
 
@@ -46,14 +82,9 @@ details {
       display: inline;
     }
 
-    // This gives the end of the <summary> line a padding equal to that of the
-    // .details-wrapper so that text doesn't flow past that boundary.
-    @include selector.root-conditions(('[dir=ltr]'), 'html') {
-      padding-right: var(--details-content-padding-inline);
-    }
-    @include selector.root-conditions(('[dir=rtl]'), 'html') {
-      padding-left: var(--details-content-padding-inline);
-    }
+    padding:
+      var(--details-content-padding-block)
+      var(--details-content-padding-inline);
 
     @include material-ripple.ripple-colour(
       $background-colour: colour.$background-light,
@@ -75,6 +106,8 @@ details {
 
   > .details-wrapper {
     padding:
+      0
+      var(--details-content-padding-inline)
       var(--details-content-padding-block)
       var(--details-content-padding-inline);
   }

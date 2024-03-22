@@ -56,6 +56,15 @@ class DetailsPreprocess implements ContainerInjectionInterface {
    */
   protected function iconifySummary(array &$variables): void {
 
+    // Don't iconify the unstyled demo as that's supposed to show the browser
+    // default styling.
+    if (
+      isset($variables['attributes']['class']) &&
+      \in_array('details--demo-unstyled', $variables['attributes']['class'])
+    ) {
+      return;
+    }
+
     $icon = [
       '#type'   => 'ambientimpact_icon',
       '#icon'   => 'arrow-down',
