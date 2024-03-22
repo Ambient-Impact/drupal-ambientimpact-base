@@ -25,7 +25,23 @@
 
 }
 
+// This is separated from the rest so it can apply to all <details>, including
+// the unstyled demo.
 details {
+
+  // Matches user agent stylesheets.
+  > summary:first-of-type {
+
+    // normalize.css sets this as display: block, which removes the list marker
+    // in Chrome; setting as list-item restores the default Chrome user agent
+    // styles.
+    display: list-item;
+
+  }
+
+}
+
+details:not(.details--demo-unstyled) {
 
   margin-top:     0;
   margin-bottom:  0;
@@ -56,11 +72,6 @@ details {
 
   // Matches user agent stylesheets.
   > summary:first-of-type {
-
-    // normalize.css sets this as display: block, which removes the list marker
-    // in Chrome; setting as list-item restores the default Chrome user agent
-    // styles.
-    display: list-item;
 
     // @see https://css-tricks.com/two-issues-styling-the-details-element-and-how-to-solve-them/
     cursor: pointer;
