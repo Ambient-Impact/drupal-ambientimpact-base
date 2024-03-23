@@ -23,3 +23,8 @@ component_demo:
   css:
     theme:
       stylesheets/components/component_demo.css: {}
+
+component_list:
+  css:
+    theme:
+      stylesheets/components/component_list.css: {}

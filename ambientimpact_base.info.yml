@@ -46,6 +46,9 @@ libraries-extend:
   ambientimpact_web_components/component.component_demo:
     - ambientimpact_base/component_demo
 
+  ambientimpact_web_components/component.component_list:
+    - ambientimpact_base/component_list
+
   classy/base:
     - ambientimpact_base/details
 
