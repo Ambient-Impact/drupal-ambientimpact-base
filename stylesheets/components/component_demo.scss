@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------------
+//   Base component demo
+// -----------------------------------------------------------------------------
+
+@use '../global/content';
+@use '../layout/vertical_spacing' as vertical-spacing;
+
+@include vertical-spacing.against-previous(
+  '.ambientimpact-component-demo__actions',
+  $spacing-small: content.$item-vertical-spacing-small,
+  $spacing-large: content.$item-vertical-spacing-large,
+);
+@include vertical-spacing.against-previous(
+  '.ambientimpact-component-demo__content',
+  $spacing-small: content.$item-vertical-spacing-small,
+  $spacing-large: content.$item-vertical-spacing-large,
+);

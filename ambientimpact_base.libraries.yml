@@ -18,3 +18,8 @@ details.icon:
       stylesheets/elements/details.icon.css: {}
   dependencies:
     - ambientimpact_base/details
+
+component_demo:
+  css:
+    theme:
+      stylesheets/components/component_demo.css: {}
