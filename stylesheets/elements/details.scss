@@ -38,6 +38,12 @@ details {
     // styles.
     display: list-item;
 
+    // Summary elements act more like buttons and clicking or tapping just fast
+    // enough causes text selection to occur, which feels out of place and
+    // unexpected as a user. In most other cases, this is generally a bad thing
+    // to do, but the UX consistency feels more important here.
+    user-select: none;
+
   }
 
 }
