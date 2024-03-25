@@ -15,6 +15,20 @@
       var(--details-content-padding-block)
       var(--details-content-padding-inline);
 
+    // This reverts the list marker position to outside, because inside the
+    // <summary> element the list marker is set to inside and this is an
+    // inherited property, apparently.
+    ol, ul {
+      list-style-position: outside;
+    }
+
+  }
+
+  // Reverts the display: inline; from the base details styles.
+  &:not(.details--demo-unstyled) > summary:first-of-type &__content-clone {
+    &, * {
+      display: revert;
+    }
   }
 
 }

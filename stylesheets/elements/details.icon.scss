@@ -15,7 +15,14 @@
 
   > summary:first-of-type {
 
-    @include icon.on-icon-container {
+    // We have to explicitly target just the immediate child icon to avoid
+    // applying to the content clone in a nested details element.
+    > .ambientimpact-icon {
+
+      // Reverts the display: inline; from the base details styles.
+      &, * {
+        display: revert;
+      }
 
       @include icon.set-icon-display(block);
 
@@ -41,26 +48,30 @@
         display: contents;
       }
 
-    }
+      // Use the close duration from the animated variant if available, with a
+      // fallback value if not defined.
+      @include icon.icon-transform-transition(
+        $transition-duration: var(--details-close-duration, 0.2s)
+      );
 
-    // Use the close duration from the animated variant if available, with a
-    // fallback value if not defined.
-    @include icon.icon-transform-transition(
-      $transition-duration: var(--details-close-duration, 0.2s)
-    );
+    }
 
   }
 
   &[open] > summary:first-of-type {
 
-    // Use the open duration from the animated variant if available, with a
-    // fallback value if not defined.
-    @include icon.icon-transform-transition(
-      $transition-duration: var(--details-open-duration, 0.2s)
-    );
+    > .ambientimpact-icon {
 
-    @include icon.on-icon-icon {
-      transform: rotate(180deg);
+      // Use the open duration from the animated variant if available, with a
+      // fallback value if not defined.
+      @include icon.icon-transform-transition(
+        $transition-duration: var(--details-open-duration, 0.2s)
+      );
+
+      @include icon.on-icon-icon {
+        transform: rotate(180deg);
+      }
+
     }
 
   }
