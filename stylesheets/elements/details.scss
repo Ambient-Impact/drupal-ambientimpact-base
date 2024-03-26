@@ -24,6 +24,25 @@
 
   --details-content-padding-inline: #{general.$general-spacing};
 
+  --details-border-width: 1px;
+
+  --details-border-colour: #{color.mix(
+    colour.$background-light,
+    colour.$foreground-on-light,
+    80%,
+  )};
+
+  @include colour.on-dark-scheme {
+
+    --details-border-colour: #{color.mix(
+      colour.$background-dark,
+      colour.$foreground-on-dark,
+      70%,
+    )};
+
+  }
+
+
 }
 
 // This is separated from the rest so it can apply to all <details>, including
@@ -55,15 +74,18 @@ details:not(.details--demo-unstyled) {
 
   border-radius: material-general.$border-radius;
 
-  border-width: 0;
+  border: var(--details-border-width) solid var(--details-border-colour);
 
   @include colour.set(
     $background: color.adjust(colour.$background-light, $lightness: -5%),
   );
 
-  filter:
-    drop-shadow(material-shadow.filter-downward(1))
-    drop-shadow(material-shadow.filter-ambient(1));
+  // Don't use the filter property because it tanks performance badly in both
+  // Firefox and Chrome on Android when nesting <details> within each other.
+  // This could partially be due to the nested absolutely positioned content
+  // and/or content clones, but more likely it's that the browsers are applying
+  // the a filter to a filter to a filter, etc.
+  box-shadow: material-shadow.shadow(2);
 
   @include colour.on-dark-scheme {
 
@@ -71,9 +93,7 @@ details:not(.details--demo-unstyled) {
       $background: color.adjust(colour.$background-dark, $lightness: +20%),
     );
 
-    filter:
-      drop-shadow(material-shadow.filter-downward(2))
-      drop-shadow(material-shadow.filter-ambient(2));
+    box-shadow: material-shadow.shadow(3);
 
   }
 
