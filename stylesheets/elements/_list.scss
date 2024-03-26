@@ -106,7 +106,6 @@ $multicolumn-gap: $marker-indent + general.$general-spacing !default;
 ///
 /// Output base list styles.
 ///
-/// @require {mixin} content.area
 /// @require {mixin} multicolumn
 /// @require {mixin} selector.root-conditions
 /// @require {mixin} unlisted
@@ -119,7 +118,7 @@ $multicolumn-gap: $marker-indent + general.$general-spacing !default;
 @mixin output {
 
   // Default list styles.
-  @include content.area {
+  .region-content {
     @include vertical-spacing.against-previous(
       'ol',
       $spacing-small: content.$item-vertical-spacing-small,
