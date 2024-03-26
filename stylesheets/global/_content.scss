@@ -27,7 +27,16 @@ $item-vertical-spacing-large: general.$general-spacing * 1.2 !default;
 ///
 /// @content
 ///
+/// @todo Remove this and use .region-content in places where it was used. It's
+///   currently barely used and is too specific while not being easily extended
+///   to include new elements after the fact.
+///
+/// @deprecated Use the ".region-content" selector instead.
+///
 @mixin area {
+
+  @warn 'This mixin is deprecated. Use the ".region-content" selector instead.';
+
   .node__content,
   .views-field:not(.views-field-contextual-links) {
     @content;
