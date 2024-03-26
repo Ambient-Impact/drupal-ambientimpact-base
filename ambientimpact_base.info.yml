@@ -51,6 +51,7 @@ libraries-extend:
 
   classy/base:
     - ambientimpact_base/details
+    - ambientimpact_base/item_list
 
   # This adds the displace component to the Gin toolbar libraries as a
   # dependency so that the --displace-* CSS custom properties are automatically

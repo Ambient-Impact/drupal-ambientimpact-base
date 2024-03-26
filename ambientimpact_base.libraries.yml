@@ -28,3 +28,8 @@ component_list:
   css:
     theme:
       stylesheets/components/component_list.css: {}
+
+item_list:
+  css:
+    theme:
+      stylesheets/components/item_list.css: {}
