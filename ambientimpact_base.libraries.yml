@@ -9,6 +9,8 @@ details.animated:
   css:
     theme:
       stylesheets/elements/details.animated.css: {}
+  js:
+    javascript/details.animated.js: { attributes: { defer: true } }
   dependencies:
     - ambientimpact_base/details
 

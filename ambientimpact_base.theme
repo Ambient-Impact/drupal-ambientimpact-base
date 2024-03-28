@@ -15,6 +15,15 @@ use Drupal\ambientimpact_base\SiteBrandingBlockProperties;
  */
 function ambientimpact_base_element_info_alter(array &$info): void {
 
+  if (isset($info['details'])) {
+
+    $info['details']['#attached'][
+      'library'
+    // This also attaches our own library because we libraries-extend this.
+    ][] = 'ambientimpact_ux/component.details.animated';
+
+  }
+
   if (isset($info['textarea'])) {
     $info['textarea']['#attached']['library'][] =
       'ambientimpact_ux/component.textarea';
