@@ -40,7 +40,7 @@ libraries-override:
 
 libraries-extend:
 
-  ambientimpact_ux/component.details:
+  ambientimpact_ux/component.details.animated:
     - ambientimpact_base/details.animated
 
   ambientimpact_web_components/component.component_demo:
