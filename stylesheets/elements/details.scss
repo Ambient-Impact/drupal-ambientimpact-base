@@ -85,7 +85,10 @@ details:not(.details--demo-unstyled) {
   // This could partially be due to the nested absolutely positioned content
   // and/or content clones, but more likely it's that the browsers are applying
   // the a filter to a filter to a filter, etc.
-  box-shadow: material-shadow.shadow(2);
+  //
+  // Also note the separate shadow depth levels to fine tune the look. Making
+  // both a depth of 1 feels too small but both as 2 feels too large.
+  box-shadow: material-shadow.top(2), material-shadow.bottom(1);
 
   @include colour.on-dark-scheme {
 
@@ -93,6 +96,8 @@ details:not(.details--demo-unstyled) {
       $background: color.adjust(colour.$background-dark, $lightness: +20%),
     );
 
+    // Dark mode shadows are bigger need to be bigger to be even remotely
+    // visible against the dark background.
     box-shadow: material-shadow.shadow(3);
 
   }
