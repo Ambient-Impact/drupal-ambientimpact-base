@@ -7,9 +7,29 @@
 @use 'material.ripple' as material-ripple;
 @use 'material.tabs' as material-tabs;
 @use 'sass/helpers/colour';
+@use 'sass/helpers/selector';
 
 .tabs.primary {
+
   @include material-tabs.container;
+
+  // Override elements/list padding and margins.
+  //
+  // @todo Remove the compound selector when that gets refactored.
+  &:not(.contextual-links):not(.links) {
+
+    @include selector.root-conditions(('[dir=ltr]'), 'html') {
+      padding-left: 0;
+    }
+    @include selector.root-conditions(('[dir=rtl]'), 'html') {
+      padding-right: 0;
+    }
+
+    li + li {
+      margin-top: 0;
+    }
+
+  }
 
   li {
     margin: 0;
