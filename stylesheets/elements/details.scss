@@ -29,7 +29,7 @@
   --details-border-colour: #{color.mix(
     colour.$background-light,
     colour.$foreground-on-light,
-    80%,
+    85%,
   )};
 
   @include colour.on-dark-scheme {
