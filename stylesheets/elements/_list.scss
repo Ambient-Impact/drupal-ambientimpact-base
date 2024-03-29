@@ -71,6 +71,11 @@ $multicolumn-gap: $marker-indent + general.$general-spacing !default;
     list-style: none;
   }
 
+  // Overrides general list styles below.
+  &:not(.contextual-links):not(.links) li + li {
+    margin-top: 0;
+  }
+
 }
 
 ///
@@ -176,17 +181,18 @@ $multicolumn-gap: $marker-indent + general.$general-spacing !default;
         }
       }
     }
-  }
 
-  .multicolumn-list {
-    @include multicolumn;
-  }
+    .multicolumn-list {
+      @include multicolumn;
+    }
 
-  .unlisted-list,
-  // If you use an 'item_list', you can pass it:
-  // '#context' => ['list_style' => 'unlisted']
-  .item-list--unlisted .item-list__unlisted {
-    @include unlisted;
+    .unlisted-list,
+    // If you use an 'item_list', you can pass it:
+    // '#context' => ['list_style' => 'unlisted']
+    .item-list--unlisted .item-list__unlisted {
+      @include unlisted;
+    }
+
   }
 
 }
