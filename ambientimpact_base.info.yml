@@ -49,6 +49,9 @@ libraries-extend:
   ambientimpact_ux/component.details.animated:
     - ambientimpact_base/details.animated
 
+  ambientimpact_ux/component.offcanvas:
+    - ambientimpact_base/off_canvas_panel
+
   ambientimpact_ux/component.toolbar:
     - ambientimpact_base/toolbar
 
