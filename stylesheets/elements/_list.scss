@@ -146,7 +146,7 @@ $multicolumn-gap: $marker-indent + general.$general-spacing !default;
 
     ol,
     ul {
-      &:not(.contextual-links):not(.links):not(.unlisted-list) {
+      &:not(.contextual-links):not(.links) {
         // This removes the default top margin but is overridden by the above
         // when a valid previous element is present.
         margin-top:     0;
