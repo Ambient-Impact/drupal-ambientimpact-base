@@ -35,3 +35,8 @@ item_list:
   css:
     theme:
       stylesheets/components/item_list.css: {}
+
+tooltip:
+  css:
+    theme:
+      stylesheets/components/tooltip.css: {}
