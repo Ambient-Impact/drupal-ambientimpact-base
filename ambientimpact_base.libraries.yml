@@ -41,6 +41,12 @@ item_list:
     theme:
       stylesheets/components/item_list.css: {}
 
+local_tasks:
+  css:
+    theme:
+      stylesheets/components/local_tasks_tabs.css: {}
+      stylesheets/components/local_tasks_actions.css: {}
+
 off_canvas_panel:
   css:
     theme:

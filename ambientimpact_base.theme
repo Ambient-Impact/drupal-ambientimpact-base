@@ -251,6 +251,14 @@ function ambientimpact_base_preprocess_responsive_image_formatter(
 
 }
 
+function ambientimpact_base_preprocess_menu_local_tasks(
+  array &$variables,
+): void {
+
+  $variables['#attached']['library'][] = 'ambientimpact_base/local_tasks';
+
+}
+
 /**
  * Prepares variables for single local action link templates.
  *
