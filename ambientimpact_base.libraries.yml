@@ -1,3 +1,8 @@
+abbr:
+  css:
+    theme:
+      stylesheets/elements/abbr.css: {}
+
 details:
   css:
     theme:
