@@ -40,6 +40,9 @@ libraries-override:
 
 libraries-extend:
 
+  ambientimpact_block/component.social_links:
+    - ambientimpact_base/social_links
+
   ambientimpact_ux/component.details.animated:
     - ambientimpact_base/details.animated
 

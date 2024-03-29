@@ -36,6 +36,11 @@ item_list:
     theme:
       stylesheets/components/item_list.css: {}
 
+social_links:
+  css:
+    theme:
+      stylesheets/components/social_links.css: {}
+
 tooltip:
   css:
     theme:
