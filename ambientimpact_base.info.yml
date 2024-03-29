@@ -49,6 +49,9 @@ libraries-extend:
   ambientimpact_ux/component.details.animated:
     - ambientimpact_base/details.animated
 
+  ambientimpact_ux/component.toolbar:
+    - ambientimpact_base/toolbar
+
   ambientimpact_ux/component.tooltip:
     - ambientimpact_base/tooltip
 

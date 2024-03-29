@@ -46,6 +46,11 @@ social_links:
     theme:
       stylesheets/components/social_links.css: {}
 
+toolbar:
+  css:
+    theme:
+      stylesheets/components/toolbar.css: {}
+
 tooltip:
   css:
     theme:
