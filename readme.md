@@ -8,7 +8,7 @@ work-in-progress. Stable releases may be provided at a later date.
 
 # Requirements
 
-* [Drupal 9.5 or 10](https://www.drupal.org/download)
+* [Drupal 10](https://www.drupal.org/download)
 
 * PHP 8
 
@@ -58,7 +58,7 @@ In your root `composer.json`, add the following to the `"repositories"` section:
 ### Installing
 
 Once you've completed all of the above, run `composer require
-"drupal/ambientimpact_base:^6.0@dev"` in the root of your project to have
+"drupal/ambientimpact_base:^7.0@dev"` in the root of your project to have
 Composer install this and its required dependencies for you.
 
 ## Front-end assets
@@ -82,7 +82,7 @@ Once those are defined, add the following to the `"dependencies"` section of
 your top-level `package.json`:
 
 ```json
-"drupal-ambientimpact-base": "workspace:^6"
+"drupal-ambientimpact-base": "workspace:^7"
 ```
 
 Then run `yarn install` and let Yarn do the rest.
@@ -126,3 +126,13 @@ The following major version bumps indicate breaking changes:
 * 5.x - Front-end package manager is now [Yarn](https://yarnpkg.com/); front-end build process ported to [Webpack](https://webpack.js.org/).
 
 * 6.x - Requires Drupal 9.5 or [Drupal 10](https://www.drupal.org/project/drupal/releases/10.0.0).
+
+* 7.x:
+
+  * Requires Drupal 10.
+
+  * Major rework of stylesheets:
+
+    * They now use [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) to configure various values rather than Sass variables.
+
+    * A lot of partials have been converted into standalone stylesheets and libraries which are attached to the appropriate elements, render arrays, etc. This allows for more fine-grained and efficient serving of styles that are actually used and less that are not used on a page or a site.
