@@ -131,6 +131,8 @@ The following major version bumps indicate breaking changes:
 
   * Requires Drupal 10.
 
+  * Removed `.nvmrc` file as Node.js is stable enough nowadays to no longer warrant this.
+
   * Major rework of stylesheets:
 
     * They now use [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) to configure various values rather than Sass variables.
