@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 @use 'sass/variables/general';
+@use '../layout/vertical_spacing' as vertical-spacing;
 
 ///
 /// Generic content item vertical spacing on smaller screens.
@@ -10,7 +11,11 @@
 /// @see {Mixin} against-previous
 ///   Primarily intended to be used with this mixin but can be used anywhere.
 ///
-$item-vertical-spacing-small: general.$general-spacing * 0.9 !default;
+/// @deprecated
+///   Use vertical-spacing.$content-item-spacing-small instead.
+///
+$item-vertical-spacing-small:
+  vertical-spacing.$content-item-spacing-small !default;
 
 ///
 /// Generic content item vertical spacing on larger screens.
@@ -18,7 +23,11 @@ $item-vertical-spacing-small: general.$general-spacing * 0.9 !default;
 /// @see {Mixin} against-previous
 ///   Primarily intended to be used with this mixin but can be used anywhere.
 ///
-$item-vertical-spacing-large: general.$general-spacing * 1.2 !default;
+/// @deprecated
+///   Use vertical-spacing.$content-item-spacing-large instead.
+///
+$item-vertical-spacing-large:
+  vertical-spacing.$content-item-spacing-large !default;
 
 ///
 /// Apply styles to site content.

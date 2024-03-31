@@ -23,6 +23,22 @@ $spacing-large: general.$general-spacing * 5 !default;
 $spacing-small: general.$general-spacing * 2.5 !default;
 
 ///
+/// Generic content item vertical spacing on smaller screens.
+///
+/// @see {Mixin} against-previous
+///   Primarily intended to be used with this mixin but can be used anywhere.
+///
+$content-item-spacing-small: general.$general-spacing * 0.9 !default;
+
+///
+/// Generic content item vertical spacing on larger screens.
+///
+/// @see {Mixin} against-previous
+///   Primarily intended to be used with this mixin but can be used anywhere.
+///
+$content-item-spacing-large: general.$general-spacing * 1.2 !default;
+
+///
 /// Generic element vertical spacing breakpoint.
 ///
 /// This is the size at which we go from small spacing to large. Note that this
