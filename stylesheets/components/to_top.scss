@@ -1,9 +1,8 @@
 // -----------------------------------------------------------------------------
-//   Base scroll to top component partial
+//   Base scroll to top component
 // -----------------------------------------------------------------------------
 
 @use '../typography/config' as typography-config;
-@use '../layout/config' as layout-config;
 @use 'material.ripple' as material-ripple;
 @use 'sass/helpers/colour';
 @use 'sass/helpers/selector';
@@ -13,10 +12,10 @@
   // Set the horizontal distance from the viewport edges to the gutter so that
   // it fits in with the rest of the layout.
   @include selector.root-conditions(('[dir=ltr]'), 'html') {
-    right:  layout-config.$gutter;
+    right:  var(--layout-gutter);
   }
   @include selector.root-conditions(('[dir=rtl]'), 'html') {
-    left:   layout-config.$gutter;
+    left:   var(--layout-gutter);
   }
 
   &__link {

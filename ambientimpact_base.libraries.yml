@@ -88,6 +88,13 @@ social_links:
   dependencies:
     - ambientimpact_base/layout_properties
 
+to_top:
+  css:
+    theme:
+      stylesheets/components/to_top.css: {}
+  dependencies:
+    - ambientimpact_base/layout_properties
+
 toolbar:
   css:
     theme:
