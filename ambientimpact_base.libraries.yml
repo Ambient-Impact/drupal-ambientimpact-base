@@ -61,6 +61,8 @@ node_preview:
   css:
     theme:
       stylesheets/components/node_preview.css: {}
+  dependencies:
+    - ambientimpact_base/layout_properties
 
 off_canvas_panel:
   css:

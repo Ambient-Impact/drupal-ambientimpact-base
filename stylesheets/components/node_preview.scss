@@ -6,7 +6,6 @@
 @use 'material.common/material.panel' as material-panel;
 @use 'material.common/material.shadow' as material-shadow;
 @use 'sass/helpers/colour';
-@use 'sass/variables/general';
 
 // This styles the node preview controls as a Material panel that matches the
 // base horizontal layout and adds a dark colour scheme. Note that the Stable
@@ -17,8 +16,8 @@
 //   inaccessible.
 
 .node-preview-container {
-  padding-top:    general.$general-spacing;
-  padding-bottom: general.$general-spacing;
+  padding-top:    var(--general-spacing);
+  padding-bottom: var(--general-spacing);
 
   @include layout-container.base-horizontal;
 
