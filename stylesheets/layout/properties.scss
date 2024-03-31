@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------------
+//   Layout custom properties
+// -----------------------------------------------------------------------------
+
+@use 'vertical_spacing' as vertical-spacing;
+
+:root {
+
+  // Replacement for 'sass/variables/general' $general-spacing.
+  //
+  // This may eventually be removed in favour of more specific properties and/or
+  // recommending the use of rem units.
+  --general-spacing: 1em;
+
+  --vertical-spacing-large: #{vertical-spacing.$spacing-large};
+
+  --vertical-spacing-small: #{vertical-spacing.$spacing-small};
+
+  --content-item-spacing-small: #{vertical-spacing.$content-item-spacing-small};
+
+  --content-item-spacing-large: #{vertical-spacing.$content-item-spacing-large};
+
+}

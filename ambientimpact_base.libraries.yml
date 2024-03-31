@@ -46,6 +46,11 @@ item_list:
     theme:
       stylesheets/components/item_list.css: {}
 
+layout_properties:
+  css:
+    theme:
+      stylesheets/layout/properties.css: {}
+
 local_tasks:
   css:
     theme:
