@@ -5,23 +5,17 @@
 @use 'material.common/material.colour' as material-colour;
 @use 'sass/helpers/colour';
 
-///
-/// The accent colour, primarily used for the accent-color property.
-///
-/// This defaults to the Material primary colour.
-///
-/// @see https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
-///
-$accent: material-colour.$primary !default;
-
 // Apply colours to both <html> and <body> as <body> may have margins which
 // would cause the default white background of <html> to show through.
 html, body {
+
   @include colour.set($background: colour.$background-light);
 
   @include colour.on-dark-scheme {
     @include colour.set($background: colour.$background-dark);
   }
+
+  --material-primary-colour: #{material-colour.$primary};
 
   // This sets the global accent colour to the Material primary colour. This
   // currently affects browser-rendered checkboxes and radio buttons in Firefox
@@ -29,5 +23,6 @@ html, body {
   // well.
   //
   // @see https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
-  accent-color: $accent;
+  accent-color: var(--material-primary-colour);
+
 }
