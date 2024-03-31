@@ -9,6 +9,10 @@
 @use 'sass/helpers/colour';
 @use 'sass/helpers/selector';
 
+:root {
+  --material-tabs-indicator-colour: var(--material-primary-colour);
+}
+
 .tabs.primary {
 
   @include material-tabs.container;
