@@ -2,6 +2,7 @@
 //   Layout custom properties
 // -----------------------------------------------------------------------------
 
+@use 'config' as layout-config;
 @use 'vertical_spacing' as vertical-spacing;
 
 :root {
@@ -11,6 +12,10 @@
   // This may eventually be removed in favour of more specific properties and/or
   // recommending the use of rem units.
   --general-spacing: 1em;
+
+  --layout-gap: #{layout-config.$gap};
+
+  --layout-gutter: #{layout-config.$gutter};
 
   --vertical-spacing-large: #{vertical-spacing.$spacing-large};
 
