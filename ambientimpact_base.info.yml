@@ -43,6 +43,9 @@ libraries-extend:
   ambientimpact_block/component.social_links:
     - ambientimpact_base/social_links
 
+  ambientimpact_media/component.photoswipe:
+    - ambientimpact_base/photoswipe
+
   ambientimpact_ux/component.abbr:
     - ambientimpact_base/abbr
 

@@ -74,6 +74,13 @@ radio:
     theme:
       stylesheets/elements/radio.css: {}
 
+photoswipe:
+  css:
+    theme:
+      stylesheets/components/photoswipe.css: {}
+  dependencies:
+    - ambientimpact_base/layout_properties
+
 social_links:
   css:
     theme:

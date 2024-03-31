@@ -1,18 +1,15 @@
 // -----------------------------------------------------------------------------
-//   Base PhotoSwipe component partial
+//   Base PhotoSwipe component
 // -----------------------------------------------------------------------------
 
 @use '../layout/container' as layout-container;
 @use 'material.ripple' as material-ripple;
-@use 'sass:math';
-@use 'sass:meta';
-@use 'sass/variables/general';
 
 .pswp {
   &__caption__center {
     @include layout-container.max-width;
 
-    padding: math.div(general.$general-spacing, 2);
+    padding: calc(var(--general-spacing) / 2);
   }
 
   // @todo Make this work for mouse events; works fine if touch or :active is
