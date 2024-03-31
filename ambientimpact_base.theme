@@ -55,6 +55,17 @@ function ambientimpact_base_element_info_alter(array &$info): void {
 
   }
 
+  foreach (['checkbox', 'radio'] as $elementName) {
+
+    if (!isset($info[$elementName])) {
+      continue;
+    }
+
+    $info[$elementName]['#attached'][
+      'library'
+    ][] = 'ambientimpact_base/' . $elementName;
+
+  }
 }
 
 /**

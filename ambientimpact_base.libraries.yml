@@ -3,6 +3,11 @@ abbr:
     theme:
       stylesheets/elements/abbr.css: {}
 
+checkbox:
+  css:
+    theme:
+      stylesheets/elements/checkbox.css: {}
+
 details:
   css:
     theme:
@@ -51,6 +56,11 @@ off_canvas_panel:
   css:
     theme:
       stylesheets/components/off_canvas_panel.css: {}
+
+radio:
+  css:
+    theme:
+      stylesheets/elements/radio.css: {}
 
 social_links:
   css:
