@@ -76,6 +76,8 @@ social_links:
   css:
     theme:
       stylesheets/components/social_links.css: {}
+  dependencies:
+    - ambientimpact_base/layout_properties
 
 toolbar:
   css:

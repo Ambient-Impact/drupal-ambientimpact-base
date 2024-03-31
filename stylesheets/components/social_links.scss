@@ -4,13 +4,6 @@
 
 @use '../elements/list';
 @use 'icon';
-@use 'sass:math';
-@use 'sass/variables/general';
-
-///
-/// The spacing between two network items in the social links block list.
-///
-$network-item-spacing: general.$general-spacing !default;
 
 .ambientimpact-social-links {
   $self: &;
@@ -27,16 +20,16 @@ $network-item-spacing: general.$general-spacing !default;
     /// vertically, regardless of how many rows and columns there are, e.g. when
     /// the network items wrap due to small screen width.
     ///
-    $network-padding: math.div($network-item-spacing, 2);
+    --network-padding: calc(var(--general-spacing) / 2);
 
-    margin: -$network-padding;
+    margin: calc(var(--network-padding) * -1);
 
     // Override ../global/_layout.scss so that our horizontal negative margins
     // correctly alter the width past 100%.
     max-width: none;
 
     & #{$self}__network {
-      padding: $network-padding;
+      padding: var(--network-padding);
     }
   }
 
