@@ -1,6 +1,10 @@
 // -----------------------------------------------------------------------------
-//   Base <input type="radio"> element partial
+//   Base <input type="radio"> element
 // -----------------------------------------------------------------------------
+
+:root {
+  --radio-size: 0.8em;
+}
 
 input[type='radio'] {
 
@@ -10,10 +14,10 @@ input[type='radio'] {
   //
   // @see https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
   @supports (accent-color: orange) {
-    --size: 0.8em;
 
-    width:  var(--size);
-    height: var(--size);
+    width:  var(--radio-size);
+    height: var(--radio-size);
+
   }
 
 }

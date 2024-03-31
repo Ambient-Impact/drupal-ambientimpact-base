@@ -1,6 +1,10 @@
 // -----------------------------------------------------------------------------
-//   Base <input type="checkbox"> element partial
+//   Base <input type="checkbox"> element
 // -----------------------------------------------------------------------------
+
+:root {
+  --checkbox-size: 0.8em;
+}
 
 input[type='checkbox'] {
 
@@ -10,10 +14,10 @@ input[type='checkbox'] {
   //
   // @see https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
   @supports (accent-color: orange) {
-    --size: 0.8em;
 
-    width:  var(--size);
-    height: var(--size);
+    width:  var(--checkbox-size);
+    height: var(--checkbox-size);
+
   }
 
 }
