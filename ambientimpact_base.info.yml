@@ -81,3 +81,6 @@ libraries-extend:
     - ambientimpact_ux/component.displace
   gin/gin_horizontal_toolbar:
     - ambientimpact_ux/component.displace
+
+  node/drupal.node.preview:
+    - ambientimpact_base/node_preview

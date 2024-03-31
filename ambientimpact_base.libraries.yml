@@ -52,6 +52,11 @@ local_tasks:
       stylesheets/components/local_tasks_tabs.css: {}
       stylesheets/components/local_tasks_actions.css: {}
 
+node_preview:
+  css:
+    theme:
+      stylesheets/components/node_preview.css: {}
+
 off_canvas_panel:
   css:
     theme:

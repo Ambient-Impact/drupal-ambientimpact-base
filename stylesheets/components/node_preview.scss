@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-//   Base node preview form partial
+//   Base node preview container component
 // -----------------------------------------------------------------------------
 
 @use '../layout/container' as layout-container;
@@ -13,8 +13,8 @@
 // theme provides the basic fixed positioning.
 //
 // @todo This needs to register itself as having vertical displacement so the
-// page can adjust accordingly and not end up with the area under the panel as
-// inaccessible.
+//   page can adjust accordingly and not end up with the area under the panel as
+//   inaccessible.
 
 .node-preview-container {
   padding-top:    general.$general-spacing;
