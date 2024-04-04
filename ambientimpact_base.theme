@@ -355,3 +355,14 @@ function ambientimpact_base_preprocess_details(array &$variables): void {
   \Drupal::classResolver(DetailsPreprocess::class)->preprocess($variables);
 
 }
+
+/**
+ * Prepares variables for feed icon templates.
+ *
+ * Attaches the 'ambientimpact_base/feed_icon' library,
+ */
+function ambientimpact_base_preprocess_feed_icon(array &$variables): void {
+
+  $variables['#attached']['library'][] = 'ambientimpact_base/feed_icon';
+
+}

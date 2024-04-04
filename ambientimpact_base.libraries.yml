@@ -41,6 +41,11 @@ component_list:
     theme:
       stylesheets/components/component_list.css: {}
 
+feed_icon:
+  css:
+    theme:
+      stylesheets/components/feed_icon.css: {}
+
 item_list:
   css:
     theme:
