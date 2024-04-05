@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-//   Base node partial
+//   Base node
 // -----------------------------------------------------------------------------
 
 @use '../layout/vertical_spacing' as vertical-spacing;
@@ -10,7 +10,7 @@
   // Spacing between node sections.
   * + &__content,
   * + &__links {
-    margin-top: general.$general-spacing;
+    margin-top: var(--general-spacing);
   }
 
   // Footer links.

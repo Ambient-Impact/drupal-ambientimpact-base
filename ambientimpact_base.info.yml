@@ -74,6 +74,9 @@ libraries-extend:
     - ambientimpact_base/details
     - ambientimpact_base/item_list
 
+  classy/node:
+    - ambientimpact_base/node
+
   # This adds the displace component to the Gin toolbar libraries as a
   # dependency so that the --displace-* CSS custom properties are automatically
   # set on the <body> element whenever the toolbar allocates space. This is

@@ -62,6 +62,13 @@ local_tasks:
       stylesheets/components/local_tasks_tabs.css: {}
       stylesheets/components/local_tasks_actions.css: {}
 
+node:
+  css:
+    theme:
+      stylesheets/components/node.css: {}
+  dependencies:
+    - ambientimpact_base/layout_properties
+
 node_preview:
   css:
     theme:
