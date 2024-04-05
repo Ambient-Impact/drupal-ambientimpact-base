@@ -43,6 +43,8 @@ $colour-dark: color.change(colour.$background-dark, $alpha: $opacity);
   //
   // @see https://bugzilla.mozilla.org/show_bug.cgi?id=1701488
   //   Ongoing bug to implement it.
+  //
+  // @see https://caniuse.com/css-relative-colors
   @supports not (background-color: rgb(from black r g b / 0.5)) {
 
     @include colour.set($background: $colour-light);
