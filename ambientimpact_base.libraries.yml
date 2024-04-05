@@ -82,6 +82,11 @@ off_canvas_panel:
     theme:
       stylesheets/components/off_canvas_panel.css: {}
 
+overlay:
+  css:
+    theme:
+      stylesheets/components/overlay.css: {}
+
 radio:
   css:
     theme:

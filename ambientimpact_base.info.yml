@@ -55,6 +55,9 @@ libraries-extend:
   ambientimpact_ux/component.offcanvas:
     - ambientimpact_base/off_canvas_panel
 
+  ambientimpact_ux/component.overlay:
+    - ambientimpact_base/overlay
+
   ambientimpact_ux/component.to_top:
     - ambientimpact_base/to_top
 

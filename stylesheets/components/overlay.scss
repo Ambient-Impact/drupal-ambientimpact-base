@@ -1,0 +1,68 @@
+// -----------------------------------------------------------------------------
+//   Base overlay component
+// -----------------------------------------------------------------------------
+
+@use 'sass:color';
+@use 'sass/helpers/colour';
+
+///
+/// Overlay opacity when visible.
+///
+/// Note that this is applied to the overlay background colour rather than as
+/// the opacity property to allow for full use of backdrop-filter. The effect of
+/// backdrop-filter scales down along with the opacity property, but is not
+/// affected by any opacity in the background colour itself.
+///
+$opacity: 0.8;
+
+:root {
+
+  ///
+  /// Overlay opacity when visible.
+  ///
+  --overlay-opacity: #{$opacity};
+
+}
+
+///
+/// Overlay colour on light colour scheme.
+///
+$colour-light: color.change(colour.$background-light, $alpha: $opacity);
+
+///
+/// Overlay colour on dark colour scheme.
+///
+$colour-dark: color.change(colour.$background-dark, $alpha: $opacity);
+
+.overlay {
+
+  // Firefox 124 does not support relative colour syntax at the time of writing
+  // and worse, it incorrectly seems to think that it does if the @supports
+  // tries to use custom properties to test for it, so we have to use a literal
+  // value here.
+  //
+  // @see https://bugzilla.mozilla.org/show_bug.cgi?id=1701488
+  //   Ongoing bug to implement it.
+  @supports not (background-color: rgb(from black r g b / 0.5)) {
+
+    @include colour.set($background: $colour-light);
+
+    @include colour.on-dark-scheme {
+      @include colour.set($background: $colour-dark);
+    }
+
+  }
+
+  @supports (background-color: rgb(from black r g b / 0.5)) {
+
+    background-color: rgb(
+      from var(--background-colour) r g b / var(--overlay-opacity)
+    );
+
+  }
+
+  &--is-active {
+    opacity: 1;
+  }
+
+}
