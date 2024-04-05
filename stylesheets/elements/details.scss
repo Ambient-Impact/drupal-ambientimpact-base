@@ -9,7 +9,6 @@
 @use 'material.common/material.shadow' as material-shadow;
 @use 'sass/helpers/colour';
 @use 'sass/helpers/selector';
-@use 'sass/variables/general';
 @use 'sass:color';
 
 @include vertical-spacing.against-previous(
@@ -20,9 +19,9 @@
 
 :root {
 
-  --details-content-padding-block:  #{general.$general-spacing * 0.7};
+  --details-content-padding-block:  calc(var(--general-spacing) * 0.7);
 
-  --details-content-padding-inline: #{general.$general-spacing};
+  --details-content-padding-inline: var(--general-spacing);
 
   --details-border-width: 1px;
 
