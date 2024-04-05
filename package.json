@@ -30,7 +30,7 @@
     "mini-css-extract-plugin": "^2.6.1",
     "postcss": "^8.4.31",
     "postcss-loader": "^7.0.1",
-    "sass": "^1.43.4",
+    "sass": "^1.69.0",
     "sass-loader": "^13.1.0",
     "sassy-cast": "github:Ambient-Impact/SassyCast#adbbd499bb36eb0c7015ae6f23c00e3a78dc54b3",
     "webpack": "^5.88.2",
