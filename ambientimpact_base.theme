@@ -366,3 +366,16 @@ function ambientimpact_base_preprocess_feed_icon(array &$variables): void {
   $variables['#attached']['library'][] = 'ambientimpact_base/feed_icon';
 
 }
+
+/**
+ * Prepares variables for pager templates.
+ *
+ * Attaches the 'ambientimpact_base/pager' library,
+ */
+function ambientimpact_base_preprocess_pager(array &$variables): void {
+
+  // This doesn't seem to work in \hook_element_info_alter() for some absurd
+  // reason, which would have been the preferred way to attach this.
+  $variables['#attached']['library'][] = 'ambientimpact_base/pager';
+
+}

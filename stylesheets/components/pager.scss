@@ -1,0 +1,157 @@
+// -----------------------------------------------------------------------------
+//   Base Drupal pager partial
+// -----------------------------------------------------------------------------
+
+@use '../elements/list';
+@use '../layout/vertical_spacing' as vertical-spacing;
+@use 'link/link.colour' as link-colour;
+@use 'link/link.var' as link-var;
+@use 'sass/helpers/colour';
+
+:root {
+
+  ///
+  /// Pager numerical item padding along block axis.
+  ///
+  /// This is applied to all numerical pager item links - i.e. those that aren't
+  /// the 'First', 'Previous', 'Next', or 'Last' items.
+  ///
+  --pager-numerical-item-padding-block: 0.3em;
+
+  ///
+  /// Pager numerical item padding along inline axis.
+  ///
+  /// This is applied to all numerical pager item links - i.e. those that aren't
+  /// the 'First', 'Previous', 'Next', or 'Last' items.
+  ///
+  --pager-numerical-item-padding-inline: 0.7em;
+
+  ///
+  /// Pager navigation item padding along block axis.
+  ///
+  /// This is applied to all non-numerical pager item links - i.e. the 'First',
+  /// 'Previous', 'Next', and 'Last' items.
+  ///
+  --pager-navigation-item-padding-block: 0.4em;
+
+  ///
+  /// Pager navigation item padding along inline axis.
+  ///
+  /// This is applied to all non-numerical pager item links - i.e. the 'First',
+  /// 'Previous', 'Next', and 'Last' items.
+  ///
+  --pager-navigation-item-padding-inline: 0.5em;
+
+}
+
+@include vertical-spacing.against-previous('.pager');
+
+.pager__items.pager__items { // Specificity.
+
+  @include list.unlisted;
+
+}
+
+.pager {
+
+  &__items {
+
+    display:          flex;
+    flex-wrap:        wrap;
+    justify-content:  center;
+    align-items:      center;
+
+    font-size: 120%;
+
+  }
+
+  &__item {
+
+    position: relative;
+
+    display: block;
+
+    // Override Classy.
+    padding: 0;
+
+    // Don't wrap white-space within an item before icons load or they fail to.
+    // Item text is at most two words, and when icons are loaded, they're single
+    // characters or icons.
+    white-space: nowrap;
+
+    :any-link {
+
+      display: block;
+
+      padding:
+        var(--pager-numerical-item-padding-block)
+        var(--pager-numerical-item-padding-inline);
+
+    }
+
+    &.is-active {
+
+      // This sets the link background to that of the normal link colour, and
+      // automatically sets the foreground based on which foreground colour
+      // contrasts best with the new background.
+      :any-link {
+
+        $item-background: colour.get-contrasting(
+          $background:          colour.$background,
+          $foreground-on-light: link-var.$normal-colour-on-light,
+          $foreground-on-dark:  link-var.$normal-colour-on-dark,
+        );
+
+        $item-foreground: colour.get-contrasting(
+          $background: $item-background,
+        );
+
+        @include colour.set(
+          $background: $item-background,
+        );
+
+        // Force the custom property background colour because otherwise the
+        // link colours will be based on the default Material primary colour
+        // and not whatever the implementing theme would have set it to. This
+        // is a hack until links are refactored to use custom properties instead
+        // of Sass variables.
+        background-color: var(--material-primary-colour);
+
+        @include link-colour.set(
+          $background: $item-background,
+
+          $normal-on-light:     $item-foreground,
+          $highlight-on-light:  $item-foreground,
+          $active-on-light:     $item-foreground,
+
+          $normal-on-dark:      $item-foreground,
+          $highlight-on-dark:   $item-foreground,
+          $active-on-dark:      $item-foreground,
+        );
+
+        // Remove the text decoration as it's both not needed and will be
+        // displayed using the default Material primary colour.
+        text-decoration: none;
+
+      }
+
+    }
+
+    &--first,
+    &--previous,
+    &--next,
+    &--last {
+
+      :any-link {
+
+        padding:
+          var(--pager-navigation-item-padding-block)
+          var(--pager-navigation-item-padding-inline);
+
+      }
+
+    }
+
+  }
+
+}

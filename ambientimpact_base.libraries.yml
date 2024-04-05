@@ -87,6 +87,11 @@ radio:
     theme:
       stylesheets/elements/radio.css: {}
 
+pager:
+  css:
+    theme:
+      stylesheets/components/pager.css: {}
+
 photoswipe:
   css:
     theme:
