@@ -59,6 +59,8 @@ $outline-colour: black;
 
     background-color: var(--skip-link-background-colour);
 
+    backdrop-filter: blur(2px);
+
     @include material-shadow.shadow(2);
 
     @include outline.focus(
