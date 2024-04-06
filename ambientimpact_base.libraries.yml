@@ -63,6 +63,11 @@ local_tasks:
       stylesheets/components/local_tasks_tabs.css: {}
       stylesheets/components/local_tasks_actions.css: {}
 
+material_properties:
+  css:
+    theme:
+      stylesheets/properties/material.css: {}
+
 node:
   css:
     theme:

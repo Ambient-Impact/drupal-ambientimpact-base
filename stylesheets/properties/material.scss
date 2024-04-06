@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------------
+//   Material custom properties
+// -----------------------------------------------------------------------------
+
+@use 'material.common/material.general' as material-general;
+
+:root {
+
+  --material-border-radius: #{material-general.$border-radius};
+
+}
