@@ -133,8 +133,8 @@ The following major version bumps indicate breaking changes:
 
   * Removed `.nvmrc` file as Node.js is stable enough nowadays to no longer warrant this.
 
-  * Major rework of stylesheets:
+  * Significant rework of stylesheets:
 
-    * They now use [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) to configure various values rather than Sass variables.
+    * They now use many more [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) to configure various values rather than Sass variables where possible.
 
     * A lot of partials have been converted into standalone stylesheets and libraries which are attached to the appropriate elements, render arrays, etc. This allows for more fine-grained and efficient serving of styles that are actually used and less that are not used on a page or a site.
