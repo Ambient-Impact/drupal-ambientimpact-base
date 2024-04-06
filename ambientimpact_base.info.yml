@@ -24,6 +24,7 @@ regions:
   footer: 'Footer'
 
 libraries:
+  - ambientimpact_base/scroll
   - ambientimpact_base/skip_link
   - ambientimpact_ux/component.abbr
   - ambientimpact_ux/component.pointer_focus_hide

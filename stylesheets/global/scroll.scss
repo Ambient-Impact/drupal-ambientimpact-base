@@ -1,10 +1,9 @@
 // -----------------------------------------------------------------------------
-//   Base scroll partial
+//   Base scroll
 // -----------------------------------------------------------------------------
 
-@use 'sass/variables/general';
-
 html {
+
   // Enable smooth scrolling by default.
   scroll-behavior: smooth;
 
@@ -17,5 +16,6 @@ html {
     scroll-behavior: auto;
   }
 
-  scroll-padding-top: general.$general-spacing * 0.5;
+  scroll-padding-top: calc(var(--general-spacing) * 0.5);
+
 }
