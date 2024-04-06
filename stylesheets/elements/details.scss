@@ -4,7 +4,6 @@
 
 @use '../global/content';
 @use '../layout/vertical_spacing' as vertical-spacing;
-@use 'material.common/material.general' as material-general;
 @use 'material.ripple' as material-ripple;
 @use 'material.common/material.shadow' as material-shadow;
 @use 'sass/helpers/colour';
@@ -71,7 +70,7 @@ details:not(.details--demo-unstyled) {
   margin-top:     0;
   margin-bottom:  0;
 
-  border-radius: material-general.$border-radius;
+  border-radius: var(--material-border-radius);
 
   border: var(--details-border-width) solid var(--details-border-colour);
 

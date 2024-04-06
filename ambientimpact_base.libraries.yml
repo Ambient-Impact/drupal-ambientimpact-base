@@ -14,6 +14,7 @@ details:
       stylesheets/elements/details.css: {}
   dependencies:
     - ambientimpact_base/layout_properties
+    - ambientimpact_base/material_properties
     - ambientimpact_ux/component.material.ripple
 
 details.animated:
