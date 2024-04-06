@@ -1,10 +1,9 @@
 // -----------------------------------------------------------------------------
-//   Base table partial
+//   Base table
 // -----------------------------------------------------------------------------
 
 @use '../global/content';
 @use '../layout/vertical_spacing' as vertical-spacing;
-@use 'material.common/material.general' as material-general;
 @use 'sass:color';
 @use 'sass/helpers/colour';
 @use 'sass/helpers/selector';
@@ -13,68 +12,72 @@
 /// <table> element background colour on light backgrounds.
 ///
 $background-colour-on-light: color.mix(
-  colour.$foreground-on-light, colour.$background-light, 10%
-) !default;
+  colour.$foreground-on-light, colour.$background-light, 10%,
+);
 
 ///
 /// <thead> element background colour on light backgrounds.
 ///
-$header-background-colour-on-light: hsla(0, 0%, 0%, 0.05) !default;
+$header-background-colour-on-light: hsla(0, 0%, 0%, 0.05);
 
 ///
 /// <thead> element background colour on dark backgrounds.
 ///
-$header-background-colour-on-dark: hsla(0, 0%, 100%, 0.05) !default;
+$header-background-colour-on-dark: hsla(0, 0%, 100%, 0.05);
 
 ///
 /// <table> element background colour on dark backgrounds.
 ///
 $background-colour-on-dark: color.mix(
-  colour.$foreground-on-dark, colour.$background-dark, 10%
-) !default;
+  colour.$foreground-on-dark, colour.$background-dark, 10%,
+);
 
 ///
 /// Table cell border width.
 ///
-$cell-border-width: 2px !default;
+$cell-border-width: 2px;
 
 ///
 /// Table cell border style.
 ///
-$cell-border-style: solid !default;
+$cell-border-style: solid;
 
 ///
 /// Table cell border colour on light backgrounds.
 ///
-$cell-border-colour-on-light: hsla(0, 0%, 100%, 0.6) !default;
+$cell-border-colour-on-light: hsla(0, 0%, 100%, 0.6);
 
 ///
 /// Table cell border colour on dark backgrounds.
 ///
-$cell-border-colour-on-dark: hsla(0, 0%, 100%, 0.1) !default;
-
-///
-/// <table> element border radius.
-///
-$border-radius: material-general.$border-radius !default;
+$cell-border-colour-on-dark: hsla(0, 0%, 100%, 0.1);
 
 :root {
+
   --table-cell-padding-vertical:        0.3em;
+
   --table-cell-padding-horizontal:      0.7em;
+
   // If you don't use borders between cells, this custom property can be set to
   // a slightly larger value to increase the left and right padding for cells at
   // the left and right edges respectively.
   --table-cell-padding-horizontal-edge: var(--table-cell-padding-horizontal);
 
   --table-cell-border-width:            #{$cell-border-width};
+
   --table-cell-border-style:            #{$cell-border-style};
+
   --table-cell-border-colour:           #{$cell-border-colour-on-light};
 
   @include colour.on-dark-scheme {
     --table-cell-border-colour:        #{$cell-border-colour-on-dark};
   }
 
-  --table-border-radius: #{$border-radius};
+  ///
+  /// <table> element border radius.
+  ///
+  --table-border-radius: var(--material-border-radius);
+
 }
 
 table {
@@ -107,11 +110,13 @@ table {
   max-width: max-content;
 
   @at-root {
+
     @include vertical-spacing.against-previous(
       &,
       $spacing-small: content.$item-vertical-spacing-small,
-      $spacing-large: content.$item-vertical-spacing-large
+      $spacing-large: content.$item-vertical-spacing-large,
     );
+
   }
 
   @include colour.set(
@@ -119,37 +124,47 @@ table {
   );
 
   @include colour.on-dark-scheme {
+
     @include colour.set(
-      $background: $background-colour-on-dark
+      $background: $background-colour-on-dark,
     );
+
   }
 
   border-radius: var(--table-border-radius);
+
 }
 
 thead {
+
   @include colour.set(
     $background:            $header-background-colour-on-light,
-    $background-reference:  $background-colour-on-light
+    $background-reference:  $background-colour-on-light,
   );
 
   @include colour.on-dark-scheme {
+
     @include colour.set(
       $background:            $header-background-colour-on-dark,
-      $background-reference:  $background-colour-on-dark
+      $background-reference:  $background-colour-on-dark,
     );
+
   }
+
 }
 
 thead + tbody tr:first-child,
 tr + tr {
+
   border-top:
     var(--table-cell-border-width)
     var(--table-cell-border-style)
     var(--table-cell-border-colour);
+
 }
 
 td, th {
+
   padding:
     var(--table-cell-padding-vertical) var(--table-cell-padding-horizontal);
 
@@ -157,34 +172,49 @@ td, th {
     var(--table-cell-border-width)
     var(--table-cell-border-style)
     var(--table-cell-border-colour);
+
   border-right:
     var(--table-cell-border-width)
     var(--table-cell-border-style)
     var(--table-cell-border-colour);
 
   @include selector.root-conditions(('[dir=ltr]'), 'html') {
+
     &:first-child {
+
       padding-left: var(--table-cell-padding-horizontal-edge);
 
       border-left-width: 0;
+
     }
+
     &:last-child {
+
       padding-right: var(--table-cell-padding-horizontal-edge);
 
       border-right-width: 0;
+
     }
+
   }
   @include selector.root-conditions(('[dir=rtl]'), 'html') {
+
     &:first-child {
+
       padding-right: var(--table-cell-padding-horizontal-edge);
 
       border-right-width: 0;
+
     }
+
     &:last-child {
+
       padding-left: var(--table-cell-padding-horizontal-edge);
 
       border-left-width: 0;
+
     }
+
   }
 
   // These data attributes can be applied to ensure a given column does not get

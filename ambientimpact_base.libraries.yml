@@ -136,6 +136,13 @@ social_links:
   dependencies:
     - ambientimpact_base/layout_properties
 
+table:
+  css:
+    theme:
+      stylesheets/elements/table.css: {}
+  dependencies:
+    - ambientimpact_base/material_properties
+
 to_top:
   css:
     theme:

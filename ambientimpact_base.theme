@@ -66,6 +66,13 @@ function ambientimpact_base_element_info_alter(array &$info): void {
     ][] = 'ambientimpact_base/' . $elementName;
 
   }
+
+  if (isset($info['table'])) {
+
+    $info['table']['#attached']['library'][] = 'ambientimpact_base/table';
+
+  }
+
 }
 
 /**
