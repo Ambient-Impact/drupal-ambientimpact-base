@@ -2,7 +2,6 @@
 //   Base skip to content link partial
 // -----------------------------------------------------------------------------
 
-@use 'material.common/material.general' as material-general;
 @use 'material.common/material.shadow' as material-shadow;
 @use 'sass/helpers/colour';
 @use 'sass/helpers/outline';
@@ -15,46 +14,62 @@
 ///
 /// Skip to content link background colour.
 ///
-$background-colour: colour.greyscale(25%, 0.6) !default;
+$background-colour: colour.greyscale(25%, 0.6);
 
 ///
 /// Skip to content link focus outline colour.
 ///
-$outline-colour: black !default;
+$outline-colour: black;
+
+:root {
+
+  --skip-link-border-radius: var(--material-border-radius);
+
+  --skip-link-background-colour: #{$background-colour};
+
+  --skip-link-outline-colour: #{$outline-colour};
+
+}
 
 .skip-link-container {
-  @supports (pointer-events: none) and (display: flex) {
-    position: absolute;
 
-    display: flex;
-    justify-content: center;
+  position: absolute;
 
-    left:   0;
-    right:  0;
+  display: flex;
+  justify-content: center;
 
-    @include z-index.get('floating');
+  left:   0;
+  right:  0;
 
-    // Since this is meant to be focused by means other than a pointer, such as
-    // by keyboard, we can make it click-through so that it's not accidentally
-    // clicked when invisible.
-    pointer-events: none;
-  }
+  @include z-index.get('floating');
 
-  :link {
+  // Since this is meant to be focused by means other than a pointer, such as by
+  // keyboard, we can make it click-through so that it's not accidentally
+  // clicked when invisible.
+  pointer-events: none;
+
+  :any-link {
+
     padding: 0.5em 1em;
 
-    border-bottom-left-radius:  material-general.$border-radius;
-    border-bottom-right-radius: material-general.$border-radius;
+    border-bottom-left-radius:  var(--skip-link-border-radius);
+    border-bottom-right-radius: var(--skip-link-border-radius);
 
     @include colour.set($background: $background-colour);
+
+    background-color: var(--skip-link-background-colour);
 
     @include material-shadow.shadow(2);
 
     @include outline.focus(
       $is-link: true,
-      $colour:  $outline-colour
+      $colour:  $outline-colour,
     );
+
+    outline-color: var(--skip-link-outline-colour);
+
   }
+
 }
 
 // This is the anchor that the skip link targets. It's absolutely positioned to

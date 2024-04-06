@@ -115,6 +115,13 @@ photoswipe:
   dependencies:
     - ambientimpact_base/layout_properties
 
+skip_link:
+  css:
+    theme:
+      stylesheets/components/skip_link.css: {}
+  dependencies:
+    - ambientimpact_base/material_properties
+
 social_links:
   css:
     theme:
