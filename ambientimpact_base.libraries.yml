@@ -69,6 +69,11 @@ material_properties:
     theme:
       stylesheets/properties/material.css: {}
 
+messages:
+  css:
+    theme:
+      stylesheets/components/messages.css: {}
+
 node:
   css:
     theme:
