@@ -12,6 +12,9 @@
 
   @include abbr.abbr {
 
+    // Remove the normalize.css border bottom.
+    border-bottom-width: 0;
+
     cursor: help;
 
     text-decoration-style:      dotted;
