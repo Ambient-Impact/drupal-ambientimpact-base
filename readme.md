@@ -131,6 +131,8 @@ The following major version bumps indicate breaking changes:
 
   * Requires Drupal 10.
 
+  * Increase required version of [`ambientimpact_ux`](https://github.com/Ambient-Impact/drupal-ambientimpact-ux) from 1.x to 2.x; see tooltips rewrite below.
+
   * Removed `.nvmrc` file as Node.js is stable enough nowadays to no longer warrant this.
 
   * Significant rework of stylesheets:

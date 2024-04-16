@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "drupal-ambientimpact-core": "workspace:^1 || ^2",
-    "drupal-ambientimpact-ux": "workspace:^1"
+    "drupal-ambientimpact-ux": "workspace:^2"
   }
 }
