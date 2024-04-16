@@ -149,21 +149,6 @@ function ambientimpact_base_preprocess_html(array &$variables): void {
 }
 
 /**
- * Prepares variables for the 'ambientimpact_block_social_links' block template.
- *
- * This attaches the 'ambientimpact_block/social_links.tooltips' library to the
- * block.
- */
-function ambientimpact_base_preprocess_block__ambientimpact_block_social_links(
-  array &$variables
-): void {
-
-  $variables['#attached']['library'][] =
-    'ambientimpact_block/component.social_links.tooltips';
-
-}
-
-/**
  * Prepares variables for the 'system_branding_block' block template.
  *
  * @see \Drupal\ambientimpact_base\SiteBrandingBlockProperties::preprocess()

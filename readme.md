@@ -138,3 +138,13 @@ The following major version bumps indicate breaking changes:
     * They now use many more [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) to configure various values rather than Sass variables where possible.
 
     * A lot of partials have been converted into standalone stylesheets and libraries which are attached to the appropriate elements, render arrays, etc. This allows for more fine-grained and efficient serving of styles that are actually used and less that are not used on a page or a site.
+
+  * Tooltips have been completely rebuilt:
+
+    * All styles have been moved from [`ambientimpact_ux`](https://github.com/Ambient-Impact/drupal-ambientimpact-ux) to this theme.
+
+    * The new default `material` theme now automatically uses a dark background in light mode and a light background in dark mode.
+
+    * This theme now automatically constructs tooltips for all elements that have a `title` attribute, progressive enhancement-style.
+
+    * As a consequence of the previous point, this theme has removed all uses of the `abbr` component from [`ambientimpact_ux`](https://github.com/Ambient-Impact/drupal-ambientimpact-ux) and the `social_links.tooltips` component from [`ambientimpact_block`](https://github.com/Ambient-Impact/drupal-ambientimpact-block); their functionality is now provided by the above.

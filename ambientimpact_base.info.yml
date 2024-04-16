@@ -24,9 +24,10 @@ regions:
   footer: 'Footer'
 
 libraries:
+  - ambientimpact_base/abbr
   - ambientimpact_base/scroll
   - ambientimpact_base/skip_link
-  - ambientimpact_ux/component.abbr
+  - ambientimpact_base/tooltip
   - ambientimpact_ux/component.pointer_focus_hide
 
 libraries-override:
@@ -48,9 +49,6 @@ libraries-extend:
   ambientimpact_media/component.photoswipe:
     - ambientimpact_base/photoswipe
 
-  ambientimpact_ux/component.abbr:
-    - ambientimpact_base/abbr
-
   ambientimpact_ux/component.details.animated:
     - ambientimpact_base/details.animated
 
@@ -65,9 +63,6 @@ libraries-extend:
 
   ambientimpact_ux/component.toolbar:
     - ambientimpact_base/toolbar
-
-  ambientimpact_ux/component.tooltip:
-    - ambientimpact_base/tooltip
 
   ambientimpact_web_components/component.component_demo:
     - ambientimpact_base/component_demo

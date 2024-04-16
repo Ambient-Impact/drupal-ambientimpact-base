@@ -3,15 +3,88 @@
 // -----------------------------------------------------------------------------
 
 @use 'material.common/material.panel' as material-panel;
-@use 'tooltip/_tooltip';
+@use 'material.common/material.shadow' as material-shadow;
+@use 'sass/helpers/colour';
+@use 'sass/helpers/selector';
 
-// This adjusts the default tooltip Material theme colours to contrast against
-// otherwise similar background lightness/darkness.
-@each $theme-name, $background-colour in (
-  material-light: material-panel.$background-colour-light-on-light,
-  material-dark:  material-panel.$background-colour-dark-on-dark,
-) {
-  @include tooltip.tooltip-material-theme(
-    $theme-name, $background-colour
-  );
+///
+/// Tooltip material shadow depth.
+///
+$shadow-depth: 2;
+
+:root {
+
+  --tooltip-padding-block: 0.4em;
+
+  --tooltip-padding-inline: 0.8em;
+
+  --tooltip-arrow-bleed: 2px;
+
+}
+
+.tippy-box {
+
+  padding: var(--tooltip-padding-block) var(--tooltip-padding-inline);
+
+  padding-block: var(--tooltip-padding-block);
+
+  padding-inline: var(--tooltip-padding-inline);
+
+  // This allows the tooltip to inherit the document's font size instead of the
+  // fixed size Tippy.js sets.
+  font-size: inherit;
+
+  // Align text to the left in LTR and right in RTL directions, as that's more
+  // visually pleasing if or when text wraps to additional lines. Regardless
+  // of text alignment, the tooltip container itself will usually be centre-
+  // aligned by Tippy.js and/or Popper, so that's not affected.
+  @include selector.root-conditions(('[dir=ltr]'), 'html') {
+    text-align: left;
+  }
+  @include selector.root-conditions(('[dir=rtl]'), 'html') {
+    text-align: right;
+  }
+
+  // These attempt to fix 1px rounding error gaps between the panel and its
+  // arrow when using the SVG-based round arrow.
+  //
+  // @see https://github.com/atomiks/tippyjs/blob/ad85f6feb79cf6c5853c43bf1b2a50c4fa98e7a1/src/scss/svg-arrow.scss
+  //   Default Tippy.js styles.
+  &[data-placement^='top'] .tippy-svg-arrow > svg {
+    transform: rotate(180deg) translateY(var(--tooltip-arrow-bleed));
+  }
+  &[data-placement^='bottom'] .tippy-svg-arrow > svg {
+    transform: translateY(var(--tooltip-arrow-bleed));
+  }
+  &[data-placement^='left'] .tippy-svg-arrow > svg {
+    transform: rotate(90deg) translateY(var(--tooltip-arrow-bleed));
+  }
+  &[data-placement^='right'] .tippy-svg-arrow > svg {
+    transform: rotate(-90deg) translateY(var(--tooltip-arrow-bleed));
+  }
+
+}
+
+.tippy-box[data-theme='material'] {
+
+  filter:
+    drop-shadow(material-shadow.filter-downward($shadow-depth))
+    drop-shadow(material-shadow.filter-ambient($shadow-depth));
+
+  @include colour.set($background: material-panel.$background-colour-dark);
+
+  @include colour.on-dark-scheme {
+
+    @include colour.set($background: material-panel.$background-colour-light);
+
+  }
+
+  .tippy-content {
+    padding: 0;
+  }
+
+  .tippy-svg-arrow svg {
+    fill: var(--background-colour);
+  }
+
 }

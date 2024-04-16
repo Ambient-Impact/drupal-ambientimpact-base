@@ -159,3 +159,7 @@ tooltip:
   css:
     theme:
       stylesheets/components/tooltip.css: {}
+  js:
+    javascript/tooltips.js: { attributes: { defer: true } }
+  dependencies:
+    - ambientimpact_ux/component.tooltip
