@@ -13,7 +13,7 @@ AmbientImpact.addComponent('baseThemeTooltips', function(baseTooltips, $) {
   // Set the default theme as our material theme. This should be done here so it
   // applies to all tooltips created via other means, e.g. the tooltip component
   // demo.
-  tippy.defaultProps.theme = 'material';
+  tippy.setDefaultProps({theme: 'material'});
 
   this.addBehaviour(
     'AmbientImpactTooltips',
