@@ -163,3 +163,4 @@ tooltip:
     javascript/tooltips.js: { attributes: { defer: true } }
   dependencies:
     - ambientimpact_ux/component.tooltip
+    - ambientimpact_ux/tippy.js-animation-shift-away
