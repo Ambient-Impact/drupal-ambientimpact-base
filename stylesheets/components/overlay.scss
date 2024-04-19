@@ -15,51 +15,88 @@
 ///
 $opacity: 0.8;
 
-:root {
+///
+/// Overlay colour on light colour scheme.
+///
+$colour-light: colour.$background-light;
+
+///
+/// Overlay colour on dark colour scheme.
+///
+$colour-dark: colour.$background-dark;
+
+:where(:root) { // Zero specificity.
 
   ///
   /// Overlay opacity when visible.
   ///
   --overlay-opacity: #{$opacity};
 
-}
+  ///
+  /// Overlay colour on light colour scheme.
+  ///
+  --overlay-colour: #{$colour-light};
 
-///
-/// Overlay colour on light colour scheme.
-///
-$colour-light: color.change(colour.$background-light, $alpha: $opacity);
+  @include colour.on-dark-scheme {
 
-///
-/// Overlay colour on dark colour scheme.
-///
-$colour-dark: color.change(colour.$background-dark, $alpha: $opacity);
+    ///
+    /// Overlay opacity when visible in dark mode.
+    ///
+    /// This is less opaque than the light mode as this looks a bit closer
+    /// perceptually to the light mode opacity when viewed in a darker
+    /// environment.
+    ///
+    --overlay-opacity: #{$opacity * 0.75};
 
-.overlay {
-
-  // Firefox 124 does not support relative colour syntax at the time of writing
-  // and worse, it incorrectly seems to think that it does if the @supports
-  // tries to use custom properties to test for it, so we have to use a literal
-  // value here.
-  //
-  // @see https://bugzilla.mozilla.org/show_bug.cgi?id=1701488
-  //   Ongoing bug to implement it.
-  //
-  // @see https://caniuse.com/css-relative-colors
-  @supports not (background-color: rgb(from black r g b / 0.5)) {
-
-    @include colour.set($background: $colour-light);
-
-    @include colour.on-dark-scheme {
-      @include colour.set($background: $colour-dark);
-    }
+    ///
+    /// Overlay colour on dark colour scheme.
+    ///
+    --overlay-colour: #{$colour-dark};
 
   }
 
-  @supports (background-color: rgb(from black r g b / 0.5)) {
+}
 
-    background-color: rgb(
-      from var(--background-colour) r g b / var(--overlay-opacity)
+.overlay {
+
+  $test: color-mix(in srgb, black 50%, white);
+
+  // color-mix() is currently better supported as of April 2024 than relative
+  // color syntax (which is not supported by Firefox yet)
+  //
+  // @see https://bugzilla.mozilla.org/show_bug.cgi?id=1701488
+  //   Ongoing bug to implement relative colours.
+  //
+  // @see https://caniuse.com/mdn-css_types_color_color-mix
+  //
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix
+  //
+  // @see https://caniuse.com/css-relative-colors
+  @supports (background-color: #{$test}) {
+
+    background-color: color-mix(
+      in srgb,
+      var(--overlay-colour)
+      calc(var(--overlay-opacity) * 100%),
+      transparent
     );
+
+  }
+
+  // If color-mix() is not supported, fall back to setting the colour with the
+  // opacity directly, which is better than nothing but isn't as easy for themes
+  // to customize.
+  @supports not (background-color: #{$test}) {
+
+    @include colour.set(
+      $background: color.change($colour-light, $alpha: $opacity),
+    );
+
+    @include colour.on-dark-scheme {
+      @include colour.set(
+        $background: color.change($colour-dark, $alpha: $opacity),
+      );
+    }
 
   }
 

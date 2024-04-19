@@ -26,3 +26,24 @@ html, body {
   accent-color: var(--material-primary-colour);
 
 }
+
+// Since this file is a partial, it's included by the theme that builds off of
+// this base theme and thus can configure its colours, which is not currently
+// possible to do cross-browser in the standalone overlay stylesheet.
+:root {
+
+  ///
+  /// Overlay colour on light colour scheme.
+  ///
+  --overlay-colour: #{colour.$background-light};
+
+  @include colour.on-dark-scheme {
+
+    ///
+    /// Overlay colour on dark colour scheme.
+    ///
+    --overlay-colour: #{colour.$background-dark};
+
+  }
+
+}
