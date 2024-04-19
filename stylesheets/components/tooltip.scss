@@ -79,6 +79,8 @@ $shadow-depth: 2;
 
   }
 
+  border-radius: var(--material-border-radius);
+
   .tippy-content {
     padding: 0;
   }
