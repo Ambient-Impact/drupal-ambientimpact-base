@@ -65,7 +65,7 @@ $shadow-depth: 2;
 
 }
 
-.tippy-box[data-theme='material'] {
+.tippy-box[data-theme~='material'] {
 
   filter:
     drop-shadow(material-shadow.filter-downward($shadow-depth))
