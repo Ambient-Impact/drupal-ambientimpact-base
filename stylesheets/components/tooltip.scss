@@ -90,3 +90,11 @@ $shadow-depth: 2;
   }
 
 }
+
+.tippy-box[data-theme~='material-light'] {
+  @include colour.set($background: material-panel.$background-colour-light);
+}
+
+.tippy-box[data-theme~='material-dark'] {
+  @include colour.set($background: material-panel.$background-colour-dark);
+}
