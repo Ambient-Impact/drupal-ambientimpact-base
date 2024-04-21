@@ -49,6 +49,9 @@ libraries-extend:
   ambientimpact_media/component.photoswipe:
     - ambientimpact_base/photoswipe
 
+  ambientimpact_ux/component.content_popup:
+    - ambientimpact_base/content_popup
+
   ambientimpact_ux/component.details.animated:
     - ambientimpact_base/details.animated
 

@@ -8,6 +8,11 @@ checkbox:
     theme:
       stylesheets/elements/checkbox.css: {}
 
+content_popup:
+  css:
+    theme:
+      stylesheets/components/content_popup.css: {}
+
 details:
   css:
     theme:

@@ -1,0 +1,11 @@
+// -----------------------------------------------------------------------------
+//   Base content pop-up component
+// -----------------------------------------------------------------------------
+
+.tippy-box[data-theme~='content-popup'] {
+  // Increases the max-width for content pop-up Tippy.js tooltips over the base
+  // styles in ./tooltip.scss. Content in the pop-ups can be a bit longer than
+  // other tooltips, sometimes up to a paragraph, so this tries to accomodate
+  // that.
+  max-width: 22em;
+}
