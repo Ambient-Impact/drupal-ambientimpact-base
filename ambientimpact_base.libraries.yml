@@ -184,6 +184,9 @@ tooltip:
     - ambientimpact_ux/tippy.js-animation-shift-away
 
 tooltip_config:
+  css:
+    theme:
+      stylesheets/components/tooltip_config.css: {}
   js:
     javascript/tooltip_config.js: { attributes: { defer: true } }
   dependencies:
