@@ -10,4 +10,11 @@
 
   --tooltip-arrow-bleed: 2px;
 
+  --tooltip-move-transition-duration: 0.25s;
+
+  --tooltip-move-transition-timing-function: var(--easing-decelerate, ease-out);
+
+  --tooltip-move-transition: transform var(--tooltip-move-transition-duration
+    var(--tooltip-move-transition-timing-function);
+
 }

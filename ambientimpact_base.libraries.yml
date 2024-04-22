@@ -190,6 +190,7 @@ tooltip_config:
   js:
     javascript/tooltip_config.js: { attributes: { defer: true } }
   dependencies:
+    - ambientimpact_base/motion_properties
     - ambientimpact_core/framework
     - ambientimpact_ux/tippy.js
     - ambientimpact_ux/tippy.js-animation-shift-away
