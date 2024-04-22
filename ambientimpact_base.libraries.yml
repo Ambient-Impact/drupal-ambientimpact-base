@@ -30,6 +30,7 @@ details.animated:
     javascript/details.animated.js: { attributes: { defer: true } }
   dependencies:
     - ambientimpact_base/details
+    - ambientimpact_core/framework
 
 details.icon:
   css:
