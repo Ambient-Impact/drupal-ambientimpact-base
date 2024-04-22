@@ -168,5 +168,15 @@ tooltip:
     javascript/tooltips.js: { attributes: { defer: true } }
   dependencies:
     - ambientimpact_base/material_properties
+    - ambientimpact_base/tooltip_config
+    - ambientimpact_core/framework
     - ambientimpact_ux/component.tooltip
+    - ambientimpact_ux/tippy.js-animation-shift-away
+
+tooltip_config:
+  js:
+    javascript/tooltip_config.js: { attributes: { defer: true } }
+  dependencies:
+    - ambientimpact_core/framework
+    - ambientimpact_ux/tippy.js
     - ambientimpact_ux/tippy.js-animation-shift-away
