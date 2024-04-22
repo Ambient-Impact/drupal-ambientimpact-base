@@ -80,6 +80,11 @@ messages:
     theme:
       stylesheets/components/messages.css: {}
 
+motion_properties:
+  css:
+    theme:
+      stylesheets/properties/motion.css: {}
+
 node:
   css:
     theme:

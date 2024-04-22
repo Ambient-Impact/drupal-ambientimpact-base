@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------------
+//   Motion custom properties
+// -----------------------------------------------------------------------------
+
+@use 'sass/variables/motion';
+
+:root {
+
+  --easing-standard: #{motion.$easing-standard};
+
+  --easing-decelerate: #{motion.$easing-decelerate};
+
+  --easing-accelerate: #{motion.$easing-accelerate};
+
+  --easing-sharp: #{motion.$easing-sharp};
+
+}
