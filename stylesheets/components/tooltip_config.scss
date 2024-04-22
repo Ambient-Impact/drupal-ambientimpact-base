@@ -14,7 +14,7 @@
 
   --tooltip-move-transition-timing-function: var(--easing-decelerate, ease-out);
 
-  --tooltip-move-transition: transform var(--tooltip-move-transition-duration
+  --tooltip-move-transition: transform var(--tooltip-move-transition-duration)
     var(--tooltip-move-transition-timing-function);
 
 }
