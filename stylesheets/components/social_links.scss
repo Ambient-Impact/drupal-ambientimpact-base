@@ -28,7 +28,10 @@
     // correctly alter the width past 100%.
     max-width: none;
 
-    & #{$self}__network {
+    // Applying padding to the links so that the Tippy.js singleton
+    // moveTransition doesn't choose to also apply to the show/hide if you
+    // mouse around too slowly.
+    & #{$self}__network-link {
       padding: var(--network-padding);
     }
   }

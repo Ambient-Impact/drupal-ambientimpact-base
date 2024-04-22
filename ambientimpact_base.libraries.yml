@@ -138,8 +138,12 @@ social_links:
   css:
     theme:
       stylesheets/components/social_links.css: {}
+  js:
+    javascript/social_links.js: { attributes: { defer: true } }
   dependencies:
     - ambientimpact_base/layout_properties
+    - ambientimpact_base/tooltip_config
+    - ambientimpact_core/framework
 
 table:
   css:
