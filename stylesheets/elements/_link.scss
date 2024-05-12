@@ -15,6 +15,16 @@
 $use-link-styles: true !default;
 
 ///
+/// Whether to style pseudo-links.
+///
+/// These are identified via data-pseudo-link attributes and are styled with
+/// the same colours, transitions, and text-decoration except with a dashed
+/// underline rather than a solid one. They're usually controlled via JavaScript
+/// behaviours.
+///
+$use-pseudo-link-styles: true !default;
+
+///
 /// Whether to include the image links styles.
 ///
 $use-image-link-styles: true !default;
@@ -133,6 +143,24 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
         @if $use-image-link-styles == true {
           @include image;
         }
+      }
+    }
+
+    @if $use-pseudo-link-styles == true {
+      [data-pseudo-link] {
+
+        @include link.link;
+
+        @include colour.on-dark-scheme {
+          @include link-colour.set(colour.$background-dark);
+        }
+
+        text-decoration-line:       underline;
+        text-decoration-style:      dashed;
+        text-decoration-thickness:  var(--text-decoration-thickness, 2px);
+
+        cursor: pointer;
+
       }
     }
 
