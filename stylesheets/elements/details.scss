@@ -43,6 +43,23 @@
 
 }
 
+// This replicates the Classy theme's padding values.
+details.details--demo-unstyled {
+
+  --details-content-padding-block:  0.5em;
+
+  --details-content-padding-inline: 1.5em;
+
+  > .details-wrapper {
+
+    padding:
+      var(--details-content-padding-block)
+      var(--details-content-padding-inline);
+
+  }
+
+}
+
 // This is separated from the rest so it can apply to all <details>, including
 // the unstyled demo.
 details {

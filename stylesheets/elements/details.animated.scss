@@ -4,14 +4,27 @@
 
 .details-animated {
 
-  &__content-clone-inner {
+  &:not(.details--demo-unstyled) &__content-clone-inner {
 
-    // Same as .details-wrapper
+    // Same as .details-wrapper.
     padding:
       0
       var(--details-content-padding-inline)
       var(--details-content-padding-block)
       var(--details-content-padding-inline);
+
+  }
+
+  &.details--demo-unstyled &__content-clone-inner {
+
+    // Same as vanilla Classy .details-wrapper.
+    padding:
+      var(--details-content-padding-block)
+      var(--details-content-padding-inline);
+
+  }
+
+  &__content-clone-inner {
 
     // This reverts the list marker position to outside, because inside the
     // <summary> element the list marker is set to inside and this is an
@@ -23,7 +36,7 @@
   }
 
   // Reverts the display: inline; from the base details styles.
-  &:not(.details--demo-unstyled) > summary:first-of-type &__content-clone {
+  & > summary:first-of-type &__content-clone {
     &, * {
       display: revert;
     }
