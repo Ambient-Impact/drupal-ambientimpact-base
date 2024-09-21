@@ -85,3 +85,6 @@ libraries-extend:
 
   node/drupal.node.preview:
     - ambientimpact_base/node_preview
+
+  toolbar/toolbar:
+    - ambientimpact_base/toolbar_displace
