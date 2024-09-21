@@ -66,3 +66,6 @@ libraries-extend:
     - ambientimpact_ux/component.displace
   gin/gin_horizontal_toolbar:
     - ambientimpact_ux/component.displace
+
+  toolbar/toolbar:
+    - ambientimpact_base/toolbar_displace

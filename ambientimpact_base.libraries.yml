@@ -35,3 +35,10 @@ item_list:
   css:
     theme:
       stylesheets/components/item_list.css: {}
+
+toolbar_displace:
+  js:
+    javascript/toolbar_displace.js: { attributes: { defer: true } }
+  dependencies:
+    - ambientimpact_core/component.fastdom
+    - ambientimpact_core/framework
