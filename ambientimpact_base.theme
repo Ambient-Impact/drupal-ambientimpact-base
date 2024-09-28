@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Drupal\ambientimpact_base\DetailsPreprocess;
 use Drupal\ambientimpact_base\ResponsiveImageFormatterPreprocess;
 use Drupal\ambientimpact_base\SiteBrandingBlockProperties;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_element_info_alter().
@@ -248,6 +249,49 @@ function ambientimpact_base_preprocess_responsive_image_formatter(
   \Drupal::classResolver(ResponsiveImageFormatterPreprocess::class)->preprocess(
     $variables
   );
+
+}
+
+/**
+ * Prepares variables for image caption formatter templates.
+ *
+ * This creates the 'attributes' and 'caption_attributes' keys if they don't
+ * exist.
+ *
+ * @see \template_preprocess_image_caption_formatter()
+ *
+ * @see \ambientimpact_media_preprocess_image_caption_formatter()
+ *
+ * @see image-caption-formatter.html.twig
+ */
+function ambientimpact_base_preprocess_image_caption_formatter(
+  array &$variables,
+): void {
+
+  if (!isset($variables['attributes'])) {
+    $variables['attributes'] = new Attribute();
+  }
+
+  if (!isset($variables['caption_attributes'])) {
+    $variables['caption_attributes'] = new Attribute();
+  }
+
+}
+
+/**
+ * Prepares variables for a filter caption.
+ *
+ * @see \Drupal\filter\Plugin\Filter\FilterCaption
+ *
+ * @see filter-caption.html.twig
+ */
+function ambientimpact_base_preprocess_filter_caption(
+  array &$variables,
+): void {
+
+  if (!isset($variables['caption_attributes'])) {
+    $variables['caption_attributes'] = new Attribute();
+  }
 
 }
 

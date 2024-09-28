@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme implementation to display a formatted image field with a caption.
+ * Theme override to display a formatted image field with a caption.
  *
  * This modifies the original by wrapping everything in a <figure> and replacing
  * the <blockquote> for a <figcaption>. Additionally, this is altered to use the
@@ -9,20 +9,30 @@
  * alter it. Also adds the 'link_attributes' variable.
  *
  * Available variables:
+ *
  * - image: A collection of image data.
+ *
  * - image_style: An optional image style.
+ *
  * - url: An optional URL the image can be linked to.
+ *
  * - link_attributes: An array of attributes to add to the link if 'url' is set.
- * - caption : An optional image caption.
  *
- * @see template_preprocess_image_caption_formatter()
+ * - caption: An optional image caption.
  *
- * @see ambientimpact_media_theme_registry_alter()
+ * - attributes: An array of attributes to set on the <figure> element.
+ *
+ * - caption_attributes: An array of attributes to set on the <figcaption>
+ *   element
+ *
+ * @see \template_preprocess_image_caption_formatter()
+ *
+ * @see \ambientimpact_media_preprocess_image_caption_formatter()
  *
  * @ingroup themeable
  */
 #}
-<figure>
+<figure {{ container_attributes }}>
   {% if url %}
     {{ link(image, url, link_attributes) }}
   {% else %}
@@ -30,6 +40,6 @@
   {% endif %}
 
   {% if caption %}
-    <figcaption>{{ caption|raw }}</figcaption>
+    <figcaption {{ caption_attributes }}>{{ caption|raw }}</figcaption>
   {% endif %}
 </figure>

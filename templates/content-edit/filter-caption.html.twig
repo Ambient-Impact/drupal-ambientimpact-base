@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme override for a filter caption.
+ *
+ * Returns HTML for a captioned image, audio, video, or other tag.
+ *
+ * Available variables:
+ *
+ * - node: The complete HTML tag whose contents are being captioned.
+ *
+ * - tag: The name of the HTML tag whose contents are being captioned.
+ *
+ * - caption: The caption text.
+ *
+ * - classes: The classes of the captioned HTML tag.
+ *
+ * - caption_attributes: Attributes for the <figcaption> element.
+ */
+#}
+<figure role="group" class="caption caption-{{ tag }}{%- if classes %} {{ classes }}{%- endif %}">
+{{ node }}
+<figcaption {{ caption_attributes }}>{{ caption }}</figcaption>
+</figure>
