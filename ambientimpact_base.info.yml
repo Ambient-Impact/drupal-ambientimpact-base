@@ -41,6 +41,16 @@ libraries-override:
   # classes.
   geshifilter/geshifilter: false
 
+  # This is added unconditionally by the CKEditor Details Accordion module, but
+  # the core library is primarily a shim/polyfill for older browsers that don't
+  # support <details>. As of writing, in 2024, all browsers have supported it
+  # for over 4 years.
+  #
+  # @see https://www.drupal.org/project/ckeditor_details
+  #
+  # @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details
+  core/drupal.collapse: false
+
 libraries-extend:
 
   ambientimpact_block/component.social_links:
