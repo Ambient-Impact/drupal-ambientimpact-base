@@ -9,3 +9,12 @@
   // that.
   max-width: 22em;
 }
+
+.tippy-content .content-popup {
+
+  // Undo text-wrap: balance; from the tooltip component as that looks good for
+  // shorter tooltips but gives in awkward results with longer and more complex
+  // content that can't be shrink-wrapped.
+  text-wrap: wrap;
+
+}

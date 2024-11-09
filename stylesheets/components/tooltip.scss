@@ -57,6 +57,23 @@ $shadow-depth: 2;
 
 }
 
+.tippy-content {
+
+  // Attempt to balance the length of lines to avoid a long line followed by
+  // a very short one.
+  //
+  // Note that while this is now a shorthand for two properties, the individual
+  // properties are not as well supported as the shorthand at the time of
+  // writing. Wrapping this in an @supports is not really worth it, and may be
+  // more difficult to debug.
+  //
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap-mode
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap-style
+  text-wrap: balance;
+
+}
+
 .tippy-box[data-theme~='material'] {
 
   filter:
