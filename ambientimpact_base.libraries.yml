@@ -188,6 +188,7 @@ tooltip:
     - ambientimpact_base/tooltip_config
     - ambientimpact_core/framework
     - ambientimpact_ux/component.tooltip
+    - ambientimpact_ux/component.tooltip.shrinkwrap
     - ambientimpact_ux/tippy.js-animation-shift-away
 
 tooltip_config:
