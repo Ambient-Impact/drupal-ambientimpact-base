@@ -17,7 +17,6 @@ AmbientImpact.onGlobals([
     // max-width at all so that we can instead set this via a stylesheet. Any
     // value apparently works here.
     maxWidth: '',
-    moveTransition: 'var(--tooltip-move-transition)',
     // Our custom Material theme; not to be confused with the one that ships
     // with Tippy.js which is not loaded.
     theme: 'material',
