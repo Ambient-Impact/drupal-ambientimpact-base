@@ -69,3 +69,8 @@ $track-colour-on-dark: color.mix(
   }
 
 }
+
+// Remove our colours from the Drupal toolbar/navigation module.
+.admin-toolbar {
+  scrollbar-color: initial;
+}
