@@ -54,6 +54,11 @@ feed_icon:
     theme:
       stylesheets/components/feed_icon.css: {}
 
+gin_core_navigation:
+  css:
+    theme:
+      stylesheets/components/gin_core_navigation.css: {}
+
 item_list:
   css:
     theme:

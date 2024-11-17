@@ -83,6 +83,9 @@ libraries-extend:
   classy/node:
     - ambientimpact_base/node
 
+  gin/core_navigation:
+    - ambientimpact_base/gin_core_navigation
+
   node/drupal.node.preview:
     - ambientimpact_base/node_preview
 
