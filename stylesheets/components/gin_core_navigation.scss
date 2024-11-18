@@ -2,32 +2,6 @@
 //   Gin core Navigation module fixes
 // -----------------------------------------------------------------------------
 
-// This primarily fixes the mobile/small screen control bar that doesn't use
-// the correct background colour but defaults to white.
-
-// Gin uses the .admin-toolbar selector for this which means the custom
-// properties never get applied to the control bar. We need
-// --admin-toolbar-color-white so we might as well copy the entire property
-// declaration.
-//
-// @todo Open Gin issue for this.
-[data-drupal-admin-styles] {
-  --admin-toolbar-font-family:    var(--gin-font);
-  --admin-toolbar-color-white:    var(--gin-bg-layer);
-  --admin-toolbar-color-gray-050: var(--gin-bg-layer2);
-  --admin-toolbar-color-gray-100: var(--gin-border-color-layer);
-  --admin-toolbar-color-gray-200: var(--gin-border-color-layer2);
-  --admin-toolbar-color-gray-800: var(--gin-color-text);
-  --admin-toolbar-color-gray-990: var(--gin-color-primary-active);
-}
-
-// Core hard codes this as 'white' instead of using the custom property.
-//
-// @todo Open core issue for this.
-.admin-toolbar-control-bar {
-  background-color: var(--admin-toolbar-color-white);
-}
-
 // These attempt to size icons to match the rest of the navigation which uses
 // rem units. By default, --gin-icon-size-toolbar is set 20px, which results in
 // the icons being smaller and off centre.
