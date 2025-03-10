@@ -12,6 +12,10 @@
 ///
 $shadow-depth: 2;
 
+[data-tippy-root] {
+  max-width: calc(100vw - var(--tooltip-offset-padding-inline) * 2);
+}
+
 .tippy-box {
 
   max-width: var(--tooltip-content-max-width);

@@ -19,4 +19,8 @@
   --tooltip-move-transition: transform var(--tooltip-move-transition-duration)
     var(--tooltip-move-transition-timing-function);
 
+  --tooltip-offset-padding-block: var(--layout-gutter, 0.5em);
+
+  --tooltip-offset-padding-inline: var(--layout-gutter, 0.5em);
+
 }
