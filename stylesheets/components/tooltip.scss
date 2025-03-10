@@ -14,7 +14,7 @@ $shadow-depth: 2;
 
 .tippy-box {
 
-  max-width: 18em;
+  max-width: var(--tooltip-content-max-width);
 
   padding: var(--tooltip-padding-block) var(--tooltip-padding-inline);
 
