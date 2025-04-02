@@ -8,30 +8,50 @@
 @use 'sass:color';
 @use 'sass/helpers/colour';
 
+///
+/// Progress bar filled area colour on light backgrounds.
+///
+$colour-filled-on-light: color.scale(
+  material-colour.$primary, $lightness: 35%, $saturation: 90%,
+) !default;
+
+///
+/// Progress bar filled area colour on dark backgrounds.
+///
+$colour-filled-on-dark: color.scale(
+  material-colour.$primary, $lightness: 25%, $saturation: 80%,
+) !default;
+
+///
+/// Progress bar empty area colour on light backgrounds.
+///
+$colour-empty-on-light: color.scale(
+  color.mix(material-colour.$primary, colour.$background-light, 30%),
+  $lightness: 25%,
+) !default;
+
+///
+/// Progress bar empty area colour on dark backgrounds.
+///
+$colour-empty-on-dark: color.mix(
+  material-colour.$primary, colour.$background-dark, 60%,
+) !default;
+
 :root,
 // Double attribute for specificity to fix a brief flash of the Gin accent
 // colour when navigating away from a page that triggers the progress bar to
 // display.
 :root[data-gin-accent][data-gin-accent] {
 
-  --refreshless-progress-bar-filled-colour: #{color.scale(
-    material-colour.$primary, $lightness: 35%, $saturation: 90%,
-  )};
+  --refreshless-progress-bar-filled-colour: #{$colour-filled-on-light};
 
-  --refreshless-progress-bar-empty-colour: #{color.scale(
-    color.mix(material-colour.$primary, colour.$background-light, 30%),
-    $lightness: 25%,
-  )};
+  --refreshless-progress-bar-empty-colour: #{$colour-empty-on-light};
 
   @include colour.on-dark-scheme {
 
-    --refreshless-progress-bar-filled-colour: #{color.scale(
-      material-colour.$primary, $lightness: 25%, $saturation: 80%,
-    )};
+    --refreshless-progress-bar-filled-colour: #{$colour-filled-on-dark};
 
-    --refreshless-progress-bar-empty-colour: #{color.mix(
-      material-colour.$primary, colour.$background-dark, 60%,
-    )};
+    --refreshless-progress-bar-empty-colour: #{$colour-empty-on-dark};
 
   }
 
