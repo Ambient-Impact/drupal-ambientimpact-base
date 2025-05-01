@@ -19,9 +19,11 @@
   margin-top:     0;
   margin-bottom:  0;
 
-  padding: code.$block-body-padding;
+  padding:
+    var(--code-block-body-padding-block)
+    var(--code-block-body-padding-inline);
 
-  border-radius: code.$border-radius;
+  border-radius: var(--code-block-border-radius);
 
   // By default, this is set to a fixed, small size, so set it to a percentage
   // to inherit responsive font scaling. 100% feels a bit too big here, so we're
@@ -33,40 +35,71 @@
   // effect.
   @include colour.set(
     $background:          code.$background-colour-on-light,
-    $foreground-on-dark:  code.$colour-symbol,
-    $foreground-on-light: code.$colour-symbol
+    $foreground-on-dark:  code.$colour-symbol-on-dark,
+    $foreground-on-light: code.$colour-symbol-on-light,
   );
 
   @include colour.on-dark-scheme {
     @include colour.set(
       $background:          code.$background-colour-on-dark,
-      $foreground-on-dark:  code.$colour-symbol,
-      $foreground-on-light: code.$colour-symbol
+      $foreground-on-dark:  code.$colour-symbol-on-dark,
+      $foreground-on-light: code.$colour-symbol-on-light,
     );
   }
 
   .sf-dump-str,
   .sf-dump-key {
-    color: code.$colour-string;
+
+    color: code.$colour-string-on-light;
+
+    @include colour.on-dark-scheme {
+      color: code.$colour-string-on-dark;
+    }
+
   }
 
-  .sf-dump-note {
-    color: code.$colour-keyword;
+  .sf-dump-note, .sf-dump-ellipsis-note {
+
+    color: code.$colour-keyword-on-light;
+
+    @include colour.on-dark-scheme {
+      color: code.$colour-keyword-on-dark;
+    }
 
     font-style: italic;
+
   }
 
   .sf-dump-index {
-    color: code.$colour-number;
+
+    color: code.$colour-number-on-light;
+
+    @include colour.on-dark-scheme {
+      color: code.$colour-number-on-dark;
+    }
+
   }
 
   .sf-dump-public,
   .sf-dump-protected,
   .sf-dump-private {
-    color: code.$colour-method;
+
+    color: code.$colour-method-on-light;
+
+    @include colour.on-dark-scheme {
+      color: code.$colour-method-on-dark;
+    }
+
   }
 
   .sf-dump-const {
-    color: code.$colour-reserved-word;
+
+    color: code.$colour-reserved-word-on-light;
+
+    @include colour.on-dark-scheme {
+      color: code.$colour-reserved-word-on-dark;
+    }
+
   }
+
 }

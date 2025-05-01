@@ -3,15 +3,15 @@
 // -----------------------------------------------------------------------------
 
 @use '../layout/vertical_spacing' as vertical-spacing;
-@use 'material.common/material.general' as material-general;
 @use 'sass:color';
 @use 'sass/helpers/colour';
-@use 'sass/variables/general';
 
 ///
 /// Highlighted code background colour on light backgrounds.
 ///
-$background-colour-on-light: colour.$background-dark !default;
+$background-colour-on-light: color.mix(
+  colour.$foreground-on-light, colour.$background-light, 15%
+) !default;
 
 ///
 /// Highlighted code background colour on dark backgrounds.
@@ -24,7 +24,7 @@ $background-colour-on-dark: color.mix(
 /// Highlighted code header background colour on light backgrounds.
 ///
 $header-background-colour-on-light: color.mix(
-  colour.$foreground-on-dark, colour.$background-dark, 30%
+  colour.$foreground-on-light, colour.$background-light, 30%
 ) !default;
 
 ///
@@ -35,20 +35,12 @@ $header-background-colour-on-dark: color.mix(
 ) !default;
 
 ///
-/// Highlighted code title padding.
+/// Highlighted code string colour.
 ///
-$block-title-padding:
-  (general.$general-spacing * 0.7) general.$general-spacing !default;
-
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
 ///
-/// Highlighted code body padding.
-///
-$block-body-padding: general.$general-spacing !default;
-
-///
-/// Highlighted code border-radius.
-///
-$border-radius: material-general.$border-radius !default;
+$colour-string: #e7b248 !default;
 
 ///
 /// Highlighted code string colour.
@@ -56,7 +48,17 @@ $border-radius: material-general.$border-radius !default;
 /// @link https://www.monokai.pro/
 ///   From Monokai colour scheme.
 ///
-$colour-string: #e7b248 !default;
+$colour-string-on-light: color.scale(
+  $colour-string, $lightness: -40%, $saturation: 50%,
+) !default;
+
+///
+/// Highlighted code string colour.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+///
+$colour-string-on-dark: $colour-string !default;
 
 ///
 /// Highlighted code symbol colour.
@@ -67,12 +69,46 @@ $colour-string: #e7b248 !default;
 $colour-symbol: #f92468 !default;
 
 ///
+/// Highlighted code symbol colour on light backgrounds.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+///
+$colour-symbol-on-light: $colour-symbol !default;
+
+///
+/// Highlighted code symbol colour on dark backgrounds.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+///
+$colour-symbol-on-dark: $colour-symbol !default;
+
+///
 /// Highlighted code number colour.
 ///
 /// @link https://www.monokai.pro/
 ///   From Monokai colour scheme.
 ///
 $colour-number: #ac80ff !default;
+
+///
+/// Highlighted code number colour on light backgrounds.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+///
+$colour-number-on-light: color.scale(
+  $colour-number, $lightness: -30%, $saturation: -50%,
+) !default;
+
+///
+/// Highlighted code number colour on dark backgrounds.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+///
+$colour-number-on-dark: $colour-number !default;
 
 ///
 /// Highlighted code keyword colour.
@@ -83,11 +119,45 @@ $colour-number: #ac80ff !default;
 $colour-keyword: #67d8ef !default;
 
 ///
+/// Highlighted code keyword colour on light backgrounds.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+///
+$colour-keyword-on-light: color.scale(
+  $colour-keyword, $lightness: -45%,
+) !default;
+
+///
+/// Highlighted code keyword colour on light backgrounds.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+///
+$colour-keyword-on-dark: $colour-keyword !default;
+
+///
 /// Highlighted code reserved word colour.
 ///
 /// @link https://github.com/equinusocio/material-theme
 ///   Inspired by the Material Theme for Sublime Text.
 $colour-reserved-word: #89ddff !default;
+
+///
+/// Highlighted code reserved word colour on light backgrounds.
+///
+/// @link https://github.com/equinusocio/material-theme
+///   Inspired by the Material Theme for Sublime Text.
+$colour-reserved-word-on-light: color.scale(
+  $colour-reserved-word, $lightness: -45%, $saturation: -10%,
+) !default;
+
+///
+/// Highlighted code reserved word colour on dark backgrounds.
+///
+/// @link https://github.com/equinusocio/material-theme
+///   Inspired by the Material Theme for Sublime Text.
+$colour-reserved-word-on-dark: $colour-reserved-word !default;
 
 ///
 /// Highlighted code method colour.
@@ -96,16 +166,51 @@ $colour-reserved-word: #89ddff !default;
 ///   From Monokai colour scheme.
 $colour-method: #a6ce28 !default;
 
+///
+/// Highlighted code method colour on light backgrounds.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+$colour-method-on-light: color.scale(
+  $colour-method, $lightness: -30%, $saturation: 20%,
+) !default;
+
+///
+/// Highlighted code method colour on dark backgrounds.
+///
+/// @link https://www.monokai.pro/
+///   From Monokai colour scheme.
+$colour-method-on-dark: $colour-method !default;
+
+:root {
+
+  --code-block-header-padding-inline: var(--general-spacing);
+
+  --code-block-header-padding-block: calc(var(--general-spacing) * 0.7);
+
+  --code-block-body-padding-inline: var(--general-spacing);
+
+  --code-block-body-padding-block: var(--general-spacing);
+
+  --code-block-border-radius: var(--material-border-radius);
+
+}
+
 @at-root {
   @include vertical-spacing.against-previous(
     '.code-highlighted'
   );
 }
 .code-highlighted {
+
   // Header, displaying the human name of the code language.
   &__heading {
-    margin:       0;
-    padding:      $block-title-padding;
+
+    margin: 0;
+
+    padding:
+      var(--code-block-header-padding-block)
+      var(--code-block-header-padding-inline);
 
     @include colour.set(
       $background: $header-background-colour-on-light
@@ -117,18 +222,23 @@ $colour-method: #a6ce28 !default;
       );
     }
 
-    border-top-left-radius:   $border-radius;
-    border-top-right-radius:  $border-radius;
+    border-top-left-radius:   var(--code-block-border-radius);
+    border-top-right-radius:  var(--code-block-border-radius);
 
     // Reset line height to get a bit less vertical spacing.
-    line-height:    1;
+    line-height: 1;
+
   }
 
   // The <pre> element containing all of the source code.
   &__code {
+
     // Reset any browser default margins.
-    margin:   0;
-    padding:  $block-body-padding;
+    margin: 0;
+
+    padding:
+      var(--code-block-body-padding-block)
+      var(--code-block-body-padding-inline);
 
     @include colour.set($background: $background-colour-on-light);
 
@@ -136,12 +246,13 @@ $colour-method: #a6ce28 !default;
       @include colour.set($background: $background-colour-on-dark);
     }
 
-    border-bottom-left-radius:  $border-radius;
-    border-bottom-right-radius: $border-radius;
+    border-bottom-left-radius:  var(--code-block-border-radius);
+    border-bottom-right-radius: var(--code-block-border-radius);
 
-    overflow-x:     auto;
+    overflow-x: auto;
 
-    white-space:    pre;
+    white-space: pre;
+
   }
 
   &__comment {
@@ -149,28 +260,64 @@ $colour-method: #a6ce28 !default;
   }
 
   &__symbol {
-    color: $colour-symbol;
+
+    color: $colour-symbol-on-light;
+
+    @include colour.on-dark-scheme {
+      color: $colour-symbol-on-dark;
+    }
+
   }
 
   &__string {
-    color: $colour-string;
+
+    color: $colour-string-on-light;
+
+    @include colour.on-dark-scheme {
+      color: $colour-string-on-dark;
+    }
+
   }
 
   &__number {
-    color: $colour-number;
+
+    color: $colour-number-on-light;
+
+    @include colour.on-dark-scheme {
+      color: $colour-number-on-dark;
+    }
+
   }
 
   &__keyword {
-    color: $colour-keyword;
+
+    color: $colour-keyword-on-light;
+
+    @include colour.on-dark-scheme {
+      color: $colour-keyword-on-dark;
+    }
 
     font-style: italic;
+
   }
 
   &__reserved-word {
-    color: $colour-reserved-word;
+
+    color: $colour-reserved-word-on-light;
+
+    @include colour.on-dark-scheme {
+      color: $colour-reserved-word-on-dark;
+    }
+
   }
 
   &__method {
-    color: $colour-method;
+
+    color: $colour-method-on-light;
+
+    @include colour.on-dark-scheme {
+      color: $colour-method-on-dark;
+    }
+
   }
 }

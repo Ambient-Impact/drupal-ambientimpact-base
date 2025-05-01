@@ -2,7 +2,6 @@
 //   Base code element partial
 // -----------------------------------------------------------------------------
 
-@use 'material.common/material.general' as material-general;
 @use 'sass:color';
 @use 'sass/helpers/colour';
 
@@ -11,7 +10,9 @@
 ///
 /// @require {variable} colour.$background-dark
 ///
-$background-colour-on-light: colour.$background-dark !default;
+$background-colour-on-light: color.mix(
+  colour.$foreground-on-light, colour.$background-light, 15%
+) !default;
 
 ///
 /// Inline <code> element background colour on dark backgrounds.
@@ -20,20 +21,8 @@ $background-colour-on-light: colour.$background-dark !default;
 /// @require {variable} colour.$background-dark
 ///
 $background-colour-on-dark: color.mix(
-  colour.$foreground-on-dark, colour.$background-dark, 10%
+  colour.$foreground-on-dark, colour.$background-dark, 15%
 ) !default;
-
-///
-/// Inline <code> element padding.
-///
-$padding: 0.1em 0.2em !default;
-
-///
-/// Inline <code> element border radius.
-///
-/// @require {variable} material-general.$border-radius
-///
-$border-radius: material-general.$border-radius !default;
 
 ///
 /// Output base <code> element styles.
@@ -46,8 +35,21 @@ $border-radius: material-general.$border-radius !default;
 ///
 @mixin output {
 
+  :root {
+
+    --code-inline-body-padding-inline: 0.2em;
+
+    --code-inline-body-padding-block: 0.1em;
+
+    --code-inline-border-radius: var(--material-border-radius);
+
+  }
+
   code {
-    padding: $padding;
+
+    padding:
+      var(--code-inline-body-padding-block)
+      var(--code-inline-body-padding-inline);
 
     @include colour.set(
       $background: $background-colour-on-light
@@ -59,7 +61,7 @@ $border-radius: material-general.$border-radius !default;
       );
     }
 
-    border-radius: $border-radius;
+    border-radius: var(--code-inline-border-radius);
 
     // If this wraps to a new line, this property makes the horizontal padding
     // and border radius apply to each line where they break:
