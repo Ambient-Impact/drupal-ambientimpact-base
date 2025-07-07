@@ -46,6 +46,9 @@ libraries-extend:
   ambientimpact_block/component.social_links:
     - ambientimpact_base/social_links
 
+  ambientimpact_core/framework:
+    - ambientimpact_base/behaviour_triggers.refreshless
+
   ambientimpact_media/component.photoswipe:
     - ambientimpact_base/photoswipe
 

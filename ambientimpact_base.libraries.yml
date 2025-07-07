@@ -3,6 +3,13 @@ abbr:
     theme:
       stylesheets/elements/abbr.css: {}
 
+behaviour_triggers.refreshless:
+  js:
+    javascript/behaviour_triggers.refreshless.js:
+      attributes: { defer: true }
+  # This is attached using libraries-extend to ambientimpact_core/framework so
+  # it should not set that as a dependency here.
+
 checkbox:
   css:
     theme:
