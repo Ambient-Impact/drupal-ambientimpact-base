@@ -1,0 +1,39 @@
+// -----------------------------------------------------------------------------
+//   Base list partial
+// -----------------------------------------------------------------------------
+
+@use '../global/content';
+@use '../layout/vertical_spacing' as vertical-spacing;
+@use './list';
+
+@include vertical-spacing.against-previous(
+  'dl',
+  $spacing-small: content.$item-vertical-spacing-small,
+  $spacing-large: content.$item-vertical-spacing-large,
+);
+
+dl {
+
+  // This removes the default top margin but is overridden by the above when a
+  // valid previous element is present.
+  margin-top: 0;
+  // We don't need a bottom margin.
+  margin-bottom: 0;
+
+}
+
+dd + dt {
+
+  @include vertical-spacing.vertical-spacing(
+    $spacing-small: list.$item-spacing,
+    $spacing-large: list.$item-spacing,
+  );
+
+}
+
+dd {
+
+  margin-inline-start:  0;
+  padding-inline-start: list.$marker-indent;
+
+}
