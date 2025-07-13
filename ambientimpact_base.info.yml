@@ -92,5 +92,8 @@ libraries-extend:
   node/drupal.node.preview:
     - ambientimpact_base/node_preview
 
+  refreshless_turbo/refreshless:
+    - ambientimpact_base/refreshless
+
   toolbar/toolbar:
     - ambientimpact_base/toolbar_displace

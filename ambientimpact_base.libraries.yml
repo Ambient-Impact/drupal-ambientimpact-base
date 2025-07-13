@@ -126,6 +126,13 @@ radio:
     theme:
       stylesheets/elements/radio.css: {}
 
+refreshless:
+  js:
+    javascript/refreshless.cache.js: { attributes: { defer: true } }
+  dependencies:
+    - ambientimpact_core/framework
+    - core/once
+
 pager:
   css:
     theme:
