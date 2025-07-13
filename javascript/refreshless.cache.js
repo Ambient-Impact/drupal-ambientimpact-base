@@ -25,8 +25,9 @@ AmbientImpact.addComponent('baseThemeRefreshLessCache', (component, $) => {
    *
    * @type {Array}
    *
-   * @todo Move these to their respective components? Why don't the detach
-   *   work 100% of the time before a cache?
+   * @todo Remove when we can detach reliably before cache when using FastDom
+   *   as it currently results in the detach sometimes running after the cached
+   *   snapshot is saved.
    */
   const selectors = [
     '#overlay-scroll-scrollbar-measure',
