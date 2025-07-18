@@ -205,6 +205,7 @@ tooltip:
   dependencies:
     - ambientimpact_base/material_properties
     - ambientimpact_base/tooltip_config
+    - ambientimpact_core/component.fastdom
     - ambientimpact_core/framework
     - ambientimpact_ux/component.tooltip
     - ambientimpact_ux/component.tooltip.shrinkwrap
