@@ -86,6 +86,9 @@ libraries-extend:
   classy/node:
     - ambientimpact_base/node
 
+  content_moderation/content_moderation:
+    - ambientimpact_base/content_moderation
+
   gin/core_navigation:
     - ambientimpact_base/gin_core_navigation
 

@@ -15,6 +15,11 @@ checkbox:
     theme:
       stylesheets/elements/checkbox.css: {}
 
+content_moderation:
+  css:
+    theme:
+      stylesheets/forms/content_moderation.css: {}
+
 content_popup:
   css:
     theme:
