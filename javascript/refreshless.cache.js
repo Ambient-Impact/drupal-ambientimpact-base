@@ -35,7 +35,6 @@ AmbientImpact.addComponent('baseThemeRefreshLessCache', (component, $) => {
     '.content-popup-offcanvas-button',
     '.offcanvas-overlay',
     '.pswp',
-    '.to-top',
     '[data-tippy-root]',
   ];
 
