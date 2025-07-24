@@ -4,6 +4,10 @@
 
 @use 'sass/helpers/z-index';
 
+:root {
+  --contextual-z-index: #{z-index.get(admin)};
+}
+
 .contextual {
-  @include z-index.get(admin);
+  z-index: var(--contextual-z-index);
 }
