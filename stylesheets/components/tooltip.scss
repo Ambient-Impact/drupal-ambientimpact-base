@@ -12,8 +12,23 @@
 ///
 $shadow-depth: 2;
 
+:root {
+
+  ///
+  /// Tooltip z-index.
+  ///
+  /// This is the default value Tippy sets, intended to be overridden by themes.
+  ///
+  --tooltip-z-index: 9999;
+
+}
+
 [data-tippy-root] {
+
   max-width: calc(100vw - var(--tooltip-offset-padding-inline) * 2);
+
+  z-index: var(--tooltip-z-index);
+
 }
 
 .tippy-box {

@@ -24,6 +24,9 @@ AmbientImpact.onGlobals([
     // with Tippy.js which is not loaded.
     theme: 'material',
 
+    // Remove the inline z-index so that it can be set in stylesheets.
+    zIndex: '',
+
   });
 
 });
