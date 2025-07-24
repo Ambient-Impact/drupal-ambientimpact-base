@@ -29,6 +29,8 @@ $outline-colour: black;
 
   --skip-link-outline-colour: #{$outline-colour};
 
+  --skip-link-z-index: #{z-index.get(floating)};
+
 }
 
 .skip-link-container {
@@ -41,7 +43,7 @@ $outline-colour: black;
   left:   0;
   right:  0;
 
-  @include z-index.get('floating');
+  z-index: var(--skip-link-z-index);
 
   // Since this is meant to be focused by means other than a pointer, such as by
   // keyboard, we can make it click-through so that it's not accidentally
