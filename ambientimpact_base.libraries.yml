@@ -20,6 +20,11 @@ content_moderation:
     theme:
       stylesheets/forms/content_moderation.css: {}
 
+contextual_links:
+  css:
+    theme:
+      stylesheets/components/contextual_links.css: {}
+
 content_popup:
   css:
     theme:

@@ -89,6 +89,12 @@ libraries-extend:
   content_moderation/content_moderation:
     - ambientimpact_base/content_moderation
 
+  contextual/drupal.contextual-links:
+    - ambientimpact_base/contextual_links
+
+  gin/contextual_links:
+    - ambientimpact_base/contextual_links
+
   gin/core_navigation:
     - ambientimpact_base/gin_core_navigation
 

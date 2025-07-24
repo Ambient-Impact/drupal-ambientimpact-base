@@ -1,13 +1,18 @@
 // -----------------------------------------------------------------------------
-//   Base Drupal contextual links component partial
+//   Base Drupal contextual links component
 // -----------------------------------------------------------------------------
 
 @use 'sass/helpers/z-index';
 
 :root {
-  --contextual-z-index: #{z-index.get(admin)};
+
+  ///
+  /// Contextual links z-index.
+  ///
+  --contextual-links-z-index: #{z-index.get(admin)};
+
 }
 
 .contextual {
-  z-index: var(--contextual-z-index);
+  z-index: var(--contextual-links-z-index);
 }
