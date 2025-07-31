@@ -4,8 +4,12 @@
 
 @use '../layout/container' as layout-container;
 @use 'material.ripple' as material-ripple;
+@use 'sass/helpers/z-index';
 
 .pswp {
+
+  z-index: var(--photoswipe-z-index, #{z-index.get(modal)});
+
   &__caption__center {
     @include layout-container.max-width;
 
