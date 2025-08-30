@@ -100,6 +100,9 @@ $colour-dark: colour.$background-dark;
 
   }
 
+  // Allow setting the z-index using a custom property, if available.
+  z-index: var(--overlay-z-index);
+
   &--is-active {
     opacity: 1;
   }
