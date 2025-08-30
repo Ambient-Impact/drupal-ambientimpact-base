@@ -10,7 +10,7 @@ const baseStylesheetsPath = path.join(
   // @todo Get the package path from Yarn's PnP API so we don't need to export
   //   "./package.json"?
   path.dirname(require.resolve('drupal-ambientimpact-base/package.json')),
-  'stylesheets'
+  'stylesheets',
 );
 
 /**
@@ -32,18 +32,17 @@ const baseStylesheetsPath = path.join(
  */
 function baseThemeImporter(url, prev, done) {
 
-  if (url.indexOf(baseThemePrefix) === 0) {
-
-    return done({
-      file: path.relative(path.dirname(prev), path.join(
-        baseStylesheetsPath, url.substring(baseThemePrefix.length)
-      ))
-    });
-  }
-
   // If we didn't match, return null so that this is passed on to the next
   // importer to try.
-  return null;
+  if (url.indexOf(baseThemePrefix) !== 0) {
+    return null;
+  }
+
+  return done({
+    file: path.relative(path.dirname(prev), path.join(
+      baseStylesheetsPath, url.substring(baseThemePrefix.length),
+    )),
+  });
 
 };
 
