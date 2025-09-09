@@ -2,10 +2,10 @@
 //   Base skip to content link partial
 // -----------------------------------------------------------------------------
 
+@use '../layout/z-index';
 @use 'material.common/material.shadow' as material-shadow;
 @use 'sass/helpers/colour';
 @use 'sass/helpers/outline';
-@use 'sass/helpers/z-index';
 
 // This styles the "Skip to main content" link to give a semi-transparent
 // background, a Material shadow, some border radius, and positions it

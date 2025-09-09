@@ -3,8 +3,8 @@
 // -----------------------------------------------------------------------------
 
 @use '../layout/container' as layout-container;
+@use '../layout/z-index';
 @use 'material.ripple' as material-ripple;
-@use 'sass/helpers/z-index';
 
 .pswp {
 
