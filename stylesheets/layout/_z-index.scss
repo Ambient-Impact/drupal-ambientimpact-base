@@ -108,26 +108,36 @@ $_stacking-order-reversed: ();
 }
 
 ///
-/// Insert a new element into the stacking order just above an existing one.
+/// Insert a new element into the stacking order just above a reference one.
 ///
-/// @param {String} $existing-element
-///   The existing element to insert $new-element above.
+/// @param {String} $reference-element
+///   The reference element to insert $new-element above.
 ///
 /// @param {String} $new-element
-///   The new element to insert above $existing-element.
+///   The new element to insert above $reference-element.
 ///
-@mixin above($existing-element, $new-element) {
+/// @throws If $reference-element isn't found in the stacking order.
+///
+@mixin above($reference-element, $new-element) {
 
-  $existing-index: list.index($_stacking-order, $existing-element);
+  $reference-index: list.index($_stacking-order, $reference-element);
 
-  @if ($existing-index <= 1) {
+  @if ($reference-index == 0) {
+
+    @error exception.parameter(
+      'The name "#{$reference-element}" does not exist in the stacking order',
+      'above',
+      'reference-element',
+    );
+
+  } @else if ($reference-index <= 1) {
 
     @include set-stacking-order(list.prepend($_stacking-order, $new-element));
 
   } @else {
 
     @include set-stacking-order(list.insert-nth(
-      $_stacking-order, $existing-index, $new-element,
+      $_stacking-order, $reference-index, $new-element,
     ));
 
   }
@@ -135,26 +145,36 @@ $_stacking-order-reversed: ();
 }
 
 ///
-/// Insert a new element into the stacking order just below an existing one.
+/// Insert a new element into the stacking order just below a reference one.
 ///
-/// @param {String} $existing-element
-///   The existing element to insert $new-element below.
+/// @param {String} $reference-element
+///   The reference element to insert $new-element below.
 ///
 /// @param {String} $new-element
-///   The new element to insert below $existing-element.
+///   The new element to insert below $reference-element.
 ///
-@mixin below($existing-element, $new-element) {
+/// @throws If $reference-element isn't found in the stacking order.
+///
+@mixin below($reference-element, $new-element) {
 
-  $existing-index: list.index($_stacking-order, $existing-element);
+  $reference-index: list.index($_stacking-order, $reference-element);
 
-  @if ($existing-index >= list.length($_stacking-order)) {
+  @if ($reference-index == 0) {
+
+    @error exception.parameter(
+      'The name "#{$reference-element}" does not exist in the stacking order',
+      'below',
+      'reference-element',
+    );
+
+  } @else if ($reference-index >= list.length($_stacking-order)) {
 
     @include set-stacking-order(list.append($_stacking-order, $new-element));
 
   } @else {
 
     @include set-stacking-order(list.insert-nth(
-      $_stacking-order, $existing-index + 1, $new-element,
+      $_stacking-order, $reference-index + 1, $new-element,
     ));
 
   }
@@ -177,7 +197,7 @@ $_stacking-order-reversed: ();
   @if (list.index($_stacking-order-reversed, $name) == 0) {
 
     @error exception.parameter(
-      'The name "#{$name}" does not exist in the stacking order!',
+      'The name "#{$name}" does not exist in the stacking order',
       'get',
       'name',
     );
