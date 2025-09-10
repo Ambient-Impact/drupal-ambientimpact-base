@@ -118,6 +118,8 @@ $_stacking-order-reversed: ();
 ///
 /// @throws If $reference-element isn't found in the stacking order.
 ///
+/// @todo Allow moving an element if it already exists.
+///
 @mixin above($reference-element, $new-element) {
 
   $reference-index: list.index($_stacking-order, $reference-element);
@@ -154,6 +156,8 @@ $_stacking-order-reversed: ();
 ///   The new element to insert below $reference-element.
 ///
 /// @throws If $reference-element isn't found in the stacking order.
+///
+/// @todo Allow moving an element if it already exists.
 ///
 @mixin below($reference-element, $new-element) {
 
