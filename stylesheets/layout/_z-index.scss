@@ -27,11 +27,21 @@ $_stacking-order:
   modal-overlay,
 
   // Drupal administration navigation.
-  toolbar,
+  admin-toolbar,
 
-  // Administration controls - such as contextual links - that need to be on
-  // top of most other page elements.
-  admin,
+  // Drupal administration navigation control bar.
+  //
+  // This is the top bar on small screens.
+  admin-toolbar-control-bar,
+
+  // Drupal administration navigation overlay.
+  //
+  // This is used on small screens when the sidebar is opened.
+  admin-toolbar-overlay,
+
+  // In-page administration controls - such as contextual links - that need to
+  // be on top of most other page elements.
+  in-page-admin,
 
   // Right above floating elements.
   floating-above,
