@@ -4,6 +4,7 @@
 
 @use '../layout/config' as layout-config;
 @use '../layout/container' as layout-container;
+@use '../layout/z-index';
 @use 'sass/helpers/colour';
 @use 'material.common/material.panel' as material-panel;
 
@@ -39,6 +40,12 @@
 
   align-items: center;
 
+  &.offcanvas-panel--modal {
+
+    z-index: var(--off-canvas-panel-modal-z-index, #{z-index.get(modal)});
+
+  }
+
   .offcanvas-panel__content,
   .offcanvas-panel__ui {
     padding-left:   layout-config.$gutter;
@@ -66,4 +73,14 @@
       @include layout-container.max-width;
     }
   }
+}
+
+.offcanvas-overlay.offcanvas-overlay { // Specificity.
+
+  z-index: var(
+    --off-canvas-panel-overlay-z-index, var(
+      --overlay-z-index, #{z-index.get(modal-overlay)},
+    ),
+  );
+
 }
