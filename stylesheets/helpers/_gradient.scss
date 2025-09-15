@@ -1,0 +1,32 @@
+// -----------------------------------------------------------------------------
+//   Gradient helpers partial
+// -----------------------------------------------------------------------------
+
+@use 'sass:color';
+
+///
+/// Prepares a colour for use in an eased gradient.
+///
+/// This formats colours to ensure that the PostCSS plug-in recognizes the
+/// colours correctly. For example, passing rgb() with values that have
+/// decimals (e.g. 150.5) combined with another colour in another format (e.g.
+/// hsl()) seems to cause the plug-in to not generate the eased gradient. This
+/// works around that by explicitly outputting both colours using hsla()
+/// channel by channel.
+///
+/// @param {color} $colour
+///
+/// @return {color}
+///
+/// @link https://gitlab.com/neurocracy/front-end/postcss-easing-gradients
+///
+@function prep-eased-colour($colour) {
+
+  @return hsla(
+    color.channel($colour, 'hue',         $space: hsl),
+    color.channel($colour, 'saturation',  $space: hsl),
+    color.channel($colour, 'lightness',   $space: hsl),
+    color.channel($colour, 'alpha',       $space: hsl),
+  );
+
+}
