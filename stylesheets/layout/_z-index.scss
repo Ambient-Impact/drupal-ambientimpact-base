@@ -31,13 +31,19 @@ $_stacking-order:
 
   // Drupal administration navigation control bar.
   //
-  // This is the top bar on small screens.
+  // This is the bar on small screens that contains the "Expand sidebar" button.
   admin-toolbar-control-bar,
 
   // Drupal administration navigation overlay.
   //
   // This is used on small screens when the sidebar is opened.
   admin-toolbar-overlay,
+
+  // Drupal administration navigation top bar.
+  //
+  // This is the bar visible at all screen sizes along the top containing local
+  // tabs and actions.
+  admin-toolbar-top-bar,
 
   // In-page administration controls - such as contextual links - that need to
   // be on top of most other page elements.
