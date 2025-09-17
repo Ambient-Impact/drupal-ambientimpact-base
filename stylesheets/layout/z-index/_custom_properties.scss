@@ -1,0 +1,103 @@
+// -----------------------------------------------------------------------------
+//   z-index custom properties partial
+// -----------------------------------------------------------------------------
+
+@use 'stacking_order' as stacking-order;
+
+///
+/// Output the default set of z-index custom properties.
+///
+/// If it's necessary to alter the stacking order, that can be done by importing
+/// that module first, making the changes, and then including this mixin.
+///
+/// @content Any additional custom properties to output after the default set.
+///
+/// @todo Add a mapping of custom properties to stacking order names so that we
+///  can automate this further and allow more programmatic building and sorting
+///  of the output.
+///
+@mixin output {
+
+  // Note that while the order they're declared here doesn't matter, these are
+  // sorted from highest to lowest for clarity.
+  :root {
+
+    ///
+    /// RefreshLess progress bar z-index.
+    ///
+    --refreshless-progress-bar-z-index: #{stacking-order.get(
+      page-progress-bar,
+    )};
+
+    ///
+    /// RefreshLess page transition overlay z-index.
+    ///
+    --refreshless-page-transition-overlay-z-index: #{stacking-order.get(
+      page-transition-overlay,
+    )};
+
+    ///
+    /// Tooltip z-index.
+    ///
+    --tooltip-z-index: #{stacking-order.get(popovers)};
+
+    ///
+    /// PhotoSwipe z-index.
+    ///
+    --photoswipe-z-index: #{stacking-order.get(modal)};
+
+    ///
+    /// JavaScript-powered overlay z-index.
+    ///
+    --overlay-z-index: #{stacking-order.get(modal-overlay)};
+
+    ///
+    /// Drupal admin UI z-index.
+    ///
+    /// This is used for the Navigation sidebar and open tray on mobile.
+    ///
+    --drupal-admin-z-index: #{stacking-order.get(admin-toolbar)};
+
+    ///
+    /// Drupal admin control bar z-index.
+    ///
+    /// This is the top bar on small screens.
+    ///
+    --drupal-admin-z-index-admin-toolbar-control-bar: #{stacking-order.get(
+      admin-toolbar-control-bar,
+    )};
+
+    ///
+    /// Drupal admin overlay z-index.
+    ///
+    /// This is used on small screens when the sidebar is opened.
+    ///
+    --drupal-admin-z-index-overlay: #{stacking-order.get(
+      admin-toolbar-overlay,
+    )};
+
+    ///
+    /// Drupal administration navigation top bar.
+    ///
+    /// This is the bar visible at all screen sizes along the top containing
+    /// local tabs and actions.
+    ///
+    --drupal-admin-z-index-top-bar: #{stacking-order.get(
+      admin-toolbar-top-bar,
+    )};
+
+    ///
+    /// Contextual links z-index.
+    ///
+    --contextual-links-z-index: #{stacking-order.get(in-page-admin)};
+
+    ///
+    /// The skip to main content link z-index.
+    ///
+    --skip-link-z-index: #{stacking-order.get(floating-above)};
+
+    @content;
+
+  }
+
+}
