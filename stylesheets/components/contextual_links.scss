@@ -4,7 +4,7 @@
 
 @use '../layout/z-index';
 
-:root {
+:where(:root) { // Zero specificity; easy to override.
 
   ///
   /// Contextual links z-index.

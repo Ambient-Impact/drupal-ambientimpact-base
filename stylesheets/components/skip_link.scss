@@ -21,7 +21,7 @@ $background-colour: colour.greyscale(25%, 0.6);
 ///
 $outline-colour: black;
 
-:root {
+:where(:root) { // Zero specificity; easy to override.
 
   --skip-link-border-radius: var(--material-border-radius);
 

@@ -12,7 +12,7 @@
 ///
 $shadow-depth: 2;
 
-:root {
+:where(:root) { // Zero specificity; easy to override.
 
   ///
   /// Tooltip z-index.
