@@ -27,10 +27,9 @@ html {
   overflow-y: scroll;
 }
 
-// Layout container styles. Note that we apply the padding and margins to this
-// rather than <body> so that we don't affect elements that are 'outside' the
-// area that is considered the site, e.g. the Drupal toolbar when it hasn't been
-// enhanced by JavaScript.
+// Layout container styles. Note that we apply margins and padding to this
+// rather than <body> or <html> so that we don't affect nor conflict with
+// administrative components such as the Drupal Navigation.
 .layout-container {
 
   @include container.base-horizontal;
@@ -42,9 +41,9 @@ html {
   box-sizing: border-box;
 
   @if meta.type-of(config.$spacing-top) == 'number' {
-    // This is not applied to the <body>, as the Toolbar uses that to offset the
-    // viewport.
-    margin-top: config.$spacing-top;
+    // Note that we want to use padding here and not margin because that would
+    // get collapsed with Drupal's Navigation top bar displacement.
+    padding-top: config.$spacing-top;
   }
 
   // If subgrid is supported, set the grid on this rather than on
