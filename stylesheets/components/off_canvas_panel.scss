@@ -4,7 +4,7 @@
 
 @use '../layout/config' as layout-config;
 @use '../layout/container' as layout-container;
-@use '../layout/z-index';
+@use '../layout/z-index/stacking_order' as stacking-order;
 @use 'sass/helpers/colour';
 @use 'material.common/material.panel' as material-panel;
 
@@ -42,7 +42,9 @@
 
   &.offcanvas-panel--modal {
 
-    z-index: var(--off-canvas-panel-modal-z-index, #{z-index.get(modal)});
+    z-index: var(--off-canvas-panel-modal-z-index, #{stacking-order.get(
+      modal,
+    )});
 
   }
 
@@ -79,7 +81,7 @@
 
   z-index: var(
     --off-canvas-panel-overlay-z-index, var(
-      --overlay-z-index, #{z-index.get(modal-overlay)},
+      --overlay-z-index, #{stacking-order.get(modal-overlay)},
     ),
   );
 

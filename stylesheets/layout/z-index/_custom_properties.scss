@@ -47,6 +47,11 @@
     --photoswipe-z-index: #{stacking-order.get(modal)};
 
     ///
+    /// Modal off-canvas panel z-index.
+    ///
+    --off-canvas-panel-modal-z-index: #{stacking-order.get(modal)};
+
+    ///
     /// JavaScript-powered overlay z-index.
     ///
     --overlay-z-index: #{stacking-order.get(modal-overlay)};
