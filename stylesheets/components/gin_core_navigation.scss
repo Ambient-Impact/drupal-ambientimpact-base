@@ -21,3 +21,16 @@
   width:  calc(var(--gin-icon-size-toolbar) + var(--gin-spacing-xs) * 2);
   height: calc(var(--gin-icon-size-toolbar) + var(--gin-spacing-xs) * 2);
 }
+
+// For some reason the control bar (on small screens) still causes displacement
+// but isn't sticky nor fixed, resulting in Headroom or other elements that
+// need stick to the top of the viewport being misplaced. This ensures that the
+// control bar is always present at the top of the viewport to match the
+// displacement.
+.admin-toolbar-control-bar {
+
+  position: sticky;
+
+  top: 0;
+
+}
