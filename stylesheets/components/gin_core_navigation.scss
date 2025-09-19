@@ -2,6 +2,15 @@
 //   Gin core Navigation module fixes
 // -----------------------------------------------------------------------------
 
+@use 'sass/helpers/breakpoint';
+
+// These match the values the core Navigation uses, along with the names they
+// use.
+@include breakpoint.add((
+  'core-navigation-desktop':  1024px,
+  'core-navigation-tablet':   560px,
+));
+
 // These attempt to size icons to match the rest of the navigation which uses
 // rem units. By default, --gin-icon-size-toolbar is set 20px, which results in
 // the icons being smaller and off centre.
@@ -32,5 +41,17 @@
   position: sticky;
 
   top: 0;
+
+}
+
+.gin--navigation-top-bar {
+
+  // Gin doesn't account for the Navigation menu not having any displacement
+  // when narrower than this, instead using --admin-toolbar-sidebar-width at all
+  // screen sizes. To fix that, we set it to zero here to have it ignore the
+  // value in its calc(). Note that a unit is required for calc() to not fail.
+  @include breakpoint.on('<core-navigation-desktop') {
+    --admin-toolbar-sidebar-width: 0em;
+  }
 
 }
