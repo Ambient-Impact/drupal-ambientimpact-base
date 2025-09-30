@@ -123,27 +123,26 @@ $image-active-filters: contrast(100%) brightness(100%) !default;
     // JavaScript, etc.
     @include link-colour.custom-properties;
 
-    :any-link {
-      // Any links.
-      &,
-      // Currently active menu item links.
-      &.is-active,
-      // jQuery UI widget content.
-      .ui-widget-content & {
-        // Basic link styles.
-        @if $use-link-styles == true {
-          @include link.link;
+    // Any links.
+    :any-link,
+    // Currently active menu item links.
+    :any-link.is-active,
+    // jQuery UI widget content.
+    .ui-widget-content :any-link {
+      // Basic link styles.
+      @if $use-link-styles == true {
+        @include link.link;
 
-          @include colour.on-dark-scheme {
-            @include link-colour.set(colour.$background-dark);
-          }
-        }
-
-        // Apply the image link mixin to all links.
-        @if $use-image-link-styles == true {
-          @include image;
+        @include colour.on-dark-scheme {
+          @include link-colour.set(colour.$background-dark);
         }
       }
+
+      // Apply the image link mixin to all links.
+      @if $use-image-link-styles == true {
+        @include image;
+      }
+
     }
 
     @if $use-pseudo-link-styles == true {
