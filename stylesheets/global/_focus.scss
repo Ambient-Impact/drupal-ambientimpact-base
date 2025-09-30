@@ -13,7 +13,7 @@ a:where(:not(.toolbar-button):not(.toolbar-menu__link):not(.toolbar-dropdown__li
 
 // Exclude Drupal admin navigation buttons so that we don't accidentally give
 // them transitions.
-button:not(.toolbar-button),
+button:where(:not(.toolbar-button):not(.admin-toolbar__expand-button)),
 // This catches things like the <summary> element in a <details>.
 [role="button"],
 input[type="button"],
