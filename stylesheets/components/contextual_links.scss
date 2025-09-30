@@ -16,3 +16,10 @@
 .contextual {
   z-index: var(--contextual-links-z-index);
 }
+
+.contextual-links a {
+  // Contextual links don't provide a class on the links themselves to exclude
+  // from focus and link transitions. Until/if they get added, just remove all
+  // the transitions that get applied from our focus and link styles.
+  transition: none !important;
+}

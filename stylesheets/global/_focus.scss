@@ -7,7 +7,7 @@
 
 // Exclude Drupal admin navigation links so that we don't accidentally give them
 // transitions.
-a:not(.toolbar-button):not(.toolbar-menu__link) {
+a:where(:not(.toolbar-button):not(.toolbar-menu__link):not(.toolbar-dropdown__link)) {
   @include outline.focus($is-link: true);
 }
 
