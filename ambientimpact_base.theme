@@ -216,7 +216,13 @@ function ambientimpact_base_preprocess_field(&$variables, $hook): void {
 
     $imageComponent = $componentManager->getComponentInstance('image');
 
-    $imageComponent->preprocessFieldSetImageFieldMaxWidth($variables);
+    // If ambientimpact_media is not installed, this component will not exist so
+    // calling the method below would cause a fatal error in that case.
+    if (is_object($imageComponent)) {
+
+      $imageComponent->preprocessFieldSetImageFieldMaxWidth($variables);
+
+    }
 
   }
 
