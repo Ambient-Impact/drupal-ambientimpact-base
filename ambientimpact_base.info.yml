@@ -92,6 +92,12 @@ libraries-extend:
   contextual/drupal.contextual-links:
     - ambientimpact_base/contextual_links
 
+  # This is copied from Gin and allows Gin's dark mode to be applied to
+  # CKEditor, which would otherwise use light mode colours when the browser
+  # indicates dark mode.
+  core/ckeditor5:
+    - gin/ckeditor5
+
   gin/contextual_links:
     - ambientimpact_base/contextual_links
 
