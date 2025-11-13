@@ -1,0 +1,19 @@
+// -----------------------------------------------------------------------------
+//   Base Drupal links list
+// -----------------------------------------------------------------------------
+
+@use '../elements/list';
+
+.links.inline {
+
+  @include list.unlisted;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: var(--general-spacing);
+
+  margin-block: 0;
+
+}

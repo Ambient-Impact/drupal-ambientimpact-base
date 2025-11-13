@@ -79,6 +79,13 @@ layout_properties:
     theme:
       stylesheets/layout/properties.css: {}
 
+links:
+  css:
+    theme:
+      stylesheets/components/links.css: {}
+  dependencies:
+    - ambientimpact_base/layout_properties
+
 local_tasks:
   css:
     theme:

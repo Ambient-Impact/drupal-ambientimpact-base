@@ -245,6 +245,15 @@ function ambientimpact_base_preprocess_field(&$variables, $hook): void {
 }
 
 /**
+ * Prepares variables for links templates.
+ */
+function ambientimpact_base_preprocess_links(array &$variables): void {
+
+  $variables['#attached']['library'][] = 'ambientimpact_base/links';
+
+}
+
+/**
  * Prepares variables for responsive image formatter templates.
  *
  * @see \Drupal\ambientimpact_base\ResponsiveImageFormatterPreprocess::preprocess()

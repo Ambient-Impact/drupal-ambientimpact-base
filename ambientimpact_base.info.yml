@@ -36,6 +36,7 @@ libraries-override:
     css:
       component:
         css/components/field.css: false
+        css/components/links.css: false
 
   # Remove the GeshiFilter static CSS as we provide our own with our own
   # classes.
