@@ -6,12 +6,16 @@
 @use '../typography/config' as typography-config;
 @use 'sass/variables/general';
 
+:root {
+
+  ///
+  /// Spacing between node sections, i.e. its title, meta, content, etc.
+  ///
+  --node-section-spacing: var(--general-spacing);
+
+}
+
 .node {
-  // Spacing between node sections.
-  * + &__content,
-  * + &__links {
-    margin-top: var(--general-spacing);
-  }
 
   // Footer links.
   &__links {
@@ -61,15 +65,25 @@
   }
 }
 
-// Spacing between a node and any preceding element that isn't the local tasks
-// or page title blocks.
 @at-root {
+
+  // Spacing between node sections.
+  @include vertical-spacing.against-previous(
+    '.node__content, .node__links',
+    $spacing-small: var(--node-section-spacing),
+    $spacing-large: var(--node-section-spacing),
+  );
+
+  // Spacing between a node and any preceding element that isn't the local tasks
+  // or page title blocks.
   @include vertical-spacing.against-previous(
     '.node',
     $previous-qualifier:
       ':not(.block-local-tasks-block):not(.block-page-title-block)'
   );
+
 }
+
 // Spacing between the first node in a view if the view content is not the first
 // child; i.e. there's a view header and/or exposed form.
 .view {
