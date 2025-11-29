@@ -37,8 +37,10 @@ $spacing: layout-config.$gutter !default;
   // These are centred using horizontal margins. Note that we have to include
   // the field container itself as it can also be width constrained if the
   // container is also the only field item, when no visually hidden heading is
-  // present.
-  &, .field__item, :link {
+  // present. Also note that we're explicitly excluding any fields that have
+  // been floated/aligned to one side to avoid overwriting any margin that may
+  // be set for visual formatting.
+  &:not(:is(.align-left, .align-right)), .field__item, :link {
     margin-left:  auto;
     margin-right: auto;
   }
