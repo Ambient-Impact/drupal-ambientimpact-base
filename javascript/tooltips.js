@@ -25,7 +25,10 @@ AmbientImpact.addComponent('baseThemeTooltips', (baseTooltips, $) => {
 
       $(this).prop(
         'AmbientImpactTooltips',
-        new aiTooltip.Tooltips(this, {target: '[title]'}),
+        new aiTooltip.Tooltips(this, {target:
+          // Ignore elements within a singleton container.
+          '[title]:not([data-tooltips-singleton] *)',
+        }),
       );
 
     },
@@ -36,7 +39,9 @@ AmbientImpact.addComponent('baseThemeTooltips', (baseTooltips, $) => {
 
         // Restore any title attributes that were left as data attributes as can
         // occur when restoring from RefreshLess' cache.
-        $(this).find('[data-original-title]').each(async (i, element) => {
+        $(this).find(
+          '[data-original-title]:not([data-tooltips-singleton] *)',
+        ).each(async (i, element) => {
 
           const $this = $(element);
 
