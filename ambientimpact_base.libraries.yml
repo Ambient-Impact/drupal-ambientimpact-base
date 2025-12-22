@@ -185,6 +185,7 @@ social_links:
   dependencies:
     - ambientimpact_base/layout_properties
     - ambientimpact_base/tooltip_config
+    - ambientimpact_core/component.fastdom
     - ambientimpact_core/framework
 
 table:
