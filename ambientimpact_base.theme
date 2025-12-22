@@ -149,6 +149,19 @@ function ambientimpact_base_preprocess_html(array &$variables): void {
 }
 
 /**
+ * Prepares variables for social links templates.
+ */
+function ambientimpact_base_preprocess_ambientimpact_block_social_links(
+  array &$variables,
+): void {
+
+  // Mark this as a tooltips singleton container so that the tooltips behaviour
+  // won't touch anything in this.
+  $variables['attributes']['data-tooltips-singleton'] = 'true';
+
+}
+
+/**
  * Prepares variables for the 'system_branding_block' block template.
  *
  * @see \Drupal\ambientimpact_base\SiteBrandingBlockProperties::preprocess()
