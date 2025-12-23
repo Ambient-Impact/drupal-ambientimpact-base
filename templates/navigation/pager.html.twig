@@ -6,6 +6,9 @@
  * This is modified from the 'classy' base theme with the following changes:
  * - Wrapped first, previous, next, and last links in ambientimpact_icon
  *   elements.
+ * - Actually makes use of 'attributes' so they can be altered in preprocess.
+ *   Classy hard-codes a few in its template making it impossible to alter
+ *   outside of the template.
  *
  * Available variables:
  * - heading_id: Pagination heading ID.
@@ -35,7 +38,11 @@
  */
 #}
 {% if items %}
-  <nav class="pager" role="navigation" aria-labelledby="{{ heading_id }}">
+  <nav{{ attributes
+    .addClass('pager')
+    .setAttribute('role', 'navigation')
+    .setAttribute('aria-labelledby', heading_id)
+  -}}>
     <h4 id="{{ heading_id }}" class="visually-hidden">{{ 'Pagination'|t }}</h4>
     <ul class="pager__items js-pager__items">
       {# Print first item if we are not on the first page. #}
