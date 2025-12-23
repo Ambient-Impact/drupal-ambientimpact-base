@@ -1,14 +1,12 @@
 // -----------------------------------------------------------------------------
-//   Ambient.Impact - Base - Social links
+//   Ambient.Impact - Base - Tooltips singleton component
 // -----------------------------------------------------------------------------
 
-AmbientImpact.onGlobals([
-  'tippy.createSingleton',
-], function() {
-AmbientImpact.on(['fastdom', 'tooltip'], function(aiFastDom, aiTooltip) {
-AmbientImpact.addComponent(
-  'baseThemeSocialLinks',
-function(baseThemeSocialLinks, $) {
+AmbientImpact.onGlobals(['tippy.createSingleton'], () => {
+AmbientImpact.on(['fastdom', 'tooltip'], (aiFastDom, aiTooltip) => {
+AmbientImpact.addComponent('baseThemeTooltipsSingleton', function(
+  component, $,
+) {
 
   'use strict';
 
@@ -24,7 +22,7 @@ function(baseThemeSocialLinks, $) {
    *
    * @type {String}
    */
-  const tooltipsPropName = 'AmbientImpactSocialLinksTooltips';
+  const tooltipsPropName = 'AmbientImpactTooltips';
 
   /**
    * DOM property name where we save the singleton instance to.
@@ -34,9 +32,9 @@ function(baseThemeSocialLinks, $) {
   const singletonPropName = `${tooltipsPropName}Singleton`;
 
   this.addBehaviour(
-    'AmbientImpactSocialLinksTooltips',
-    'ambientimpact-social-links-tooltips',
-    '.ambientimpact-social-links',
+    'AmbientImpactTooltipsSingleton',
+    'ambientimpact-tooltips-singleton',
+    '[data-tooltips-singleton]',
     // We want to ignore 'refreshless:before-cache' but we do want to be
     // notified when displaying a cached snapshot.
     ['unload', 'refreshless:cached-snapshot'],
@@ -50,9 +48,7 @@ function(baseThemeSocialLinks, $) {
 
       $(this).prop(
         tooltipsPropName,
-        new aiTooltip.Tooltip($(this).find(
-          '.ambientimpact-social-links__network-link',
-        )),
+        new aiTooltip.Tooltip($(this).find('[title]')),
       );
 
       $(this).prop(
@@ -69,9 +65,7 @@ function(baseThemeSocialLinks, $) {
       // occur when restoring from RefreshLess' cache and then return.
       if (trigger === 'refreshless:cached-snapshot') {
 
-        const $items = $(this).find(
-          '.ambientimpact-social-links__network-link[data-original-title]',
-        );
+        const $items = $(this).find('[data-original-title]');
 
         await fastdom.mutate(() => {
 

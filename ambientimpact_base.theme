@@ -155,9 +155,18 @@ function ambientimpact_base_preprocess_ambientimpact_block_social_links(
   array &$variables,
 ): void {
 
-  // Mark this as a tooltips singleton container so that the tooltips behaviour
-  // won't touch anything in this.
-  $variables['attributes']['data-tooltips-singleton'] = 'true';
+  // If there's more than one network, mark this as a tooltip singleton and
+  // attach the library. This also prevents the generalized tooltip behaviour
+  // touching it.
+  if (count($variables['networks']) > 1) {
+
+    $variables['attributes']['data-tooltips-singleton'] = 'true';
+
+    $variables['#attached'][
+      'library'
+    ][] = 'ambientimpact_base/tooltips_singleton';
+
+  }
 
 }
 
