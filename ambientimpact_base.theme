@@ -407,4 +407,15 @@ function ambientimpact_base_preprocess_pager(array &$variables): void {
   // reason, which would have been the preferred way to attach this.
   $variables['#attached']['library'][] = 'ambientimpact_base/pager';
 
+  // Use singleton tooltip if this is being rendered.
+  if (!empty($variables['items'])) {
+
+    $variables['attributes']['data-tooltips-singleton'] = 'true';
+
+    $variables['#attached'][
+      'library'
+    ][] = 'ambientimpact_base/tooltips_singleton';
+
+  }
+
 }
