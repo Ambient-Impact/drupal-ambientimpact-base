@@ -14,6 +14,13 @@ AmbientImpact.addComponent('baseThemeTooltips', (baseTooltips, $) => {
    */
   const fastdom = aiFastDom.getInstance();
 
+  /**
+   * DOM property name where we save the tooltips instance to.
+   *
+   * @type {String}
+   */
+  const tooltipsPropName = 'AmbientImpactTooltips';
+
   this.addBehaviour(
     'AmbientImpactTooltips',
     'ambientimpact-tooltips',
@@ -24,7 +31,7 @@ AmbientImpact.addComponent('baseThemeTooltips', (baseTooltips, $) => {
     function(context, settings) {
 
       $(this).prop(
-        'AmbientImpactTooltips',
+        tooltipsPropName,
         new aiTooltip.Tooltips(this, {target:
           // Ignore elements within a singleton container.
           '[title]:not([data-tooltips-singleton] *)',
@@ -64,9 +71,9 @@ AmbientImpact.addComponent('baseThemeTooltips', (baseTooltips, $) => {
 
       }
 
-      $(this).prop('AmbientImpactTooltips')?.destroy();
+      $(this).prop(tooltipsPropName)?.destroy();
 
-      $(this).removeProp('AmbientImpactTooltips');
+      $(this).removeProp(tooltipsPropName);
 
     }
   );
