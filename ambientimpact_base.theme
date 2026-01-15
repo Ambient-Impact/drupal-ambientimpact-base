@@ -374,6 +374,31 @@ function ambientimpact_base_preprocess_menu_local_action(&$variables): void {
 }
 
 /**
+ * Prepares variables for node templates.
+ */
+function ambientimpact_base_preprocess_node(array &$variables): void {
+
+  if (
+    // Note that $variables['page'] is deprecated as of Drupal 11.3.0.
+    //
+    // @todo This doesn't guarantee that the node is being diplayed on its own
+    //   page like $variables['page'] would have, so maybe this is a bad idea?
+    $variables['view_mode'] === 'full' &&
+    isset($variables['title_suffix']['contextual_links']) &&
+    // We only want to hide contextual links if we know the user can access the
+    // navigation as it has the edit link in its top bar.
+    \Drupal::currentUser()->hasPermission('access navigation')
+  ) {
+
+    // Deny access rather than unsetting to allow themes to show this if they
+    // prefer.
+    $variables['title_suffix']['contextual_links']['#access'] = false;
+
+  }
+
+}
+
+/**
  * Prepares variables for details element templates.
  *
  * @see \Drupal\ambientimpact_base\DetailsPreprocess::preprocess()
