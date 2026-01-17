@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Drupal\ambientimpact_base\Hook\DetailsHooks;
+use Drupal\ambientimpact_base\Hook\ResponsiveImageHooks;
 use Drupal\ambientimpact_base\Hook\ViewsHooks;
-use Drupal\ambientimpact_base\ResponsiveImageFormatterPreprocess;
 use Drupal\ambientimpact_base\SiteBrandingBlockProperties;
 use Drupal\Core\Hook\Attribute\LegacyHook;
 
@@ -279,16 +279,15 @@ function ambientimpact_base_preprocess_links(array &$variables): void {
 
 /**
  * Prepares variables for responsive image formatter templates.
- *
- * @see \Drupal\ambientimpact_base\ResponsiveImageFormatterPreprocess::preprocess()
- *   Variables preprocessed by this.
  */
+// @phpstan-ignore-next-line
+#[LegacyHook]
 function ambientimpact_base_preprocess_responsive_image_formatter(
-  &$variables
+  &$variables,
 ): void {
 
-  \Drupal::classResolver(ResponsiveImageFormatterPreprocess::class)->preprocess(
-    $variables
+  \Drupal::classResolver(ResponsiveImageHooks::class)->preprocessFormatter(
+    $variables,
   );
 
 }

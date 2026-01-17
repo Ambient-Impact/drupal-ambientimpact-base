@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Drupal\ambientimpact_base;
+namespace Drupal\ambientimpact_base\Hook;
 
 use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Hook\Attribute\Hook;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Utility\Error;
-use Psr\Log\LoggerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Responsive image formatter preprocess class.
+ * Responsive image hooks.
  */
-class ResponsiveImageFormatterPreprocess implements ContainerInjectionInterface {
+class ResponsiveImageHooks {
 
   /**
    * Our logger channel name.
@@ -22,30 +21,14 @@ class ResponsiveImageFormatterPreprocess implements ContainerInjectionInterface 
   protected const LOGGER_CHANNEL = 'ambientimpact_base';
 
   /**
-   * Our logger channel.
-   *
-   * @var \Psr\Log\LoggerInterface
-   */
-  protected LoggerInterface $loggerChannel;
-
-  /**
    * Constructor; saves dependencies.
    *
-   * @param \Psr\Log\LoggerInterface $loggerChannel
-   *   Our logger channel.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $loggerChannelFactory
+   *   The logger channel factory.
    */
-  public function __construct(LoggerInterface $loggerChannel) {
-    $this->loggerChannel = $loggerChannel;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('logger.factory')->get(self::LOGGER_CHANNEL)
-    );
-  }
+  public function __construct(
+    protected readonly LoggerChannelFactoryInterface $loggerChannelFactory,
+  ) {}
 
   /**
    * Prepares variables for responsive image formatter templates.
@@ -58,12 +41,11 @@ class ResponsiveImageFormatterPreprocess implements ContainerInjectionInterface 
    * will be used for the URL and the exception will be logged.
    *
    * @param array &$variables
-   *   Variables from
-   *     \ambientimpact_base_preprocess_responsive_image_formatter().
    *
    * @see \template_preprocess_responsive_image_formatter()
    */
-  public function preprocess(array &$variables): void {
+  #[Hook('preprocess_responsive_image_formatter')]
+  public function preprocessFormatter(array &$variables): void {
 
     // Return if there's no URL, if it's not a string, or if it looks like a
     // valid external URL.
@@ -81,12 +63,15 @@ class ResponsiveImageFormatterPreprocess implements ContainerInjectionInterface 
 
     } catch (\Exception $exception) {
 
+      /** @var \Psr\Log\LoggerInterface Our logger channel. */
+      $logger = $this->loggerChannelFactory->get(self::LOGGER_CHANNEL);
+
       // Log the exception.
       //
       // @see \watchdog_exception()
-      //   We're replicating what this function does, but using the injected
-      //   logger channel.
-      $this->loggerChannel->error(
+      //   We're replicating what this function does, but using dependency
+      //   injection.
+      $logger->error(
         '%type: @message in %function (line %line of %file).',
         Error::decodeException($exception)
       );
