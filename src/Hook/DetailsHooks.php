@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Drupal\ambientimpact_base;
+namespace Drupal\ambientimpact_base\Hook;
 
 use Drupal\ambientimpact_core\ComponentPluginManagerInterface;
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Hook\Attribute\Hook;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**
- * Prepares variables for details element templates.
+ * Details element hooks.
  */
-class DetailsPreprocess implements ContainerInjectionInterface {
+class DetailsHooks {
 
   /**
    * Constructor; saves dependencies.
@@ -21,23 +21,16 @@ class DetailsPreprocess implements ContainerInjectionInterface {
    *   The component plug-in manager service.
    */
   public function __construct(
+    #[Autowire(service: 'plugin.manager.ambientimpact_component')]
     protected readonly ComponentPluginManagerInterface $componentManager,
   ) {}
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('plugin.manager.ambientimpact_component'),
-    );
-  }
 
   /**
    * Prepares variables for details element templates.
    *
    * @param array &$variables
    */
+  #[Hook('preprocess_details')]
   public function preprocess(array &$variables): void {
 
     $this->iconifySummary($variables);

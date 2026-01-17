@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Drupal\ambientimpact_base\DetailsPreprocess;
+use Drupal\ambientimpact_base\Hook\DetailsHooks;
 use Drupal\ambientimpact_base\Hook\ViewsHooks;
 use Drupal\ambientimpact_base\ResponsiveImageFormatterPreprocess;
 use Drupal\ambientimpact_base\SiteBrandingBlockProperties;
@@ -377,13 +377,12 @@ function ambientimpact_base_preprocess_menu_local_action(&$variables): void {
 
 /**
  * Prepares variables for details element templates.
- *
- * @see \Drupal\ambientimpact_base\DetailsPreprocess::preprocess()
- *   Variables preprocessed by this.
  */
+// @phpstan-ignore-next-line
+#[LegacyHook]
 function ambientimpact_base_preprocess_details(array &$variables): void {
 
-  \Drupal::classResolver(DetailsPreprocess::class)->preprocess($variables);
+  \Drupal::classResolver(DetailsHooks::class)->preprocess($variables);
 
 }
 
