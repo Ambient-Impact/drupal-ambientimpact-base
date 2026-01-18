@@ -2,38 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Drupal\ambientimpact_base;
+namespace Drupal\ambientimpact_base\Hook;
 
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
+use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Theme\ThemeManagerInterface;
 use Drupal\Core\Url;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Site branding block properties preprocess class.
+ * Site branding block hooks.
  */
-class SiteBrandingBlockProperties implements ContainerInjectionInterface {
+class SiteBrandingBlockHooks implements ContainerInjectionInterface {
+
+  use AutowireTrait;
 
   use StringTranslationTrait;
-
-  /**
-   * The Drupal theme handler service.
-   *
-   * @var \Drupal\Core\Extension\ThemeHandlerInterface
-   */
-  protected ThemeHandlerInterface $themeHandler;
-
-  /**
-   * The Drupal theme manager.
-   *
-   * @var \Drupal\Core\Theme\ThemeManagerInterface
-   */
-  protected ThemeManagerInterface $themeManager;
 
   /**
    * Constructor; saves dependencies.
@@ -48,24 +37,13 @@ class SiteBrandingBlockProperties implements ContainerInjectionInterface {
    *   The Drupal theme manager.
    */
   public function __construct(
-    TranslationInterface  $stringTranslation,
-    ThemeHandlerInterface $themeHandler,
-    ThemeManagerInterface $themeManager
+    TranslationInterface $stringTranslation,
+    protected readonly ThemeHandlerInterface $themeHandler,
+    protected readonly ThemeManagerInterface $themeManager,
   ) {
-    $this->stringTranslation  = $stringTranslation;
-    $this->themeHandler       = $themeHandler;
-    $this->themeManager       = $themeManager;
-  }
 
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('string_translation'),
-      $container->get('theme_handler'),
-      $container->get('theme.manager')
-    );
+    $this->setStringTranslation($stringTranslation);
+
   }
 
   /**
@@ -138,6 +116,7 @@ class SiteBrandingBlockProperties implements ContainerInjectionInterface {
    * @see \hook_block_build_BASE_BLOCK_ID_alter()
    *   Cacheability metadata can be added/altered in this hook if need be.
    */
+  #[Hook('preprocess_block__system_branding_block')]
   public function preprocess(array &$variables): void {
 
     // Create the 'front_page_url' variable if it hasn't been provided.
