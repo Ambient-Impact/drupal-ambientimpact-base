@@ -6,13 +6,16 @@ namespace Drupal\ambientimpact_base\Hook;
 
 use Drupal\ambientimpact_core\ComponentPluginManagerInterface;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\DependencyInjection\AutowireTrait;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Hook\Attribute\Hook;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**
  * Details element hooks.
  */
-class DetailsHooks {
+class DetailsHooks implements ContainerInjectionInterface {
+
+  use AutowireTrait;
 
   /**
    * Constructor; saves dependencies.
@@ -21,7 +24,6 @@ class DetailsHooks {
    *   The component plug-in manager service.
    */
   public function __construct(
-    #[Autowire(service: 'plugin.manager.ambientimpact_component')]
     protected readonly ComponentPluginManagerInterface $componentManager,
   ) {}
 

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Drupal\ambientimpact_base\Hook;
 
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\DependencyInjection\AutowireTrait;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Url;
@@ -13,7 +15,9 @@ use Drupal\Core\Utility\Error;
 /**
  * Responsive image hooks.
  */
-class ResponsiveImageHooks {
+class ResponsiveImageHooks implements ContainerInjectionInterface {
+
+  use AutowireTrait;
 
   /**
    * Our logger channel name.
