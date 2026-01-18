@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Drupal\ambientimpact_base\Hook\DetailsHooks;
 use Drupal\ambientimpact_base\Hook\FormElementHooks;
+use Drupal\ambientimpact_base\Hook\MediaHooks;
 use Drupal\ambientimpact_base\Hook\MenuHooks;
 use Drupal\ambientimpact_base\Hook\NodeHooks;
 use Drupal\ambientimpact_base\Hook\ResponsiveImageHooks;
@@ -184,82 +185,55 @@ function ambientimpact_base_preprocess_block__system_branding_block(
 }
 
 /**
- * Prepares variables for field templates.
- *
- * This sets the 'constrain_width' value to false on media entity 'thumbnail'
- * fields so that small, low resolution thumbnails take up the same space as
- * high resolution thumbnails, in line with how they're shown in actual
- * YouTube/Vimeo embedded videos.
- *
- * This sets a max-width on image field items so that no phantom link space can
- * occur.
+ * Prepares variables for image field templates.
+ */
+// @phpstan-ignore-next-line
+#[LegacyHook]
+function ambientimpact_base_preprocess_field__image(
+  array &$variables,
+): void {
+
+  \Drupal::classResolver(MediaHooks::class)->preprocessImageField($variables);
+
+}
+
+/**
+ * Prepares variables for link field templates.
  *
  * This sets classes on link fields to indicate whether they have a link title
  * or are outputting the URL as their title. This is useful to force browsers to
  * wrap URLs so they don't break out of the layout.
- *
- * @see \Drupal\ambientimpact_media\Plugin\AmbientImpact\Component\Image::preprocessFieldSetImageFieldMaxWidth()
- *   This adds a max-width on each field item.
  */
-function ambientimpact_base_preprocess_field(&$variables, $hook): void {
+function ambientimpact_base_preprocess_field__link(
+  array &$variables,
+): void {
 
-  // Media thumbnail field.
-  if (
-    $variables['field_type'] === 'image' &&
-    $variables['field_name'] === 'thumbnail'
-  ) {
+  foreach ($variables['element']['#items'] as $i => $item) {
 
-    foreach ($variables['items'] as $delta => &$item) {
-      $item['content']['#constrain_width'] = false;
+    if (!empty($item->title)) {
+      $linkClass = 'field__item--link-has-title';
+    } else {
+      $linkClass = 'field__item--link-no-title';
     }
+
+    $variables['items'][$i]['attributes']->addClass($linkClass);
 
   }
 
-  if ($variables['field_type'] === 'image') {
+}
 
-    foreach ($variables['items'] as $delta => &$item) {
+/**
+ * Prepares variables for media thumbnail field templates.
+ */
+// @phpstan-ignore-next-line
+#[LegacyHook]
+function ambientimpact_base_preprocess_field__media__thumbnail(
+  array &$variables,
+): void {
 
-      // Set a default for constrain_width in all image field items so that we
-      // don't get an PHP undefined notice when the Image component attempts to
-      // read it where it isn't already explicitly set. An example of this is on
-      // user profile image fields.
-      if (!isset($item['content']['#constrain_width'])) {
-        $item['content']['#constrain_width'] = true;
-      }
-
-    }
-
-    $componentManager = \Drupal::service(
-      'plugin.manager.ambientimpact_component'
-    );
-
-    $imageComponent = $componentManager->getComponentInstance('image');
-
-    // If ambientimpact_media is not installed, this component will not exist so
-    // calling the method below would cause a fatal error in that case.
-    if (is_object($imageComponent)) {
-
-      $imageComponent->preprocessFieldSetImageFieldMaxWidth($variables);
-
-    }
-
-  }
-
-  if ($variables['field_type'] === 'link') {
-
-    foreach ($variables['element']['#items'] as $i => $item) {
-
-      if (!empty($item->title)) {
-        $linkClass = 'field__item--link-has-title';
-      } else {
-        $linkClass = 'field__item--link-no-title';
-      }
-
-      $variables['items'][$i]['attributes']->addClass($linkClass);
-
-    }
-
-  }
+  \Drupal::classResolver(MediaHooks::class)->preprocessMediaThumbnailField(
+    $variables,
+  );
 
 }
 
