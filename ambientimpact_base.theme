@@ -15,6 +15,7 @@ use Drupal\ambientimpact_base\Hook\NodeHooks;
 use Drupal\ambientimpact_base\Hook\PagerHooks;
 use Drupal\ambientimpact_base\Hook\ResponsiveImageHooks;
 use Drupal\ambientimpact_base\Hook\SiteBrandingBlockHooks;
+use Drupal\ambientimpact_base\Hook\SocialLinksHooks;
 use Drupal\ambientimpact_base\Hook\TableHooks;
 use Drupal\ambientimpact_base\Hook\ViewsHooks;
 use Drupal\Core\Hook\Attribute\LegacyHook;
