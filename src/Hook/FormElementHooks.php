@@ -38,4 +38,55 @@ class FormElementHooks {
 
   }
 
+  /**
+   * Implements hook_element_info_alter.
+   */
+  #[Hook('element_info_alter')]
+  public function elementInfoAlter(array &$info): void {
+
+    if (isset($info['textarea'])) {
+      $info['textarea']['#attached']['library'][] =
+        'ambientimpact_ux/component.textarea';
+    }
+
+    foreach ([
+      // Standard single-line text field.
+     'textfield',
+
+      // Standard multi-line textarea.
+      'textarea',
+
+      // Password fields.
+      'password',
+      'password_confirm',
+
+      // HTML5 fields.
+      'email',
+      'search',
+      'tel',
+      'url',
+      'number',
+    ] as $elementName) {
+
+      if (isset($info[$elementName])) {
+        $info[$elementName]['#attached']['library'][] =
+          'ambientimpact_ux/component.material.input';
+      }
+
+    }
+
+    foreach (['checkbox', 'radio'] as $elementName) {
+
+      if (!isset($info[$elementName])) {
+        continue;
+      }
+
+      $info[$elementName]['#attached'][
+        'library'
+      ][] = 'ambientimpact_base/' . $elementName;
+
+    }
+
+  }
+
 }

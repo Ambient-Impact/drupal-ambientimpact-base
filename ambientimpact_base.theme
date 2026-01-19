@@ -3,86 +3,39 @@
 declare(strict_types=1);
 
 use Drupal\ambientimpact_base\Hook\DetailsHooks;
+use Drupal\ambientimpact_base\Hook\FeedIconHooks;
+use Drupal\ambientimpact_base\Hook\FieldHooks;
 use Drupal\ambientimpact_base\Hook\FormElementHooks;
+use Drupal\ambientimpact_base\Hook\HtmlHooks;
+use Drupal\ambientimpact_base\Hook\LinkFieldHooks;
+use Drupal\ambientimpact_base\Hook\LinksHooks;
 use Drupal\ambientimpact_base\Hook\MediaHooks;
 use Drupal\ambientimpact_base\Hook\MenuHooks;
 use Drupal\ambientimpact_base\Hook\NodeHooks;
+use Drupal\ambientimpact_base\Hook\PagerHooks;
 use Drupal\ambientimpact_base\Hook\ResponsiveImageHooks;
 use Drupal\ambientimpact_base\Hook\SiteBrandingBlockHooks;
+use Drupal\ambientimpact_base\Hook\TableHooks;
 use Drupal\ambientimpact_base\Hook\ViewsHooks;
 use Drupal\Core\Hook\Attribute\LegacyHook;
 
 /**
- * Implements hook_element_info_alter().
- *
- * This attaches the textarea component to textareas.
- *
- * This attaches the Material input component to text input types.
+ * Implements hook_element_info_alter.
  */
+// @phpstan-ignore-next-line
+#[LegacyHook]
 function ambientimpact_base_element_info_alter(array &$info): void {
 
-  if (isset($info['details'])) {
+  \Drupal::classResolver(DetailsHooks::class)->elementInfoAlter($info);
 
-    $info['details']['#attached'][
-      'library'
-    // This also attaches our own library because we libraries-extend this.
-    ][] = 'ambientimpact_ux/component.details.animated';
+  \Drupal::classResolver(FormElementHooks::class)->elementInfoAlter($info);
 
-  }
-
-  if (isset($info['textarea'])) {
-    $info['textarea']['#attached']['library'][] =
-      'ambientimpact_ux/component.textarea';
-  }
-
-  foreach ([
-    // Standard single-line text field.
-   'textfield',
-
-    // Standard multi-line textarea.
-    'textarea',
-
-    // Password fields.
-    'password',
-    'password_confirm',
-
-    // HTML5 fields.
-    'email',
-    'search',
-    'tel',
-    'url',
-    'number',
-  ] as $elementName) {
-
-    if (isset($info[$elementName])) {
-      $info[$elementName]['#attached']['library'][] =
-        'ambientimpact_ux/component.material.input';
-    }
-
-  }
-
-  foreach (['checkbox', 'radio'] as $elementName) {
-
-    if (!isset($info[$elementName])) {
-      continue;
-    }
-
-    $info[$elementName]['#attached'][
-      'library'
-    ][] = 'ambientimpact_base/' . $elementName;
-
-  }
-
-  if (isset($info['table'])) {
-
-    $info['table']['#attached']['library'][] = 'ambientimpact_base/table';
-
-  }
+  \Drupal::classResolver(TableHooks::class)->elementInfoAlter($info);
 
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter().
+ * Implements hook_theme_suggestions_HOOK_alter.
  */
 // @phpstan-ignore-next-line
 #[LegacyHook]
@@ -97,10 +50,7 @@ function ambientimpact_base_theme_suggestions_input_alter(
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter().
- *
- * This adds our 'node__extended' as a template suggestion so that we can
- * extend node.html.twig without re-implementing the whole template.
+ * Implements hook_theme_suggestions_HOOK_alter.
  */
 // @phpstan-ignore-next-line
 #[LegacyHook]
@@ -116,56 +66,25 @@ function ambientimpact_base_theme_suggestions_node_alter(
 
 /**
  * Prepares variables for HTML document templates.
- *
- * This adds @code <meta name="color-scheme" content="dark light"> @endcode for
- * browsers that support it, to indicate that we want to opt in to them using
- * dark mode user agent styles (e.g. for the page background and form elements)
- * when @code @media (prefers-color-scheme: dark) @endcode applies.
- *
- * Default template: html.html.twig.
- *
- * @param array $variables
- *   An associative array containing:
- *   - page: A render element representing the page.
- *
- * @see https://ambientimpact.com/web/snippets/the-color-scheme-meta-tag
- *
- * @see https://caniuse.com/mdn-html_elements_meta_name_color-scheme
  */
+// @phpstan-ignore-next-line
+#[LegacyHook]
 function ambientimpact_base_preprocess_html(array &$variables): void {
 
-  $variables['page']['#attached']['html_head'][] = [
-    [
-      '#tag'        => 'meta',
-      '#attributes' => [
-        'name'    => 'color-scheme',
-        'content' => 'dark light',
-      ],
-    ],
-    'color-scheme',
-  ];
+  \Drupal::classResolver(HtmlHooks::class)->preprocess($variables);
 
 }
 
 /**
  * Prepares variables for social links templates.
  */
+// @phpstan-ignore-next-line
+#[LegacyHook]
 function ambientimpact_base_preprocess_ambientimpact_block_social_links(
   array &$variables,
 ): void {
 
-  // If there's more than one network, mark this as a tooltip singleton and
-  // attach the library. This also prevents the generalized tooltip behaviour
-  // touching it.
-  if (count($variables['networks']) > 1) {
-
-    $variables['attributes']['data-tooltips-singleton'] = 'true';
-
-    $variables['#attached'][
-      'library'
-    ][] = 'ambientimpact_base/tooltips_singleton';
-
-  }
+  \Drupal::classResolver(SocialLinksHooks::class)->preprocess($variables);
 
 }
 
@@ -185,13 +104,22 @@ function ambientimpact_base_preprocess_block__system_branding_block(
 }
 
 /**
+ * Preprocess variables for field templates.
+ */
+// @phpstan-ignore-next-line
+#[LegacyHook]
+function ambientimpact_base_preprocess_field(array &$variables): void {
+
+  \Drupal::classResolver(FieldHooks::class)->preprocessField($variables);
+
+}
+
+/**
  * Prepares variables for image field templates.
  */
 // @phpstan-ignore-next-line
 #[LegacyHook]
-function ambientimpact_base_preprocess_field__image(
-  array &$variables,
-): void {
+function ambientimpact_base_preprocess_field__image(array &$variables): void {
 
   \Drupal::classResolver(MediaHooks::class)->preprocessImageField($variables);
 
@@ -199,26 +127,12 @@ function ambientimpact_base_preprocess_field__image(
 
 /**
  * Prepares variables for link field templates.
- *
- * This sets classes on link fields to indicate whether they have a link title
- * or are outputting the URL as their title. This is useful to force browsers to
- * wrap URLs so they don't break out of the layout.
  */
-function ambientimpact_base_preprocess_field__link(
-  array &$variables,
-): void {
+// @phpstan-ignore-next-line
+#[LegacyHook]
+function ambientimpact_base_preprocess_field__link(array &$variables): void {
 
-  foreach ($variables['element']['#items'] as $i => $item) {
-
-    if (!empty($item->title)) {
-      $linkClass = 'field__item--link-has-title';
-    } else {
-      $linkClass = 'field__item--link-no-title';
-    }
-
-    $variables['items'][$i]['attributes']->addClass($linkClass);
-
-  }
+  \Drupal::classResolver(LinkFieldHooks::class)->preprocess($variables);
 
 }
 
@@ -240,9 +154,11 @@ function ambientimpact_base_preprocess_field__media__thumbnail(
 /**
  * Prepares variables for links templates.
  */
+// @phpstan-ignore-next-line
+#[LegacyHook]
 function ambientimpact_base_preprocess_links(array &$variables): void {
 
-  $variables['#attached']['library'][] = 'ambientimpact_base/links';
+  \Drupal::classResolver(LinksHooks::class)->preprocess($variables);
 
 }
 
@@ -298,36 +214,23 @@ function ambientimpact_base_preprocess_details(array &$variables): void {
 
 /**
  * Prepares variables for feed icon templates.
- *
- * Attaches the 'ambientimpact_base/feed_icon' library,
  */
+// @phpstan-ignore-next-line
+#[LegacyHook]
 function ambientimpact_base_preprocess_feed_icon(array &$variables): void {
 
-  $variables['#attached']['library'][] = 'ambientimpact_base/feed_icon';
+  \Drupal::classResolver(FeedIconHooks::class)->preprocess($variables);
 
 }
 
 /**
  * Prepares variables for pager templates.
- *
- * Attaches the 'ambientimpact_base/pager' library,
  */
+// @phpstan-ignore-next-line
+#[LegacyHook]
 function ambientimpact_base_preprocess_pager(array &$variables): void {
 
-  // This doesn't seem to work in \hook_element_info_alter() for some absurd
-  // reason, which would have been the preferred way to attach this.
-  $variables['#attached']['library'][] = 'ambientimpact_base/pager';
-
-  // Use singleton tooltip if this is being rendered.
-  if (!empty($variables['items'])) {
-
-    $variables['attributes']['data-tooltips-singleton'] = 'true';
-
-    $variables['#attached'][
-      'library'
-    ][] = 'ambientimpact_base/tooltips_singleton';
-
-  }
+  \Drupal::classResolver(PagerHooks::class)->preprocess($variables);
 
 }
 

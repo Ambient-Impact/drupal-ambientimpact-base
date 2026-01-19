@@ -42,6 +42,23 @@ class DetailsHooks implements ContainerInjectionInterface {
   }
 
   /**
+   * Implements hook_element_info_alter.
+   */
+  #[Hook('element_info_alter')]
+  public function elementInfoAlter(array &$info): void {
+
+    if (!isset($info['details'])) {
+      return;
+    }
+
+    $info['details']['#attached'][
+      'library'
+    // This also attaches our own library because we libraries-extend this.
+    ][] = 'ambientimpact_ux/component.details.animated';
+
+  }
+
+  /**
    * Wrap the <summary> element contents in an icon.
    *
    * This wraps the summary element text in an icon and adds a class to the
