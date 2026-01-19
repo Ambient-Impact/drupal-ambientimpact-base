@@ -13,7 +13,7 @@ AmbientImpact.addComponent('baseThemeDetailsAnimated', function(
     'AmbientImpactDetailsAnimated',
     // This is the same once() name as the demo to avoid attaching this twice.
     'ambientimpact-details-animated',
-    '.region-content details:not(.details--demo-not-animated)',
+    '.layout-container details:not(.details--demo-not-animated)',
     function(context, settings) {
 
       $(this).prop(
