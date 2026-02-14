@@ -46,7 +46,7 @@
 }
 
 // Drupal 11.3 + Gin analog of the previous rule.
-:is(#extra-specificity-hack, [data-drupal-admin-styles]) {
+:is(#extra-specificity-hack, [data-drupal-admin-styles]).admin-toolbar {
 
   .toolbar-button > .toolbar-button__icon {
 
