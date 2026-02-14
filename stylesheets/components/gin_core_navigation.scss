@@ -29,11 +29,32 @@
   // dimensions.
   width:  calc(var(--gin-icon-size-toolbar) + var(--gin-spacing-xs) * 2);
   height: calc(var(--gin-icon-size-toolbar) + var(--gin-spacing-xs) * 2);
+
+  svg {
+
+    // Enforce responsive behaviour to fill the width.
+    width:  100%;
+    height: auto;
+
+  }
+
 }
 
 .admin-toolbar .toolbar-button > .toolbar-button__icon {
   width:  var(--gin-icon-size-toolbar);
   height: var(--gin-icon-size-toolbar);
+}
+
+// Drupal 11.3 + Gin analog of the previous rule.
+:is(#extra-specificity-hack, [data-drupal-admin-styles]) {
+
+  .toolbar-button > .toolbar-button__icon {
+
+    inline-size:  var(--gin-icon-size-toolbar);
+    block-size:   var(--gin-icon-size-toolbar);
+
+  }
+
 }
 
 // For some reason the control bar (on small screens) still causes displacement
