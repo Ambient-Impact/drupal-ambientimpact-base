@@ -139,6 +139,7 @@ radio:
 refreshless:
   js:
     javascript/refreshless.cache.js: { attributes: { defer: true } }
+    javascript/refreshless.menu_active_trail.js: { attributes: { defer: true } }
   dependencies:
     - ambientimpact_core/framework
     - core/once
